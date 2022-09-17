@@ -14,6 +14,7 @@ export default function Booth() {
   return (
     <section className="booth-container">
       {/* 검색창 */}
+      <h1 className="booth_page_title">🍁부스</h1>
       <input
         value={searchValue}
         onChange={handleChange}
@@ -21,7 +22,8 @@ export default function Booth() {
         type="text"
         placeholder="부스이름 또는 메뉴 검색하기"
       />
-      {/* 예시 팔정도 */}
+
+      {/* 지도 전체 사진(예시 팔정도) */}
       <img
         alt="팔정도"
         src="https://velog.velcdn.com/images/seochan99/post/bfed67d9-30c2-4d59-ae59-7fa0d077618b/image.png"
