@@ -22,7 +22,6 @@ export default function Booth() {
         type="text"
         placeholder="부스이름 또는 메뉴 검색하기"
       />
-
       {/* 지도 전체 사진(예시 팔정도) */}
       <img
         alt="팔정도"
