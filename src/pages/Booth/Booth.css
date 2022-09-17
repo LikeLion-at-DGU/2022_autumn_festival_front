@@ -1,0 +1,18 @@
+.nav__input{
+    
+    /* 고정 필요시 아래 코드 사용 
+    position: fixed;
+    transform: translate(-50%,0); */
+    left: 50%;
+    background-color: rgba(255, 255, 255, 0.637);
+    border-radius: 18px;
+    color: rgb(0, 0, 0);
+    padding: 7px;
+    border: none;
+  }
+
+  .search-container {
+    width: 100%;
+    text-align: center;
+    padding: 5rem 0;
+  }
