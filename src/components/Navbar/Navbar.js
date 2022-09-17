@@ -17,29 +17,26 @@ import IconButton from '@mui/material/IconButton';
 
 import { styled } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
-const drawerWidth = 240;
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
+// 우선은 로고 대신
+import Typography from '@mui/material/Typography';
+
+// 상단바
+const AppBar = styled(
+  MuiAppBar,
+  {},
+)(({ theme }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(3),
+  transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
   }),
 }));
 
 export default function Navbar() {
-  const [open] = React.useState(false);
   const [state, setState] = React.useState({
-    left: false,
+    right: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -91,21 +88,29 @@ export default function Navbar() {
 
   return (
     <div>
-      {['left'].map((anchor) => (
+      {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
           <CssBaseline />
-          <AppBar position="fixed" open={open}>
+          <AppBar position="fixed">
             <Toolbar>
+              {/* 우선은 로고 대신 */}
+              <Typography
+                variant="h6"
+                noWrap
+                sx={{ flexGrow: 1 }}
+                component="div"
+              >
+                레츠끼릿
+              </Typography>
+
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
+                edge="end"
                 onClick={toggleDrawer(anchor, true)}
-                edge="start"
-                sx={{ mr: 2, ...(open && { display: 'none' }) }}
               >
                 <MenuIcon />
               </IconButton>
-              레츠끼릿
             </Toolbar>
           </AppBar>
 
