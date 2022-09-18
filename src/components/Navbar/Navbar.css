@@ -1,0 +1,15 @@
+/* .row__posters {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 20px 0 20px 20px;
+  scroll-behavior: smooth;
+} */
+
+@font-face {
+  font-family: 'TmonMonsori';
+  src: url('https://cdn.jsdelivr.net/gh/wizfile/font/TmonMonsori.eot');
+  src: url('https://cdn.jsdelivr.net/gh/wizfile/font/TmonMonsori.woff')
+    format('woff');
+  font-style: normal;
+}

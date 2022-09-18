@@ -1,54 +1,75 @@
 import * as React from 'react';
+import { Route } from 'react-router';
+import styles from './Navbar.css';
+import { BrowserRouter as Router, Link as RouterLink } from 'react-router-dom';
+
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
-
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-
 import { styled } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
+import CloseIcon from '@mui/icons-material/Close';
+import Link from '@mui/material/Link';
 
 // 우선은 로고 대신
 import Typography from '@mui/material/Typography';
+import { SwipeableDrawer } from '@mui/material';
 
+import { createTheme, ThemeProvider } from '@mui/material';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: 'TmonMonsori',
+  },
+});
+
+const drawerWidth = 240;
 // 상단바
-const AppBar = styled(
-  MuiAppBar,
-  {},
-)(({ theme }) => ({
-  flexGrow: 1,
-  padding: theme.spacing(3),
-  transition: theme.transitions.create('margin', {
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  ...(open && {
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginRight: drawerWidth,
+  }),
+}));
+
+// drawerheader
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-start',
 }));
 
 export default function Navbar() {
-  const [state, setState] = React.useState({
-    right: false,
-  });
+  const [state, setState] = React.useState({ right: false });
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
-
+  const toggleDrawer = (anchor, open) => (event) =>
     setState({ ...state, [anchor]: open });
-  };
+
+  const menus = [
+    { text: '공지사항', path: '/notice' },
+    { text: '타임테이블', path: '/timetable' },
+    { text: '부스', path: '/booth' },
+    { text: 'About', path: '/about' },
+  ];
 
   const list = (anchor) => (
     <Box
@@ -59,26 +80,17 @@ export default function Navbar() {
     >
       {/* 메뉴 */}
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {menus.map((menu) => (
+          <ListItem
+            key={menu.text}
+            disablePadding
+            component={RouterLink}
+            // 파란 글씨 제거
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+            to={menu.path}
+          >
             <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={menu.text} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -87,18 +99,22 @@ export default function Navbar() {
   );
 
   return (
-    <div>
+    <div classname="nav">
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
           <CssBaseline />
-          <AppBar position="fixed">
+          <AppBar
+            position="fixed"
+            sx={{ bgcolor: '# 1B2F4E', display: 'flex' }}
+          >
             <Toolbar>
               {/* 우선은 로고 대신 */}
               <Typography
                 variant="h6"
                 noWrap
-                sx={{ flexGrow: 1 }}
-                component="div"
+                component={RouterLink}
+                to="/"
+                style={{ color: 'inherit', textDecoration: 'inherit' }}
               >
                 레츠끼릿
               </Typography>
@@ -106,7 +122,8 @@ export default function Navbar() {
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
-                edge="end"
+                sx={{ marginLeft: 'auto' }}
+                edge="start"
                 onClick={toggleDrawer(anchor, true)}
               >
                 <MenuIcon />
@@ -114,13 +131,21 @@ export default function Navbar() {
             </Toolbar>
           </AppBar>
 
-          <Drawer
+          <SwipeableDrawer
+            sx={{}}
             anchor={anchor}
-            open={state[anchor]}
+            open={state.right}
             onClose={toggleDrawer(anchor, false)}
+            onOpen={toggleDrawer(anchor, true)}
+            paperProps={{ style: { borderRadius: 20 } }}
           >
+            <DrawerHeader>
+              <IconButton onClick={toggleDrawer(anchor, false)}>
+                <CloseIcon />
+              </IconButton>
+            </DrawerHeader>
             {list(anchor)}
-          </Drawer>
+          </SwipeableDrawer>
         </React.Fragment>
       ))}
     </div>
