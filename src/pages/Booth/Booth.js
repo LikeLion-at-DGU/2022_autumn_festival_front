@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Booth.css';
 import Boothcard from '../../components/Booth/Boothcard';
-import requests from '../../api/requests';
 import CategoryFilter from '../../hooks/categoryFilter';
 
 //날짜 데이터 예시
@@ -62,7 +61,7 @@ export default function Booth() {
 
       <hr />
 
-      <Boothcard title={requests.title} />
+      {/* <Boothcard title={requests.title} /> */}
     </section>
   );
 }
