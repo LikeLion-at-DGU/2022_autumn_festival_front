@@ -1,57 +1,19 @@
-import * as React from 'react';
-import { BrowserRouter as Router, Link as RouterLink } from 'react-router-dom';
+//rfce or rfc or rafc 아무거나 사용 -> 차이?? 찾아볼것
 
+import React, { useEffect, useState } from 'react';
+import './Navbar.css';
+import { BrowserRouter as Router, Link as RouterLink } from 'react-router-dom';
+// mui
 import Box from '@mui/material/Box';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import { styled } from '@mui/material/styles';
-import MuiAppBar from '@mui/material/AppBar';
+import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-
-// 우선은 로고 대신
-import Typography from '@mui/material/Typography';
-import { SwipeableDrawer } from '@mui/material';
-
-import { createTheme } from '@mui/material';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#1B2F4E',
-    },
-    secondary: {
-      // This is green.A700 as hex.
-      main: '#FD9903',
-    },
-  },
-  swiperabledrawer: {
-    fontFamily: ['GmarketSansLight'],
-  },
-});
-const drawerWidth = 240;
-// 상단바
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginRight: drawerWidth,
-  }),
-}));
+import { styled } from '@mui/material/styles';
 
 // drawerheader
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -64,18 +26,47 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export default function Navbar() {
-  const [state, setState] = React.useState({ right: false });
+  const [show, setShow] = useState(false);
 
-  const toggleDrawer = (anchor, open) => (event) =>
+  useEffect(() => {
+    //리스너 등록
+    window.addEventListener('scroll', () => {
+      console.log('window.scrollY', window.scrollY);
+      if (window.scrollY > 50) {
+        setShow(true);
+      } else {
+        setShow(false);
+      }
+    });
+
+    return () => {
+      // 이 컴포넌트를 안쓸 경우 리스너 제거
+      window.removeEventListener('scroll', () => {});
+    };
+  }, []);
+
+  // drawer
+  const [state, setState] = React.useState({
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
     setState({ ...state, [anchor]: open });
-
+  };
   const menus = [
     { text: '공지사항', path: '/notice' },
     { text: '타임테이블', path: '/timetable' },
     { text: '부스', path: '/booth' },
     { text: 'About', path: '/about' },
   ];
-
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'bottom' ? 'auto' : 250 }}
@@ -104,57 +95,43 @@ export default function Navbar() {
   );
 
   return (
-    <div classname="nav">
-      {['right'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <CssBaseline />
-          <AppBar
-            position="fixed"
-            sx={{ bgcolor: '# 1B2F4E', display: 'flex' }}
-            theme={theme}
-          >
-            <Toolbar>
-              {/* 우선은 로고 대신 */}
-              <Typography
-                variant="h6"
-                noWrap
-                component={RouterLink}
-                to="/"
-                style={{ color: 'inherit', textDecoration: 'inherit' }}
-              >
-                레츠끼릿
-              </Typography>
-
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                sx={{ marginLeft: 'auto' }}
-                edge="start"
-                onClick={toggleDrawer(anchor, true)}
-              >
-                <MenuIcon />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-
-          <SwipeableDrawer
-            sx={{}}
-            theme={theme}
-            anchor={anchor}
-            open={state.right}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-            paperProps={{ style: { borderRadius: 20 } }}
-          >
-            <DrawerHeader>
-              <IconButton onClick={toggleDrawer(anchor, false)}>
-                <CloseIcon />
-              </IconButton>
-            </DrawerHeader>
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      ))}
-    </div>
+    <nav className={'nav ${show && "nav__navy"}'}>
+      <div className="nav__logo"> {' Navbar'}</div>
+      {/* <img
+        alt=""
+        src=""
+        className="nav__logo"
+        onClick={() => (window.location.href = '/')} 
+      /> */}
+      <div className="nav__menu">
+        {['right'].map((anchor) => (
+          <React.Fragment key={anchor}>
+            <IconButton
+              sx={{ marginLeft: 'auto' }}
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={toggleDrawer(anchor, true)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <SwipeableDrawer
+              anchor={anchor}
+              open={state[anchor]}
+              onClose={toggleDrawer(anchor, false)}
+              onOpen={toggleDrawer(anchor, true)}
+            >
+              {' '}
+              <DrawerHeader>
+                <IconButton onClick={toggleDrawer(anchor, false)}>
+                  <CloseIcon />
+                </IconButton>
+              </DrawerHeader>
+              {list(anchor)}
+            </SwipeableDrawer>
+          </React.Fragment>
+        ))}
+      </div>
+    </nav>
   );
 }

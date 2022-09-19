@@ -22,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
-  @media only screen and (min-width: 375px) {
+  @media only screen and (min-width: 200px) { //375px 너무 작아서 수정했음
     body {
       display: flex;
       align-items: center;
@@ -30,6 +30,7 @@ export const GlobalStyle = createGlobalStyle`
       background-color: #FFF;
       background-color: ${pointColor};
       font-weight: 500;
+      margin-top : 70px;
     }
     .App {
       width: 375px;

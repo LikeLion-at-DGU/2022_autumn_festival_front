@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  font-family: GmarketSansLight;
 }
 
 .App-logo {
@@ -36,13 +35,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-/* 폰트 */
-@font-face {
-  font-family: 'GmarketSansLight';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
-    format('woff');
-  font-weight: normal;
-  font-style: normal;
 }
