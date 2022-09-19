@@ -12,6 +12,7 @@ import About from './pages/About/About';
 import Booth from './pages/Booth/Booth';
 import BoothDetail from './pages/Booth/BoothDetail';
 import Notice from './pages/Notice/Notice';
+import NoticeDetail from './pages/Notice/NoticeDetail';
 import TimeTable from './pages/TimeTable/TimeTable';
 import BoothSearch from './pages/Booth/BoothSearch';
 
@@ -53,6 +54,7 @@ function App() {
               <Route path="Search" element={<BoothSearch />} />
             </Route>
             <Route path="notice" element={<Notice />} />
+            <Route path="notice/:id" element={<NoticeDetail />} />
             <Route path="timetable" element={<TimeTable />} />
           </Route>
         </Routes>
