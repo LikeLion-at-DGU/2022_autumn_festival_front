@@ -11,6 +11,7 @@ import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Booth from './pages/Booth/Booth';
 import Notice from './pages/Notice/Notice';
+import NoticeDetail from './pages/Notice/NoticeDetail';
 import TimeTable from './pages/TimeTable/TimeTable';
 
 // 레이아웃 네브바 푸터
@@ -38,6 +39,7 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="booth" element={<Booth />} />
             <Route path="notice" element={<Notice />} />
+            <Route path="notice/:id" element={<NoticeDetail />} />
             <Route path="timetable" element={<TimeTable />} />
           </Route>
         </Routes>

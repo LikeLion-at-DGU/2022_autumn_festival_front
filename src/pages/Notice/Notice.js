@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { TitleStyle } from '../../styles/style';
 import {
+  CateBtnActive,
+  CateBtn,
   NoticeCard,
   NoticeBox,
   NoticeTitle,
@@ -10,6 +12,8 @@ import {
 } from './style';
 
 export default function Notice() {
+  const category = ['전체', '주요', '축제', '이벤트', '기타'];
+  const [option, setOption] = useState('전체');
   const [notice, setNotice] = useState([
     {
       id: '1',
@@ -37,7 +41,28 @@ export default function Notice() {
     },
   ]);
 
-  const noticeArray = notice.map((item, idx) => {
+  function onCategoryClick(e) {
+    setOption(e.target.value);
+  }
+
+  const categories = category.map((cate, idx) => {
+    return option === cate ? (
+      <CateBtnActive key={idx} value={cate} onClick={onCategoryClick}>
+        {cate}
+      </CateBtnActive>
+    ) : (
+      <CateBtn key={idx} value={cate} onClick={onCategoryClick}>
+        {cate}
+      </CateBtn>
+    );
+  });
+
+  const noticeArray = notice.filter((no) => {
+    return option === '전체' ? no : no.category.includes(option);
+  });
+  console.log(noticeArray);
+
+  const noticeCard = noticeArray.map((item, idx) => {
     return (
       <NoticeCard key={idx}>
         <NoticeBox>
@@ -64,8 +89,9 @@ export default function Notice() {
   return (
     <>
       <TitleStyle>공지사항</TitleStyle>
+      <div style={{ marginTop: '38px' }}>{categories}</div>
       <NoticeLine></NoticeLine>
-      {noticeArray}
+      {noticeCard}
     </>
   );
 }

@@ -1,4 +1,33 @@
 import styled from 'styled-components';
+import { baseColor } from '../../styles/GlobalStyle';
+
+export const CateBtnActive = styled.button`
+  display: inline-block;
+  width: 59px;
+  height: 22px;
+  font-size: 15px;
+  background-color: ${baseColor};
+  color: #fff;
+  border: 1px solid ${baseColor};
+  border-radius: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin: 0 2.8px;
+`;
+
+export const CateBtn = styled.button`
+  display: inline-block;
+  width: 59px;
+  height: 22px;
+  font-size: 15px;
+  background-color: transparent;
+  color: ${baseColor};
+  border: 1px solid ${baseColor};
+  border-radius: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin: 0 2.8px;
+`;
 
 export const NoticeCard = styled.div`
   display: flex;
