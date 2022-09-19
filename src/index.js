@@ -1,5 +1,5 @@
 import React from 'react';
-import './static/fonts/font.css';
+// import './static/fonts/font.css';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 

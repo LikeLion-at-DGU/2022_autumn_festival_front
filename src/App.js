@@ -10,8 +10,11 @@ import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Booth from './pages/Booth/Booth';
+import BoothDetail from './pages/Booth/BoothDetail';
 import Notice from './pages/Notice/Notice';
+import NoticeDetail from './pages/Notice/NoticeDetail';
 import TimeTable from './pages/TimeTable/TimeTable';
+import BoothSearch from './pages/Booth/BoothSearch';
 
 // 레이아웃 네브바 푸터
 const Layout = () => {
@@ -26,6 +29,14 @@ const Layout = () => {
   );
 };
 
+const BoothLayout = () => {
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
+};
+
 function App() {
   return (
     <>
@@ -36,8 +47,14 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
-            <Route path="booth" element={<Booth />} />
+
+            <Route path="booth" element={<BoothLayout />}>
+              <Route path="" element={<Booth />} />
+              <Route path="Detail" element={<BoothDetail />} />
+              <Route path="Search" element={<BoothSearch />} />
+            </Route>
             <Route path="notice" element={<Notice />} />
+            <Route path="notice/:id" element={<NoticeDetail />} />
             <Route path="timetable" element={<TimeTable />} />
           </Route>{' '}
         </Routes>

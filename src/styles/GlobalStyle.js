@@ -29,6 +29,7 @@ export const GlobalStyle = createGlobalStyle`
       justify-content: center;
       background-color: #FFF;
       background-color: ${pointColor};
+      font-weight: 500;
     }
     .App {
       width: 375px;
