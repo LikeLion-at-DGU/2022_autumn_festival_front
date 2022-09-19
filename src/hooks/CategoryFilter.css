@@ -1,29 +1,58 @@
 .category-set {
-    margin-top: 3px;
-  }
-  
-  .category-child {
-    margin: 5px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 0;
-    background-color: transparent;
-    width: 100px;
-    height: 50px;
-    border-radius: 50px;
-    color: rgb(255, 255, 255);
-    white-space: pre-line;
-  }
-  
-  .category-child:hover {
-    font-weight: bolder;
-    border-color: black;
-  }
-  
-  .selected {
-    border-style: none;
-    font-weight: 800;
-    background: rgb(197, 222, 255);
-    color: #fff;
-  }
+  margin-top: 3px;
+}
+
+.category-child {
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0;
+  background-color: transparent;
+  width: 100px;
+  height: 50px;
+  border-radius: 50px;
+  color: rgb(255, 255, 255);
+  white-space: pre-line;
+}
+
+.category-child:hover {
+  font-weight: bolder;
+  border-color: black;
+}
+
+.selected {
+  border-style: none;
+  font-weight: 800;
+  background: rgb(197, 222, 255);
+  color: #fff;
+}
+.buttonSapce {
+  margin-top: 3px;
+}
+
+.category-child {
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0;
+  background-color: transparent;
+  width: 100px;
+  height: 50px;
+  border-radius: 50px;
+  color: rgb(255, 255, 255);
+  white-space: pre-line;
+}
+
+.category-child:hover {
+  font-weight: bolder;
+  border-color: black;
+}
+
+.selected {
+  border-style: none;
+  font-weight: 800;
+  background: rgb(197, 222, 255);
+  color: #fff;
+}
