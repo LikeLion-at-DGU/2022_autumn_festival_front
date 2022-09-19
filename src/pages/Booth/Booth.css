@@ -28,3 +28,8 @@
 .booth_page_title{
     margin-bottom: 2.3rem;
 }
+.booth-search-container{
+        width: 100%;
+        text-align: center;
+        padding: 2rem 0rem 9rem 0;
+}
