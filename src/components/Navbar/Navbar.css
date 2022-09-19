@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  height: 30px;
+  height: 10px;
   z-index: 1;
   padding: 50px;
   display: flex;
@@ -10,12 +10,15 @@
   align-items: center;
   transition-timing-function: ease-in;
   transition: all 0.5s;
+  background-color: #1b2f4e;
 }
 
 .nav__logo {
   position: fixed;
   display: flex;
   object-fit: contain;
+  /* 임시 */
+  color: white;
 }
 
 .nav__navy {
@@ -25,6 +28,8 @@
 .nav__menu {
   position: fixed;
   display: flex;
-  align-items: right;
   object-fit: contain;
+  align-items: right;
+  color: white;
+  /* 왜 우측정렬 안먹는거야.. */
 }

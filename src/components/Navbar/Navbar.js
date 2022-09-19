@@ -6,13 +6,24 @@ import { BrowserRouter as Router, Link as RouterLink } from 'react-router-dom';
 // mui
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import { styled } from '@mui/material/styles';
+
+// drawerheader
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-start',
+}));
 
 export default function Navbar() {
   const [show, setShow] = useState(false);
@@ -86,12 +97,11 @@ export default function Navbar() {
   return (
     <nav className={'nav ${show && "nav__navy"}'}>
       <div className="nav__logo"> {' Navbar'}</div>
-      {/*show가 true면 nav__black css 적용*/}
       {/* <img
-        alt="Netflix logo"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/170px-Netflix_2015_logo.svg.png"
+        alt=""
+        src=""
         className="nav__logo"
-        onClick={() => (window.location.href = '/')} //이미지 눌렀을때 reload 되게
+        onClick={() => (window.location.href = '/')} 
       /> */}
       <div className="nav__menu">
         {['right'].map((anchor) => (
@@ -111,6 +121,12 @@ export default function Navbar() {
               onClose={toggleDrawer(anchor, false)}
               onOpen={toggleDrawer(anchor, true)}
             >
+              {' '}
+              <DrawerHeader>
+                <IconButton onClick={toggleDrawer(anchor, false)}>
+                  <CloseIcon />
+                </IconButton>
+              </DrawerHeader>
               {list(anchor)}
             </SwipeableDrawer>
           </React.Fragment>
