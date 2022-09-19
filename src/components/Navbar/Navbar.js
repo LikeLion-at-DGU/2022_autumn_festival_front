@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Route } from 'react-router';
-import styles from './Navbar.css';
 import { BrowserRouter as Router, Link as RouterLink } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
@@ -15,20 +13,27 @@ import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
 import CloseIcon from '@mui/icons-material/Close';
-import Link from '@mui/material/Link';
 
 // 우선은 로고 대신
 import Typography from '@mui/material/Typography';
 import { SwipeableDrawer } from '@mui/material';
 
-import { createTheme, ThemeProvider } from '@mui/material';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
-  typography: {
-    fontFamily: 'TmonMonsori',
+  palette: {
+    primary: {
+      main: '#1B2F4E',
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#FD9903',
+    },
+  },
+  swiperabledrawer: {
+    fontFamily: ['GmarketSansLight'],
   },
 });
-
 const drawerWidth = 240;
 // 상단바
 const AppBar = styled(MuiAppBar, {
@@ -106,6 +111,7 @@ export default function Navbar() {
           <AppBar
             position="fixed"
             sx={{ bgcolor: '# 1B2F4E', display: 'flex' }}
+            theme={theme}
           >
             <Toolbar>
               {/* 우선은 로고 대신 */}
@@ -133,6 +139,7 @@ export default function Navbar() {
 
           <SwipeableDrawer
             sx={{}}
+            theme={theme}
             anchor={anchor}
             open={state.right}
             onClose={toggleDrawer(anchor, false)}

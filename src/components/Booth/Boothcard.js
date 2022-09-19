@@ -1,6 +1,8 @@
 import React from 'react';
 import './Boothcard.css';
 
+//부스카드
+
 export default function Boothcard({ title }) {
   return (
     <section className="row">
@@ -8,4 +10,3 @@ export default function Boothcard({ title }) {
     </section>
   );
 }
-//스와이프모르게따

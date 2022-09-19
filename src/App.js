@@ -39,7 +39,7 @@ function App() {
             <Route path="booth" element={<Booth />} />
             <Route path="notice" element={<Notice />} />
             <Route path="timetable" element={<TimeTable />} />
-          </Route>
+          </Route>{' '}
         </Routes>
       </div>
     </>
