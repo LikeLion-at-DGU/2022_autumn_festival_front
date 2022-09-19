@@ -1,6 +1,6 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
-import './App.css';
 import { GlobalStyle } from './styles/GlobalStyle';
+import './App.css';
 
 // 컴포넌트
 import Navbar from './components/Navbar/Navbar';
