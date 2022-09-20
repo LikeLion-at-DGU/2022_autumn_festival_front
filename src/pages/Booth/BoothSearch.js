@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import './Booth.css';
+import boothsearchC from '../../assets/img/boothsearchC.png';
 export default function BoothSearch({}) {
   const navigate = useNavigate();
   const [searchResult, setsearchResult] = useState([]);
@@ -18,15 +20,17 @@ export default function BoothSearch({}) {
       fetchSearchBooth(searchTerm);
     }
   }, [searchTerm]);
-  console.log(searchTerm);
 
   // 부스 title로 찾기
   const fetchSearchBooth = async (searchTerm) => {
     try {
-      // const request = await axios.get(
-      //   `/api/booths?search=searchTerm`, //메뉴..까지.. 뒤지는건가..!
-      // );
-      // setsearchResult(request.data.results);
+      console.log(`/api/booths?search=${searchTerm}`);
+      const request = await axios.get(
+        `/api/booths?search=${searchTerm}`, //메뉴..까지.. 뒤지는건가..!
+      );
+
+      console.log(request);
+      setsearchResult(request.data.results);
     } catch (error) {
       console.log('ERROR', error);
     }
@@ -35,20 +39,20 @@ export default function BoothSearch({}) {
   const renderSearchResults = () => {
     return searchResult.length > 0 ? (
       <section className="search-container">
-        {searchResult.map((movie) => {
-          if (movie.backdrop_path !== null && movie.media_type !== 'person') {
-            const movieImageUrl =
-              'https://image.tmdb.org/t/p/w500' + movie.backdrop_path;
+        {searchResult.map((booth) => {
+          if (booth.backdrop_path !== null) {
+            const boothImageUrl = '이미지URL' + booth.backdrop_path;
             return (
-              <div className="movie" key={movie.id}>
+              // 부스카드
+              <div className="booth" key={booth.id}>
                 <div
-                  onClick={() => navigate(`/${movie.id}`)}
-                  className="movie__column-poster"
+                  onClick={() => navigate(`/${booth.id}`)}
+                  className="booth__column-poster"
                 >
                   <img
-                    src={movieImageUrl}
-                    alt="movie"
-                    className="movie__poster"
+                    src={boothImageUrl}
+                    alt="booth"
+                    className="booth__poster"
                   />
                 </div>
               </div>
@@ -58,8 +62,10 @@ export default function BoothSearch({}) {
       </section>
     ) : (
       <section className="no-results">
+        <p style={{ fontSize: '1.3rem' }}>검색 결과</p>
         <div className="no-results__text">
-          <p>찾고자하는 "{searchTerm}"에 부스 또는 메뉴가 없습니다.</p>
+          <img src={boothsearchC} className="noResultImg" />
+          <p>찾고자하는 "{searchTerm}"에 맞는 부스 또는 메뉴가 없습니다.</p>
         </div>
       </section>
     );

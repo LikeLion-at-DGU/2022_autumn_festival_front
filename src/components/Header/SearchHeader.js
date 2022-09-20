@@ -33,7 +33,7 @@ export default function SearchHeader() {
         onChange={handleChange}
         className="nav__input"
         type="text"
-        placeholder="부스이름 또는 메뉴 검색하기"
+        placeholder="부스이름 또는 메뉴 검색"
       />
     </div>
   );
