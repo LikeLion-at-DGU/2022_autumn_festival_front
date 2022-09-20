@@ -10,14 +10,13 @@ export default function SearchHeader() {
   // 검색
   const handleChange = (e) => {
     setsearchValue(e.target.value);
-    navigate(`/boothSearch?q=${searchValue}`);
+    navigate(`/booth/Search?q=${searchValue}`);
     //부스
   };
 
   return (
-    <div>
+    <div className="booth_page_header">
       <h1 className="booth_page_title">🍁부스</h1>
-
       {/* 검색창 */}
       <input
         value={searchValue}

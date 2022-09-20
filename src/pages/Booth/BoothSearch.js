@@ -11,15 +11,5 @@ export default function BoothSearch({}) {
     navigate(`/boothSearch?q=${e.target.value}`);
   };
 
-  return (
-    <div className="booth-search-container">
-      <input
-        value={searchValue}
-        onChange={handleChange}
-        className="nav__input"
-        type="text"
-        placeholder="부스이름 또는 메뉴 검색하기"
-      />
-    </div>
-  );
+  return <div className="booth-search-container">Booth Search</div>;
 }
