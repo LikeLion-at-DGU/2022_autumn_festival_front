@@ -12,6 +12,7 @@
   transition: all 0.5s;
   background-color: #1b2f4e;
   margin: 0 10px 0 0;
+  font-family: 'GmarketSansMedium';
 }
 
 .nav__logo {
