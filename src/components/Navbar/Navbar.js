@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import './Navbar.css';
 import { Link as RouterLink } from 'react-router-dom';
 import navLogo from '../../assets/img/navLogo.png';
+import navC from '../../assets/img/navC.png';
 // mui
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
@@ -125,6 +126,14 @@ export default function Navbar() {
                   onClick={toggleDrawer(anchor, false)}
                 />
               </DrawerHeader>
+              <img
+                className="navC"
+                alt="navC"
+                src={navC}
+                onClick={() => (window.location.href = '/')}
+              />
+              <hr></hr>
+              <div>{list(anchor)}</div>
               {list(anchor)}
             </SwipeableDrawer>
           </React.Fragment>

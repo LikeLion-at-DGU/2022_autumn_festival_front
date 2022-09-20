@@ -38,3 +38,23 @@
   margin-left: 340px;
   float: right;
 }
+
+.navC {
+  padding: 30px 0 0 0px; /*상좌하우 */
+  margin: 0 1px 0 150px;
+  width: 100px;
+}
+
+hr {
+  width: 80%;
+  background-color: #1b2f4e;
+  margin: -2px 0 0 18px;
+}
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

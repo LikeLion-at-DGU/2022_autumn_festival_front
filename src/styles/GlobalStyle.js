@@ -35,6 +35,7 @@ export const GlobalStyle = createGlobalStyle`
     .App {
       width: 375px;
       height: 100vh;
+      font-family: 'GmarketSansMedium';
       color: #FFF;
       & > {
         float: left;
