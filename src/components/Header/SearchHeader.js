@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../pages/Booth/Booth.css';
+import maple from '../../assets/img/maple.png';
+import { display } from '@mui/system';
 
 export default function SearchHeader() {
   const [searchValue, setsearchValue] = useState('');
@@ -16,6 +18,8 @@ export default function SearchHeader() {
 
   return (
     <div className="booth_page_header">
+      {/* <img src={maple} style={{ width: '2rem' }} /> */}
+
       <h1 className="booth_page_title">
         <a
           href="/booth"
