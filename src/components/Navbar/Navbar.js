@@ -29,11 +29,11 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-start',
 }));
 
-const theme = createTheme({
-  typography: {
-    fontFamily: [GmarketSansMedium].join(','),
-  }.join(','),
-});
+// const theme = createTheme({
+//   typography: {
+//     fontFamily: [GmarketSansMedium].join(','),
+//   },
+// });
 
 export default function Navbar() {
   const [show, setShow] = useState(false);
@@ -90,9 +90,9 @@ export default function Navbar() {
             style={{ color: 'inherit', textDecoration: 'inherit' }}
             to="/notice"
           >
-            <ThemeProvider theme={theme}>
+            <ListItemButton>
               <div>공지사항 </div>
-            </ThemeProvider>
+            </ListItemButton>
           </ListItem>
 
           <ListItem
