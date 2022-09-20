@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Booth.css';
 import '../../api/boothData.json';
 // import Boothcard from '../../components/Booth/Boothcard';
-import Categories from '../../hooks/Categories';
+// import Categories from '../../hooks/Categories';
 
 export default function Booth({}) {
   // const category = match.params.category || '수요일';
@@ -18,7 +18,7 @@ export default function Booth({}) {
         className="boothMap"
       />
 
-      <Categories />
+      {/* <Categories /> */}
 
       {/* <Boothcard title={requests.title} /> */}
     </section>
