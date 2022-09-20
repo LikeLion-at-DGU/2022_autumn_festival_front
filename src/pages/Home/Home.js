@@ -1,5 +1,9 @@
 import React from 'react';
 
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      메인페이지 아직 시작안함
+    </>
+  );
 }
