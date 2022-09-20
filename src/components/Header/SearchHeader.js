@@ -16,7 +16,17 @@ export default function SearchHeader() {
 
   return (
     <div className="booth_page_header">
-      <h1 className="booth_page_title">🍁부스</h1>
+      <h1 className="booth_page_title">
+        <a
+          href="/booth"
+          style={{
+            textDecorationLine: 'none',
+            color: 'white',
+          }}
+        >
+          🍁부스
+        </a>
+      </h1>
       {/* 검색창 */}
       <input
         value={searchValue}
