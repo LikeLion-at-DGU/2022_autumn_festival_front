@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import './Navbar.css';
-import { BrowserRouter as Router, Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import navLogo from '../../assets/img/navLogo.png';
 // mui
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
@@ -10,16 +11,17 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+
 import { styled } from '@mui/material/styles';
 
+//fontawesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 // drawerheader
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  padding: theme.spacing(0, 1),
+  padding: theme.spacing(0, 3),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: 'flex-start',
@@ -96,25 +98,20 @@ export default function Navbar() {
 
   return (
     <nav className={'nav ${show && "nav__navy"}'}>
-      <div className="nav__logo"> {' Navbar'}</div>
-      {/* <img
-        alt=""
-        src=""
+      <img
+        alt="navLogo"
+        src={navLogo}
         className="nav__logo"
-        onClick={() => (window.location.href = '/')} 
-      /> */}
+        onClick={() => (window.location.href = '/')}
+      />
+
       <div className="nav__menu">
         {['right'].map((anchor) => (
           <React.Fragment key={anchor}>
-            <IconButton
-              sx={{ marginLeft: 'auto' }}
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
+            <FontAwesomeIcon
+              icon={faBars}
               onClick={toggleDrawer(anchor, true)}
-            >
-              <MenuIcon />
-            </IconButton>
+            />
             <SwipeableDrawer
               anchor={anchor}
               open={state[anchor]}
@@ -123,9 +120,10 @@ export default function Navbar() {
             >
               {' '}
               <DrawerHeader>
-                <IconButton onClick={toggleDrawer(anchor, false)}>
-                  <CloseIcon />
-                </IconButton>
+                <FontAwesomeIcon
+                  icon={faXmark}
+                  onClick={toggleDrawer(anchor, false)}
+                />
               </DrawerHeader>
               {list(anchor)}
             </SwipeableDrawer>
