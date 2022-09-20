@@ -13,6 +13,7 @@ export const CateBtnActive = styled.button`
   padding-top: 2px;
   padding-bottom: 2px;
   margin: 0 2.8px;
+  cursor: pointer;
 `;
 
 export const CateBtn = styled.button`
@@ -27,6 +28,7 @@ export const CateBtn = styled.button`
   padding-top: 2px;
   padding-bottom: 2px;
   margin: 0 2.8px;
+  cursor: pointer;
 `;
 
 export const NoticeCard = styled.div`
