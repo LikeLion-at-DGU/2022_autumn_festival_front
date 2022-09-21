@@ -1,5 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { baseColor } from '../../styles/GlobalStyle';
+
+export const CateContainer = styled.div`
+  margin-top: 38px;
+  width: 328px;
+  padding-left: 25px;
+  text-align: left;
+`;
 
 export const CateBtnActive = styled.button`
   display: inline-block;
@@ -34,12 +41,13 @@ export const CateBtn = styled.button`
 export const NoticeCard = styled.div`
   display: flex;
   flex-direction: column;
-`;
 
-export const NoticeBox = styled.div`
-  display: flex;
-  width: 300px;
-  margin-left: 38px;
+  & > div {
+    display: flex;
+    width: 300px;
+    margin-left: 38px;
+    cursor: pointer;
+  }
 `;
 
 export const NoticeTitle = styled.span`
@@ -71,7 +79,36 @@ export const NoticeLine = styled.p`
 `;
 
 export const PageNum = styled.span`
+  display: inline-block;
   width: 12px;
   margin: 0 10px;
   cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+  ${(props) => {
+    const active = props.active;
+    if (active === 'y') {
+      return css`
+        color: ${baseColor};
+      `;
+    }
+  }};
+`;
+
+export const Pagination = styled.div`
+  padding: 5px;
+`;
+
+export const NoticeDetailContainer = styled.div`
+  display: flex;
+  margin: 8px 0 0 28.8px;
+  width: 325px;
+  justify-content: space-between;
+`;
+
+export const NoticeDetailContent = styled.div`
+  width: 325px;
+  margin: 50px 0 0 28.8px;
+  font-size: 13px;
+  text-align: left;
 `;
