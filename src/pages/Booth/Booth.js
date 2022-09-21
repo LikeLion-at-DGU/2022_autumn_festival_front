@@ -17,7 +17,7 @@ const DateContainer = styled.div`
 
 const DayBox = styled.div`
   bottom: 0;
-  margin: 0px 10px;
+  margin: 0px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +25,9 @@ const DayBox = styled.div`
 `;
 
 const BoxDate = styled.span`
-  font-weight: 200;
+  opacity: ${(props) => (props.isActive ? 1 : 0.7)};
+  transition: all 0.5s;
+  font-family: 'GmarketSansLight';
   margin-bottom: 3px;
 `;
 
@@ -140,9 +142,9 @@ export default function Booth({}) {
       <DateContainer>
         {dayArray.map((i) => (
           <DayBox key={i.id} onClick={() => setIsToday(i.id)}>
-            <BoxDate>{i.date}일</BoxDate>
+            <BoxDate isActive={isToday === i.id}>{i.date}일</BoxDate>
             <BoxDay isActive={isToday === i.id}>{i.day}</BoxDay>
-            {isToday === i.id ? <BoxHere layoutId="boxhere" /> : <BoxNotHere />}
+            {isToday === i.id ? <BoxHere layoutId="boxhe" /> : <BoxNotHere />}
           </DayBox>
         ))}
       </DateContainer>

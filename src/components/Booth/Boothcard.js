@@ -1,4 +1,5 @@
 import * as React from 'react';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Card from '@mui/material/Card';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CardContent from '@mui/material/CardContent';
@@ -9,7 +10,7 @@ import './Boothcard.css';
 import styled from 'styled-components';
 
 import noticeExImg from '../../assets/img/noticeExImg.png';
-import { fontWeight } from '@mui/system';
+import { borderRadius, fontWeight } from '@mui/system';
 
 // const boothCard = styled.section`
 //   width: 100%;
@@ -25,11 +26,12 @@ const Location_number = styled.p`
   left: 10rem;
   display: inline;
   float: left;
-  margin-left: 10px;
+  margin-left: 19px;
   margin-top: 5px;
   color: #fd9903;
   font-weight: 800;
 `;
+
 const BoothLike = styled.div`
   font-size: 1px;
   float: right;
@@ -38,12 +40,11 @@ const BoothLike = styled.div`
 
 const BoothLikeNum = styled.div`
   font-size: 10px;
-  left: 10rem;
   position: absolute;
   display: inline;
   float: right;
   left: 130px;
-  bottom: 74px;
+  bottom: 68px;
 `;
 
 const WhatBoothBorder = styled.div`
@@ -65,16 +66,38 @@ const WhatBoothBorder = styled.div`
 // 받아서 다른 이름일때 디른 색깔
 export default function Boothcard({ title }) {
   return (
-    <Card sx={{ maxWidth: 145 }} className="cardCss">
+    <Card
+      sx={{ maxWidth: 145 }}
+      className="cardCss"
+      style={{
+        fontFamily: 'GmarketSansMedium',
+        borderRadius: '10px',
+        boxShadow: '2px 5px 12px 2px rgb(0, 0, 0)',
+        flexDirection: 'row',
+      }}
+    >
       <CardActionArea>
-        <WhatBoothBorder>주점</WhatBoothBorder>
+        <WhatBoothBorder
+          style={{
+            fontFamily: 'GmarketSansMedium',
+            boxShadow: '1px 1px 6px rgb(0, 0, 0)',
+          }}
+        >
+          주점
+        </WhatBoothBorder>
         <CardMedia
           component="img"
           height="105"
           image={noticeExImg}
           alt="부스 이미지"
         />
-        <Location_number>명진관 11번</Location_number>
+
+        <Location_number>
+          <LocationOnIcon
+            style={{ fontSize: '10px', position: 'absolute', left: '8px' }}
+          />
+          명진관 11번
+        </Location_number>
 
         <BoothLike>
           <FavoriteBorderIcon sx={{ width: '10px' }} />
@@ -86,18 +109,19 @@ export default function Boothcard({ title }) {
         >
           <Typography
             gutterBottom
-            variant="h6"
+            variant="h4"
             component="div"
             style={{
               fontSize: '17px',
               fontFamily: 'GmarketSansMedium',
-              fontWeight: '800',
+              fontWeight: '700',
             }}
           >
             {/* booth title들고오기 */}
             명진관 호떡
           </Typography>
-          <Typography color="text.secondary" style={{ fontSize: '10px' }}>
+
+          <Typography color="text.secondary" style={{ fontSize: '1px' }}>
             {/* booth intro 들고오기 */}
             맛있는 호떡과 다양한 음식
           </Typography>
