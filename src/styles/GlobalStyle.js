@@ -39,6 +39,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${pointColor};
     font-weight: 500;
     margin-top: 72px;
+    margin-bottom: 60px;
   }
 
   @media only screen and (min-width: 200px) { //375px 너무 작아서 수정했음
