@@ -80,7 +80,7 @@ export default function Navbar() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       {/* 메뉴 */}
-      <div className="list__font">
+      <div>
         <List>
           <ListItem
             key="공지사항"
@@ -91,7 +91,9 @@ export default function Navbar() {
             to="/notice"
           >
             <ListItemButton>
-              <div>공지사항 </div>
+              <div className="list__font__bold" style={{ color: '#fd9903' }}>
+                공지사항{' '}
+              </div>
             </ListItemButton>
           </ListItem>
 
@@ -104,7 +106,7 @@ export default function Navbar() {
             to="/timetable"
           >
             <ListItemButton>
-              <div>타임테이블 </div>
+              <div className="list__font">타임테이블 </div>
             </ListItemButton>
           </ListItem>
 
@@ -117,7 +119,7 @@ export default function Navbar() {
             to="/booth"
           >
             <ListItemButton>
-              <div>부스 </div>
+              <div className="list__font">부스 </div>
             </ListItemButton>
           </ListItem>
 
@@ -130,7 +132,7 @@ export default function Navbar() {
             to="/about"
           >
             <ListItemButton>
-              <div>About </div>
+              <div className="list__font">About </div>
             </ListItemButton>
           </ListItem>
         </List>{' '}
@@ -167,6 +169,14 @@ export default function Navbar() {
                   onClick={toggleDrawer(anchor, false)}
                 />
               </DrawerHeader>
+              <div className="start__festival">
+                <>
+                  {' '}
+                  <span style={{ color: '#fd9903' }}>축제</span>를
+                </>
+                <br></br>
+                <>시작해봐요</>
+              </div>
               <img
                 className="navC"
                 alt="navC"

@@ -1,22 +1,21 @@
 .booth-container {
-    width: 100%;
-    text-align: center;
-    padding: 2rem 0rem 9rem 0;
+  width: 100%;
+  text-align: center;
+  padding: 2rem 0rem 9rem 0;
 }
 
 
-
-.booth_page_title{
-    margin-bottom: 2.3rem;
+.booth_page_title {
+  margin-bottom: 2.3rem;
 }
-.booth-search-container{
-        width: 100%;
-        text-align: center;
-        padding: 2rem 0rem 9rem 0;
+.booth-search-container {
+  width: 100%;
+  text-align: center;
+  padding: 2rem 0rem 9rem 0;
 }
-.booth_page_header{
+/* .booth_page_header{
     margin-top: -4rem;
-}
-.noResultImg{
-    width: 10rem;
+} */
+.noResultImg {
+  width: 10rem;
 }

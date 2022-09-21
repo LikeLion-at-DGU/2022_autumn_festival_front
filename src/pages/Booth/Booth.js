@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Booth.css';
 import '../../api/boothData.json';
+
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
