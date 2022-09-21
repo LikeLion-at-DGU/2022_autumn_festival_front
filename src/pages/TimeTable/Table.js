@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { motion } from "framer-motion";
+import FirstTable from './FirstTable';
+import SecondTable from './SecondTable';
+import ThridTable from './ThridTable';
 
 const Container = styled.section`
     margin-top: 30px;
     width: auto;
     display: flex;
     justify-content: center;
-    margin-bottom: 100px; // 작업할 때 footer 잠시 멀리두기
+    margin-bottom: 1000px; // 작업할 때 footer 잠시 멀리두기
 `
 
 const Warpper = styled.section`
@@ -26,7 +29,7 @@ const DateContainer = styled.div`
 
 const DayBox = styled.div`
     bottom: 0;
-    margin: 0px 10px;
+    margin: 0px 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,11 +37,14 @@ const DayBox = styled.div`
 `
 
 const BoxDate = styled.span`
-    font-weight: 200;
+    opacity: ${props => props.isActive ? 1 : 0.7};
+    transition: all 0.5s;
+    font-family: 'GmarketSansLight';
     margin-bottom: 3px;
 `
 
 const BoxDay = styled.span`
+    transition: all 0.5s;
     font-size: 21px;
     margin-bottom: 7px;
     color:${props => props.isActive ? "#FFC909" : "#FFFFFF"};
@@ -74,6 +80,7 @@ const dayArray = [
         day: "금요일"
     },
 ]
+  
 
 function Table () {
     // DateContainer 관련 
@@ -92,13 +99,17 @@ function Table () {
                 <DateContainer>
                     {dayArray.map(i => 
                         <DayBox key={i.id} onClick={()=>setIsToday(i.id)}>
-                            <BoxDate>{i.date}일</BoxDate>
+                            <BoxDate isActive={isToday === i.id}>{i.date}일</BoxDate>
                             <BoxDay isActive={isToday === i.id}>{i.day}</BoxDay>
                             {isToday === i.id ? <BoxHere layoutId="boxhere"/> : <BoxNotHere/>}
                         </DayBox>
                         )}
                 </DateContainer>
                 {/* 타임테이블 Header에서 선택한 날짜에 따른 컴포넌트 보여주기 */}
+                {
+                    isToday === 1 ? <FirstTable /> : isToday === 2 ? <SecondTable /> : <ThridTable />
+                }
+                {/* 눌렀을 때 슬라이더로 움직이게?*/}
             </Warpper>
         </Container>
     )
