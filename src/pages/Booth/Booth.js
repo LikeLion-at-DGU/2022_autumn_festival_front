@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Booth.css';
 import '../../api/boothData.json';
+import Boothcard from '../../components/Booth/Boothcard';
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -16,7 +17,7 @@ const DateContainer = styled.div`
 
 const DayBox = styled.div`
   bottom: 0;
-  margin: 0px 10px;
+  margin: 0px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +25,9 @@ const DayBox = styled.div`
 `;
 
 const BoxDate = styled.span`
-  font-weight: 200;
+  opacity: ${(props) => (props.isActive ? 1 : 0.7)};
+  transition: all 0.5s;
+  font-family: 'GmarketSansLight';
   margin-bottom: 3px;
 `;
 
@@ -121,27 +124,37 @@ export default function Booth({}) {
 
   // 날짜 할당
   const day = new Date();
+
   // todate는 29일에 2, 30일에 3, 그 외(28일)에는 1
   const todate =
     day.getDate() - 27 === 2 ? 2 : day.getDate() - 27 === 3 ? 3 : 1;
+
   const [isToday, setIsToday] = useState(todate);
 
   return (
     <BoothContainer>
+      {/* 지도 이미지 */}
       <LocationImg
         alt="팔정도"
         src="https://velog.velcdn.com/images/seochan99/post/bfed67d9-30c2-4d59-ae59-7fa0d077618b/image.png"
       />
-
+      {/* 날짜 category */}
       <DateContainer>
         {dayArray.map((i) => (
           <DayBox key={i.id} onClick={() => setIsToday(i.id)}>
-            <BoxDate>{i.date}일</BoxDate>
+            <BoxDate isActive={isToday === i.id}>{i.date}일</BoxDate>
             <BoxDay isActive={isToday === i.id}>{i.day}</BoxDay>
-            {isToday === i.id ? <BoxHere layoutId="boxhere" /> : <BoxNotHere />}
+            {isToday === i.id ? <BoxHere layoutId="boxhe" /> : <BoxNotHere />}
           </DayBox>
         ))}
       </DateContainer>
+
+      {/* map으로 카드 뜨게 만들기 */}
+      <Boothcard />
+      <Boothcard />
+      <Boothcard />
+      <Boothcard />
+      <Boothcard />
     </BoothContainer>
   );
 }
