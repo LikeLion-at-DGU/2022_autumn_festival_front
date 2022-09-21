@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
 import './Booth.css';
 import '../../api/boothData.json';
-// import Boothcard from '../../components/Booth/Boothcard';
-// import Categories from '../../hooks/Categories';
+import styled from 'styled-components';
+
+const LocationImg = styled.img`
+  margin: 30px 0px;
+  width: 80%;
+  box-shadow: 1px 2px 30px 1px rgb(99, 164, 237);
+  border: none;
+`;
+
+const BoothContainer = styled.section`
+  width: 100%;
+  text-align: center;
+  padding: 2rem 0rem 9rem 0;
+`;
 
 export default function Booth({}) {
-  // const category = match.params.category || '수요일';
   return (
-    <section className="booth-container">
-      {/* 지도 전체 사진(예시 팔정도) */}
-      {/* (건물정보를 받아서 이미지, 부스 해당카테고리에 나와야함) */}
-      {/* 크게 날짜, 건물카테고리 */}
-
-      <img
+    <BoothContainer>
+      <LocationImg
         alt="팔정도"
         src="https://velog.velcdn.com/images/seochan99/post/bfed67d9-30c2-4d59-ae59-7fa0d077618b/image.png"
-        className="boothMap"
       />
-
-      {/* <Categories /> */}
-
-      {/* <Boothcard title={requests.title} /> */}
-    </section>
+    </BoothContainer>
   );
 }

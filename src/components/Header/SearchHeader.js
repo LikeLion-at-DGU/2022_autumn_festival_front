@@ -7,7 +7,7 @@ import LogoImg from '../../assets/img/maple.png';
 const TitleContainer = styled.section`
   position: relative;
   width: inherit;
-  margin-top: 100px; ;
+  margin-top: 10px; ;
 `;
 
 const Title = styled.h1`
@@ -26,6 +26,15 @@ const Img = styled.img`
   left: 117px;
 `;
 
+const Input = styled.input`
+  background-color: rgba(255, 255, 255);
+  border-radius: 20px;
+  padding: 2% 22%;
+  box-shadow: 1px 1px 10px 0px rgb(255, 255, 255);
+  border: none;
+  margin-bottom: 2rem;
+`;
+
 export default function SearchHeader() {
   const [searchValue, setsearchValue] = useState('');
 
@@ -39,33 +48,25 @@ export default function SearchHeader() {
   };
 
   return (
-    <div className="booth_page_header">
-      {/* <img src={maple} style={{ width: '2rem' }} /> */}
-
-      <h1 className="booth_page_title"></h1>
-      {/* 검색창 */}
-
-      <TitleContainer>
-        <Img src={LogoImg} />
-        <Title>
-          <a
-            href="/booth"
-            style={{
-              textDecorationLine: 'none',
-              color: 'white',
-            }}
-          >
-            부스
-          </a>
-        </Title>
-        <input
-          value={searchValue}
-          onChange={handleChange}
-          className="nav__input"
-          type="text"
-          placeholder="부스이름 또는 메뉴 검색"
-        />
-      </TitleContainer>
-    </div>
+    <TitleContainer>
+      <Img src={LogoImg} />
+      <Title>
+        <a
+          href="/booth"
+          style={{
+            textDecorationLine: 'none',
+            color: 'white',
+          }}
+        >
+          부스
+        </a>
+      </Title>
+      <Input
+        value={searchValue}
+        onChange={handleChange}
+        type="text"
+        placeholder="부스이름 또는 메뉴 검색"
+      />
+    </TitleContainer>
   );
 }

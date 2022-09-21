@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Booth.css';
 import boothsearchC from '../../assets/img/boothsearchC.png';
+
 export default function BoothSearch({}) {
   const navigate = useNavigate();
+
   const [searchResult, setsearchResult] = useState([]);
 
   const useQuery = () => {
