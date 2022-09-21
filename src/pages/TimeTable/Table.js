@@ -14,18 +14,18 @@ const Container = styled.section`
 `
 
 const Warpper = styled.section`
-    width: 88%;
-    height: 100px;
-`
+  width: 88%;
+  height: 100px;
+`;
 
 const DateContainer = styled.div`
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    border-bottom : 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0px 4px 4px -4px rgba(0, 0, 0, 0.25);
-`
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 4px 4px -4px rgba(0, 0, 0, 0.25);
+`;
 
 const DayBox = styled.div`
     bottom: 0;
@@ -51,17 +51,17 @@ const BoxDay = styled.span`
 `
 
 const BoxHere = styled(motion.div)`
-    height: 2px;
-    width: 60px;
-    border-radius: 5px;
-    background-color: #FFC909;
-`
+  height: 2px;
+  width: 60px;
+  border-radius: 5px;
+  background-color: #ffc909;
+`;
 
 const BoxNotHere = styled(motion.div)`
-    height: 2px;
-    width: 50px;
-    border-radius: 5px;
-`
+  height: 2px;
+  width: 50px;
+  border-radius: 5px;
+`;
 
 const dayArray = [
     {
@@ -80,16 +80,17 @@ const dayArray = [
         day: "금요일"
     },
 ]
-  
+ 
 
-function Table () {
-    // DateContainer 관련 
-    const day = new Date();
-    // todate는 29일에 2, 30일에 3, 그 외(28일)에는 1
-    const todate = day.getDate() - 27 === 2 ? 2 : day.getDate() - 27 === 3 ? 3 : 1
-    // 오늘이 몇일인지 확인하는 State(28일 : 1, 29일 : 2, 30일 : 3)
-    const [isToday, setIsToday] = useState(todate);
+function Table() {
+  // DateContainer 관련
+  const day = new Date();
 
+  // todate는 29일에 2, 30일에 3, 그 외(28일)에는 1
+  const todate =
+    day.getDate() - 27 === 2 ? 2 : day.getDate() - 27 === 3 ? 3 : 1;
+  // 오늘이 몇일인지 확인하는 State(28일 : 1, 29일 : 2, 30일 : 3)
+  const [isToday, setIsToday] = useState(todate);
 
 
     return(
