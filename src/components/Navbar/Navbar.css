@@ -41,15 +41,15 @@
 }
 
 .navC {
-  padding: 30px 0 0 0px; /*상좌하우 */
   margin: 0 1px 0 150px;
-  width: 80px;
+  width: 100px;
 }
 
 hr {
   width: 80%;
-  background-color: #1b2f4e;
-  margin: -2px 0 0 18px;
+  border-color: lightgrey;
+  margin: 0 0 0 18px;
+  border-width: 1px 0 0 0;
 }
 
 @font-face {
@@ -58,4 +58,28 @@ hr {
     format('woff');
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansLight';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.list__font__bold {
+  font-family: 'GmarketSansMedium';
+  font-size: 20;
+  padding: 10px 0 0 15px;
+}
+.list__font {
+  font-family: 'GmarketSansLight';
+  font-size: 20;
+  padding: 10px 0 0 15px;
+}
+
+.start__festival {
+  padding: 20px 0 0 30px;
+  font-family: 'GmarketSansMedium';
 }

@@ -18,6 +18,14 @@ export const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff')
+      format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
   body {
     width: 100%;
     height: 100vh;
@@ -31,6 +39,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${pointColor};
     font-weight: 500;
     margin-top: 72px;
+    margin-bottom: 60px;
   }
 
   @media only screen and (min-width: 200px) { //375px 너무 작아서 수정했음
