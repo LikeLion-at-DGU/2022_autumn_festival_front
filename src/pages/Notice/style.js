@@ -69,3 +69,9 @@ export const NoticeLine = styled.p`
   border: 0.7px solid rgba(255, 255, 255, 0.35);
   margin: 11px auto;
 `;
+
+export const PageNum = styled.span`
+  width: 12px;
+  margin: 0 10px;
+  cursor: pointer;
+`;

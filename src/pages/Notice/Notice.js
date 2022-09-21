@@ -14,13 +14,14 @@ import {
   NoticeWriter,
   NoticeDate,
   NoticeLine,
+  PageNum,
 } from './style';
+import DefaultImage from '../../assets/img/noticeDefaultImg.png';
 
 export default function Notice() {
   const category = ['전체', '주요', '축제', '이벤트', '기타'];
   const [option, setOption] = useState('전체');
-  const [pageCount, setPageCount] = useState(0);
-  const [notice, setNotice] = useState([
+  const [notices, setNotices] = useState([
     {
       id: '1',
       category: '주요',
@@ -53,6 +54,30 @@ export default function Notice() {
       date: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
+    {
+      id: '5',
+      category: '기타',
+      title: '동국대학교 대동제 책자 비치 및 안내',
+      writer: '축제 TF팀',
+      date: '2022-09-14T14:22:00Z',
+      content: '동국대학교 대동제 책자 비치 및 안내',
+    },
+    {
+      id: '6',
+      category: '기타',
+      title: '동국대학교 대동제 책자 비치 및 안내',
+      writer: '축제 TF팀',
+      date: '2022-09-14T14:22:00Z',
+      content: '동국대학교 대동제 책자 비치 및 안내',
+    },
+    {
+      id: '7',
+      category: '기타',
+      title: '동국대학교 대동제 책자 비치 및 안내',
+      writer: '축제 TF팀',
+      date: '2022-09-14T14:22:00Z',
+      content: '동국대학교 대동제 책자 비치 및 안내',
+    },
   ]);
 
   function onCategoryClick(e) {
@@ -71,20 +96,37 @@ export default function Notice() {
     );
   });
 
-  const noticeArray = notice.filter((no) => {
+  const noticeArray = notices.filter((no) => {
     return option === '전체' ? no : no.category.includes(option);
   });
 
-  const pageInfo = usePagination(noticeArray, 2);
-  console.log(pageInfo);
+  const pageInfo = usePagination(noticeArray, 6);
+  const pageNum = Array.from({ length: pageInfo.maxPage }, (v, i) => i + 1);
 
-  const noticeCard = noticeArray.map((item, idx) => {
+  const paginations = pageNum.map((n, idx) => {
+    return (
+      <PageNum
+        key={idx}
+        onClick={() => {
+          pageInfo.jump(n);
+        }}
+      >
+        {n}
+      </PageNum>
+    );
+  });
+
+  const noticeCard = pageInfo.currentData().map((item, idx) => {
     return (
       <NoticeCard key={idx}>
-        <NoticeBox>
+        <NoticeBox
+          onClick={() => {
+            window.location.href = `/notice/${item.id}`;
+          }}
+        >
           <img
-            src="https://via.placeholder.com/55x55"
-            style={{ width: '55px' }}
+            src={DefaultImage}
+            style={{ width: '55px', borderRadius: '4px' }}
           />
           <div style={{ marginLeft: '10px' }}>
             <NoticeTitle>
@@ -105,9 +147,28 @@ export default function Notice() {
   return (
     <>
       <TitleStyle>공지사항</TitleStyle>
+
+      {/* 카테고리 */}
       <div style={{ marginTop: '38px' }}>{categories}</div>
+
+      {/* 공지사항 리스트 */}
       <NoticeLine></NoticeLine>
       {noticeCard}
+
+      {/* 페이지네이션 */}
+      <ArrowBackIosIcon
+        style={{ cursor: 'pointer' }}
+        onClick={() => {
+          pageInfo.prev();
+        }}
+      />
+      {paginations}
+      <ArrowForwardIosIcon
+        style={{ cursor: 'pointer' }}
+        onClick={() => {
+          pageInfo.next();
+        }}
+      />
     </>
   );
 }
