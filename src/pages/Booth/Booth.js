@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Booth.css';
 import '../../api/boothData.json';
-// import Boothcard from '../../components/Booth/Boothcard';
+import Boothcard from '../../components/Booth/Boothcard';
 // import Categories from '../../hooks/Categories';
 
 export default function Booth({}) {
@@ -20,7 +20,7 @@ export default function Booth({}) {
 
       {/* <Categories /> */}
 
-      {/* <Boothcard title={requests.title} /> */}
+      <Boothcard /*title={requests.title}*/ />
     </section>
   );
 }
