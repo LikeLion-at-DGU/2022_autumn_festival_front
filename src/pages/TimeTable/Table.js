@@ -10,7 +10,7 @@ const Container = styled.section`
     width: auto;
     display: flex;
     justify-content: center;
-    margin-bottom: 1000px; // 작업할 때 footer 잠시 멀리두기
+    margin-bottom: 900px;
 `
 
 const Warpper = styled.section`
