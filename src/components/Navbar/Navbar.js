@@ -11,10 +11,9 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+// import ListItemText from '@mui/material/ListItemText';
+// import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
-import GmarketSansMedium from '../../assets/fonts/GmarketSansTTFMedium.ttf';
 
 //fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
