@@ -55,9 +55,9 @@ function App() {
             <Route path="booth/" element={<BoothLayout />}>
               <Route path="" element={<Booth />} />
               <Route path="Search" element={<BoothSearch />} />
-              <Route path=":id" element={<BoothDetail />} />
             </Route>
 
+            <Route path="booth/:id" element={<BoothDetail />} />
             <Route path="notice" element={<Notice />} />
             <Route path="notice/:id" element={<NoticeDetail />} />
             <Route path="timetable" element={<TimeTable />} />

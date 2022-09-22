@@ -7,7 +7,7 @@ const TitleContainer = styled.section`
 `;
 
 const TitleStyle = styled.h1`
-  font-weight: 800;
+  font-weight: 900;
   font-size: 28px;
   line-height: 32.2px;
   letter-spacing: 0.1em;
@@ -22,10 +22,10 @@ const Img = styled.img`
   left: 90px;
 `;
 
-export function UpTitle({ title }) {
+export function UpTitle({ title, mapleLeft }) {
   return (
     <TitleContainer>
-      <Img src={maple} />
+      <Img src={maple} style={{ left: mapleLeft }} />
       <TitleStyle>{title}</TitleStyle>
     </TitleContainer>
   );
