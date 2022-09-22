@@ -64,7 +64,21 @@ const WhatBoothBorder = styled.div`
 // 부스 #0b9908
 // 주점 #FF6B6B
 // 받아서 다른 이름일때 디른 색깔
-export default function Boothcard({ title }) {
+export default function Boothcard({
+  title,
+  intro,
+  type,
+  locationName,
+  locationNum,
+}) {
+  const boothTypeCheck = (boothType) => {
+    if (boothType == '주점') {
+    } else if (boothType == '부스') {
+    } else {
+      // 푸드트럭
+    }
+  };
+
   return (
     <Card
       sx={{ maxWidth: 145 }}
@@ -77,13 +91,14 @@ export default function Boothcard({ title }) {
       }}
     >
       <CardActionArea>
+        {/* type에 따라 다른 색 뜨게하기  */}
         <WhatBoothBorder
           style={{
             fontFamily: 'GmarketSansMedium',
             boxShadow: '1px 1px 6px rgb(0, 0, 0)',
           }}
         >
-          주점
+          {type}
         </WhatBoothBorder>
         <CardMedia
           component="img"
@@ -91,19 +106,16 @@ export default function Boothcard({ title }) {
           image={noticeExImg}
           alt="부스 이미지"
         />
-
         <Location_number>
           <LocationOnIcon
             style={{ fontSize: '10px', position: 'absolute', left: '8px' }}
           />
-          명진관 11번
+          {locationName} {locationNum}번
         </Location_number>
-
         <BoothLike>
           <FavoriteBorderIcon sx={{ width: '10px' }} />
           <BoothLikeNum>8</BoothLikeNum>
         </BoothLike>
-
         <CardContent
           style={{ marginTop: '10px', fontFamily: 'GmarketSansMedium' }}
         >
@@ -118,12 +130,12 @@ export default function Boothcard({ title }) {
             }}
           >
             {/* booth title들고오기 */}
-            명진관 호떡
+            {title}
           </Typography>
 
           <Typography color="text.secondary" style={{ fontSize: '1px' }}>
             {/* booth intro 들고오기 */}
-            맛있는 호떡과 다양한 음식
+            {intro}
           </Typography>
         </CardContent>
       </CardActionArea>
