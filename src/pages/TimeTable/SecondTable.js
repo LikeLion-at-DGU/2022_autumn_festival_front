@@ -193,7 +193,7 @@ const PerInfoItemSub = styled.div`
 const PerChart1 = styled.div`
     opacity: 0.8;
     background-color: white;
-    width: 110px;
+    width: 100px;
     height: 150px;
     margin-top: 10px;
     border-radius: 4px;
@@ -206,7 +206,7 @@ const PerChart1 = styled.div`
 const PerChart2 = styled.div`
     opacity: 0.8;
     background-color: white;
-    width: 110px;
+    width: 100px;
     margin-top: 10px;
     border-radius: 4px;
     margin-bottom: 5px;
@@ -222,10 +222,10 @@ const PerChart1Item = styled.div`
     display: flex;
     align-items: center;
     border-bottom: 0.5px solid black;
-    font-size: 10px;
+    font-size: 1px;
     font-weight: 600;
     span:first-child{
-        margin-right: 10px;
+        margin-right: 4px;
     }
     span:last-child{
 
@@ -238,10 +238,10 @@ const PerChart2Item = styled.div`
 `
 
 const StarImg = styled.img`
-    width: 48px;
-    height: 48px;
+    width: 43px;
+    height: 43px;
     border-radius: 50%;
-    margin-right: 6px;
+    margin-right: 5px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 `
 
