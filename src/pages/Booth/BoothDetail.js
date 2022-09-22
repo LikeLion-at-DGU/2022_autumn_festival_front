@@ -9,7 +9,7 @@ import {
   LikeCnt,
 } from './style';
 import NoticeExImg from '../../assets/img/noticeExImg.png';
-import BoothDetailMap from '../../assets/img/boothdetailMap.png';
+// import BoothDetailMap from '../../assets/img/boothdetailMap.png';
 import { UpTitle } from '../../styles/style';
 
 // External Libraries //
@@ -28,7 +28,7 @@ export default function BoothDetail() {
     introduction: '맛있는 호떡과 다양한 음식',
     type: '주점',
     location: '명진관',
-    location_img: BoothDetailMap,
+    // location_img: BoothDetailMap,
     notice: '호떡이 참 맛있는 맛집',
     day: [29, 30],
     content:
