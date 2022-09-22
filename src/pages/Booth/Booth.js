@@ -147,7 +147,7 @@ export default function Booth({}) {
       title: '명진관호떡',
       type: '주점',
       location: ['원흥관', 8],
-      Day: [28, 29, 30],
+      day: [1, 2, 3],
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
 
@@ -172,7 +172,7 @@ export default function Booth({}) {
       title: '신공공룡',
       type: '푸드트럭',
       location: ['신공학관', 10],
-      Day: [29, 30],
+      day: [1, 2, 3],
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '으아악',
@@ -194,7 +194,7 @@ export default function Booth({}) {
       title: '혜화관 햇님',
       type: '부스',
       location: ['혜화관', 3],
-      Day: [28, 29, 30],
+      day: [1, 2],
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '혜화아아아ㅏㄱ',
@@ -216,7 +216,7 @@ export default function Booth({}) {
       title: '만해광장 희찬',
       type: '푸드트럭',
       location: ['만해광장', 12],
-      Day: [28, 29, 30],
+      day: [3],
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '혜화아아아ㅏㄱ',
@@ -295,6 +295,8 @@ export default function Booth({}) {
                 locationNum={boo.location[1]}
                 likeCount={boo.likeCount}
                 nowBuilding={isBuilding}
+                nowDay={isToday}
+                boothDay={boo.day}
               />
             </span>
           );
