@@ -56,6 +56,7 @@ const LocationImg = styled.img`
   width: 80%;
   box-shadow: 1px 2px 30px 1px rgb(99, 164, 237);
   border: none;
+  border-radius: 11px;
 `;
 
 const BoothContainer = styled.section`
