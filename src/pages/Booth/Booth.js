@@ -63,10 +63,7 @@ const BoothContainer = styled.section`
   text-align: center;
   padding: 2rem 0rem 9rem 0;
 `;
-const BoothCardContainer = styled.div`
-  gridTemplateRows: "1fr",
-  gridTemplateColumns: "1fr 1fr 1fr 1fr",
-`;
+const BoothCardContainer = styled.div``;
 
 const BuildingContainer = styled.div`
   margin-top: 10px;
@@ -264,7 +261,10 @@ export default function Booth({}) {
       <BoothCardContainer>
         {booth.map((boo) => {
           return (
-            <div onClick={() => navigate(`/booth/${boo.id}`)}>
+            <span
+              onClick={() => navigate(`/booth/${boo.id}`)}
+              style={{ display: 'inline' }}
+            >
               <Boothcard
                 key={boo.id}
                 title={boo.title}
@@ -274,7 +274,7 @@ export default function Booth({}) {
                 locationNum={boo.location[1]}
                 likeCount={boo.likeCount}
               />
-            </div>
+            </span>
           );
         })}
       </BoothCardContainer>
