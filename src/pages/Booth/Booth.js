@@ -6,6 +6,7 @@ import Boothcard from '../../components/Booth/Boothcard';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { Grid } from '@mui/material';
 
 const DateContainer = styled.div`
   width: 100%;
@@ -126,7 +127,7 @@ const buildingArray = [
   },
   {
     id: 6,
-    building: '나체밭',
+    building: '원흥관',
   },
   {
     id: 7,
@@ -146,7 +147,7 @@ export default function Booth({}) {
       title: '명진관호떡',
       type: '주점',
       location: ['원흥관', 8],
-      Day: [28, 29, 30],
+      day: [1, 2, 3],
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
 
@@ -170,8 +171,8 @@ export default function Booth({}) {
       introduction: '으아가각아ㅏㄱ',
       title: '신공공룡',
       type: '푸드트럭',
-      location: ['신공', 10],
-      Day: [29, 30],
+      location: ['신공학관', 10],
+      day: [1, 2, 3],
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '으아악',
@@ -192,8 +193,30 @@ export default function Booth({}) {
       introduction: '혜화아아아ㅏㄱ',
       title: '혜화관 햇님',
       type: '부스',
-      location: ['헤화관', 3],
-      Day: [28, 29, 30],
+      location: ['혜화관', 3],
+      day: [1, 2],
+      locationImage: 'imgURL?',
+      notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
+      content: '혜화아아아ㅏㄱ',
+      likeCount: 12,
+      menu: [
+        {
+          name: '붕어빵',
+          price: 1000,
+        },
+        {
+          name: '호떡',
+          price: 3000,
+        },
+      ],
+    },
+    {
+      id: 4,
+      introduction: '만해~10000Sun~',
+      title: '만해광장 희찬',
+      type: '푸드트럭',
+      location: ['만해광장', 12],
+      day: [3],
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '혜화아아아ㅏㄱ',
@@ -219,7 +242,7 @@ export default function Booth({}) {
     day.getDate() - 27 === 2 ? 2 : day.getDate() - 27 === 3 ? 3 : 1;
 
   const [isToday, setIsToday] = useState(todate);
-  const [isBuilding, setIsBuilding] = useState(1);
+  const [isBuilding, setIsBuilding] = useState('만해광장');
   const navigate = useNavigate();
 
   console.log('../../assets/img/빌딩_' + isBuilding + '.png');
@@ -248,8 +271,8 @@ export default function Booth({}) {
           return (
             <BuildingDetail
               key={bu.id}
-              onClick={() => setIsBuilding(bu.id)}
-              isActive={isBuilding === bu.id}
+              onClick={() => setIsBuilding(bu.building)}
+              isActive={isBuilding === bu.building}
             >
               {bu.building}
             </BuildingDetail>
@@ -262,10 +285,7 @@ export default function Booth({}) {
       <BoothCardContainer>
         {booth.map((boo) => {
           return (
-            <span
-              onClick={() => navigate(`/booth/${boo.id}`)}
-              style={{ display: 'inline' }}
-            >
+            <span onClick={() => navigate(`/booth/${boo.id}`)}>
               <Boothcard
                 key={boo.id}
                 title={boo.title}
@@ -274,6 +294,9 @@ export default function Booth({}) {
                 locationName={boo.location[0]}
                 locationNum={boo.location[1]}
                 likeCount={boo.likeCount}
+                nowBuilding={isBuilding}
+                nowDay={isToday}
+                boothDay={boo.day}
               />
             </span>
           );
