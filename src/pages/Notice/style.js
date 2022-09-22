@@ -81,7 +81,6 @@ export const NoticeLine = styled.p`
 export const PageNum = styled.span`
   display: inline-block;
   width: 12px;
-  margin: 0 10px;
   cursor: pointer;
   font-size: 14px;
   color: #fff;
@@ -96,7 +95,11 @@ export const PageNum = styled.span`
 `;
 
 export const Pagination = styled.div`
-  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 90px;
+  margin-top: 18px;
+  margin-bottom: 68px;
 `;
 
 export const NoticeDetailContainer = styled.div`

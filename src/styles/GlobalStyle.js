@@ -44,7 +44,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @media only screen and (min-width: 200px) { //375px 너무 작아서 수정했음
     .App {
-      width: 200px;
+      width: 375px;
       height: 100vh;
       color: #FFF;
       & > {
