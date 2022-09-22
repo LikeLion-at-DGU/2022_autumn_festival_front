@@ -43,11 +43,11 @@ const BoothLikeNum = styled.div`
   position: absolute;
   display: inline;
   float: right;
-  left: 130px;
+  left: 128px;
   bottom: 68px;
 `;
 
-const WhatBoothBorder = styled.div`
+const JoojumBoothBorder = styled.div`
   position: absolute;
   font-size: 7px;
   border: none;
@@ -55,7 +55,31 @@ const WhatBoothBorder = styled.div`
   padding: 2px 5px;
   // 부스일때
   background-color: #ff6b6b;
+  //
+  margin: 5px;
+  color: white;
+`;
 
+const BoothBorder = styled.div`
+  position: absolute;
+  font-size: 7px;
+  border: none;
+  border-radius: 2px;
+  padding: 2px 5px;
+  // 부스일때
+  background-color: #0b9908;
+  //
+  margin: 5px;
+  color: white;
+`;
+const FoodBorder = styled.div`
+  position: absolute;
+  font-size: 7px;
+  border: none;
+  border-radius: 2px;
+  padding: 2px 5px;
+  // 부스일때
+  background-color: #89c3c7;
   //
   margin: 5px;
   color: white;
@@ -64,7 +88,14 @@ const WhatBoothBorder = styled.div`
 // 부스 #0b9908
 // 주점 #FF6B6B
 // 받아서 다른 이름일때 디른 색깔
-export default function Boothcard({ title }) {
+export default function Boothcard({
+  title,
+  intro,
+  type,
+  locationName,
+  locationNum,
+  likeCount,
+}) {
   return (
     <Card
       sx={{ maxWidth: 145 }}
@@ -77,33 +108,53 @@ export default function Boothcard({ title }) {
       }}
     >
       <CardActionArea>
-        <WhatBoothBorder
-          style={{
-            fontFamily: 'GmarketSansMedium',
-            boxShadow: '1px 1px 6px rgb(0, 0, 0)',
-          }}
-        >
-          주점
-        </WhatBoothBorder>
+        {/* type에 따라 다른 색 뜨게하기  */}
+
+        {type === '주점' ? (
+          <JoojumBoothBorder
+            style={{
+              fontFamily: 'GmarketSansMedium',
+              boxShadow: '1px 1px 6px rgb(0, 0, 0)',
+            }}
+          >
+            {type}
+          </JoojumBoothBorder>
+        ) : type === '부스' ? (
+          <BoothBorder
+            style={{
+              fontFamily: 'GmarketSansMedium',
+              boxShadow: '1px 1px 6px rgb(0, 0, 0)',
+            }}
+          >
+            {type}
+          </BoothBorder>
+        ) : (
+          <FoodBorder
+            style={{
+              fontFamily: 'GmarketSansMedium',
+              boxShadow: '1px 1px 6px rgb(0, 0, 0)',
+            }}
+          >
+            {type}
+          </FoodBorder>
+        )}
+
         <CardMedia
           component="img"
           height="105"
           image={noticeExImg}
           alt="부스 이미지"
         />
-
         <Location_number>
           <LocationOnIcon
             style={{ fontSize: '10px', position: 'absolute', left: '8px' }}
           />
-          명진관 11번
+          {locationName} {locationNum}번
         </Location_number>
-
         <BoothLike>
           <FavoriteBorderIcon sx={{ width: '10px' }} />
-          <BoothLikeNum>8</BoothLikeNum>
+          <BoothLikeNum>{likeCount}</BoothLikeNum>
         </BoothLike>
-
         <CardContent
           style={{ marginTop: '10px', fontFamily: 'GmarketSansMedium' }}
         >
@@ -118,12 +169,12 @@ export default function Boothcard({ title }) {
             }}
           >
             {/* booth title들고오기 */}
-            명진관 호떡
+            {title}
           </Typography>
 
           <Typography color="text.secondary" style={{ fontSize: '1px' }}>
             {/* booth intro 들고오기 */}
-            맛있는 호떡과 다양한 음식
+            {intro}
           </Typography>
         </CardContent>
       </CardActionArea>

@@ -3,6 +3,7 @@ import './Booth.css';
 import '../../api/boothData.json';
 import Boothcard from '../../components/Booth/Boothcard';
 
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -62,6 +63,10 @@ const BoothContainer = styled.section`
   text-align: center;
   padding: 2rem 0rem 9rem 0;
 `;
+const BoothCardContainer = styled.div`
+  gridTemplateRows: "1fr",
+  gridTemplateColumns: "1fr 1fr 1fr 1fr",
+`;
 
 const dayArray = [
   {
@@ -87,38 +92,70 @@ export default function Booth({}) {
       id: 1,
       introduction: '맛있는 호떡과 다양한 음식',
       title: '명진관호떡',
-      type: '부스',
-      location: {
-        명진관: 9,
-      },
+      type: '주점',
+      location: ['원흥관', 8],
       Day: [28, 29, 30],
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
+
       content:
         '맛있는 호떡 먹고 가세요~  호호 ~ 불어먹먹는 떡이라~ 호떠 ~ 아니에요~~호호호홓ㅎ',
-      menu: {
-        호떡: 2000,
-        붕어빵: 1000,
-      },
+      likeCount: 20,
+      menu: [
+        {
+          name: '붕어빵',
+          price: 1000,
+        },
+        {
+          name: '호떡',
+          price: 3000,
+        },
+      ],
     },
 
     {
       id: 2,
-      introduction: '맛있는 호떡과 다양한 음식',
+      introduction: '으아가각아ㅏㄱ',
       title: '신공공룡',
-      type: '주점',
-      location: {
-        신공: 10,
-      },
+      type: '푸드트럭',
+      location: ['신공', 10],
       Day: [28, 29, 30],
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
-      content:
-        '맛있는 호떡 먹고 가세요~  호호 ~ 불어먹먹는 떡이라~ 호떠 ~ 아니에요~~호호호홓ㅎ',
-      menu: {
-        으아: 2000,
-        으아아악: 1000,
-      },
+      content: '으아악',
+      likeCount: 100,
+      menu: [
+        {
+          name: '붕어빵',
+          price: 1000,
+        },
+        {
+          name: '호떡',
+          price: 3000,
+        },
+      ],
+    },
+    {
+      id: 3,
+      introduction: '혜화아아아ㅏㄱ',
+      title: '혜화관 햇님',
+      type: '부스',
+      location: ['헤화관', 3],
+      Day: [28, 29, 30],
+      locationImage: 'imgURL?',
+      notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
+      content: '혜화아아아ㅏㄱ',
+      likeCount: 12,
+      menu: [
+        {
+          name: '붕어빵',
+          price: 1000,
+        },
+        {
+          name: '호떡',
+          price: 3000,
+        },
+      ],
     },
   ]);
 
@@ -130,6 +167,7 @@ export default function Booth({}) {
     day.getDate() - 27 === 2 ? 2 : day.getDate() - 27 === 3 ? 3 : 1;
 
   const [isToday, setIsToday] = useState(todate);
+  const navigate = useNavigate();
 
   return (
     <BoothContainer>
@@ -150,11 +188,29 @@ export default function Booth({}) {
       </DateContainer>
 
       {/* map으로 카드 뜨게 만들기 */}
-      <Boothcard />
-      <Boothcard />
-      <Boothcard />
-      <Boothcard />
-      <Boothcard />
+      <BoothCardContainer>
+        {booth.map((boo) => {
+          return (
+            <Boothcard
+              title={boo.title}
+              intro={boo.introduction}
+              type={boo.type}
+              locationName={boo.location[0]}
+              locationNum={boo.location[1]}
+              likeCount={boo.likeCount}
+              // onClick={() => {
+              //   window.location.href = `/booth${boo.id}`;
+              // }}
+            />
+          );
+        })}
+
+        {/* <Boothcard />
+        <Boothcard />
+        <Boothcard />
+        <Boothcard />
+        <Boothcard /> */}
+      </BoothCardContainer>
     </BoothContainer>
   );
 }
