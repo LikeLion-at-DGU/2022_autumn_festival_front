@@ -10,7 +10,7 @@ import './Boothcard.css';
 import styled from 'styled-components';
 
 import noticeExImg from '../../assets/img/noticeExImg.png';
-import { borderRadius, fontWeight } from '@mui/system';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 // const boothCard = styled.section`
 //   width: 100%;
@@ -89,14 +89,16 @@ const FoodBorder = styled.div`
 // 주점 #FF6B6B
 // 받아서 다른 이름일때 디른 색깔
 export default function Boothcard({
+  key,
   title,
   intro,
   type,
   locationName,
   locationNum,
   likeCount,
+  nowBuilding,
 }) {
-  return (
+  return nowBuilding === locationName ? (
     <Card
       sx={{ maxWidth: 145 }}
       className="cardCss"
@@ -179,5 +181,7 @@ export default function Boothcard({
         </CardContent>
       </CardActionArea>
     </Card>
+  ) : (
+    <span></span>
   );
 }
