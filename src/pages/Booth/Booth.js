@@ -198,9 +198,9 @@ export default function Booth({}) {
               locationName={boo.location[0]}
               locationNum={boo.location[1]}
               likeCount={boo.likeCount}
-              // onClick={() => {
-              //   window.location.href = `/booth${boo.id}`;
-              // }}
+              onClick={() => {
+                window.location.href = `/booth/${boo.id}`;
+              }}
             />
           );
         })}
