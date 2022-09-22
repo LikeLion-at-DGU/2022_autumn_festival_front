@@ -70,7 +70,11 @@ const BoothCardContainer = styled.div`
 
 const BuildingContainer = styled.div``;
 
-const BuildingDetail = styled.div``;
+const BuildingDetail = styled.div`
+  border: 1px solid white;
+  padding: 2px;
+  color: ${(props) => (props.isActive ? '#FFC909' : '#FFFFFF')};
+`;
 
 const dayArray = [
   {
@@ -189,6 +193,7 @@ export default function Booth({}) {
     day.getDate() - 27 === 2 ? 2 : day.getDate() - 27 === 3 ? 3 : 1;
 
   const [isToday, setIsToday] = useState(todate);
+  const [isBuilding, setIsBuilding] = useState(1);
   const navigate = useNavigate();
 
   return (
@@ -208,9 +213,19 @@ export default function Booth({}) {
           </DayBox>
         ))}
       </DateContainer>
+
       <BuildingContainer>
-        <BuildingDetail>dd</BuildingDetail>
-        <BuildingDetail>dd</BuildingDetail>
+        {buildingArray.map((bu) => {
+          return (
+            <BuildingDetail
+              key={bu.id}
+              onClick={() => setIsBuilding(bu.id)}
+              isActive={isBuilding === bu.id}
+            >
+              {bu.building}
+            </BuildingDetail>
+          );
+        })}
       </BuildingContainer>
 
       {/* map으로 카드 뜨게 만들기 */}
@@ -220,6 +235,7 @@ export default function Booth({}) {
           return (
             <div onClick={() => navigate(`/booth/${boo.id}`)}>
               <Boothcard
+                key={boo.id}
                 title={boo.title}
                 intro={boo.introduction}
                 type={boo.type}
