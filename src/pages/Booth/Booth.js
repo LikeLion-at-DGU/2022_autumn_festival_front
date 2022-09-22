@@ -68,12 +68,24 @@ const BoothCardContainer = styled.div`
   gridTemplateColumns: "1fr 1fr 1fr 1fr",
 `;
 
-const BuildingContainer = styled.div``;
+const BuildingContainer = styled.div`
+  margin-top: 10px;
+`;
 
-const BuildingDetail = styled.div`
+const BuildingDetail = styled.button`
   border: 1px solid white;
-  padding: 2px;
-  color: ${(props) => (props.isActive ? '#FFC909' : '#FFFFFF')};
+  align-items: center;
+  padding: 0px;
+
+  font-family: 'GmarketSansMedium';
+  font-size: 12px;
+  width: 71px;
+  height: 28px;
+  box-shadow: 1px 1px 6px 0px rgb(99, 164, 237);
+  border-radius: 2rem;
+  margin: 3px;
+  color: #ffffff;
+  background-color: ${(props) => (props.isActive ? '#FD9903' : '#1b2f4e')};
 `;
 
 const dayArray = [
@@ -96,7 +108,7 @@ const dayArray = [
 const buildingArray = [
   {
     id: 1,
-    building: '원흥관',
+    building: '만해광장',
   },
   {
     id: 2,
@@ -108,7 +120,23 @@ const buildingArray = [
   },
   {
     id: 4,
-    building: '사과관',
+    building: '사회과학관',
+  },
+  {
+    id: 5,
+    building: '신공학관',
+  },
+  {
+    id: 6,
+    building: '나체밭',
+  },
+  {
+    id: 7,
+    building: '경영관',
+  },
+  {
+    id: 8,
+    building: '명진관',
   },
 ];
 
@@ -196,12 +224,15 @@ export default function Booth({}) {
   const [isBuilding, setIsBuilding] = useState(1);
   const navigate = useNavigate();
 
+  console.log('../../assets/img/빌딩_' + isBuilding + '.png');
+
   return (
     <BoothContainer>
       {/* 지도 이미지 */}
+
       <LocationImg
-        alt="팔정도"
-        src="https://velog.velcdn.com/images/seochan99/post/bfed67d9-30c2-4d59-ae59-7fa0d077618b/image.png"
+        alt={isBuilding}
+        src={require(`../../assets/img/빌딩_1.png`)}
       />
       {/* 날짜 category */}
       <DateContainer>
