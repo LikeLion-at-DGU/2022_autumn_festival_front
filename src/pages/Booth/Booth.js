@@ -68,6 +68,10 @@ const BoothCardContainer = styled.div`
   gridTemplateColumns: "1fr 1fr 1fr 1fr",
 `;
 
+const BuildingContainer = styled.div``;
+
+const BuildingDetail = styled.div``;
+
 const dayArray = [
   {
     id: 1,
@@ -83,6 +87,24 @@ const dayArray = [
     id: 3,
     date: 30,
     day: '금요일',
+  },
+];
+const buildingArray = [
+  {
+    id: 1,
+    building: '원흥관',
+  },
+  {
+    id: 2,
+    building: '혜화관',
+  },
+  {
+    id: 3,
+    building: '팔정도',
+  },
+  {
+    id: 4,
+    building: '사과관',
   },
 ];
 
@@ -119,7 +141,7 @@ export default function Booth({}) {
       title: '신공공룡',
       type: '푸드트럭',
       location: ['신공', 10],
-      Day: [28, 29, 30],
+      Day: [29, 30],
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '으아악',
@@ -186,30 +208,28 @@ export default function Booth({}) {
           </DayBox>
         ))}
       </DateContainer>
+      <BuildingContainer>
+        <BuildingDetail>dd</BuildingDetail>
+        <BuildingDetail>dd</BuildingDetail>
+      </BuildingContainer>
 
       {/* map으로 카드 뜨게 만들기 */}
+
       <BoothCardContainer>
         {booth.map((boo) => {
           return (
-            <Boothcard
-              title={boo.title}
-              intro={boo.introduction}
-              type={boo.type}
-              locationName={boo.location[0]}
-              locationNum={boo.location[1]}
-              likeCount={boo.likeCount}
-              // onClick={() => {
-              //   window.location.href = `/booth${boo.id}`;
-              // }}
-            />
+            <div onClick={() => navigate(`/booth/${boo.id}`)}>
+              <Boothcard
+                title={boo.title}
+                intro={boo.introduction}
+                type={boo.type}
+                locationName={boo.location[0]}
+                locationNum={boo.location[1]}
+                likeCount={boo.likeCount}
+              />
+            </div>
           );
         })}
-
-        {/* <Boothcard />
-        <Boothcard />
-        <Boothcard />
-        <Boothcard />
-        <Boothcard /> */}
       </BoothCardContainer>
     </BoothContainer>
   );
