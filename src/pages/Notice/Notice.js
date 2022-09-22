@@ -29,7 +29,6 @@ export default function Notice() {
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
       createdDateTime: '2022-09-14T14:22:00Z',
-      modifiedDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
     {
@@ -38,7 +37,6 @@ export default function Notice() {
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
       createdDateTime: '2022-09-14T14:22:00Z',
-      modifiedDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
     {
@@ -47,7 +45,6 @@ export default function Notice() {
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
       createdDateTime: '2022-09-14T14:22:00Z',
-      modifiedDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
     {
@@ -56,7 +53,6 @@ export default function Notice() {
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
       createdDateTime: '2022-09-14T14:22:00Z',
-      modifiedDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
     {
@@ -65,7 +61,6 @@ export default function Notice() {
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
       createdDateTime: '2022-09-14T14:22:00Z',
-      modifiedDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
     {
@@ -74,7 +69,6 @@ export default function Notice() {
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
       createdDateTime: '2022-09-14T14:22:00Z',
-      modifiedDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
     {
@@ -83,7 +77,6 @@ export default function Notice() {
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
       createdDateTime: '2022-09-14T14:22:00Z',
-      modifiedDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
   ]);
@@ -172,7 +165,7 @@ export default function Notice() {
             cursor: 'pointer',
             fontSize: '15px',
             color: 'rgba(255, 255, 255, 0.35)',
-            margin: '0 auto',
+            paddingLeft: '5px',
           }}
           onClick={() => {
             pageInfo.prev();
@@ -184,7 +177,6 @@ export default function Notice() {
             cursor: 'pointer',
             fontSize: '15px',
             color: 'rgba(255, 255, 255, 0.35)',
-            margin: '0 auto',
           }}
           onClick={() => {
             pageInfo.next();

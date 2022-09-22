@@ -31,7 +31,7 @@ export default function NoticeDetail() {
 
   console.log(useParams().id);
   return (
-    <>
+    <div style={{ marginBottom: '76px' }}>
       <UpTitle title="공지사항" />
 
       {/* 카테고리 */}
@@ -58,6 +58,6 @@ export default function NoticeDetail() {
       <NoticeDetailContent
         dangerouslySetInnerHTML={{ __html: notice.content }}
       ></NoticeDetailContent>
-    </>
+    </div>
   );
 }
