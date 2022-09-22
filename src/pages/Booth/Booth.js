@@ -63,9 +63,26 @@ const BoothContainer = styled.section`
   text-align: center;
   padding: 2rem 0rem 9rem 0;
 `;
-const BoothCardContainer = styled.div`
-  gridTemplateRows: "1fr",
-  gridTemplateColumns: "1fr 1fr 1fr 1fr",
+const BoothCardContainer = styled.div``;
+
+const BuildingContainer = styled.div`
+  margin-top: 10px;
+`;
+
+const BuildingDetail = styled.button`
+  border: 1px solid white;
+  align-items: center;
+  padding: 0px;
+
+  font-family: 'GmarketSansMedium';
+  font-size: 12px;
+  width: 71px;
+  height: 28px;
+  box-shadow: 1px 1px 6px 0px rgb(99, 164, 237);
+  border-radius: 2rem;
+  margin: 3px;
+  color: #ffffff;
+  background-color: ${(props) => (props.isActive ? '#FD9903' : '#1b2f4e')};
 `;
 
 const dayArray = [
@@ -83,6 +100,40 @@ const dayArray = [
     id: 3,
     date: 30,
     day: '금요일',
+  },
+];
+const buildingArray = [
+  {
+    id: 1,
+    building: '만해광장',
+  },
+  {
+    id: 2,
+    building: '혜화관',
+  },
+  {
+    id: 3,
+    building: '팔정도',
+  },
+  {
+    id: 4,
+    building: '사회과학관',
+  },
+  {
+    id: 5,
+    building: '신공학관',
+  },
+  {
+    id: 6,
+    building: '나체밭',
+  },
+  {
+    id: 7,
+    building: '경영관',
+  },
+  {
+    id: 8,
+    building: '명진관',
   },
 ];
 
@@ -119,7 +170,7 @@ export default function Booth({}) {
       title: '신공공룡',
       type: '푸드트럭',
       location: ['신공', 10],
-      Day: [28, 29, 30],
+      Day: [29, 30],
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '으아악',
@@ -167,14 +218,18 @@ export default function Booth({}) {
     day.getDate() - 27 === 2 ? 2 : day.getDate() - 27 === 3 ? 3 : 1;
 
   const [isToday, setIsToday] = useState(todate);
+  const [isBuilding, setIsBuilding] = useState(1);
   const navigate = useNavigate();
+
+  console.log('../../assets/img/빌딩_' + isBuilding + '.png');
 
   return (
     <BoothContainer>
       {/* 지도 이미지 */}
+
       <LocationImg
-        alt="팔정도"
-        src="https://velog.velcdn.com/images/seochan99/post/bfed67d9-30c2-4d59-ae59-7fa0d077618b/image.png"
+        alt={isBuilding}
+        src={require(`../../assets/img/빌딩_1.png`)}
       />
       {/* 날짜 category */}
       <DateContainer>
@@ -187,29 +242,41 @@ export default function Booth({}) {
         ))}
       </DateContainer>
 
+      <BuildingContainer>
+        {buildingArray.map((bu) => {
+          return (
+            <BuildingDetail
+              key={bu.id}
+              onClick={() => setIsBuilding(bu.id)}
+              isActive={isBuilding === bu.id}
+            >
+              {bu.building}
+            </BuildingDetail>
+          );
+        })}
+      </BuildingContainer>
+
       {/* map으로 카드 뜨게 만들기 */}
+
       <BoothCardContainer>
         {booth.map((boo) => {
           return (
-            <Boothcard
-              title={boo.title}
-              intro={boo.introduction}
-              type={boo.type}
-              locationName={boo.location[0]}
-              locationNum={boo.location[1]}
-              likeCount={boo.likeCount}
-              onClick={() => {
-                window.location.href = `/booth/${boo.id}`;
-              }}
-            />
+            <span
+              onClick={() => navigate(`/booth/${boo.id}`)}
+              style={{ display: 'inline' }}
+            >
+              <Boothcard
+                key={boo.id}
+                title={boo.title}
+                intro={boo.introduction}
+                type={boo.type}
+                locationName={boo.location[0]}
+                locationNum={boo.location[1]}
+                likeCount={boo.likeCount}
+              />
+            </span>
           );
         })}
-
-        {/* <Boothcard />
-        <Boothcard />
-        <Boothcard />
-        <Boothcard />
-        <Boothcard /> */}
       </BoothCardContainer>
     </BoothContainer>
   );
