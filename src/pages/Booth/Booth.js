@@ -97,12 +97,20 @@ export default function Booth({}) {
       Day: [28, 29, 30],
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
+
       content:
         '맛있는 호떡 먹고 가세요~  호호 ~ 불어먹먹는 떡이라~ 호떠 ~ 아니에요~~호호호홓ㅎ',
-      menu: {
-        호떡: 2000,
-        붕어빵: 1000,
-      },
+      likeCount: 20,
+      menu: [
+        {
+          name: '붕어빵',
+          price: 1000,
+        },
+        {
+          name: '호떡',
+          price: 3000,
+        },
+      ],
     },
 
     {
@@ -115,10 +123,39 @@ export default function Booth({}) {
       locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '으아악',
-      menu: {
-        으아: 2000,
-        으아아악: 1000,
-      },
+      likeCount: 100,
+      menu: [
+        {
+          name: '붕어빵',
+          price: 1000,
+        },
+        {
+          name: '호떡',
+          price: 3000,
+        },
+      ],
+    },
+    {
+      id: 3,
+      introduction: '혜화아아아ㅏㄱ',
+      title: '혜화관 햇님',
+      type: '부스',
+      location: ['헤화관', 3],
+      Day: [28, 29, 30],
+      locationImage: 'imgURL?',
+      notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
+      content: '혜화아아아ㅏㄱ',
+      likeCount: 12,
+      menu: [
+        {
+          name: '붕어빵',
+          price: 1000,
+        },
+        {
+          name: '호떡',
+          price: 3000,
+        },
+      ],
     },
   ]);
 
@@ -160,7 +197,10 @@ export default function Booth({}) {
               type={boo.type}
               locationName={boo.location[0]}
               locationNum={boo.location[1]}
-              onClick={() => navigate(`/booth${boo.id}`)}
+              likeCount={boo.likeCount}
+              // onClick={() => {
+              //   window.location.href = `/booth${boo.id}`;
+              // }}
             />
           );
         })}

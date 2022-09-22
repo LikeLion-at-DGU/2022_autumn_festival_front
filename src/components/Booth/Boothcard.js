@@ -43,11 +43,11 @@ const BoothLikeNum = styled.div`
   position: absolute;
   display: inline;
   float: right;
-  left: 130px;
+  left: 128px;
   bottom: 68px;
 `;
 
-const WhatBoothBorder = styled.div`
+const JoojumBoothBorder = styled.div`
   position: absolute;
   font-size: 7px;
   border: none;
@@ -55,7 +55,31 @@ const WhatBoothBorder = styled.div`
   padding: 2px 5px;
   // 부스일때
   background-color: #ff6b6b;
+  //
+  margin: 5px;
+  color: white;
+`;
 
+const BoothBorder = styled.div`
+  position: absolute;
+  font-size: 7px;
+  border: none;
+  border-radius: 2px;
+  padding: 2px 5px;
+  // 부스일때
+  background-color: #0b9908;
+  //
+  margin: 5px;
+  color: white;
+`;
+const FoodBorder = styled.div`
+  position: absolute;
+  font-size: 7px;
+  border: none;
+  border-radius: 2px;
+  padding: 2px 5px;
+  // 부스일때
+  background-color: #89c3c7;
   //
   margin: 5px;
   color: white;
@@ -70,15 +94,8 @@ export default function Boothcard({
   type,
   locationName,
   locationNum,
+  likeCount,
 }) {
-  const boothTypeCheck = (boothType) => {
-    if (boothType == '주점') {
-    } else if (boothType == '부스') {
-    } else {
-      // 푸드트럭
-    }
-  };
-
   return (
     <Card
       sx={{ maxWidth: 145 }}
@@ -92,14 +109,36 @@ export default function Boothcard({
     >
       <CardActionArea>
         {/* type에 따라 다른 색 뜨게하기  */}
-        <WhatBoothBorder
-          style={{
-            fontFamily: 'GmarketSansMedium',
-            boxShadow: '1px 1px 6px rgb(0, 0, 0)',
-          }}
-        >
-          {type}
-        </WhatBoothBorder>
+
+        {type === '주점' ? (
+          <JoojumBoothBorder
+            style={{
+              fontFamily: 'GmarketSansMedium',
+              boxShadow: '1px 1px 6px rgb(0, 0, 0)',
+            }}
+          >
+            {type}
+          </JoojumBoothBorder>
+        ) : type === '부스' ? (
+          <BoothBorder
+            style={{
+              fontFamily: 'GmarketSansMedium',
+              boxShadow: '1px 1px 6px rgb(0, 0, 0)',
+            }}
+          >
+            {type}
+          </BoothBorder>
+        ) : (
+          <FoodBorder
+            style={{
+              fontFamily: 'GmarketSansMedium',
+              boxShadow: '1px 1px 6px rgb(0, 0, 0)',
+            }}
+          >
+            {type}
+          </FoodBorder>
+        )}
+
         <CardMedia
           component="img"
           height="105"
@@ -114,7 +153,7 @@ export default function Boothcard({
         </Location_number>
         <BoothLike>
           <FavoriteBorderIcon sx={{ width: '10px' }} />
-          <BoothLikeNum>8</BoothLikeNum>
+          <BoothLikeNum>{likeCount}</BoothLikeNum>
         </BoothLike>
         <CardContent
           style={{ marginTop: '10px', fontFamily: 'GmarketSansMedium' }}
