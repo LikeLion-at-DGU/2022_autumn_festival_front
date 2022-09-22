@@ -42,6 +42,15 @@ export const GlobalStyle = createGlobalStyle`
     margin-bottom: 60px;
   }
 
+  .swiper-pagination-bullet {
+    background-color: #FFF;
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: ${baseColor};
+  }
+
   @media only screen and (min-width: 200px) { //375px 너무 작아서 수정했음
     .App {
       width: 375px;
