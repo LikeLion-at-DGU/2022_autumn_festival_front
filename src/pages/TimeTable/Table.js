@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import FirstTable from './FirstTable';
+import SecondTable from './SecondTable';
+import ThridTable from './ThridTable';
 
 const Container = styled.section`
-  margin-top: 30px;
-  width: auto;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 100px; // 작업할 때 footer 잠시 멀리두기
-`;
+    margin-top: 30px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 900px;
+`
 
 const Warpper = styled.section`
   width: 88%;
@@ -25,24 +28,27 @@ const DateContainer = styled.div`
 `;
 
 const DayBox = styled.div`
-  bottom: 0;
-  margin: 0px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: -2px;
-`;
+    bottom: 0;
+    margin: 0px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: -2px;
+`
 
 const BoxDate = styled.span`
-  font-weight: 200;
-  margin-bottom: 3px;
-`;
+    opacity: ${props => props.isActive ? 1 : 0.7};
+    transition: all 0.5s;
+    font-family: 'GmarketSansLight';
+    margin-bottom: 3px;
+`
 
 const BoxDay = styled.span`
-  font-size: 21px;
-  margin-bottom: 7px;
-  color: ${(props) => (props.isActive ? '#FFC909' : '#FFFFFF')};
-`;
+    transition: all 0.5s;
+    font-size: 21px;
+    margin-bottom: 7px;
+    color:${props => props.isActive ? "#FFC909" : "#FFFFFF"};
+`
 
 const BoxHere = styled(motion.div)`
   height: 2px;
@@ -58,22 +64,23 @@ const BoxNotHere = styled(motion.div)`
 `;
 
 const dayArray = [
-  {
-    id: 1,
-    date: 28,
-    day: '수요일',
-  },
-  {
-    id: 2,
-    date: 29,
-    day: '목요일',
-  },
-  {
-    id: 3,
-    date: 30,
-    day: '금요일',
-  },
-];
+    {
+        id : 1,
+        date : 28,
+        day: "수요일"
+    },
+    {
+        id : 2,
+        date : 29,
+        day: "목요일"
+    },
+    {
+        id : 3,
+        date : 30,
+        day: "금요일"
+    },
+]
+ 
 
 function Table() {
   // DateContainer 관련
@@ -85,27 +92,28 @@ function Table() {
   // 오늘이 몇일인지 확인하는 State(28일 : 1, 29일 : 2, 30일 : 3)
   const [isToday, setIsToday] = useState(todate);
 
-  return (
-    <Container>
-      <Warpper>
-        {/* 타임테이블 Header : 페이지 수요일,목요일,금요일 선택 카테고리 */}
-        <DateContainer>
-          {dayArray.map((i) => (
-            <DayBox key={i.id} onClick={() => setIsToday(i.id)}>
-              <BoxDate>{i.date}일</BoxDate>
-              <BoxDay isActive={isToday === i.id}>{i.day}</BoxDay>
-              {isToday === i.id ? (
-                <BoxHere layoutId="boxhere" />
-              ) : (
-                <BoxNotHere />
-              )}
-            </DayBox>
-          ))}
-        </DateContainer>
-        {/* 타임테이블 Header에서 선택한 날짜에 따른 컴포넌트 보여주기 */}
-      </Warpper>
-    </Container>
-  );
+
+    return(
+        <Container>
+            <Warpper>
+                {/* 타임테이블 Header : 페이지 수요일,목요일,금요일 선택 카테고리 */}
+                <DateContainer>
+                    {dayArray.map(i => 
+                        <DayBox key={i.id} onClick={()=>setIsToday(i.id)}>
+                            <BoxDate isActive={isToday === i.id}>{i.date}일</BoxDate>
+                            <BoxDay isActive={isToday === i.id}>{i.day}</BoxDay>
+                            {isToday === i.id ? <BoxHere layoutId="boxhere"/> : <BoxNotHere/>}
+                        </DayBox>
+                        )}
+                </DateContainer>
+                {/* 타임테이블 Header에서 선택한 날짜에 따른 컴포넌트 보여주기 */}
+                {
+                    isToday === 1 ? <FirstTable /> : isToday === 2 ? <SecondTable /> : <ThridTable />
+                }
+                {/* 눌렀을 때 슬라이더로 움직이게?*/}
+            </Warpper>
+        </Container>
+    )
 }
 
 export default Table;

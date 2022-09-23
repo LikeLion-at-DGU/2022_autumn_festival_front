@@ -4,17 +4,18 @@ import usePagination from '../../hooks/usePagination';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import { TitleStyle } from '../../styles/style';
+import { UpTitle } from '../../styles/style';
 import {
+  CateContainer,
   CateBtnActive,
   CateBtn,
   NoticeCard,
-  NoticeBox,
   NoticeTitle,
   NoticeWriter,
   NoticeDate,
   NoticeLine,
   PageNum,
+  Pagination,
 } from './style';
 import DefaultImage from '../../assets/img/noticeDefaultImg.png';
 
@@ -24,58 +25,58 @@ export default function Notice() {
   const [notices, setNotices] = useState([
     {
       id: '1',
-      category: '주요',
+      notificationType: '주요',
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
-      date: '2022-09-14T14:22:00Z',
+      createdDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
     {
       id: '2',
-      category: '축제',
+      notificationType: '축제',
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
-      date: '2022-09-14T14:22:00Z',
+      createdDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
     {
       id: '3',
-      category: '이벤트',
+      notificationType: '이벤트',
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
-      date: '2022-09-14T14:22:00Z',
+      createdDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
     {
       id: '4',
-      category: '기타',
+      notificationType: '기타',
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
-      date: '2022-09-14T14:22:00Z',
+      createdDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
     {
       id: '5',
-      category: '기타',
+      notificationType: '기타',
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
-      date: '2022-09-14T14:22:00Z',
+      createdDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
     {
       id: '6',
-      category: '기타',
+      notificationType: '기타',
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
-      date: '2022-09-14T14:22:00Z',
+      createdDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
     {
       id: '7',
-      category: '기타',
+      notificationType: '기타',
       title: '동국대학교 대동제 책자 비치 및 안내',
       writer: '축제 TF팀',
-      date: '2022-09-14T14:22:00Z',
+      createdDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
     },
   ]);
@@ -97,7 +98,7 @@ export default function Notice() {
   });
 
   const noticeArray = notices.filter((no) => {
-    return option === '전체' ? no : no.category.includes(option);
+    return option === '전체' ? no : no.notificationType.includes(option);
   });
 
   const pageInfo = usePagination(noticeArray, 6);
@@ -107,6 +108,7 @@ export default function Notice() {
     return (
       <PageNum
         key={idx}
+        active={pageInfo.currentPage === n ? 'y' : ''}
         onClick={() => {
           pageInfo.jump(n);
         }}
@@ -119,7 +121,7 @@ export default function Notice() {
   const noticeCard = pageInfo.currentData().map((item, idx) => {
     return (
       <NoticeCard key={idx}>
-        <NoticeBox
+        <div
           onClick={() => {
             window.location.href = `/notice/${item.id}`;
           }}
@@ -130,15 +132,16 @@ export default function Notice() {
           />
           <div style={{ marginLeft: '10px' }}>
             <NoticeTitle>
-              [<b style={{ fontWeight: '700' }}>{item.category} 공지</b>
+              [<b style={{ fontWeight: '800' }}>{item.notificationType} 공지</b>
               ]&nbsp;&nbsp;{item.title}
             </NoticeTitle>
             <NoticeWriter>{item.writer}</NoticeWriter>
             <NoticeDate>
-              {item.date.slice(0, 10)}&nbsp;&nbsp;{item.date.slice(11, 16)}
+              {item.createdDateTime.slice(0, 10)}&nbsp;&nbsp;
+              {item.createdDateTime.slice(11, 16)}
             </NoticeDate>
           </div>
-        </NoticeBox>
+        </div>
         <NoticeLine></NoticeLine>
       </NoticeCard>
     );
@@ -146,29 +149,40 @@ export default function Notice() {
 
   return (
     <>
-      <TitleStyle>공지사항</TitleStyle>
+      <UpTitle title="공지사항" />
 
       {/* 카테고리 */}
-      <div style={{ marginTop: '38px' }}>{categories}</div>
+      <CateContainer>{categories}</CateContainer>
 
       {/* 공지사항 리스트 */}
       <NoticeLine></NoticeLine>
       {noticeCard}
 
       {/* 페이지네이션 */}
-      <ArrowBackIosIcon
-        style={{ cursor: 'pointer' }}
-        onClick={() => {
-          pageInfo.prev();
-        }}
-      />
-      {paginations}
-      <ArrowForwardIosIcon
-        style={{ cursor: 'pointer' }}
-        onClick={() => {
-          pageInfo.next();
-        }}
-      />
+      <Pagination>
+        <ArrowBackIosIcon
+          style={{
+            cursor: 'pointer',
+            fontSize: '15px',
+            color: 'rgba(255, 255, 255, 0.35)',
+            paddingLeft: '5px',
+          }}
+          onClick={() => {
+            pageInfo.prev();
+          }}
+        />
+        {paginations}
+        <ArrowForwardIosIcon
+          style={{
+            cursor: 'pointer',
+            fontSize: '15px',
+            color: 'rgba(255, 255, 255, 0.35)',
+          }}
+          onClick={() => {
+            pageInfo.next();
+          }}
+        />
+      </Pagination>
     </>
   );
 }

@@ -57,8 +57,7 @@ function App() {
               <Route path="Search" element={<BoothSearch />} />
             </Route>
 
-            <Route path="Detail" element={<BoothDetail />} />
-
+            <Route path="booth/:id" element={<BoothDetail />} />
             <Route path="notice" element={<Notice />} />
             <Route path="notice/:id" element={<NoticeDetail />} />
             <Route path="timetable" element={<TimeTable />} />

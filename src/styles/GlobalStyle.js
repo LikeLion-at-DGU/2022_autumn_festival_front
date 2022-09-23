@@ -44,7 +44,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @media only screen and (min-width: 200px) { //375px 너무 작아서 수정했음
     .App {
-      width: 200px;
+      width: 375px;
       height: 100vh;
       color: #FFF;
       & > {
@@ -63,4 +63,23 @@ export const GlobalStyle = createGlobalStyle`
       }
     }
   }
+
+  // 스와이퍼 //
+  .swiper-pagination-bullet {
+    background-color: #FFF;
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: ${baseColor};
+  }
+
+  // 네브바 이슈 해결 중
+  // .nav {
+  //   z-index: 1;
+  //   translate3d(0, 0, 0);
+  // }
+  // .swiper-slide > img {
+  //   z-index: -3;
+  // }
 `;
