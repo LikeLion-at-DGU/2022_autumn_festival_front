@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import {
   SwiperContainer,
@@ -42,6 +42,7 @@ import 'swiper/scss/pagination';
 SwiperCore.use([Pagination, Autoplay]);
 
 export default function BoothDetail() {
+  const navigate = useNavigate();
   // 더미 데이터 (추후 수정)
   const [booth, setBooth] = useState({
     title: '명진관 호떡',
@@ -82,6 +83,7 @@ export default function BoothDetail() {
     },
   ]);
   const [lovecnt, setLovecnt] = useState(100);
+  let detailId = useParams().id;
 
   // toggle //
   const [intro, setIntro] = useState(false);
@@ -196,7 +198,13 @@ export default function BoothDetail() {
         <TypeBtn tp={booth.boothType.korean}>{booth.boothType.korean}</TypeBtn>
         <BoothTitle>{booth.title}</BoothTitle>
         <BoothIntro>{booth.introduction}</BoothIntro>
-        {admin === 'true' ? <EditBtn>수정하기</EditBtn> : <></>}
+        {admin === 'true' ? (
+          <EditBtn onClick={() => navigate(`/booth/${detailId}/edit`)}>
+            수정하기
+          </EditBtn>
+        ) : (
+          <></>
+        )}
         <br />
 
         <div style={{ display: 'flex', alignItem: 'center' }}>
