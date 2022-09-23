@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import dguLogo from '../../assets/img/dguLogo.png';
-import aboutFlogo from '../../assets/img/aboutFlogo.png';
+import aboutFlogo from '../../assets/img/aboutFLogo.png';
 import aboutC from '../../assets/img/aboutC.png';
 import Leeyeowon from '../../assets/img/about_Lee yeowon.png';
 import Leeyeowon2 from '../../assets/img/about_Lee yeowon2.png';
@@ -38,7 +38,7 @@ const Title = styled.h1`
   line-height: 32.2px;
   letter-spacing: 0.1em;
   text-shadow: 1px 1px 0.2px rgba(0, 0, 0, 0.25);
-  margin-bottom:50px;
+  margin-bottom: 50px;
 `;
 
 const LogoImage = styled.img`
@@ -86,8 +86,8 @@ const SubTitle = styled.h3`
   font-weight: 500;
   font-size: 20px;
   line-height: 23px;
-  margin-top:80px;
-  margin-bottom:40px;
+  margin-top: 80px;
+  margin-bottom: 40px;
 `;
 const SubText = styled.h4`
   font-family: 'Gmarket Sans TTF';
@@ -111,7 +111,7 @@ const TeamText = styled.h4`
   line-height: 16px;
   text-align: center;
   margin-top: 80px;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 `;
 
 const Card = styled.div`
@@ -151,7 +151,7 @@ const CardRole = styled.h3`
   font-family: 'Gmarket Sans TTF';
   font-style: normal;
   font-weight: 350;
-  margin-bottom:15px;
+  margin-bottom: 15px;
   font-size: 10px;
   line-height: 1px;
   text-align: center;
@@ -171,7 +171,7 @@ const CardText = styled.h4`
 const Space = styled.div`
   width: 100%;
   margin-bottom: 100px;
-  color: #1B2F4E;
+  color: #1b2f4e;
 `;
 
 export default function About() {
@@ -185,13 +185,16 @@ export default function About() {
       <Logo>
         <br></br>
         <LogoImage src={dguLogo} />
-        <br></br><br></br>동국대학교 <br></br>멋쟁이사자처럼
+        <br></br>
+        <br></br>동국대학교 <br></br>멋쟁이사자처럼
       </Logo>
       <Xtext>X</Xtext>
       <Logo>
         <LogoImage src={aboutFlogo} />
         <br></br>동국대학교 <br></br> 축제기획단
-        <br></br><br></br><br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </Logo>
 
       <IntroText>
@@ -208,10 +211,10 @@ export default function About() {
       <CImage src={aboutC} />
 
       <SubTitle>[ 만든이들 ]</SubTitle>
-      
+
       <LogoImage src={dguLogo} />
       <SubText>동국대 멋쟁이사자처럼 10기</SubText>
-    
+
       <Line />
       {/* 기획 */}
       <TeamText>기획 디자인 팀</TeamText>
@@ -229,7 +232,10 @@ export default function About() {
         <FaceImg src={KimSooyoung} />
         <CardName>🦁김수영</CardName>
         <CardMajor>산업시스템공학과 20</CardMajor>
-        <CardRole>{' '}<br></br></CardRole>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
         <CardLine />
         <CardText>
           - 내부 바, 공지사항, 공지사항 게시글 디자인<br></br>
@@ -239,26 +245,28 @@ export default function About() {
         <FaceImg src={SeoYeonmi} />
         <CardName>🦁서연미</CardName>
         <CardMajor>경영정보학과 20</CardMajor>
-        <CardRole>{' '}<br></br></CardRole>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
         <CardLine />
-        <CardText>
-          - 부스,  부스 검색창, 부스 홈페이지 디자인
-        </CardText>
+        <CardText>- 부스, 부스 검색창, 부스 홈페이지 디자인</CardText>
       </Card>
       <Card>
         <FaceImg src={AhnSoeun} />
         <CardName>🦁안소은</CardName>
         <CardMajor>화공생물공학과 20</CardMajor>
-        <CardRole>{' '}<br></br></CardRole>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
         <CardLine />
-        <CardText>
-          - 축제기획단과 멋쟁이사자처럼 간 소통당담
-        </CardText>
+        <CardText>- 축제기획단과 멋쟁이사자처럼 간 소통당담</CardText>
       </Card>
 
       {/* 프론트 */}
       <Space> .</Space>
-      
+
       <TeamText>프론트 개발 팀</TeamText>
       <Card>
         <FaceImg src={SeoHeechan} />
@@ -272,7 +280,10 @@ export default function About() {
         <FaceImg src={ShinYejin} />
         <CardName>🦁신예진</CardName>
         <CardMajor>정보통신공학과 20</CardMajor>
-        <CardRole>{' '}<br></br></CardRole>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
         <CardLine />
         <CardText>- Navbar, 사이드메뉴바, Footer, 부스 방명록 구현</CardText>
       </Card>
@@ -280,23 +291,38 @@ export default function About() {
         <FaceImg src={LeeSangdon} />
         <CardName>🦁이상돈</CardName>
         <CardMajor>산업시스템공학과 20</CardMajor>
-        <CardRole>{' '}<br></br></CardRole>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
         <CardLine />
-        <CardText>- 메인페이지 <br></br>- 타임테이블 구현 <br></br><br></br></CardText>
+        <CardText>
+          - 메인페이지 <br></br>- 타임테이블 구현 <br></br>
+          <br></br>
+        </CardText>
       </Card>
       <Card>
         <FaceImg src={LeeSeulgi} />
         <CardName>🦁이슬기</CardName>
         <CardMajor>컴퓨터공학과 20</CardMajor>
-        <CardRole>{' '}<br></br></CardRole>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
         <CardLine />
-        <CardText>- 공지사항 페이지, 공지사항&부스 디테일 페이지, rest api 구현, 부스 수정하기 페이지</CardText>
+        <CardText>
+          - 공지사항 페이지, 공지사항&부스 디테일 페이지, rest api 구현, 부스
+          수정하기 페이지
+        </CardText>
       </Card>
       <Card>
         <FaceImg src={Leeyeowon2} />
         <CardName>🦁이여원</CardName>
         <CardMajor>멀티미디어공학과 20</CardMajor>
-        <CardRole>{' '}<br></br></CardRole>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
         <CardLine />
         <CardText>- About 페이지 구현 </CardText>
       </Card>
@@ -311,14 +337,17 @@ export default function About() {
         <CardName>🦁이건회</CardName>
         <CardMajor>영어통번역학과 16</CardMajor>
         <CardRole>백엔드 개발팀장</CardRole>
-        <CardLine/>
-        <CardText>-  </CardText>
+        <CardLine />
+        <CardText>- </CardText>
       </Card>
       <Card>
         <FaceImg src={ParkSangJun} />
         <CardName>🦁박상준</CardName>
         <CardMajor>정보통신공학과 19</CardMajor>
-        <CardRole>{' '}<br></br></CardRole>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
         <CardLine />
         <CardText> - API 설계, 좋아요, 메뉴 로직 구현</CardText>
       </Card>
@@ -326,7 +355,10 @@ export default function About() {
         <FaceImg src={AhnSeokhwan} />
         <CardName>🦁안석환</CardName>
         <CardMajor>산업시스템공학과 17</CardMajor>
-        <CardRole>{' '}<br></br></CardRole>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
         <CardLine />
         <CardText> - 부스 로직 구현</CardText>
       </Card>
@@ -334,12 +366,14 @@ export default function About() {
         <FaceImg src={JeongMinju} />
         <CardName>🦁정민주</CardName>
         <CardMajor>산업시스템공학과 18</CardMajor>
-        <CardRole>{' '}<br></br></CardRole>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
         <CardLine />
         <CardText>- 방명록 로직 구현 </CardText>
       </Card>
       <Space> .</Space>
-
     </div>
   );
 }
