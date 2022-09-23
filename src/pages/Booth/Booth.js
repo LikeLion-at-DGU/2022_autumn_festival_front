@@ -84,7 +84,8 @@ const BuildingDetail = styled(motion.button)`
 
   background-color: transparent;
   border-bottom: 2px solid
-    ${(props) => (props.isActive ? '#FD9903' : '#ffffff')};
+    ${(props) => (props.isActive ? '#FD9903' : 'rgba(256, 256, 256, 0.5)')};
+
   transition: 0.5s all;
 `;
 
@@ -240,7 +241,7 @@ export default function Booth({}) {
     {
       id: 4,
       introduction: '만해~10000Sun~',
-      title: '히찬쓰윗부쓰',
+      title: "히찬's With부쓰",
       type: '푸드트럭',
       location: '만해광장',
       day: [1, 3],
@@ -260,8 +261,8 @@ export default function Booth({}) {
     },
     {
       id: 5,
-      introduction: '1980년대 복고 경찰의 컨셉',
-      title: '라이프 온 경행',
+      introduction: 'CB~집가고싶네..',
+      title: "Chan's Booth",
       type: '주점',
       location: '만해광장',
       day: [1, 2, 3],
