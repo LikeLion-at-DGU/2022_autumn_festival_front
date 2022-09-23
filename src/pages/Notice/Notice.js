@@ -156,7 +156,7 @@ export default function Notice() {
   // get 공지사항 리스트 api //
   useEffect(() => {
     axios
-      .get(`/notifications`)
+      .get(`notifications`)
       .then((res) => {
         console.log(res.data);
         setNotices(res.data);
