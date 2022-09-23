@@ -98,10 +98,11 @@ export const BoothNotificationOpen = styled.div`
   display: flex;
   width: 100%;
   margin-top: 18px;
+  flex-direction: column;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
 
-  & > div {
+  & > .bar {
     display: flex;
     align-item: center;
     width: 100%;
@@ -109,6 +110,13 @@ export const BoothNotificationOpen = styled.div`
     line-height: 30px;
     font-weight: 800;
     font-size: 13px;
+  }
+  & > .notice {
+    width: 270px;
+    font-weight: 200;
+    font-size: 10px;
+    text-align: left;
+    margin: 2px 14px 13px 30px;
   }
 `;
 
