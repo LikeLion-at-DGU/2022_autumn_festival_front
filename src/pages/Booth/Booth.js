@@ -174,17 +174,16 @@ export default function Booth({}) {
   const [booth, setBooth] = useState([
     {
       id: 1,
-      introduction: '맛있는 호떡과 다양한 음식',
-      title: '명진관호떡',
       type: '주점',
-      location: ['원흥관', 8],
+      title: '명진관호떡',
+      introduction: '맛있는 호떡과 다양한 음식',
+      like_count: 20,
+      location: '원흥관',
       day: [1, 2, 3],
-      locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
 
       content:
         '맛있는 호떡 먹고 가세요~  호호 ~ 불어먹먹는 떡이라~ 호떠 ~ 아니에요~~호호호홓ㅎ',
-      likeCount: 20,
       menu: [
         {
           name: '붕어빵',
@@ -202,12 +201,11 @@ export default function Booth({}) {
       introduction: '으아가각아ㅏㄱ',
       title: '신공공룡',
       type: '푸드트럭',
-      location: ['신공학관', 10],
+      location: '신공학관',
       day: [1, 2, 3],
-      locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '으아악',
-      likeCount: 100,
+      like_count: 100,
       menu: [
         {
           name: '붕어빵',
@@ -224,12 +222,11 @@ export default function Booth({}) {
       introduction: '혜화아아아ㅏㄱ',
       title: '혜화관 햇님',
       type: '부스',
-      location: ['혜화관', 3],
+      location: '혜화관',
       day: [1, 2],
-      locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '혜화아아아ㅏㄱ',
-      likeCount: 12,
+      like_count: 12,
       menu: [
         {
           name: '붕어빵',
@@ -246,12 +243,11 @@ export default function Booth({}) {
       introduction: '만해~10000Sun~',
       title: '만해광장 희찬',
       type: '푸드트럭',
-      location: ['만해광장', 12],
+      location: '만해광장',
       day: [3],
-      locationImage: 'imgURL?',
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '혜화아아아ㅏㄱ',
-      likeCount: 12,
+      like_count: 12,
       menu: [
         {
           name: '붕어빵',
@@ -321,9 +317,8 @@ export default function Booth({}) {
                 title={boo.title}
                 intro={boo.introduction}
                 type={boo.type}
-                locationName={boo.location[0]}
-                locationNum={boo.location[1]}
-                likeCount={boo.likeCount}
+                locationName={boo.location}
+                likeCount={boo.like_count}
                 nowBuilding={isBuilding}
                 nowDay={isToday}
                 boothDay={boo.day}
