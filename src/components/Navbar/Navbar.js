@@ -41,7 +41,7 @@ export default function Navbar() {
   useEffect(() => {
     //리스너 등록
     window.addEventListener('scroll', () => {
-      console.log('window.scrollY', window.scrollY);
+      // console.log('window.scrollY', window.scrollY);
       if (window.scrollY > 50) {
         setShow(true);
       } else {

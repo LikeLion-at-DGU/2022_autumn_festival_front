@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import usePagination from '../../hooks/usePagination';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -146,6 +146,10 @@ export default function Notice() {
       </NoticeCard>
     );
   });
+
+  useEffect(() => {
+    pageInfo.jump(1);
+  }, [option]);
 
   return (
     <>
