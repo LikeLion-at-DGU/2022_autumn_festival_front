@@ -7,7 +7,7 @@ import './Footer.css';
 export default function Footer({ title }) {
   return (
     <>
-      <div>
+      <div className='footerdiv'>
         <hr></hr>
         <div className="footer">
           <div>

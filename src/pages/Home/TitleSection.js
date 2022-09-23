@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import TitleI from './mainTitle.png';
 import TitleS from "./ta.png";
 import School from "./mainSchool.png";
-import {Fireworks} from "fireworks-js";
 import { useEffect, useRef } from 'react';
+import { Fireworks } from 'fireworks-js';
 
 const Container = styled.section`
     width: auto;
@@ -12,6 +12,7 @@ const Container = styled.section`
     position: relative;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 `
 
 const Box = styled.div`
@@ -49,63 +50,54 @@ const DGUImg = styled.img`
 
 function TitleSection() {
     const fireRef = useRef();
-    const fireworksC = document.querySelector(".fireworks-container");
-    // const fireworks = new Fireworks(fireworksC, {
-    //     rocketsPoint: {
-    //         min: 50,
-    //         max: 50
-    //       },
-    //       hue: {
-    //         min: 0,
-    //         max: 360
-    //       },
-    //       delay: {
-    //         min: 0.015,
-    //         max: 0.03
-    //       },
-    //       lineWidth: {
-    //         explosion: {
-    //           min: 1,
-    //           max: 3
-    //         },
-    //         trace: {
-    //           min: 1,
-    //           max: 2
-    //         }
-    //     },
-    //     lineStyle: 'round',
-    //     speed: 2,
-    //     acceleration: 1.05,
-    //     friction: 0.95,
-    //     gravity: 1.5,
-    //     particles: 50,
-    //     trace: 3,
-    //     flickering: 50,
-    //     opacity: 0.5,
-    //     explosion: 5,
-    //     intensity: 30,
-    //     traceSpeed: 10,
-    //     autoresize: true,
-    //     brightness: { 
-    //       min: 50, 
-    //       max: 80
-    //     },
-    //     decay : {
-    //       min: 0.015,
-    //       max: 0.03
-    //     },
-    //     mouse: { 
-    //         click: false, 
-    //         move: false, 
-    //         max: 1 
-    //     },
-    //     boundaries: { 
-    //         x: 50, 
-    //         y: 50, 
-    //         width: 0, 
-    //         height: 0
-    //     }
-    // })
+    const options = {
+        hue: {
+          min: 0,
+          max: 345,
+        },
+        delay: {
+          min: 15,
+          max: 15,
+        },
+        rocketsPoint: 50,
+        speed: 10,
+        acceleration: 1.2,
+        friction: 0.96,
+        gravity: 1,
+        particles: 90,
+        trace: 3,
+        explosion: 6,
+        autoresize: true,
+        brightness: {
+          min: 50,
+          max: 80,
+          decay: {
+            min: 0.015,
+            max: 0.03,
+          },
+        },
+        boundaries: {
+          x: 50,
+          y: 50,
+          width: 1536,
+          height: 746,
+          visible: false,
+        },
+        mouse: {
+          click: true,
+          move: false,
+          max: 3,
+        },
+    };
+
+    const style = {
+        left: 0,
+        top: 0,
+        width: "100%",
+        height: "100%",
+        position: "fixed",
+        background: "rgba(0,0,0,0)",
+      };
 
     useEffect(()=>{
         //fireworks.start();
@@ -113,17 +105,15 @@ function TitleSection() {
 
     return(
         <Container>
-            {/* <Box>
+            <Box>
                 <TitleImg src={TitleI}/>
                 <TitleTime src={TitleS}/>
                 <TitleFooter>
                     동국대학교 가을 대동제
                 </TitleFooter>
             </Box>
-            <DGUImg src={School}/> */}
-            <div className='fireworks-container' ref={fireRef} style={{width:"100px", height:"100px"}}>
-                
-            </div>
+            <DGUImg src={School}/>
+            {/* <Fireworks options={options} style={style} /> */}
         </Container>
     )
 }

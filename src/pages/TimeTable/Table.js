@@ -10,7 +10,7 @@ const Container = styled.section`
     width: auto;
     display: flex;
     justify-content: center;
-    margin-bottom: 900px;
+    margin-bottom: ${props => props.isActive ? "550px" : "900px"};
 `
 
 const Warpper = styled.section`
@@ -94,7 +94,7 @@ function Table() {
 
 
     return(
-        <Container>
+        <Container isActive={isToday === 1 }>
             <Warpper>
                 {/* 타임테이블 Header : 페이지 수요일,목요일,금요일 선택 카테고리 */}
                 <DateContainer>
