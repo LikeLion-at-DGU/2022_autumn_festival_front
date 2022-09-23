@@ -183,10 +183,7 @@ export default function About() {
 
   return (
     <div style={{ marginTop: '120rem' }}>
-      <TitleContainer>
-        <Img src={LogoImg} />
-        <Title>ABOUT</Title>
-      </TitleContainer>
+      <UpTitle title={'ABOUT'} />
 
       <Logo>
         <br></br>
