@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import {
   SwiperContainer,
@@ -16,6 +17,8 @@ import {
   IntroContent,
   MenuContainer,
   MenuItem,
+  EditBtn,
+  EditForm,
 } from './style';
 import NoticeExImg from '../../assets/img/noticeExImg.png';
 import MapIconImg from '../../assets/img/mainMapIcon.png';
@@ -28,6 +31,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import CancelIcon from '@mui/icons-material/Cancel';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper';
 import 'swiper/scss';
@@ -82,6 +87,7 @@ export default function BoothDetail() {
   const [intro, setIntro] = useState(false);
   const [noticeToggle, setNoticeToggle] = useState(false);
   const [love, setLove] = useState(false);
+  const [admin, setAdmin] = useState(false);
 
   // 슬라이드 뷰 //
   const SlideView = booth.images.map((b, idx) => {
@@ -94,7 +100,6 @@ export default function BoothDetail() {
 
   // 좋아요 기능 //
   const HeartView = (tp) => {
-    console.log(tp);
     return love ? (
       <FavoriteIcon
         onClick={() => {
@@ -145,10 +150,25 @@ export default function BoothDetail() {
     return (
       <MenuItem key={idx}>
         <div>{m.name}</div>
-        <div style={{ fontSize: '12px' }}>{m.price}원</div>
+        <div style={{ fontSize: '12px', marginLeft: 'auto' }}>{m.price}원</div>
+        {admin === 'true' ? (
+          <CancelIcon style={{ margin: '4px 1px' }} />
+        ) : (
+          <></>
+        )}
       </MenuItem>
     );
   });
+
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+
+  let query = useQuery();
+  useEffect(() => {
+    console.log(query.get('admin'));
+    setAdmin(query.get('admin'));
+  }, [query]);
 
   return (
     <div style={{ marginBottom: '76px' }}>
@@ -176,6 +196,7 @@ export default function BoothDetail() {
         <TypeBtn tp={booth.boothType.korean}>{booth.boothType.korean}</TypeBtn>
         <BoothTitle>{booth.title}</BoothTitle>
         <BoothIntro>{booth.introduction}</BoothIntro>
+        {admin === 'true' ? <EditBtn>수정하기</EditBtn> : <></>}
         <br />
 
         <div style={{ display: 'flex', alignItem: 'center' }}>
@@ -242,6 +263,15 @@ export default function BoothDetail() {
             <span>메뉴</span>
           </div>
           <IntroLine></IntroLine>
+          {admin === 'true' ? (
+            <EditForm>
+              <input type="text" placeholder="메뉴 이름" />
+              <input type="text" placeholder="가격" />
+              <button type="submit">추가하기</button>
+            </EditForm>
+          ) : (
+            <></>
+          )}
           <MenuContainer>{MenuView}</MenuContainer>
         </IntroContainer>
 
