@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import dguLogo from '../../assets/img/dguLogo.png';
 import aboutFLogo from '../../assets/img/aboutFLogo.png';
@@ -7,6 +7,7 @@ import aboutFace from '../../assets/img/aboutFace.png';
 import LogoImg from '../../assets/img/maple.png';
 
 import { UpTitle } from '../../styles/style';
+import { useLocation } from 'react-router-dom';
 
 const TitleContainer = styled.section`
   position: relative;
@@ -152,6 +153,13 @@ const Space = styled.div`
 `;
 
 export default function About() {
+  const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
+
   return (
     <div style={{ marginTop: '97rem' }}>
       <TitleContainer>

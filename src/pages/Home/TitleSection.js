@@ -58,11 +58,11 @@ function TitleSection() {
             max: 600
           },
           delay: {
-            min: 50,
-            max: 50
+            min: 40,
+            max: 45
           },
           rocketsPoint: 60,
-          speed: 6,
+          speed: 3,
           acceleration: 1.2,
           friction: 0.96,
           gravity: 1,
@@ -86,7 +86,7 @@ function TitleSection() {
     
       const style= {
         background: "#1B2F4E",
-        marginTop : "-200px",
+        marginTop : "-150px",
         window : "auto",
         height:"400px"
       };
