@@ -24,7 +24,7 @@ const BoothBox = styled(motion.div)`
 const CenterLine = styled.div`
     margin-top: 50px;
     width: 1px;
-    height: 840px;
+    height: 730px;
     background-color: white;
     border-radius: 5px;
 `
@@ -191,19 +191,6 @@ const PerInfoItemSub = styled.div`
     }
 `
 
-const PerChart1 = styled.div`
-    opacity: 0.8;
-    background-color: white;
-    width: 100px;
-    height: 150px;
-    margin-top: 10px;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    display: flex;
-    flex-direction: column;
-    padding: 7px 12px;
-`
-
 const PerChart2 = styled.div`
     opacity: 0.8;
     background-color: white;
@@ -214,23 +201,6 @@ const PerChart2 = styled.div`
     display: flex;
     flex-direction: column;
     padding: 15px 12px;
-`
-
-const PerChart1Item = styled.div`
-    margin-top: 5px;
-    padding-bottom: 2px;
-    color : black;
-    display: flex;
-    align-items: center;
-    border-bottom: 0.5px solid black;
-    font-size: 10px;
-    font-weight: 600;
-    span:first-child{
-        margin-right: 4px;
-    }
-    span:last-child{
-
-    }
 `
 
 const PerChart2Item = styled.div`
@@ -327,7 +297,7 @@ function SecondTable () {
                 </BoothItem>
 
                 {/* Booth 두번째 */}
-                <BoothItem variants={childVariants}  style={{marginTop : "130px"}}>
+                <BoothItem variants={childVariants}  style={{marginTop : "100px"}}>
                     <BoothInfoContainer>
                         <BoothInfoTime>
                             18:00 - 22:00 ~
@@ -368,7 +338,7 @@ function SecondTable () {
                     <div style={{backgroundColor : "#FF6B6B",  width:"125px"}}></div>
                 </TitleBox>
                 {/* Performance 첫번쨰 */}
-                <PerBox variants={childVariants} style={{marginTop : "150px"}}>
+                <PerBox variants={childVariants} style={{marginTop : "160px"}}>
                     <PerPoint/>
                     <PerInfoContainer>
                         <PerInfoTime>
@@ -383,24 +353,13 @@ function SecondTable () {
                                     <img src={PinImg}/>
                                     <span>대운동장</span>
                                 </PerInfoItemSub>
-                                <PerChart1>
-                                    <PerChart1Item>
-                                        <span>14:00 ~ 15:00</span>
-                                        <span>오프닝</span>
-                                    </PerChart1Item>
-                                    <PerChart1Item>
-                                        <span>14:00 ~ 15:00</span>
-                                        <span>오프닝</span>
-                                    </PerChart1Item>
-                                    
-                                </PerChart1>
                             </PerInfoItem>
                         </PerInfoBox>
                     </PerInfoContainer>
                 </PerBox>
 
                 {/* Performance 두번쨰 */}
-                <PerBox variants={childVariants} style={{marginTop : "30px"}}>
+                <PerBox variants={childVariants} style={{marginTop : "70px"}}>
                     <PerPoint/>
                     <PerInfoContainer>
                         <PerInfoTime>
@@ -421,7 +380,7 @@ function SecondTable () {
                 </PerBox>
 
                 {/* Performance 세번쨰 */}
-                <PerBox variants={childVariants} style={{marginTop : "50px"}}>
+                <PerBox variants={childVariants} style={{marginTop : "70px"}}>
                     <PerPoint/>
                     <PerInfoContainer>
                         <PerInfoTime>

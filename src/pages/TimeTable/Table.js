@@ -1,16 +1,17 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import FirstTable from './FirstTable';
 import SecondTable from './SecondTable';
 import ThridTable from './ThridTable';
+import { useLocation } from 'react-router-dom';
 
 const Container = styled.section`
     margin-top: 30px;
     width: auto;
     display: flex;
     justify-content: center;
-    margin-bottom: ${props => props.isActive ? "550px" : "900px"};
+    margin-bottom: ${props => props.isActive ? "550px" : "800px"};
 `
 
 const Warpper = styled.section`
@@ -83,6 +84,12 @@ const dayArray = [
  
 
 function Table() {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
   // DateContainer 관련
   const day = new Date();
 
