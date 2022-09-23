@@ -3,7 +3,6 @@ import './Booth.css';
 import '../../api/boothData.json';
 import Boothcard from '../../components/Booth/Boothcard';
 
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import boothMap from '../../assets/img/boothMap.png';
@@ -284,7 +283,7 @@ export default function Booth({}) {
     {
       id: 6,
       introduction: '만해~10000Sun~',
-      title: '응답하라 동국인들',
+      title: '응답하라 100개',
       type: '부스',
       location: '만해광장',
       day: [1, 3],
@@ -334,7 +333,6 @@ export default function Booth({}) {
 
   const [isToday, setIsToday] = useState(todate);
   const [isBuilding, setIsBuilding] = useState('만해광장');
-  const navigate = useNavigate();
 
   return (
     <BoothContainer>

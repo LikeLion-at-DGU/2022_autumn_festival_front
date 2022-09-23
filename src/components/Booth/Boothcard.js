@@ -24,8 +24,10 @@ const Location_number = styled.p`
 
 const BoothLike = styled.div`
   font-size: 1px;
-  float: right;
-  margin-right: 23px;
+  display: inline;
+  float: left;
+  margin-left: 4rem;
+  margin-top: 5px;
 `;
 
 const BoothLikeNum = styled.div`
@@ -149,8 +151,10 @@ export default function Boothcard({
             {locationName}
           </Location_number>
           <BoothLike>
-            <FavoriteBorderIcon sx={{ width: '10px' }} />
-            <BoothLikeNum>{likeCount}</BoothLikeNum>
+            <FavoriteBorderIcon
+              sx={{ fontSize: '10px', position: 'absolute', left: '100px' }}
+            />
+            {likeCount}
           </BoothLike>
           <CardContent
             style={{ marginTop: '15px', fontFamily: 'GmarketSansMedium' }}
