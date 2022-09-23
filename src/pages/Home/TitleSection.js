@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import TitleS from './ta.png';
-import School from './mainSchool.png';
+import TitleS from '../../assets/img/ta.png';
+import School from '../../assets/img/mainSchool.png';
 import MainBg from '../../assets/img/mainBg.jpeg';
 import { Fireworks, useFireworks } from 'fireworks-js/dist/react';
 
@@ -65,46 +65,46 @@ const TitleArea = styled.div`
 `;
 
 function TitleSection() {
-    const { setEnabled, setOptions, enabled, options } = useFireworks({
-        initialStart: true,
-        initialOptions: {
-          hue: {
-            min: 0,
-            max: 600
-          },
-          delay: {
-            min: 40,
-            max: 45
-          },
-          rocketsPoint: 60,
-          speed: 3,
-          acceleration: 1.2,
-          friction: 0.96,
-          gravity: 1,
-          particles: 90,
-          trace: 3,
-          explosion: 6,
-          autoresize: true,
-          brightness: {
-            min: 50,
-            max: 80,
-            decay: {
-              min: 0.015,
-              max: 0.03
-            }
-          },
-          boundaries: {
-            visible: false
-          },
-        }
-      });
-    
-      const style= {
-        background: "#1B2F4E",
-        marginTop : "-150px",
-        window : "auto",
-        height:"400px"
-      };
+  const { setEnabled, setOptions, enabled, options } = useFireworks({
+    initialStart: true,
+    initialOptions: {
+      hue: {
+        min: 0,
+        max: 600,
+      },
+      delay: {
+        min: 40,
+        max: 45,
+      },
+      rocketsPoint: 60,
+      speed: 3,
+      acceleration: 1.2,
+      friction: 0.96,
+      gravity: 1,
+      particles: 90,
+      trace: 3,
+      explosion: 6,
+      autoresize: true,
+      brightness: {
+        min: 50,
+        max: 80,
+        decay: {
+          min: 0.015,
+          max: 0.03,
+        },
+      },
+      boundaries: {
+        visible: false,
+      },
+    },
+  });
+
+  const style = {
+    background: '#1B2F4E',
+    marginTop: '-150px',
+    window: 'auto',
+    height: '400px',
+  };
 
   return (
     <>
