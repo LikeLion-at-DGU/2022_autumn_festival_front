@@ -79,6 +79,7 @@ const FoodBorder = styled.div`
 // 주점 #FF6B6B
 // 받아서 다른 이름일때 디른 색깔
 export default function Boothcard({
+  boothId,
   title,
   intro,
   type,
@@ -90,12 +91,11 @@ export default function Boothcard({
 }) {
   //리스트에 요소 있는지 찾기
   // 만약 boothDay리스트에 nowDay와 동일한게 있다면 true반환 아니면 false
-  console.log('부스카드 불러왔음!!');
 
   return boothDay.includes(nowDay) ? (
     nowBuilding === locationName ? (
       <Card
-        sx={{ maxWidth: 145 }}
+        sx={{ maxWidth: 150 }}
         className="cardCss"
         style={{
           fontFamily: 'GmarketSansMedium',
@@ -104,7 +104,7 @@ export default function Boothcard({
           flexDirection: 'row',
         }}
       >
-        <CardActionArea>
+        <CardActionArea href={`/booth/${boothId}`}>
           {/* type에 따라 다른 색 뜨게하기  */}
 
           {type === '주점' ? (
@@ -177,9 +177,9 @@ export default function Boothcard({
         </CardActionArea>
       </Card>
     ) : (
-      <span></span>
+      ''
     )
   ) : (
-    <span></span>
+    ''
   );
 }

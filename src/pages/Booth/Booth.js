@@ -241,10 +241,53 @@ export default function Booth({}) {
     {
       id: 4,
       introduction: '만해~10000Sun~',
-      title: '만해광장 희찬',
+      title: '응답하라 동국인들ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ',
       type: '푸드트럭',
       location: '만해광장',
-      day: [3],
+      day: [1, 3],
+      notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
+      content: '혜화아아아ㅏㄱ',
+      like_count: 12,
+      menu: [
+        {
+          name: '붕어빵',
+          price: 1000,
+        },
+        {
+          name: '호떡',
+          price: 3000,
+        },
+      ],
+    },
+    {
+      id: 5,
+      introduction: '1980년대 복고 경찰의 컨셉',
+      title: '라이프 온 경행',
+      type: '주점',
+      location: '만해광장',
+      day: [1, 2, 3],
+      notice:
+        '[운영 시간] 18시 오픈\n[운영 위치] 혜화관 앞\n또 사진을 찍어 인스타그램 스토리에 올린뒤 경찰사법대학 공식 계정을 태그하면 추첨을 통해 상품을 증정하는 이벤트도 하고 있으니 많은 이용 바랍니다 ㅎㅎ\n*** 테이블비 5,000원 있습니다. \n*** 주류 아이스 박스에 보관 가능하오니 사들고 오셔서 저희에게 맡겨 주세요!! ',
+      content: '혜화관 앞',
+      like_count: 999,
+      menu: [
+        {
+          name: '경행',
+          price: 2000,
+        },
+        {
+          name: '호떡',
+          price: 4000,
+        },
+      ],
+    },
+    {
+      id: 6,
+      introduction: '만해~10000Sun~',
+      title: '히찬쓰윗부쓰',
+      type: '부스',
+      location: '만해광장',
+      day: [1, 3],
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '혜화아아아ㅏㄱ',
       like_count: 12,
@@ -308,25 +351,32 @@ export default function Booth({}) {
 
       {/* map으로 카드 뜨게 만들기 */}
 
-      <BoothCardContainer>
+      {/* <BoothCardContainer> */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateRows: '2fr',
+          gridTemplateColumns: '2fr 2fr',
+        }}
+      >
         {booth.map((boo) => {
           return (
-            <span onClick={() => navigate(`/booth/${boo.id}`)}>
-              <Boothcard
-                key={boo.id}
-                title={boo.title}
-                intro={boo.introduction}
-                type={boo.type}
-                locationName={boo.location}
-                likeCount={boo.like_count}
-                nowBuilding={isBuilding}
-                nowDay={isToday}
-                boothDay={boo.day}
-              />
-            </span>
+            <Boothcard
+              key={boo.id}
+              boothId={boo.id}
+              title={boo.title}
+              intro={boo.introduction}
+              type={boo.type}
+              locationName={boo.location}
+              likeCount={boo.like_count}
+              nowBuilding={isBuilding}
+              nowDay={isToday}
+              boothDay={boo.day}
+            />
           );
         })}
-      </BoothCardContainer>
+      </div>
+      {/* </BoothCardContainer> */}
     </BoothContainer>
   );
 }
