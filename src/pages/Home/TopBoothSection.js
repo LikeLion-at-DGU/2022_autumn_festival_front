@@ -4,6 +4,7 @@ const Container = styled.section`
     border: 1px solid white;
     width: auto;
     height: 90vh;
+    box-sizing: border-box;
 `
 
 function TopBoothSection() {
