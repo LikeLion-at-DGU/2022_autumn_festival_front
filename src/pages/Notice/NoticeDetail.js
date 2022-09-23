@@ -13,6 +13,8 @@ import {
   NoticeDetailContent,
 } from './style';
 
+import axios from '../../api/axios';
+
 export default function NoticeDetail() {
   const [notice, setNotice] = useState({
     id: '1',

@@ -78,13 +78,4 @@ export const GlobalStyle = createGlobalStyle`
   .swiper-pagination-bullet-active {
     background-color: ${baseColor};
   }
-
-  // 네브바 이슈 해결 중
-  // .nav {
-  //   z-index: 1;
-  //   translate3d(0, 0, 0);
-  // }
-  // .swiper-slide > img {
-  //   z-index: -3;
-  // }
 `;
