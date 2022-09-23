@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import dguLogo from '../../assets/img/dguLogo.png';
-import aboutFlogo from '../../assets/img/aboutFlogo.png';
+import aboutFlogo from '../../assets/img/aboutFLogo.png';
 import aboutC from '../../assets/img/aboutC.png';
 import Leeyeowon from '../../assets/img/about_Lee yeowon.png';
 import Leeyeowon2 from '../../assets/img/about_Lee yeowon2.png';
@@ -177,10 +177,9 @@ const Space = styled.div`
 export default function About() {
   const { pathname } = useLocation();
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [pathname]);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div style={{ marginTop: '120rem' }}>
@@ -206,9 +205,9 @@ export default function About() {
 
       <IntroText>
         3년만에 돌아온 동국대학교 대동제를 위해<br></br>
-        동국대학교 축제기획단이 힘껏 열정을 쏟아 축제를 기획하고
-        학우 여러분들의 편의를 위해 동국대 멋쟁이사자처럼이 축제 웹사이트를
-        개발하였습니다.<br></br>
+        동국대학교 축제기획단이 힘껏 열정을 쏟아 축제를 기획하고 학우 여러분들의
+        편의를 위해 동국대 멋쟁이사자처럼이 축제 웹사이트를 개발하였습니다.
+        <br></br>
         <br></br>
         오랜만에 열리는 축제인 만큼 학우 여러분들께서<br></br>
         즐겁고 행복한 축제가 되었으면 좋겠습니다!<br></br>
