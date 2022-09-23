@@ -79,7 +79,6 @@ const FoodBorder = styled.div`
 // 주점 #FF6B6B
 // 받아서 다른 이름일때 디른 색깔
 export default function Boothcard({
-  key,
   title,
   intro,
   type,
@@ -91,9 +90,7 @@ export default function Boothcard({
 }) {
   //리스트에 요소 있는지 찾기
   // 만약 boothDay리스트에 nowDay와 동일한게 있다면 true반환 아니면 false
-
-  console.log('부스 날짜 : ' + boothDay[0] + '선택된 날짜' + nowDay);
-  console.log(boothDay.includes(nowDay));
+  console.log('부스카드 불러왔음!!');
 
   return boothDay.includes(nowDay) ? (
     nowBuilding === locationName ? (
