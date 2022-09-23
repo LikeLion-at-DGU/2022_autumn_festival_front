@@ -42,6 +42,11 @@ export const GlobalStyle = createGlobalStyle`
     margin-bottom: 60px;
   }
 
+  canvas{
+    margin-top: -130px;
+    height: 400px;
+  }
+
   @media only screen and (min-width: 200px) { //375px 너무 작아서 수정했음
     .App {
       width: 375px;
