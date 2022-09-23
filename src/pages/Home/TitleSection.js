@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import TitleI from './mainTitle.png';
 import TitleS from "./ta.png";
 import School from "./mainSchool.png";
-import { useEffect, useRef } from 'react';
-import { Fireworks } from 'fireworks-js';
+import { Fireworks, useFireworks } from "fireworks-js/dist/react";
 
 const Container = styled.section`
+    margin-top: -350px;
     width: auto;
     height: 90vh;
     display: flex;
+    flex-direction: column;
     position: relative;
     justify-content: center;
     align-items: center;
@@ -42,68 +43,58 @@ const TitleFooter = styled.span`
 `
 
 const DGUImg = styled.img`
-    width: 100vw;
+    width: 100%;
     height: 150px;
     position: absolute;
     bottom: 80px;
 `
 
 function TitleSection() {
-    const fireRef = useRef();
-    const options = {
-        hue: {
-          min: 0,
-          max: 345,
-        },
-        delay: {
-          min: 15,
-          max: 15,
-        },
-        rocketsPoint: 50,
-        speed: 10,
-        acceleration: 1.2,
-        friction: 0.96,
-        gravity: 1,
-        particles: 90,
-        trace: 3,
-        explosion: 6,
-        autoresize: true,
-        brightness: {
-          min: 50,
-          max: 80,
-          decay: {
-            min: 0.015,
-            max: 0.03,
+    const { setEnabled, setOptions, enabled, options } = useFireworks({
+        initialStart: true,
+        initialOptions: {
+          hue: {
+            min: 0,
+            max: 600
           },
-        },
-        boundaries: {
-          x: 50,
-          y: 50,
-          width: 1536,
-          height: 746,
-          visible: false,
-        },
-        mouse: {
-          click: true,
-          move: false,
-          max: 3,
-        },
-    };
-
-    const style = {
-        left: 0,
-        top: 0,
-        width: "100%",
-        height: "100%",
-        position: "fixed",
-        background: "rgba(0,0,0,0)",
+          delay: {
+            min: 50,
+            max: 50
+          },
+          rocketsPoint: 60,
+          speed: 6,
+          acceleration: 1.2,
+          friction: 0.96,
+          gravity: 1,
+          particles: 90,
+          trace: 3,
+          explosion: 6,
+          autoresize: true,
+          brightness: {
+            min: 50,
+            max: 80,
+            decay: {
+              min: 0.015,
+              max: 0.03
+            }
+          },
+          boundaries: {
+            visible: false
+          },
+        }
+      });
+    
+      const style= {
+        background: "#1B2F4E",
+        marginTop : "-200px",
+        window : "auto",
+        height:"400px"
       };
 
-    useEffect(()=>{
-        //fireworks.start();
-    }, [])
-
     return(
+        <>
+        <Fireworks enabled={enabled} options={options} style={style} >
+        </Fireworks>
         <Container>
             <Box>
                 <TitleImg src={TitleI}/>
@@ -113,8 +104,8 @@ function TitleSection() {
                 </TitleFooter>
             </Box>
             <DGUImg src={School}/>
-            {/* <Fireworks options={options} style={style} /> */}
         </Container>
+        </>
     )
 }
 export default TitleSection;
