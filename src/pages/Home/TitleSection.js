@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import TitleI from './mainTitle.png';
 import TitleS from './ta.png';
 import School from './mainSchool.png';
+import MainBg from '../../assets/img/mainBg.jpeg';
 import { Fireworks, useFireworks } from 'fireworks-js/dist/react';
 
 const Container = styled.section`
@@ -47,6 +47,21 @@ const DGUImg = styled.img`
   height: 150px;
   position: absolute;
   bottom: 80px;
+`;
+
+const TitleArea = styled.div`
+  font-weight: 900;
+  font-size: 108px;
+  font-family: 'TmonMonsori';
+  margin-left: 12px;
+  background-image: url(${MainBg});
+  background-size: 320px;
+  background-attachment: fixed;
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  letter-spacing: 0.09em;
+  line-height: 115px;
 `;
 
 function TitleSection() {
@@ -96,7 +111,13 @@ function TitleSection() {
       <Fireworks enabled={enabled} options={options} style={style}></Fireworks>
       <Container>
         <Box>
-          {/* <TitleImg src={TitleI}/> */}
+          <TitleArea>
+            <div>
+              렛츠
+              <br />
+              끼릿
+            </div>
+          </TitleArea>
 
           <TitleTime src={TitleS} />
           <TitleFooter>동국대학교 가을 대동제</TitleFooter>
