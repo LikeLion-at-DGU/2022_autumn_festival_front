@@ -152,7 +152,10 @@ export default function BoothDetail() {
 
   return (
     <div style={{ marginBottom: '76px' }}>
-      <UpTitle title={`${booth.boothType.korean} 홈페이지`} mapleLeft="57px" />
+      <UpTitle
+        title={`${booth.boothType.korean} 홈페이지`}
+        mapleLeft={booth.boothType.korean === '푸드트럭' ? '30px' : '57px'}
+      />
 
       {/* 스와이퍼 */}
       <SwiperContainer>
