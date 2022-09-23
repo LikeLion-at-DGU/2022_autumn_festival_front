@@ -25,7 +25,7 @@ const Location_number = styled.p`
 const BoothLike = styled.div`
   font-size: 1px;
   float: right;
-  margin-right: 17px;
+  margin-right: 23px;
 `;
 
 const BoothLikeNum = styled.div`
@@ -33,8 +33,8 @@ const BoothLikeNum = styled.div`
   position: absolute;
   display: inline;
   float: right;
-  left: 128px;
-  bottom: 68px;
+  left: 8.2rem;
+  bottom: 4.72rem;
 `;
 
 const JoojumBoothBorder = styled.div`
@@ -95,7 +95,7 @@ export default function Boothcard({
   return boothDay.includes(nowDay) ? (
     nowBuilding === locationName ? (
       <Card
-        sx={{ maxWidth: 150 }}
+        sx={{ width: '130', margin: '11.6px' }}
         className="cardCss"
         style={{
           fontFamily: 'GmarketSansMedium',
@@ -153,16 +153,16 @@ export default function Boothcard({
             <BoothLikeNum>{likeCount}</BoothLikeNum>
           </BoothLike>
           <CardContent
-            style={{ marginTop: '10px', fontFamily: 'GmarketSansMedium' }}
+            style={{ marginTop: '15px', fontFamily: 'GmarketSansMedium' }}
           >
             <Typography
               gutterBottom
               variant="h4"
               component="div"
               style={{
-                fontSize: '17px',
-                fontFamily: 'GmarketSansMedium',
-                fontWeight: '700',
+                fontSize: '15px',
+                fontFamily: 'GmarketSansBold',
+                fontWeight: '800',
               }}
             >
               {/* booth title들고오기 */}

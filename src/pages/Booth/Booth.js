@@ -241,7 +241,7 @@ export default function Booth({}) {
     {
       id: 4,
       introduction: '만해~10000Sun~',
-      title: '응답하라 동국인들ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ',
+      title: '히찬쓰윗부쓰',
       type: '푸드트럭',
       location: '만해광장',
       day: [1, 3],
@@ -283,6 +283,27 @@ export default function Booth({}) {
     },
     {
       id: 6,
+      introduction: '만해~10000Sun~',
+      title: '응답하라 동국인들',
+      type: '부스',
+      location: '만해광장',
+      day: [1, 3],
+      notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
+      content: '혜화아아아ㅏㄱ',
+      like_count: 12,
+      menu: [
+        {
+          name: '붕어빵',
+          price: 1000,
+        },
+        {
+          name: '호떡',
+          price: 3000,
+        },
+      ],
+    },
+    {
+      id: 7,
       introduction: '만해~10000Sun~',
       title: '히찬쓰윗부쓰',
       type: '부스',
@@ -356,7 +377,10 @@ export default function Booth({}) {
         style={{
           display: 'grid',
           gridTemplateRows: '2fr',
-          gridTemplateColumns: '2fr 2fr',
+          gridTemplateColumns: '1fr 1fr',
+          width: '328px',
+          margin: '0 auto',
+          marginTop: '40px',
         }}
       >
         {booth.map((boo) => {
