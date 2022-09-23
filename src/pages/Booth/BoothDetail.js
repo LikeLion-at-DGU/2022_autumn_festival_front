@@ -31,6 +31,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import CancelIcon from '@mui/icons-material/Cancel';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper';
 import 'swiper/scss';
@@ -148,7 +150,12 @@ export default function BoothDetail() {
     return (
       <MenuItem key={idx}>
         <div>{m.name}</div>
-        <div style={{ fontSize: '12px' }}>{m.price}원</div>
+        <div style={{ fontSize: '12px', marginLeft: 'auto' }}>{m.price}원</div>
+        {admin === 'true' ? (
+          <CancelIcon style={{ margin: '4px 1px' }} />
+        ) : (
+          <></>
+        )}
       </MenuItem>
     );
   });
