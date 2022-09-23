@@ -10,16 +10,6 @@ import './Boothcard.css';
 import styled from 'styled-components';
 
 import noticeExImg from '../../assets/img/noticeExImg.png';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
-// const boothCard = styled.section`
-//   width: 100%;
-//   display: flex;
-//   align-items: flex-end;
-//   justify-content: center;
-//   border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-//   box-shadow: 0px 4px 4px -4px rgba(0, 0, 0, 0.25);
-// `;
 
 const Location_number = styled.p`
   font-size: 1px;
@@ -79,7 +69,7 @@ const FoodBorder = styled.div`
   border-radius: 2px;
   padding: 2px 5px;
   // 부스일때
-  background-color: #89c3c7;
+  background-color: #2676ee;
   //
   margin: 5px;
   color: white;
@@ -89,12 +79,10 @@ const FoodBorder = styled.div`
 // 주점 #FF6B6B
 // 받아서 다른 이름일때 디른 색깔
 export default function Boothcard({
-  key,
   title,
   intro,
   type,
   locationName,
-  locationNum,
   likeCount,
   nowBuilding,
   nowDay,
@@ -102,9 +90,7 @@ export default function Boothcard({
 }) {
   //리스트에 요소 있는지 찾기
   // 만약 boothDay리스트에 nowDay와 동일한게 있다면 true반환 아니면 false
-
-  console.log('부스 날짜 : ' + boothDay[0] + '선택된 날짜' + nowDay);
-  console.log(boothDay.includes(nowDay));
+  console.log('부스카드 불러왔음!!');
 
   return boothDay.includes(nowDay) ? (
     nowBuilding === locationName ? (
@@ -160,7 +146,7 @@ export default function Boothcard({
             <LocationOnIcon
               style={{ fontSize: '10px', position: 'absolute', left: '8px' }}
             />
-            {locationName} {locationNum}번
+            {locationName}
           </Location_number>
           <BoothLike>
             <FavoriteBorderIcon sx={{ width: '10px' }} />
