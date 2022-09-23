@@ -7,13 +7,18 @@ import {
   BoothTitle,
   BoothIntro,
   LikeCnt,
+  DateLocContainer,
+  LocationMap,
+  BoothNotification,
 } from './style';
 import NoticeExImg from '../../assets/img/noticeExImg.png';
-// import BoothDetailMap from '../../assets/img/boothdetailMap.png';
+import MapIconImg from '../../assets/img/mainMapIcon.png';
 import { UpTitle } from '../../styles/style';
 
 // External Libraries //
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper';
 import 'swiper/scss';
@@ -23,14 +28,16 @@ import 'swiper/scss/pagination';
 SwiperCore.use([Pagination, Autoplay]);
 
 export default function BoothDetail() {
+  // 더미 데이터 (추후 수정)
   const [booth, setBooth] = useState({
     title: '명진관 호떡',
     introduction: '맛있는 호떡과 다양한 음식',
-    type: '주점',
-    location: '명진관',
-    // location_img: BoothDetailMap,
+    boothType: {
+      korean: '주점',
+    },
+    location: '명진관 9번',
     notice: '호떡이 참 맛있는 맛집',
-    day: [29, 30],
+    startAt: '2022-09-23',
     content:
       '맛있는 호떡 먹고 가세요~ 맛있는 호떡 먹고 가세요 피자, 슈크림, 등 다양한 맛을 판매 중입니다.~',
     images: [
@@ -45,7 +52,6 @@ export default function BoothDetail() {
       },
     ],
   });
-
   const [menu, setMenu] = useState([
     {
       name: '호떡',
@@ -71,7 +77,7 @@ export default function BoothDetail() {
 
   return (
     <div style={{ marginBottom: '76px' }}>
-      <UpTitle title={`${booth.type} 홈페이지`} mapleLeft="57px" />
+      <UpTitle title={`${booth.boothType.korean} 홈페이지`} mapleLeft="57px" />
 
       {/* 스와이퍼 */}
       <SwiperContainer>
@@ -89,7 +95,7 @@ export default function BoothDetail() {
 
       {/* 부스 내용 */}
       <ContentContainer>
-        <TypeBtn tp={booth.type}>주점</TypeBtn>
+        <TypeBtn tp={booth.boothType.korean}>{booth.boothType.korean}</TypeBtn>
         <BoothTitle>{booth.title}</BoothTitle>
         <BoothIntro>{booth.introduction}</BoothIntro>
         <br />
@@ -99,6 +105,21 @@ export default function BoothDetail() {
           &nbsp;
           <LikeCnt>100</LikeCnt>
         </div>
+
+        <DateLocContainer>
+          <div>{booth.startAt.slice(8, 10)}일</div>&nbsp;
+          <LocationMap>
+            <img src={MapIconImg} width="24" height="26" />
+            {booth.location}
+          </LocationMap>
+        </DateLocContainer>
+        <BoothNotification>
+          <NotificationsIcon
+            style={{ fontSize: '16px', margin: '6px 6px 0 14px' }}
+          />
+          <div>부스 공지사항</div>
+          <KeyboardArrowDownIcon style={{ margin: '3px 14px 6px auto' }} />
+        </BoothNotification>
       </ContentContainer>
     </div>
   );
