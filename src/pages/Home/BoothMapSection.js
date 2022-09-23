@@ -1,20 +1,19 @@
 import styled from 'styled-components';
-import MapImg from './mainmap.png';
-import TitleImg from './boothT.png';
+import MapImg from '../../assets/img/mainMap.png';
+import TitleImg from '../../assets/img/boothT.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import {useForm} from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-
 const Container = styled.section`
-    width: auto;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`
+  width: auto;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Img = styled.img`
   width: auto;
@@ -23,7 +22,7 @@ const Img = styled.img`
 `;
 
 const LocationImg = styled.img`
-    margin-top: -15px;
+  margin-top: -15px;
   margin-bottom: 10px;
   width: 90%;
 `;
@@ -40,39 +39,41 @@ const Input = styled.input`
 `;
 
 const InputSection = styled.form`
-    display: flex;
-    justify-content: center;
-    width: 75%;
-    position: relative;
-`
+  display: flex;
+  justify-content: center;
+  width: 75%;
+  position: relative;
+`;
 
 const Icon = styled(FontAwesomeIcon)`
-    color : #FD9903;
-    position: absolute;
-    top:24px;
-    right:15px;
-    font-size: 20px;
-    font-weight: 600;
-`
+  color: #fd9903;
+  position: absolute;
+  top: 24px;
+  right: 15px;
+  font-size: 20px;
+  font-weight: 600;
+`;
 
 function BoothMapSection() {
-    const navigate = useNavigate();
-    const {register, handleSubmit} = useForm()
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
 
-    const onValid = (data) => {
-        navigate(`/booth/Search?q=${data.search}`);
-    }
+  const onValid = (data) => {
+    navigate(`/booth/Search?q=${data.search}`);
+  };
 
-
-    return(
-        <Container>
-            <Img src={TitleImg} />
-            <LocationImg onClick={()=>navigate("/booth")} src={MapImg} />
-            <InputSection onSubmit={handleSubmit(onValid)}>
-                <Input {...register("search", {required : true})} placeholder="부스이름 또는 메뉴 검색하기" />
-                <Icon  icon={faMagnifyingGlass} />
-            </InputSection>
-        </Container>
-    )
+  return (
+    <Container>
+      <Img src={TitleImg} />
+      <LocationImg onClick={() => navigate('/booth')} src={MapImg} />
+      <InputSection onSubmit={handleSubmit(onValid)}>
+        <Input
+          {...register('search', { required: true })}
+          placeholder="부스이름 또는 메뉴 검색하기"
+        />
+        <Icon icon={faMagnifyingGlass} />
+      </InputSection>
+    </Container>
+  );
 }
 export default BoothMapSection;

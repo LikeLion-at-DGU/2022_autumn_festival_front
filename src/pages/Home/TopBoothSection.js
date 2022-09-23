@@ -1,20 +1,20 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import TitleImg from './mainTop.png';
 import { motion, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 
+import TitleImg from '../../assets/img/mainTop.png';
 
 const Container = styled.section`
-    border: 1px solid white;
-    width: auto;
-    height: 73vh;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`
+  border: 1px solid white;
+  width: auto;
+  height: 73vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Img = styled.img`
     width: auto;
@@ -24,17 +24,17 @@ const Img = styled.img`
 `;
 
 const Btn = styled(Link)`
-    cursor: pointer;
-    border: none;
-    box-shadow: 1px 1px 10px 0px rgb(255, 255, 255);
-    background-color: #FD9903;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    text-decoration: none;
-    color : white;
-    border-radius: 25px;
-    padding: 10px 20px;
-    font-size: 22px;
-`
+  cursor: pointer;
+  border: none;
+  box-shadow: 1px 1px 10px 0px rgb(255, 255, 255);
+  background-color: #fd9903;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+  color: white;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 22px;
+`;
 
 const BoothSection = styled(motion.div)`
     width: 350px;
@@ -284,6 +284,7 @@ const box = {
 };
 
 function TopBoothSection() {
+
     const boxWrapper = useRef();
     /* const [visible, setVisible] = useState(1);
     const [back, setBack] = useState(false);
@@ -389,3 +390,4 @@ function TopBoothSection() {
 }
 
 export default TopBoothSection;
+

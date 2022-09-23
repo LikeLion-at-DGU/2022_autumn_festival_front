@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import './Navbar.css';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import navLogo from '../../assets/img/navLogo.png';
 import navC from '../../assets/img/navC.png';
 // mui
@@ -14,6 +14,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 // import ListItemText from '@mui/material/ListItemText';
 // import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
+import { ListFontBold, ListFont } from './style';
 
 //fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -71,6 +72,20 @@ export default function Navbar() {
     setState({ ...state, [anchor]: open });
   };
 
+  let location = useLocation().pathname.split('/')[1];
+
+  const listName = (path, name) => {
+    return (
+      <>
+        {location === path ? (
+          <ListFontBold>{name} </ListFontBold>
+        ) : (
+          <ListFont>{name} </ListFont>
+        )}
+      </>
+    );
+  };
+
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'bottom' ? 'auto' : 250 }}
@@ -89,11 +104,7 @@ export default function Navbar() {
             style={{ color: 'inherit', textDecoration: 'inherit' }}
             to="/notice"
           >
-            <ListItemButton>
-              <div className="list__font__bold" style={{ color: '#fd9903' }}>
-                공지사항{' '}
-              </div>
-            </ListItemButton>
+            <ListItemButton>{listName('notice', '공지사항')}</ListItemButton>
           </ListItem>
 
           <ListItem
@@ -105,7 +116,7 @@ export default function Navbar() {
             to="/timetable"
           >
             <ListItemButton>
-              <div className="list__font">타임테이블 </div>
+              {listName('timetable', '타임테이블')}
             </ListItemButton>
           </ListItem>
 
@@ -117,9 +128,7 @@ export default function Navbar() {
             style={{ color: 'inherit', textDecoration: 'inherit' }}
             to="/booth"
           >
-            <ListItemButton>
-              <div className="list__font">부스 </div>
-            </ListItemButton>
+            <ListItemButton>{listName('booth', '부스')}</ListItemButton>
           </ListItem>
 
           <ListItem
@@ -130,9 +139,7 @@ export default function Navbar() {
             style={{ color: 'inherit', textDecoration: 'inherit' }}
             to="/about"
           >
-            <ListItemButton>
-              <div className="list__font">About </div>
-            </ListItemButton>
+            <ListItemButton>{listName('about', 'About')}</ListItemButton>
           </ListItem>
         </List>{' '}
       </div>

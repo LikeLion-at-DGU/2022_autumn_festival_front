@@ -17,7 +17,7 @@ import JeongMinju from '../../assets/img/about_Jeong Minju.png';
 import AhnSeokhwan from '../../assets/img/about_Ahn Seokhwan.png';
 import ParkSangJun from '../../assets/img/about_Park Sangjun.png';
 import RawFish from '../../assets/img/about_rawfish.png';
-
+import Seo from '../../assets/img/about_seo.png';
 import { UpTitle } from '../../styles/style';
 import { useLocation } from 'react-router-dom';
 
@@ -33,7 +33,6 @@ const Img = styled.img`
   left: 87px;
 `;
 const Title = styled.h1`
-  font-family: 'Gmarket Sans TTF';
   font-weight: 800;
   font-size: 28px;
   line-height: 32.2px;
@@ -68,8 +67,8 @@ const IntroText = styled.p`
   font-family: 'Gmarket Sans TTF';
   font-style: normal;
   font-weight: 300;
-  font-size: 10px;
-  line-height: 12px;
+  font-size: 12px;
+  line-height: 17px;
   text-align: center;
   letter-spacing: 0.1em;
 
@@ -85,7 +84,7 @@ const SubTitle = styled.h3`
   font-family: 'Gmarket Sans TTF';
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 23px;
   margin-top: 80px;
   margin-bottom: 40px;
@@ -94,7 +93,7 @@ const SubText = styled.h4`
   font-family: 'Gmarket Sans TTF';
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 9px;
   margin-bottom: 50px;
 `;
@@ -178,17 +177,13 @@ const Space = styled.div`
 export default function About() {
   const { pathname } = useLocation();
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [pathname]);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
-    <div style={{ marginTop: '125rem' }}>
-      <TitleContainer>
-        <Img src={LogoImg} />
-        <Title>ABOUT</Title>
-      </TitleContainer>
+    <div style={{ marginTop: '120rem' }}>
+      <UpTitle title={'ABOUT'} />
 
       <Logo>
         <br></br>
@@ -207,9 +202,9 @@ export default function About() {
 
       <IntroText>
         3년만에 돌아온 동국대학교 대동제를 위해<br></br>
-        동국대학교 축제기획단이 힘껏 열정을 쏟아 축제를 기획하고<br></br>
-        학우 여러분들의 편의를 위해 동국대 멋쟁이사자처럼이 축제 웹사이트를
-        개발하였습니다.<br></br>
+        동국대학교 축제기획단이 힘껏 열정을 쏟아 축제를 기획하고 학우 여러분들의
+        편의를 위해 동국대 멋쟁이사자처럼이 축제 웹사이트를 개발하였습니다.
+        <br></br>
         <br></br>
         오랜만에 열리는 축제인 만큼 학우 여러분들께서<br></br>
         즐겁고 행복한 축제가 되었으면 좋겠습니다!<br></br>
@@ -252,7 +247,7 @@ export default function About() {
       <Card>
         <FaceImg src={SeoYeonmi} />
         <CardName>🦁서연미</CardName>
-        <CardMajor>경영정보학과 20</CardMajor>
+        <CardMajor>경영정보학과 19</CardMajor>
         <CardRole>
           {' '}
           <br></br>
@@ -277,17 +272,17 @@ export default function About() {
 
       <TeamText>프론트 개발 팀</TeamText>
       <Card>
-        <FaceImg src={SeoHeechan} />
+        <FaceImg src={Seo} />
         <CardName>🦁서희찬</CardName>
         <CardMajor>컴퓨터공학과 19</CardMajor>
         <CardRole>프론트 개발팀장</CardRole>
         <CardLine />
-        <CardText>- 부스 페이지 검색창, 카드, 디테일 구현</CardText>
+        <CardText>- 부스 페이지 검색창, 부스 카드, 부스 홈페이지 구현</CardText>
       </Card>
       <Card>
         <FaceImg src={ShinYejin} />
         <CardName>🦁신예진</CardName>
-        <CardMajor>정보통신공학과 20</CardMajor>
+        <CardMajor>정보통신공학과 19</CardMajor>
         <CardRole>
           {' '}
           <br></br>
@@ -298,7 +293,7 @@ export default function About() {
       <Card>
         <FaceImg src={LeeSangdon} />
         <CardName>🦁이상돈</CardName>
-        <CardMajor>산업시스템공학과 20</CardMajor>
+        <CardMajor>산업시스템공학과 19</CardMajor>
         <CardRole>
           {' '}
           <br></br>
@@ -312,7 +307,7 @@ export default function About() {
       <Card>
         <FaceImg src={LeeSeulgi} />
         <CardName>🦁이슬기</CardName>
-        <CardMajor>컴퓨터공학과 20</CardMajor>
+        <CardMajor>컴퓨터공학과 19</CardMajor>
         <CardRole>
           {' '}
           <br></br>
@@ -320,7 +315,7 @@ export default function About() {
         <CardLine />
         <CardText>
           - 공지사항 페이지, 공지사항&부스 디테일 페이지, rest api 구현, 부스
-          수정하기 페이지
+          수정하기 페이지, 메인페이지 수정
         </CardText>
       </Card>
       <Card>

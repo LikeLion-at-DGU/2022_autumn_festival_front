@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LogoImg from './maple.png';
+import LogoImg from '../../assets/img/maple.png';
 import Table from './Table';
 
 const TitleContainer = styled.section`
