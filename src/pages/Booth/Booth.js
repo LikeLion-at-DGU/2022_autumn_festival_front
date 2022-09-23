@@ -6,7 +6,7 @@ import Boothcard from '../../components/Booth/Boothcard';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { Grid } from '@mui/material';
+import boothMap from '../../assets/img/boothMap.png';
 
 const DateContainer = styled.div`
   width: 100%;
@@ -53,11 +53,9 @@ const BoxNotHere = styled(motion.div)`
 `;
 
 const LocationImg = styled.img`
-  margin: 30px 0px;
-  width: 80%;
-  box-shadow: 1px 2px 30px 1px rgb(99, 164, 237);
-  border: none;
-  border-radius: 11px;
+  margin-top: 1.8rem;
+  margin-bottom: 10px;
+  width: 90%;
 `;
 
 const BoothContainer = styled.section`
@@ -71,8 +69,9 @@ const BuildingContainer = styled.div`
   margin-top: 10px;
 `;
 
-const BuildingDetail = styled.button`
-  border: 1px solid white;
+const BuildingDetail = styled(motion.button)`
+  border: none;
+
   align-items: center;
   padding: 0px;
 
@@ -80,13 +79,29 @@ const BuildingDetail = styled.button`
   font-size: 12px;
   width: 71px;
   height: 28px;
-  box-shadow: 1px 1px 6px 0px rgb(99, 164, 237);
-  border-radius: 2rem;
+
   margin: 3px;
-  color: #ffffff;
-  background-color: ${(props) => (props.isActive ? '#FD9903' : '#1b2f4e')};
+  color: ${(props) => (props.isActive ? '#FD9903' : '#ffffff')};
+
+  background-color: transparent;
+  border-bottom: 2px solid
+    ${(props) => (props.isActive ? '#FD9903' : '#ffffff')};
+  transition: 0.5s all;
 `;
 
+// const BuildingHere = styled(motion.div)`
+//   height: 2px;
+//   margin-top: 5px;
+//   border-radius: 5px;
+//   background-color: #fd9903;
+// `;
+
+// const BuildingNotHere = styled(motion.div)`
+//   height: 1px;
+//   border-radius: 5px;
+//   background-color: #ffffff;
+// `;
+// #ffffff
 const dayArray = [
   {
     id: 1,
@@ -111,7 +126,7 @@ const buildingArray = [
   },
   {
     id: 2,
-    building: '혜화관',
+    building: '대운동장',
   },
   {
     id: 3,
@@ -119,23 +134,39 @@ const buildingArray = [
   },
   {
     id: 4,
-    building: '사회과학관',
+    building: '명진관',
   },
   {
     id: 5,
-    building: '신공학관',
-  },
-  {
-    id: 6,
     building: '원흥관',
   },
   {
+    id: 6,
+    building: '학생회관',
+  },
+  {
     id: 7,
-    building: '경영관',
+    building: '학림관',
   },
   {
     id: 8,
-    building: '명진관',
+    building: '다향관',
+  },
+  {
+    id: 9,
+    building: '법학관',
+  },
+  {
+    id: 10,
+    building: '혜화관',
+  },
+  {
+    id: 11,
+    building: '사회과학관',
+  },
+  {
+    id: 12,
+    building: '잉카페앞',
   },
 ];
 
@@ -245,17 +276,8 @@ export default function Booth({}) {
   const [isBuilding, setIsBuilding] = useState('만해광장');
   const navigate = useNavigate();
 
-  console.log('../../assets/img/빌딩_' + isBuilding + '.png');
-
   return (
     <BoothContainer>
-      {/* 지도 이미지 */}
-
-      <LocationImg
-        alt={isBuilding}
-        src={require(`../../assets/img/빌딩_1.png`)}
-      />
-      {/* 날짜 category */}
       <DateContainer>
         {dayArray.map((i) => (
           <DayBox key={i.id} onClick={() => setIsToday(i.id)}>
@@ -265,6 +287,9 @@ export default function Booth({}) {
           </DayBox>
         ))}
       </DateContainer>
+      {/* 지도 이미지 */}
+      <LocationImg alt={isBuilding} src={boothMap} />
+      {/* 날짜 category */}
 
       <BuildingContainer>
         {buildingArray.map((bu) => {
@@ -275,6 +300,11 @@ export default function Booth({}) {
               isActive={isBuilding === bu.building}
             >
               {bu.building}
+              {/* {isBuilding === bu.building ? (
+                <BuildingHere layoutId="buildinghe" />
+              ) : (
+                <BuildingNotHere />
+              )} */}
             </BuildingDetail>
           );
         })}
