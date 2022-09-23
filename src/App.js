@@ -16,6 +16,7 @@ import NoticeDetail from './pages/Notice/NoticeDetail';
 import TimeTable from './pages/TimeTable/TimeTable';
 import BoothSearch from './pages/Booth/BoothSearch';
 import SearchHeader from './components/Header/SearchHeader';
+import BoothDetailEdit from './pages/Booth/BoothDetailEdit';
 
 // 레이아웃 네브바 푸터
 const Layout = () => {
@@ -58,6 +59,7 @@ function App() {
             </Route>
 
             <Route path="booth/:id" element={<BoothDetail />} />
+            <Route path="booth/:id/edit" element={<BoothDetailEdit />} />
             <Route path="notice" element={<Notice />} />
             <Route path="notice/:id" element={<NoticeDetail />} />
             <Route path="timetable" element={<TimeTable />} />
