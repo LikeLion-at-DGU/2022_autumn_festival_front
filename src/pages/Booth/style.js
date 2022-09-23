@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { baseColor } from '../../styles/GlobalStyle';
 
 export const SwiperContainer = styled.div`
   width: 370px;
@@ -29,6 +30,14 @@ export const TypeBtn = styled.button`
       return css`
         background-color: #ff6b6b;
       `;
+    } else if (props.tp === '부스') {
+      return css`
+        background-color: #0b9908;
+      `;
+    } else if (props.tp === '푸드트럭') {
+      return css`
+        background-color: #2676ee;
+      `;
     }
   }}
 `;
@@ -49,4 +58,126 @@ export const BoothIntro = styled.p`
 export const LikeCnt = styled.span`
   font-size: 15px;
   line-height: 36px;
+`;
+
+export const DateLocContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-item: center;
+  font-size: 16px;
+`;
+
+export const LocationMap = styled.div`
+  display: flex;
+  align-item: center;
+  justify-content: space-between;
+  font-size: 16px;
+  color: ${baseColor};
+
+  & > img {
+    width: 30px;
+    margin: 0 auto;
+  }
+`;
+
+export const BoothNotification = styled.div`
+  display: flex;
+  align-item: center;
+  width: 100%;
+  height: 28px;
+  line-height: 30px;
+  font-weight: 800;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin-top: 18px;
+  cursor: pointer;
+`;
+
+export const BoothNotificationOpen = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 18px;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+
+  & > .bar {
+    display: flex;
+    align-item: center;
+    width: 100%;
+    height: 28px;
+    line-height: 30px;
+    font-weight: 800;
+    font-size: 13px;
+  }
+  & > .notice {
+    width: 270px;
+    font-weight: 200;
+    font-size: 10px;
+    text-align: left;
+    margin: 2px 14px 13px 30px;
+  }
+`;
+
+export const IntroContainer = styled.div`
+  width: 100%;
+  margin-top: 21px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  & > .introtitle {
+    display: flex;
+    height: 26px;
+    align-item: center;
+    margin: 7px 0 3px 0;
+  }
+
+  & > div > span {
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  & > span {
+    // font-size: 12px;
+    margin-right: auto;
+    border-bottom: 0.3px solid #fff;
+  }
+`;
+
+export const IntroLine = styled.p`
+  width: 100%;
+  height: 0;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.5);
+  transform: rotate(-0.29deg);
+  margin: 0;
+`;
+
+export const IntroContent = styled.div`
+  width: 100%;
+  margin-top: 19px;
+  text-align: left;
+  font-size: 12px;
+`;
+
+export const MenuContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const MenuItem = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  & > div {
+    height: 21px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 8px;
+  }
 `;

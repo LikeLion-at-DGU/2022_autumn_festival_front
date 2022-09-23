@@ -7,13 +7,27 @@ import {
   BoothTitle,
   BoothIntro,
   LikeCnt,
+  DateLocContainer,
+  LocationMap,
+  BoothNotification,
+  BoothNotificationOpen,
+  IntroContainer,
+  IntroLine,
+  IntroContent,
+  MenuContainer,
+  MenuItem,
 } from './style';
 import NoticeExImg from '../../assets/img/noticeExImg.png';
-// import BoothDetailMap from '../../assets/img/boothdetailMap.png';
+import MapIconImg from '../../assets/img/mainMapIcon.png';
+import BoothdetailC from '../../assets/img/boothdetailC.png';
 import { UpTitle } from '../../styles/style';
 
 // External Libraries //
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper';
 import 'swiper/scss';
@@ -23,16 +37,19 @@ import 'swiper/scss/pagination';
 SwiperCore.use([Pagination, Autoplay]);
 
 export default function BoothDetail() {
+  // 더미 데이터 (추후 수정)
   const [booth, setBooth] = useState({
     title: '명진관 호떡',
     introduction: '맛있는 호떡과 다양한 음식',
-    type: '주점',
-    location: '명진관',
-    // location_img: BoothDetailMap,
-    notice: '호떡이 참 맛있는 맛집',
-    day: [29, 30],
+    boothType: {
+      korean: '주점',
+    },
+    location: '명진관 9번',
+    notice:
+      '16일 우천시에도 운영합니다! <br/>*교공 하트키링 판매중(3000원, 한정수량)<br/><br/>[운영 시간] 10:00 - 16:00 (품절시 마감 공지)<br/>[운영 위치] 교육관 7번 부스<br/><br/>*교육관 생각보다 안멀어요!! (포관쪽에서 5분 소요) 드셔보세요ヾ(•ω•`)o*<br/><br/>**주인장의 꿀팁: 콘치즈랑 팝콘치킨을 모두 추가한 게 제일 맛있습니다(메인 메뉴임)**',
+    startAt: '2022-09-23',
     content:
-      '맛있는 호떡 먹고 가세요~ 맛있는 호떡 먹고 가세요 피자, 슈크림, 등 다양한 맛을 판매 중입니다.~',
+      '맛있는 호떡 먹고 가세요~맛있는 호떡 먹고 가세요 피자, 슈크림, 등 다양한 맛을 판매중 입니다.~<br/>코로나 19를 딛고 다시 힘차게 오픈하게 된 저희 불닭볶음밥 전문점, 원조 「교테전 불닭볶음밥 식당」을 찾아주신 고객님들 환영합니다 *^^*<br/><br/>기본적으로 치즈가 듬뿍 올라가게 되어 맵지가 않으니 매운 음식을 마다하시는 분들도 맛나게 드실 수 있습니다.<br/>특히, 요 근래 유행하는 콘치즈를 얹어 먹으면 아이들에게도 인기만점! 한끼 식사거리가 될 수 있답니다.<br/><br/>여러분들께서도 공강시간에 배고프실 때, 든든히 먹을 수 있는 밥을 한끼 찾고 계시다면 우리 원조 「교테전 불닭볶음밥 식당」을 찾아주시기 바랍니다.',
     images: [
       {
         url: NoticeExImg,
@@ -45,7 +62,6 @@ export default function BoothDetail() {
       },
     ],
   });
-
   const [menu, setMenu] = useState([
     {
       name: '호떡',
@@ -60,7 +76,14 @@ export default function BoothDetail() {
       price: '1000',
     },
   ]);
+  const [lovecnt, setLovecnt] = useState(100);
 
+  // toggle //
+  const [intro, setIntro] = useState(false);
+  const [noticeToggle, setNoticeToggle] = useState(false);
+  const [love, setLove] = useState(false);
+
+  // 슬라이드 뷰 //
   const SlideView = booth.images.map((b, idx) => {
     return (
       <SwiperSlide key={idx}>
@@ -69,9 +92,70 @@ export default function BoothDetail() {
     );
   });
 
+  // 좋아요 기능 //
+  const HeartView = (tp) => {
+    console.log(tp);
+    return love ? (
+      <FavoriteIcon
+        onClick={() => {
+          setLove(false);
+        }}
+        style={{
+          fontSize: '28px',
+          color: `${
+            tp === '주점' ? '#ff6b6b' : tp === '부스' ? '#0b9908' : '#2676ee'
+          }`,
+        }}
+      />
+    ) : (
+      <FavoriteBorderIcon
+        onClick={() => {
+          setLove(true);
+        }}
+        style={{ fontSize: '28px' }}
+      />
+    );
+  };
+
+  // 주점 소개 뷰 //
+  const IntroView = () => {
+    return intro ? (
+      <IntroContent
+        dangerouslySetInnerHTML={{ __html: booth.content }}
+      ></IntroContent>
+    ) : (
+      <>
+        <IntroContent
+          dangerouslySetInnerHTML={{ __html: booth.content.slice(0, 50) }}
+        ></IntroContent>
+        <span
+          style={{ fontSize: '12px', cursor: 'pointer' }}
+          onClick={() => {
+            setIntro(true);
+          }}
+        >
+          ... 더보기
+        </span>
+      </>
+    );
+  };
+
+  // 메뉴 소개 뷰 //
+  const MenuView = menu.map((m, idx) => {
+    return (
+      <MenuItem key={idx}>
+        <div>{m.name}</div>
+        <div style={{ fontSize: '12px' }}>{m.price}원</div>
+      </MenuItem>
+    );
+  });
+
   return (
     <div style={{ marginBottom: '76px' }}>
-      <UpTitle title={`${booth.type} 홈페이지`} mapleLeft="57px" />
+      <UpTitle
+        title={`${booth.boothType.korean} 홈페이지`}
+        mapleLeft={booth.boothType.korean === '푸드트럭' ? '30px' : '57px'}
+      />
 
       {/* 스와이퍼 */}
       <SwiperContainer>
@@ -89,16 +173,86 @@ export default function BoothDetail() {
 
       {/* 부스 내용 */}
       <ContentContainer>
-        <TypeBtn tp={booth.type}>주점</TypeBtn>
+        <TypeBtn tp={booth.boothType.korean}>{booth.boothType.korean}</TypeBtn>
         <BoothTitle>{booth.title}</BoothTitle>
         <BoothIntro>{booth.introduction}</BoothIntro>
         <br />
 
         <div style={{ display: 'flex', alignItem: 'center' }}>
-          <FavoriteBorderIcon style={{ fontSize: '28px' }} />
+          {HeartView(booth.boothType.korean)}
           &nbsp;
-          <LikeCnt>100</LikeCnt>
+          <LikeCnt>{lovecnt}</LikeCnt>
         </div>
+
+        <DateLocContainer>
+          <div>{booth.startAt.slice(8, 10)}일</div>&nbsp;
+          <LocationMap>
+            <img src={MapIconImg} width="24" height="26" />
+            {booth.location}
+          </LocationMap>
+        </DateLocContainer>
+
+        {/* 부스 공지사항 */}
+        {noticeToggle ? (
+          <BoothNotificationOpen
+            onClick={() => {
+              setNoticeToggle(false);
+            }}
+          >
+            <div className="bar">
+              <NotificationsIcon
+                style={{ fontSize: '16px', margin: '6px 6px 0 14px' }}
+              />
+              <div>부스 공지사항</div>
+              <KeyboardArrowUpIcon style={{ margin: '3px 14px 6px auto' }} />
+            </div>
+            <div
+              className="notice"
+              dangerouslySetInnerHTML={{ __html: booth.notice }}
+            ></div>
+          </BoothNotificationOpen>
+        ) : (
+          <BoothNotification
+            onClick={() => {
+              setNoticeToggle(true);
+            }}
+          >
+            <NotificationsIcon
+              style={{ fontSize: '16px', margin: '6px 6px 0 14px' }}
+            />
+            <div>부스 공지사항</div>
+            <KeyboardArrowDownIcon style={{ margin: '3px 14px 6px auto' }} />
+          </BoothNotification>
+        )}
+
+        {/* 부스 주점 소개 */}
+        <IntroContainer>
+          <div className="introtitle">
+            <img src={BoothdetailC} width="36px" />
+            <span>주점 소개</span>
+          </div>
+          <IntroLine></IntroLine>
+          {IntroView()}
+        </IntroContainer>
+
+        {/* 부스 메뉴 소개 */}
+        <IntroContainer>
+          <div className="introtitle">
+            <img src={BoothdetailC} width="36px" />
+            <span>메뉴</span>
+          </div>
+          <IntroLine></IntroLine>
+          <MenuContainer>{MenuView}</MenuContainer>
+        </IntroContainer>
+
+        {/* 방명록 */}
+        <IntroContainer>
+          <div className="introtitle">
+            <img src={BoothdetailC} width="36px" />
+            <span>방명록</span>
+          </div>
+          <IntroLine></IntroLine>
+        </IntroContainer>
       </ContentContainer>
     </div>
   );
