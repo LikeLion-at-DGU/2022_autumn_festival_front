@@ -17,7 +17,7 @@ const Container = styled.section`
 
 const Img = styled.img`
   width: auto;
-  height: 78px;
+  height: 68px;
   margin-right: 20px;
 `;
 

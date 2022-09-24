@@ -90,22 +90,17 @@ const BuildingContainer = styled.div`
 
 const BuildingDetail = styled(motion.button)`
   border: none;
-
   align-items: center;
   padding: 0px;
-
   font-family: 'GmarketSansMedium';
   font-size: 12px;
   width: 71px;
   height: 28px;
-
   margin: 3px;
   color: ${(props) => (props.isActive ? '#FD9903' : '#ffffff')};
-
   background-color: transparent;
   border-bottom: 2px solid
     ${(props) => (props.isActive ? '#FD9903' : 'rgba(256, 256, 256, 0.5)')};
-
   transition: 0.5s all;
 `;
 

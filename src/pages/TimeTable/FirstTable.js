@@ -88,6 +88,12 @@ const BoothInfoItemTitle = styled.h1`
   justify-content: flex-end;
 `;
 
+const BoothInfoItemTitle2 = styled.h1`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -19px;
+`;
+
 const BoothInfoItemSub = styled.div`
   margin-top: -15px;
   display: flex;
@@ -242,13 +248,14 @@ function FirstTable() {
             <BoothInfoBox>
               <BoothInfoItem>
                 <BoothInfoItemTitle>플리마켓 & 오락기</BoothInfoItemTitle>
+                <BoothInfoItemTitle2>푸드트럭</BoothInfoItemTitle2>
                 <BoothInfoItemSub>
                   <span>만해광장</span>
                   <img src={PinImg} />
                 </BoothInfoItemSub>
               </BoothInfoItem>
               <BoothInfoItem>
-                <BoothInfoItemTitle>부스 운영</BoothInfoItemTitle>
+                <BoothInfoItemTitle>푸드트럭 & 교내부스</BoothInfoItemTitle>
                 <BoothInfoItemSub>
                   <span>팔정도</span>
                   <img src={PinImg} />
@@ -279,7 +286,7 @@ function FirstTable() {
               <BoothInfoItem>
                 <BoothInfoItemTitle>주점 & 외부부스</BoothInfoItemTitle>
                 <BoothInfoItemSub>
-                  <span>팔정도</span>
+                  <span>학교 전체</span>
                   <img src={PinImg} />
                 </BoothInfoItemSub>
               </BoothInfoItem>

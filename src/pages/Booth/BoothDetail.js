@@ -9,7 +9,7 @@ import {
   TypeBtn,
   BoothTitle,
   BoothIntro,
-  LikeCnt,
+  LikeCount,
   DateLocContainer,
   LocationMap,
   BoothNotification,
@@ -35,6 +35,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import CancelIcon from '@mui/icons-material/Cancel';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
+import Fade from '@mui/material/Fade';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper';
@@ -51,9 +53,7 @@ export default function BoothDetail() {
   const [booth, setBooth] = useState({
     title: '명진관 호떡',
     introduction: '맛있는 호떡과 다양한 음식',
-    boothType: {
-      korean: '주점',
-    },
+    type: '주점',
     location: '명진관 9번',
     notice:
       '16일 우천시에도 운영합니다! <br/>*교공 하트키링 판매중(3000원, 한정수량)<br/><br/>[운영 시간] 10:00 - 16:00 (품절시 마감 공지)<br/>[운영 위치] 교육관 7번 부스<br/><br/>*교육관 생각보다 안멀어요!! (포관쪽에서 5분 소요) 드셔보세요ヾ(•ω•`)o*<br/><br/>**주인장의 꿀팁: 콘치즈랑 팝콘치킨을 모두 추가한 게 제일 맛있습니다(메인 메뉴임)**',
@@ -71,62 +71,46 @@ export default function BoothDetail() {
         url: NoticeExImg,
       },
     ],
+    isLike: false,
+    likeCnt: 0,
   });
   const [menu, setMenu] = useState([
     {
+      id: '1',
       name: '호떡',
       price: '2000',
     },
-    {
-      name: '붕어빵',
-      price: '2000',
-    },
-    {
-      name: '불닭볶음면',
-      price: '1000',
-    },
   ]);
-  const [lovecnt, setLovecnt] = useState(100);
   const [isExist, setIsExist] = useState(true);
   let detailId = useParams().id;
 
   // toggle //
   const [intro, setIntro] = useState(false);
   const [noticeToggle, setNoticeToggle] = useState(false);
-  const [love, setLove] = useState(false);
   const [admin, setAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // 슬라이드 뷰 //
-  const SlideView =
-    booth.images.length > 0
-      ? booth.images.map((b, idx) => {
-          return (
-            <SwiperSlide key={idx}>
-              <img
-                src={b.url}
-                style={{ width: '325px', borderRadius: '2px' }}
-              />
-            </SwiperSlide>
-          );
-        })
-      : () => {
-          return (
-            <SwiperSlide>
-              <img
-                src={BoothdetailC}
-                style={{ width: '325px', borderRadius: '2px' }}
-              />
-            </SwiperSlide>
-          );
-        };
+  console.log('외부', booth.images);
+
+  // const SlideView = booth.images.map((b, idx) => {
+  //   return (
+  //     <SwiperSlide key={idx}>
+  //       <img src={b.url} style={{ width: '325px', borderRadius: '2px' }} />
+  //     </SwiperSlide>
+  //   );
+  // });
 
   // 좋아요 기능 //
   const HeartView = (tp) => {
-    return love ? (
+    return booth.isLike ? (
       <FavoriteIcon
         onClick={() => {
-          setLove(false);
-          setLovecnt(lovecnt - 1);
+          setBooth({
+            ...booth,
+            isLike: false,
+            likeCnt: booth.likeCnt - 1,
+          });
         }}
         style={{
           fontSize: '28px',
@@ -138,8 +122,11 @@ export default function BoothDetail() {
     ) : (
       <FavoriteBorderIcon
         onClick={() => {
-          setLove(true);
-          setLovecnt(lovecnt + 1);
+          setBooth({
+            ...booth,
+            isLike: true,
+            likeCnt: booth.likeCnt + 1,
+          });
         }}
         style={{ fontSize: '28px' }}
       />
@@ -152,6 +139,10 @@ export default function BoothDetail() {
       .then((res) => {
         setBooth(res.data);
         console.log(res.data);
+        setIsLoading(true);
+        if (res.data.images === null) {
+          setBooth({ ...booth, images: [] });
+        }
       })
       .catch((e) => {
         setIsExist(false);
@@ -183,6 +174,17 @@ export default function BoothDetail() {
   };
 
   // 메뉴 소개 뷰 //
+  const fetchMenu = async () => {
+    await axios
+      .get(`booths/${detailId}/menus`)
+      .then((res) => {
+        setMenu(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   const MenuView = menu.map((m, idx) => {
     return (
       <MenuItem key={idx}>
@@ -234,8 +236,9 @@ export default function BoothDetail() {
         content,
         createdDateTime,
       };
-      console.log(writer);
-      console.log(content);
+      // console.log(writer);
+      // console.log(content);
+      // console.log(password);
       setComments((comments) => comments.concat(comment));
       nextId.current += 1; //nextId 1씩 더하기
     },
@@ -258,147 +261,170 @@ export default function BoothDetail() {
   useEffect(() => {
     getComments();
     fetchBoothDetail();
+    fetchMenu();
   }, []);
+
   return (
     <>
       {isExist ? (
         <div style={{ marginBottom: '76px' }}>
           <UpTitle
-            title={`${booth.boothType.korean} 홈페이지`}
-            mapleLeft={booth.boothType.korean === '푸드트럭' ? '30px' : '57px'}
+            title={`${booth.type} 홈페이지`}
+            mapleLeft={booth.type === '푸드트럭' ? '30px' : '57px'}
           />
 
-          {/* 스와이퍼 */}
-          <SwiperContainer>
-            <Swiper
-              className="banner"
-              spaceBetween={50}
-              slidesPerView={1}
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 4200 }}
-              style={{ height: 360 }}
-            >
-              {SlideView}
-            </Swiper>
-          </SwiperContainer>
+          {isLoading ? (
+            <>
+              {/* 스와이퍼 */}
+              <SwiperContainer>
+                <Swiper
+                  className="banner"
+                  spaceBetween={50}
+                  slidesPerView={1}
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 4200 }}
+                  style={{ height: 360 }}
+                >
+                  {booth.images ? (
+                    // SlideView
+                    <SwiperSlide>
+                      <img
+                        src={NoticeExImg}
+                        style={{ width: '325px', borderRadius: '2px' }}
+                      />
+                    </SwiperSlide>
+                  ) : (
+                    <SwiperSlide>
+                      <img
+                        src={NoticeExImg}
+                        style={{ width: '325px', borderRadius: '2px' }}
+                      />
+                    </SwiperSlide>
+                  )}
+                </Swiper>
+              </SwiperContainer>
 
-          {/* 부스 내용 */}
-          <ContentContainer>
-            <TypeBtn tp={booth.boothType.korean}>
-              {booth.boothType.korean}
-            </TypeBtn>
-            <BoothTitle>{booth.title}</BoothTitle>
-            <BoothIntro>{booth.introduction}</BoothIntro>
-            {admin === 'true' ? (
-              <EditBtn onClick={() => navigate(`/booth/${detailId}/edit`)}>
-                수정하기
-              </EditBtn>
-            ) : (
-              <></>
-            )}
-            <br />
+              {/* 부스 내용 */}
+              <ContentContainer>
+                <TypeBtn tp={booth.type}>{booth.type}</TypeBtn>
+                <BoothTitle>{booth.title}</BoothTitle>
+                <BoothIntro>{booth.introduction}</BoothIntro>
+                {admin === 'true' ? (
+                  <EditBtn onClick={() => navigate(`/booth/${detailId}/edit`)}>
+                    수정하기
+                  </EditBtn>
+                ) : (
+                  <></>
+                )}
+                <br />
 
-            <div style={{ display: 'flex', alignItem: 'center' }}>
-              {HeartView(booth.boothType.korean)}
-              &nbsp;
-              <LikeCnt>{lovecnt}</LikeCnt>
-            </div>
-
-            <DateLocContainer>
-              <div>
-                {booth.days.map((d) => {
-                  return <span key={d}>{d}일 &nbsp;</span>;
-                })}
-              </div>
-              &nbsp;
-              <LocationMap>
-                <img src={MapIconImg} width="24" height="26" />
-                {booth.location}
-              </LocationMap>
-            </DateLocContainer>
-
-            {/* 부스 공지사항 */}
-            {noticeToggle ? (
-              <BoothNotificationOpen
-                onClick={() => {
-                  setNoticeToggle(false);
-                }}
-              >
-                <div className="bar">
-                  <NotificationsIcon
-                    style={{ fontSize: '16px', margin: '6px 6px 0 14px' }}
-                  />
-                  <div>부스 공지사항</div>
-                  <KeyboardArrowUpIcon
-                    style={{ margin: '3px 14px 6px auto' }}
-                  />
+                <div style={{ display: 'flex', alignItem: 'center' }}>
+                  {HeartView(booth.type)}
+                  &nbsp;
+                  <LikeCount>{booth.likeCnt}</LikeCount>
                 </div>
-                <div
-                  className="notice"
-                  dangerouslySetInnerHTML={{ __html: booth.notice }}
-                ></div>
-              </BoothNotificationOpen>
-            ) : (
-              <BoothNotification
-                onClick={() => {
-                  setNoticeToggle(true);
-                }}
-              >
-                <NotificationsIcon
-                  style={{ fontSize: '16px', margin: '6px 6px 0 14px' }}
-                />
-                <div>부스 공지사항</div>
-                <KeyboardArrowDownIcon
-                  style={{ margin: '3px 14px 6px auto' }}
-                />
-              </BoothNotification>
-            )}
 
-            {/* 부스 주점 소개 */}
-            <IntroContainer>
-              <div className="introtitle">
-                <img src={BoothdetailC} width="36px" />
-                <span>주점 소개</span>
-              </div>
-              <IntroLine></IntroLine>
-              {IntroView()}
-            </IntroContainer>
+                <DateLocContainer>
+                  <div>
+                    {booth.days.map((d) => {
+                      return <span key={d}>{d}일 &nbsp;</span>;
+                    })}
+                  </div>
+                  &nbsp;
+                  <LocationMap>
+                    <img src={MapIconImg} width="24" height="26" />
+                    {booth.location}
+                  </LocationMap>
+                </DateLocContainer>
 
-            {/* 부스 메뉴 소개 */}
-            <IntroContainer>
-              <div className="introtitle">
-                <img src={BoothdetailC} width="36px" />
-                <span>메뉴</span>
-              </div>
-              <IntroLine></IntroLine>
-              <BoothMenuAdd admin={admin} menu={menu} setMenu={setMenu} />
-              <MenuContainer>{MenuView}</MenuContainer>
-            </IntroContainer>
+                {/* 부스 공지사항 */}
+                {noticeToggle ? (
+                  <BoothNotificationOpen
+                    onClick={() => {
+                      setNoticeToggle(false);
+                    }}
+                  >
+                    <div className="bar">
+                      <NotificationsIcon
+                        style={{ fontSize: '16px', margin: '6px 6px 0 14px' }}
+                      />
+                      <div>부스 공지사항</div>
+                      <KeyboardArrowUpIcon
+                        style={{ margin: '3px 14px 6px auto' }}
+                      />
+                    </div>
+                    <div
+                      className="notice"
+                      dangerouslySetInnerHTML={{ __html: booth.notice }}
+                    ></div>
+                  </BoothNotificationOpen>
+                ) : (
+                  <BoothNotification
+                    onClick={() => {
+                      setNoticeToggle(true);
+                    }}
+                  >
+                    <NotificationsIcon
+                      style={{ fontSize: '16px', margin: '6px 6px 0 14px' }}
+                    />
+                    <div>부스 공지사항</div>
+                    <KeyboardArrowDownIcon
+                      style={{ margin: '3px 14px 6px auto' }}
+                    />
+                  </BoothNotification>
+                )}
 
-            {/* 방명록 */}
-            <IntroContainer>
-              <div className="introtitle">
-                <img src={BoothdetailC} width="36px" />
-                <span>방명록</span>
-              </div>
-              <IntroLine></IntroLine>
-              <CommentInput onInsert={onInsert} />
+                {/* 부스 주점 소개 */}
+                <IntroContainer>
+                  <div className="introtitle">
+                    <img src={BoothdetailC} width="36px" />
+                    <span>주점 소개</span>
+                  </div>
+                  <IntroLine></IntroLine>
+                  {IntroView()}
+                </IntroContainer>
 
-              {comments.map((comment) => {
-                // console.log(comment);
-                return (
-                  <GuestBookItem
-                    detailId={detailId}
-                    id={comment.id}
-                    writer={comment.writer}
-                    password={comment.password}
-                    content={comment.content}
-                    createdDateTime={comment.createdDateTime}
-                  />
-                );
-              })}
-            </IntroContainer>
-          </ContentContainer>
+                {/* 부스 메뉴 소개 */}
+                <IntroContainer>
+                  <div className="introtitle">
+                    <img src={BoothdetailC} width="36px" />
+                    <span>메뉴</span>
+                  </div>
+                  <IntroLine></IntroLine>
+                  <BoothMenuAdd admin={admin} menu={menu} setMenu={setMenu} />
+                  <MenuContainer>{MenuView}</MenuContainer>
+                </IntroContainer>
+
+                {/* 방명록 */}
+                <IntroContainer>
+                  <div className="introtitle">
+                    <img src={BoothdetailC} width="36px" />
+                    <span>방명록</span>
+                  </div>
+                  <IntroLine></IntroLine>
+                  <CommentInput onInsert={onInsert} />
+
+                  {comments.map((comment) => {
+                    // console.log(comment);
+                    return (
+                      <GuestBookItem
+                        detailId={detailId}
+                        id={comment.id}
+                        writer={comment.writer}
+                        password={comment.password}
+                        content={comment.content}
+                        createdDateTime={comment.createdDateTime}
+                      />
+                    );
+                  })}
+                </IntroContainer>
+              </ContentContainer>
+            </>
+          ) : (
+            <Fade in="true" unmountOnExit style={{ margin: '100px auto' }}>
+              <CircularProgress />
+            </Fade>
+          )}
         </div>
       ) : (
         <>
