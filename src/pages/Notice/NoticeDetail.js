@@ -28,6 +28,7 @@ export default function NoticeDetail() {
       .get(`notifications/${noticeId}`)
       .then((res) => {
         setNotice(res.data);
+        setIsLoading(true);
       })
       .catch((e) => {
         console.log(e);

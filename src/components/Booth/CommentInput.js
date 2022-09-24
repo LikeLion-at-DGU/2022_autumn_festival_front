@@ -72,7 +72,7 @@ const style = {
     width: '90%',
     height: '20px',
     paddingLeft: '10px',
-    color: '#FFF'
+    color: '#FFF',
   },
   button: {
     borderRadius: '50%',
@@ -123,16 +123,27 @@ const CommentInput = ({ onInsert }) => {
     [value],
   );
 
+  const isValidCheck = () => {
+    if (value.writer === '' || value.password === '' || value.content) {
+      alert('방명록 정보를 모두 입력해주세요.');
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const onSubmit = useCallback(
     (e) => {
-      onInsert(value.writer, value.password, value.content);
-      setValue({
-        writer: '',
-        password: '',
-        content: '',
-      });
-
       e.preventDefault();
+
+      if (isValidCheck()) {
+        onInsert(value.writer, value.password, value.content);
+        setValue({
+          writer: '',
+          password: '',
+          content: '',
+        });
+      }
     },
     [onInsert, value],
   );
