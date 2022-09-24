@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
 export default function GuestBookItem({
-  key,
+  detailId,
   id,
   writer,
+  password,
   content,
   createdDateTime,
-  handleClick,
 }) {
   //   function Fomatting() {
   //     var str = item.createdDateTime;
@@ -23,6 +23,11 @@ export default function GuestBookItem({
   //     return n;
   //   }
 
+  const onClickHandler = (e) => {
+    window.location.href = `/booth/${detailId}/comment/${id}`;
+  };
+  console.log(password);
+
   return (
     <>
       <div className="comment_items_wrap">
@@ -31,7 +36,8 @@ export default function GuestBookItem({
         <div className="comment__createdDateTime">
           {/*{Fomatting()} */} {createdDateTime}
         </div>
-        <button className="faPencil" onClick={() => handleClick(id)}>
+
+        <button className="faPencil" onClick={onClickHandler}>
           <FontAwesomeIcon icon={faPencil} />
           삭제
         </button>

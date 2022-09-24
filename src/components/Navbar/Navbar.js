@@ -189,7 +189,7 @@ export default function Navbar() {
                 src={navC}
                 onClick={() => (window.location.href = '/')}
               />
-              <hr></hr>
+              <hr className="hr"></hr>
               <div>{list(anchor)}</div>
             </SwipeableDrawer>
           </React.Fragment>
