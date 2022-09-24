@@ -1,6 +1,28 @@
 import React, { useCallback, useState } from 'react';
+import styled from 'styled-components';
 // import { MdAdd } from 'react-icons/md';
 // import './CommentInput.css';
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+
+const CommentInsert = styled.form`
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-item: center;
+`;
+
+const WrapComment = styled.div`
+  position: relative;
+  top: 0;
+  left: 0;
+
+  & > input {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    padding: 8px;
+  }
+`;
 
 const style = {
   wrap: {
@@ -114,12 +136,13 @@ const CommentInput = ({ onInsert }) => {
   );
 
   return (
-    <form className="CommentInsert" onSubmit={onSubmit}>
+    <CommentInsert className="CommentInsert" method="post">
       <div style={style.wrap}>
         <div style={style.box__name}>
           <div style={style.font}>
             작성자명
             <input
+              name="writer"
               style={style.inputbox}
               value={value.writer}
               onChange={onChangeName}
@@ -130,6 +153,7 @@ const CommentInput = ({ onInsert }) => {
           <div style={style.font}>
             비밀번호
             <input
+              name="password"
               style={style.inputbox}
               value={value.password}
               onChange={onChangePassword}
@@ -137,18 +161,25 @@ const CommentInput = ({ onInsert }) => {
           </div>
         </div>
       </div>
-      <div style={style.wrap__content}>
+      <WrapComment>
         <input
+          name="content"
           style={style.contentbox}
           placeholder="후기를 남겨보세요."
           value={value.content}
           onChange={onChangeContent}
         />
-        <button type="submit" style={style.button}>
-          ↓
-        </button>
-      </div>
-    </form>
+        <ArrowCircleDownIcon
+          onClick={onSubmit}
+          style={{
+            position: 'absolute',
+            right: '12px',
+            top: '12px',
+            fontSize: '28px',
+          }}
+        ></ArrowCircleDownIcon>
+      </WrapComment>
+    </CommentInsert>
   );
 };
 
