@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Hynn from '../../assets/img/timetableHYNN.png';
 import Yoon from '../../assets/img/timetableYoonha.png';
 import Itzy from '../../assets/img/timetableITZY.png';
+import List from '../../assets/img/list.png';
 
 const Container = styled(motion.section)`
   width: auto;
@@ -23,7 +24,7 @@ const BoothBox = styled(motion.div)`
 const CenterLine = styled.div`
   margin-top: 50px;
   width: 1px;
-  height: 730px;
+  height: 740px;
   background-color: white;
   border-radius: 5px;
 `;
@@ -199,6 +200,24 @@ const PerInfoItemSub = styled.div`
   }
 `;
 
+const PerChart1 = styled.div`
+    opacity: 0.8;
+    background-color: white;
+    width: 100px;
+    height: 130px;
+    margin-top: 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const ListImg = styled.img`
+  width: 90%;
+  height: 80%;
+`
+
 const PerChart2 = styled.div`
   opacity: 0.8;
   background-color: white;
@@ -299,7 +318,7 @@ function SecondTable() {
         </BoothItem>
 
         {/* Booth 두번째 */}
-        <BoothItem variants={childVariants} style={{ marginTop: '70px' }}>
+        <BoothItem variants={childVariants} style={{ marginTop: '80px' }}>
           <BoothInfoContainer>
             <BoothInfoTime>18:00 - 22:00 ~</BoothInfoTime>
             <BoothInfoBox>
@@ -313,7 +332,7 @@ function SecondTable() {
               <BoothInfoItem>
                 <BoothInfoItemTitle>주점 & 외부부스</BoothInfoItemTitle>
                 <BoothInfoItemSub>
-                  <span>팔정도</span>
+                  <span>학교 전체</span>
                   <img src={PinImg} />
                 </BoothInfoItemSub>
               </BoothInfoItem>
@@ -345,13 +364,16 @@ function SecondTable() {
                   <img src={PinImg} />
                   <span>대운동장</span>
                 </PerInfoItemSub>
+                <PerChart1>
+                    <ListImg src={List} />                   
+                </PerChart1>
               </PerInfoItem>
             </PerInfoBox>
           </PerInfoContainer>
         </PerBox>
 
         {/* Performance 두번쨰 */}
-        <PerBox variants={childVariants} style={{ marginTop: '110px' }}>
+        <PerBox variants={childVariants} style={{ marginTop: '20px' }}>
           <PerPoint />
           <PerInfoContainer>
             <PerInfoTime>19:00 - 20:00</PerInfoTime>
