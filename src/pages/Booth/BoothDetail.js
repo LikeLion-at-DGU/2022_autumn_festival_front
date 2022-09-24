@@ -51,9 +51,7 @@ export default function BoothDetail() {
   const [booth, setBooth] = useState({
     title: '명진관 호떡',
     introduction: '맛있는 호떡과 다양한 음식',
-    boothType: {
-      korean: '주점',
-    },
+    type: '주점',
     location: '명진관 9번',
     notice:
       '16일 우천시에도 운영합니다! <br/>*교공 하트키링 판매중(3000원, 한정수량)<br/><br/>[운영 시간] 10:00 - 16:00 (품절시 마감 공지)<br/>[운영 위치] 교육관 7번 부스<br/><br/>*교육관 생각보다 안멀어요!! (포관쪽에서 5분 소요) 드셔보세요ヾ(•ω•`)o*<br/><br/>**주인장의 꿀팁: 콘치즈랑 팝콘치킨을 모두 추가한 게 제일 맛있습니다(메인 메뉴임)**',
@@ -71,62 +69,45 @@ export default function BoothDetail() {
         url: NoticeExImg,
       },
     ],
+    isLike: false,
+    likeCnt: 0,
   });
   const [menu, setMenu] = useState([
     {
+      id: '1',
       name: '호떡',
       price: '2000',
     },
-    {
-      name: '붕어빵',
-      price: '2000',
-    },
-    {
-      name: '불닭볶음면',
-      price: '1000',
-    },
   ]);
-  const [lovecnt, setLovecnt] = useState(100);
   const [isExist, setIsExist] = useState(true);
   let detailId = useParams().id;
 
   // toggle //
   const [intro, setIntro] = useState(false);
   const [noticeToggle, setNoticeToggle] = useState(false);
-  const [love, setLove] = useState(false);
   const [admin, setAdmin] = useState(false);
 
   // 슬라이드 뷰 //
-  const SlideView =
-    booth.images.length > 0
-      ? booth.images.map((b, idx) => {
-          return (
-            <SwiperSlide key={idx}>
-              <img
-                src={b.url}
-                style={{ width: '325px', borderRadius: '2px' }}
-              />
-            </SwiperSlide>
-          );
-        })
-      : () => {
-          return (
-            <SwiperSlide>
-              <img
-                src={BoothdetailC}
-                style={{ width: '325px', borderRadius: '2px' }}
-              />
-            </SwiperSlide>
-          );
-        };
+  console.log('외부', booth.images);
+
+  // const SlideView = booth.images.map((b, idx) => {
+  //   return (
+  //     <SwiperSlide key={idx}>
+  //       <img src={b.url} style={{ width: '325px', borderRadius: '2px' }} />
+  //     </SwiperSlide>
+  //   );
+  // });
 
   // 좋아요 기능 //
   const HeartView = (tp) => {
-    return love ? (
+    return booth.isLike ? (
       <FavoriteIcon
         onClick={() => {
-          setLove(false);
-          setLovecnt(lovecnt - 1);
+          setBooth({
+            ...booth,
+            isLike: false,
+            // likeCnt: likeCnt - 1,
+          });
         }}
         style={{
           fontSize: '28px',
@@ -138,8 +119,11 @@ export default function BoothDetail() {
     ) : (
       <FavoriteBorderIcon
         onClick={() => {
-          setLove(true);
-          setLovecnt(lovecnt + 1);
+          setBooth({
+            ...booth,
+            isLike: true,
+            // likeCnt: likeCnt + 1,
+          });
         }}
         style={{ fontSize: '28px' }}
       />
@@ -152,6 +136,9 @@ export default function BoothDetail() {
       .then((res) => {
         setBooth(res.data);
         console.log(res.data);
+        if (res.data.images === null) {
+          setBooth({ ...booth, images: [] });
+        }
       })
       .catch((e) => {
         setIsExist(false);
@@ -183,6 +170,17 @@ export default function BoothDetail() {
   };
 
   // 메뉴 소개 뷰 //
+  const fetchMenu = async () => {
+    await axios
+      .get(`booths/${detailId}/menus`)
+      .then((res) => {
+        setMenu(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   const MenuView = menu.map((m, idx) => {
     return (
       <MenuItem key={idx}>
@@ -234,8 +232,9 @@ export default function BoothDetail() {
         content,
         createdDateTime,
       };
-      console.log(writer);
-      console.log(content);
+      // console.log(writer);
+      // console.log(content);
+      // console.log(password);
       setComments((comments) => comments.concat(comment));
       nextId.current += 1; //nextId 1씩 더하기
     },
@@ -258,14 +257,16 @@ export default function BoothDetail() {
   useEffect(() => {
     getComments();
     fetchBoothDetail();
+    fetchMenu();
   }, []);
+
   return (
     <>
       {isExist ? (
         <div style={{ marginBottom: '76px' }}>
           <UpTitle
-            title={`${booth.boothType.korean} 홈페이지`}
-            mapleLeft={booth.boothType.korean === '푸드트럭' ? '30px' : '57px'}
+            title={`${booth.type} 홈페이지`}
+            mapleLeft={booth.type === '푸드트럭' ? '30px' : '57px'}
           />
 
           {/* 스와이퍼 */}
@@ -278,15 +279,28 @@ export default function BoothDetail() {
               autoplay={{ delay: 4200 }}
               style={{ height: 360 }}
             >
-              {SlideView}
+              {booth.images ? (
+                // SlideView
+                <SwiperSlide>
+                  <img
+                    src={NoticeExImg}
+                    style={{ width: '325px', borderRadius: '2px' }}
+                  />
+                </SwiperSlide>
+              ) : (
+                <SwiperSlide>
+                  <img
+                    src={NoticeExImg}
+                    style={{ width: '325px', borderRadius: '2px' }}
+                  />
+                </SwiperSlide>
+              )}
             </Swiper>
           </SwiperContainer>
 
           {/* 부스 내용 */}
           <ContentContainer>
-            <TypeBtn tp={booth.boothType.korean}>
-              {booth.boothType.korean}
-            </TypeBtn>
+            <TypeBtn tp={booth.type}>{booth.type}</TypeBtn>
             <BoothTitle>{booth.title}</BoothTitle>
             <BoothIntro>{booth.introduction}</BoothIntro>
             {admin === 'true' ? (
@@ -299,9 +313,9 @@ export default function BoothDetail() {
             <br />
 
             <div style={{ display: 'flex', alignItem: 'center' }}>
-              {HeartView(booth.boothType.korean)}
+              {HeartView(booth.type)}
               &nbsp;
-              <LikeCnt>{lovecnt}</LikeCnt>
+              <LikeCnt>{booth.likeCnt}</LikeCnt>
             </div>
 
             <DateLocContainer>
