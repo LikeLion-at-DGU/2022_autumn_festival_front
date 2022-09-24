@@ -67,8 +67,8 @@ const IntroText = styled.p`
   font-family: 'Gmarket Sans TTF';
   font-style: normal;
   font-weight: 300;
-  font-size: 12px;
-  line-height: 17px;
+  font-size: 10px;
+  line-height: 13px;
   text-align: center;
   letter-spacing: 0.1em;
 
@@ -114,7 +114,7 @@ const TeamText = styled.h4`
   margin-bottom: 30px;
 `;
 
-const Card = styled.div`
+const Card = styled.a`
   background: linear-gradient(
     180deg,
     rgba(208, 208, 208, 0.5) 0%,
@@ -126,9 +126,12 @@ const Card = styled.div`
   margin: 5px;
 
   float: left;
+  text-decoration: none;
+  color: white;
 `;
+
 const FaceImg = styled.img`
-  width: 40%;
+  width: 50%;
 `;
 const CardName = styled.h3`
   font-family: 'Gmarket Sans TTF';
@@ -170,9 +173,10 @@ const CardText = styled.h4`
 `;
 const Space = styled.div`
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
   color: #1b2f4e;
 `;
+
 
 export default function About() {
   const { pathname } = useLocation();
@@ -182,7 +186,7 @@ export default function About() {
   }, [pathname]);
 
   return (
-    <div style={{ marginTop: '120rem' }}>
+    <div style={{ marginTop: '132rem'}}>
       <UpTitle title={'ABOUT'} />
 
       <Logo>
@@ -213,14 +217,14 @@ export default function About() {
 
       <CImage src={aboutC} />
 
-      <SubTitle>[ 만든이들 ]</SubTitle>
+      <SubTitle></SubTitle>
 
       <LogoImage src={dguLogo} />
-      <SubText>동국대 멋쟁이사자처럼 10기</SubText>
+      <SubText>DGU likelion 10th</SubText>
 
       <Line />
       {/* 기획 */}
-      <TeamText>기획 디자인 팀</TeamText>
+      <TeamText>Project Design</TeamText>
       <Card>
         <FaceImg src={Leeyeowon} />
         <CardName>🦁이여원</CardName>
@@ -270,8 +274,8 @@ export default function About() {
       {/* 프론트 */}
       <Space> .</Space>
 
-      <TeamText>프론트 개발 팀</TeamText>
-      <Card>
+      <TeamText>Front-end</TeamText>
+      <Card href="https://github.com/seochan99">
         <FaceImg src={Seo} />
         <CardName>🦁서희찬</CardName>
         <CardMajor>컴퓨터공학과 19</CardMajor>
@@ -279,7 +283,7 @@ export default function About() {
         <CardLine />
         <CardText>- 부스 페이지 검색창, 부스 카드, 부스 홈페이지 구현</CardText>
       </Card>
-      <Card>
+      <Card href="https://github.com/shinyejin0212">
         <FaceImg src={ShinYejin} />
         <CardName>🦁신예진</CardName>
         <CardMajor>정보통신공학과 19</CardMajor>
@@ -290,7 +294,7 @@ export default function About() {
         <CardLine />
         <CardText>- Navbar, 사이드메뉴바, Footer, 부스 방명록 구현</CardText>
       </Card>
-      <Card>
+      <Card href="https://github.com/leeideal">
         <FaceImg src={LeeSangdon} />
         <CardName>🦁이상돈</CardName>
         <CardMajor>산업시스템공학과 19</CardMajor>
@@ -304,7 +308,7 @@ export default function About() {
           <br></br>
         </CardText>
       </Card>
-      <Card>
+      <Card href="https://github.com/seulg2027">
         <FaceImg src={LeeSeulgi} />
         <CardName>🦁이슬기</CardName>
         <CardMajor>컴퓨터공학과 19</CardMajor>
@@ -318,9 +322,9 @@ export default function About() {
           수정하기 페이지, 메인페이지 수정
         </CardText>
       </Card>
-      <Card>
+      <Card href="https://github.com/lywon725">
         <FaceImg src={Leeyeowon2} />
-        <CardName>🦁이여원</CardName>
+        <CardName >🦁이여원</CardName>
         <CardMajor>멀티미디어공학과 20</CardMajor>
         <CardRole>
           {' '}
@@ -332,18 +336,19 @@ export default function About() {
 
       <Space> .</Space>
       <Space> .</Space>
+      <Space> .</Space>
 
       {/* 백 */}
-      <TeamText>백엔드 개발 팀</TeamText>
-      <Card>
+      <TeamText>Back-end</TeamText>
+      <Card href="https://github.com/rawfishthelgh">
         <FaceImg src={RawFish} />
         <CardName>🦁이건회</CardName>
         <CardMajor>영어통번역학과 16</CardMajor>
         <CardRole>백엔드 개발팀장</CardRole>
         <CardLine />
-        <CardText>- </CardText>
+        <CardText>- 공지사항, 이미지 로직 구현</CardText>
       </Card>
-      <Card>
+      <Card href="https://github.com/tkdwns414">
         <FaceImg src={ParkSangJun} />
         <CardName>🦁박상준</CardName>
         <CardMajor>정보통신공학과 19</CardMajor>
@@ -354,7 +359,7 @@ export default function About() {
         <CardLine />
         <CardText> - API 설계, 좋아요, 메뉴 로직 구현</CardText>
       </Card>
-      <Card>
+      <Card href="https://github.com/seokhwan-an">
         <FaceImg src={AhnSeokhwan} />
         <CardName>🦁안석환</CardName>
         <CardMajor>산업시스템공학과 17</CardMajor>
@@ -365,7 +370,7 @@ export default function About() {
         <CardLine />
         <CardText> - 부스 로직 구현</CardText>
       </Card>
-      <Card>
+      <Card href="https://github.com/JoungMinJu">
         <FaceImg src={JeongMinju} />
         <CardName>🦁정민주</CardName>
         <CardMajor>산업시스템공학과 18</CardMajor>
