@@ -9,7 +9,7 @@ import {
   TypeBtn,
   BoothTitle,
   BoothIntro,
-  LikeCnt,
+  LikeCount,
   DateLocContainer,
   LocationMap,
   BoothNotification,
@@ -35,6 +35,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import CancelIcon from '@mui/icons-material/Cancel';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
+import Fade from '@mui/material/Fade';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper';
@@ -86,6 +88,7 @@ export default function BoothDetail() {
   const [intro, setIntro] = useState(false);
   const [noticeToggle, setNoticeToggle] = useState(false);
   const [admin, setAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // 슬라이드 뷰 //
   console.log('외부', booth.images);
@@ -106,7 +109,7 @@ export default function BoothDetail() {
           setBooth({
             ...booth,
             isLike: false,
-            // likeCnt: likeCnt - 1,
+            likeCnt: booth.likeCnt - 1,
           });
         }}
         style={{
@@ -122,7 +125,7 @@ export default function BoothDetail() {
           setBooth({
             ...booth,
             isLike: true,
-            // likeCnt: likeCnt + 1,
+            likeCnt: booth.likeCnt + 1,
           });
         }}
         style={{ fontSize: '28px' }}
@@ -136,6 +139,7 @@ export default function BoothDetail() {
       .then((res) => {
         setBooth(res.data);
         console.log(res.data);
+        setIsLoading(true);
         if (res.data.images === null) {
           setBooth({ ...booth, images: [] });
         }
@@ -269,150 +273,158 @@ export default function BoothDetail() {
             mapleLeft={booth.type === '푸드트럭' ? '30px' : '57px'}
           />
 
-          {/* 스와이퍼 */}
-          <SwiperContainer>
-            <Swiper
-              className="banner"
-              spaceBetween={50}
-              slidesPerView={1}
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 4200 }}
-              style={{ height: 360 }}
-            >
-              {booth.images ? (
-                // SlideView
-                <SwiperSlide>
-                  <img
-                    src={NoticeExImg}
-                    style={{ width: '325px', borderRadius: '2px' }}
-                  />
-                </SwiperSlide>
-              ) : (
-                <SwiperSlide>
-                  <img
-                    src={NoticeExImg}
-                    style={{ width: '325px', borderRadius: '2px' }}
-                  />
-                </SwiperSlide>
-              )}
-            </Swiper>
-          </SwiperContainer>
+          {isLoading ? (
+            <>
+              {/* 스와이퍼 */}
+              <SwiperContainer>
+                <Swiper
+                  className="banner"
+                  spaceBetween={50}
+                  slidesPerView={1}
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 4200 }}
+                  style={{ height: 360 }}
+                >
+                  {booth.images ? (
+                    // SlideView
+                    <SwiperSlide>
+                      <img
+                        src={NoticeExImg}
+                        style={{ width: '325px', borderRadius: '2px' }}
+                      />
+                    </SwiperSlide>
+                  ) : (
+                    <SwiperSlide>
+                      <img
+                        src={NoticeExImg}
+                        style={{ width: '325px', borderRadius: '2px' }}
+                      />
+                    </SwiperSlide>
+                  )}
+                </Swiper>
+              </SwiperContainer>
 
-          {/* 부스 내용 */}
-          <ContentContainer>
-            <TypeBtn tp={booth.type}>{booth.type}</TypeBtn>
-            <BoothTitle>{booth.title}</BoothTitle>
-            <BoothIntro>{booth.introduction}</BoothIntro>
-            {admin === 'true' ? (
-              <EditBtn onClick={() => navigate(`/booth/${detailId}/edit`)}>
-                수정하기
-              </EditBtn>
-            ) : (
-              <></>
-            )}
-            <br />
+              {/* 부스 내용 */}
+              <ContentContainer>
+                <TypeBtn tp={booth.type}>{booth.type}</TypeBtn>
+                <BoothTitle>{booth.title}</BoothTitle>
+                <BoothIntro>{booth.introduction}</BoothIntro>
+                {admin === 'true' ? (
+                  <EditBtn onClick={() => navigate(`/booth/${detailId}/edit`)}>
+                    수정하기
+                  </EditBtn>
+                ) : (
+                  <></>
+                )}
+                <br />
 
-            <div style={{ display: 'flex', alignItem: 'center' }}>
-              {HeartView(booth.type)}
-              &nbsp;
-              <LikeCnt>{booth.likeCnt}</LikeCnt>
-            </div>
-
-            <DateLocContainer>
-              <div>
-                {booth.days.map((d) => {
-                  return <span key={d}>{d}일 &nbsp;</span>;
-                })}
-              </div>
-              &nbsp;
-              <LocationMap>
-                <img src={MapIconImg} width="24" height="26" />
-                {booth.location}
-              </LocationMap>
-            </DateLocContainer>
-
-            {/* 부스 공지사항 */}
-            {noticeToggle ? (
-              <BoothNotificationOpen
-                onClick={() => {
-                  setNoticeToggle(false);
-                }}
-              >
-                <div className="bar">
-                  <NotificationsIcon
-                    style={{ fontSize: '16px', margin: '6px 6px 0 14px' }}
-                  />
-                  <div>부스 공지사항</div>
-                  <KeyboardArrowUpIcon
-                    style={{ margin: '3px 14px 6px auto' }}
-                  />
+                <div style={{ display: 'flex', alignItem: 'center' }}>
+                  {HeartView(booth.type)}
+                  &nbsp;
+                  <LikeCount>{booth.likeCnt}</LikeCount>
                 </div>
-                <div
-                  className="notice"
-                  dangerouslySetInnerHTML={{ __html: booth.notice }}
-                ></div>
-              </BoothNotificationOpen>
-            ) : (
-              <BoothNotification
-                onClick={() => {
-                  setNoticeToggle(true);
-                }}
-              >
-                <NotificationsIcon
-                  style={{ fontSize: '16px', margin: '6px 6px 0 14px' }}
-                />
-                <div>부스 공지사항</div>
-                <KeyboardArrowDownIcon
-                  style={{ margin: '3px 14px 6px auto' }}
-                />
-              </BoothNotification>
-            )}
 
-            {/* 부스 주점 소개 */}
-            <IntroContainer>
-              <div className="introtitle">
-                <img src={BoothdetailC} width="36px" />
-                <span>주점 소개</span>
-              </div>
-              <IntroLine></IntroLine>
-              {IntroView()}
-            </IntroContainer>
+                <DateLocContainer>
+                  <div>
+                    {booth.days.map((d) => {
+                      return <span key={d}>{d}일 &nbsp;</span>;
+                    })}
+                  </div>
+                  &nbsp;
+                  <LocationMap>
+                    <img src={MapIconImg} width="24" height="26" />
+                    {booth.location}
+                  </LocationMap>
+                </DateLocContainer>
 
-            {/* 부스 메뉴 소개 */}
-            <IntroContainer>
-              <div className="introtitle">
-                <img src={BoothdetailC} width="36px" />
-                <span>메뉴</span>
-              </div>
-              <IntroLine></IntroLine>
-              <BoothMenuAdd admin={admin} menu={menu} setMenu={setMenu} />
-              <MenuContainer>{MenuView}</MenuContainer>
-            </IntroContainer>
+                {/* 부스 공지사항 */}
+                {noticeToggle ? (
+                  <BoothNotificationOpen
+                    onClick={() => {
+                      setNoticeToggle(false);
+                    }}
+                  >
+                    <div className="bar">
+                      <NotificationsIcon
+                        style={{ fontSize: '16px', margin: '6px 6px 0 14px' }}
+                      />
+                      <div>부스 공지사항</div>
+                      <KeyboardArrowUpIcon
+                        style={{ margin: '3px 14px 6px auto' }}
+                      />
+                    </div>
+                    <div
+                      className="notice"
+                      dangerouslySetInnerHTML={{ __html: booth.notice }}
+                    ></div>
+                  </BoothNotificationOpen>
+                ) : (
+                  <BoothNotification
+                    onClick={() => {
+                      setNoticeToggle(true);
+                    }}
+                  >
+                    <NotificationsIcon
+                      style={{ fontSize: '16px', margin: '6px 6px 0 14px' }}
+                    />
+                    <div>부스 공지사항</div>
+                    <KeyboardArrowDownIcon
+                      style={{ margin: '3px 14px 6px auto' }}
+                    />
+                  </BoothNotification>
+                )}
 
-            {/* 방명록 */}
-            <IntroContainer>
-              <div className="introtitle">
-                <img src={BoothdetailC} width="36px" />
-                <span>방명록</span>
-              </div>
-              <IntroLine></IntroLine>
-              <CommentInput onInsert={onInsert} />
+                {/* 부스 주점 소개 */}
+                <IntroContainer>
+                  <div className="introtitle">
+                    <img src={BoothdetailC} width="36px" />
+                    <span>주점 소개</span>
+                  </div>
+                  <IntroLine></IntroLine>
+                  {IntroView()}
+                </IntroContainer>
 
-              {comments.map((comment) => {
-                // console.log(comment);
-                return (
-                  <GuestBookItem
-                    detailId={detailId}
-                    id={comment.id}
-                    writer={comment.writer}
-                    password={comment.password}
-                    content={comment.content}
-                    createdDateTime={comment.createdDateTime}
-                  />
-                );
-              })}
-            </IntroContainer>
-          </ContentContainer>
+                {/* 부스 메뉴 소개 */}
+                <IntroContainer>
+                  <div className="introtitle">
+                    <img src={BoothdetailC} width="36px" />
+                    <span>메뉴</span>
+                  </div>
+                  <IntroLine></IntroLine>
+                  <BoothMenuAdd admin={admin} menu={menu} setMenu={setMenu} />
+                  <MenuContainer>{MenuView}</MenuContainer>
+                </IntroContainer>
+
+                {/* 방명록 */}
+                <IntroContainer>
+                  <div className="introtitle">
+                    <img src={BoothdetailC} width="36px" />
+                    <span>방명록</span>
+                  </div>
+                  <IntroLine></IntroLine>
+                  <CommentInput onInsert={onInsert} />
+
+                  {comments.map((comment) => {
+                    // console.log(comment);
+                    return (
+                      <GuestBookItem
+                        detailId={detailId}
+                        id={comment.id}
+                        writer={comment.writer}
+                        password={comment.password}
+                        content={comment.content}
+                        createdDateTime={comment.createdDateTime}
+                      />
+                    );
+                  })}
+                </IntroContainer>
+              </ContentContainer>
+            </>
+          ) : (
+            <Fade in="true" unmountOnExit style={{ margin: '100px auto' }}>
+              <CircularProgress />
+            </Fade>
+          )}
         </div>
       ) : (
         <>
