@@ -298,7 +298,6 @@ export default function Booth({}) {
               type={boo.boothType}
               locationName={boo.location}
               likeCount={boo.likeCnt}
-
               // boothImage={boo.images[0]}
             />
           );

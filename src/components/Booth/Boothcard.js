@@ -1,17 +1,14 @@
 import * as React from 'react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Card from '@mui/material/Card';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import './Boothcard.css';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 
 import noticeExImg from '../../assets/img/noticeExImg.png';
-import { Padding } from '@mui/icons-material';
 
 const Location_number = styled.p`
   font-size: 1px;
