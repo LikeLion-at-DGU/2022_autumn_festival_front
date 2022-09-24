@@ -13,6 +13,9 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import Fade from '@mui/material/Fade';
+import mainMapIcon from '../../assets/img/mainMapIcon.png';
+
+import { MapLoacation } from './style';
 
 const DateContainer = styled.div`
   width: 100%;
@@ -30,6 +33,19 @@ const DayBox = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: -2px;
+`;
+
+const BuildingLocationImage = styled.img`
+  position: absolute;
+  width: 15%;
+  right: 253px;
+  bottom: 6.5rem;
+`;
+
+const LocationImg = styled.img`
+  margin-top: 1.8rem;
+  margin-bottom: 10px;
+  width: 90%;
 `;
 
 const BoxDate = styled.span`
@@ -58,18 +74,12 @@ const BoxNotHere = styled(motion.div)`
   border-radius: 5px;
 `;
 
-const LocationImg = styled.img`
-  margin-top: 1.8rem;
-  margin-bottom: 10px;
-  width: 90%;
-`;
-
 const BoothContainer = styled.section`
   width: 100%;
   text-align: center;
   padding: 2rem 0rem 9rem 0;
 `;
-const BoothCardContainer = styled.div`
+const BoothCardContainer = styled(motion.div)`
   display: grid;
   grid-template-rows: 2fr;
   grid-template-columns: 1fr 1fr;
@@ -240,8 +250,6 @@ export default function Booth({}) {
     }
   };
 
-  //
-
   return isExist ? (
     <BoothContainer>
       <DateContainer>
@@ -258,7 +266,11 @@ export default function Booth({}) {
       {isLoading ? (
         <>
           {/* 지도 이미지 */}
-          <LocationImg alt={isBuilding} src={boothMap} />
+          <div style={{ position: 'relative' }}>
+            <LocationImg alt={isBuilding} src={boothMap} />
+            {MapLoacation(isBuilding)}
+            {/* <BuildingLocationImage src={mainMapIcon} /> */}
+          </div>
 
           <BuildingContainer>
             {buildingArray.map((bu) => {
@@ -320,6 +332,9 @@ export default function Booth({}) {
       </DateContainer>
 
       {/* 지도 이미지 */}
+      <LocationImg />
+
+      {/* {isBuilding === '만해광장' ?  } */}
       <LocationImg alt={isBuilding} src={boothMap} />
 
       <BuildingContainer>
