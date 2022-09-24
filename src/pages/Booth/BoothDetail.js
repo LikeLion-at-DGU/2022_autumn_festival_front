@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import GuestBook from '../../components/Booth/GuestBook';
 import CommentInput from '../../components/Booth/CommentInput';
 import axios from '../../api/axios';
 import {
@@ -354,6 +353,7 @@ export default function BoothDetail() {
                 detailId={detailId}
                 id={comment.id}
                 writer={comment.writer}
+                password={comment.password}
                 content={comment.content}
                 createdDateTime={comment.createdDateTime}
               />

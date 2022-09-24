@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import './GuestBookItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
-import { useParams } from 'react-router-dom';
 
 export default function GuestBookItem({
   detailId,
   id,
   writer,
+  password,
   content,
   createdDateTime,
 }) {
@@ -23,7 +23,10 @@ export default function GuestBookItem({
   //     return n;
   //   }
 
-  console.log(detailId);
+  const onClickHandler = (e) => {
+    window.location.href = `/booth/${detailId}/comment/${id}`;
+  };
+  console.log(password);
 
   return (
     <>
@@ -34,12 +37,7 @@ export default function GuestBookItem({
           {/*{Fomatting()} */} {createdDateTime}
         </div>
 
-        <button
-          className="faPencil"
-          onClick={() => {
-            window.location.href = `/booth/${detailId}/comment/${id}`;
-          }}
-        >
+        <button className="faPencil" onClick={onClickHandler}>
           <FontAwesomeIcon icon={faPencil} />
           삭제
         </button>
