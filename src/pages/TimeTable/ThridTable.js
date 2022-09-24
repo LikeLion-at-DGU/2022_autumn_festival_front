@@ -314,7 +314,7 @@ function SecondTable() {
               <BoothInfoItem>
                 <BoothInfoItemTitle>주점 & 외부부스</BoothInfoItemTitle>
                 <BoothInfoItemSub>
-                  <span>팔정도</span>
+                  <span>학교 전체</span>
                   <img src={PinImg} />
                 </BoothInfoItemSub>
               </BoothInfoItem>
