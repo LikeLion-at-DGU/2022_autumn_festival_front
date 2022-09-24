@@ -130,9 +130,9 @@ export default function BoothSearch({}) {
                 boothId={boo.id}
                 title={boo.title}
                 intro={boo.introduction}
-                type={boo.type}
+                type={boo.boothType}
                 locationName={boo.location}
-                likeCount={boo.like_count}
+                likeCount={boo.likeCnt}
               />
             );
           })}

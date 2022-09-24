@@ -133,6 +133,7 @@ export default function Boothcard({
         borderRadius: '10px',
         boxShadow: '2px 5px 12px 2px rgb(0, 0, 0)',
         flexDirection: 'row',
+        transition: '0.5s all',
       }}
     >
       <CardActionArea href={`/booth/${boothId}`}>
