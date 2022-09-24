@@ -36,4 +36,5 @@
 .faPencil {
   float: right;
   margin-right: 10px;
+  border-bottom: solid 1px white;
 }

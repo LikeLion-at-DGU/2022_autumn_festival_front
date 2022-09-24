@@ -7,7 +7,6 @@ export default function GuestBookItem({
   detailId,
   id,
   writer,
-  password,
   content,
   createdDateTime,
 }) {
@@ -26,7 +25,6 @@ export default function GuestBookItem({
   const onClickHandler = (e) => {
     window.location.href = `/booth/${detailId}/comment/${id}`;
   };
-  console.log(password);
 
   return (
     <>
@@ -37,10 +35,10 @@ export default function GuestBookItem({
           {/*{Fomatting()} */} {createdDateTime}
         </div>
 
-        <button className="faPencil" onClick={onClickHandler}>
+        <div className="faPencil" onClick={onClickHandler}>
           <FontAwesomeIcon icon={faPencil} />
           삭제
-        </button>
+        </div>
         <br></br>
         <div className="comment__content">{content}</div>
       </div>
