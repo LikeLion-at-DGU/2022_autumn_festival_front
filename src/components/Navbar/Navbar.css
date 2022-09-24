@@ -1,9 +1,9 @@
 .nav {
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 375px;
   height: 10px;
-  z-index: 10;
+  z-index: 1;
   padding: 30px 0 30px 0px; /*상좌하우 */
   display: flex;
   justify-content: space-between;
@@ -13,7 +13,14 @@
   background-color: #1b2f4e;
   margin: 0 10px 0 0;
   font-family: 'GmarketSansMedium';
+  box-sizing: border-box;
   transform: translate3d(0, 0, 0);
+}
+
+.container {
+  width: 10px;
+  margin-left: auto;
+  padding: 20px;
 }
 
 .nav__logo {
@@ -21,14 +28,14 @@
   display: flex;
   object-fit: contain;
   /* 이미지 크기 */
-  width: 55px;
-  float: left;
+  box-sizing: border-box;
   object-fit: cover;
-  margin-left: 20px;
+  float: left;
+  padding: 20px;
 }
 
-.nav__navy {
-  background-color: #1b2f4e;
+.nav__logo__img {
+  width: 55px;
 }
 
 .nav__menu {
@@ -37,7 +44,9 @@
   object-fit: contain;
   color: white;
   /* 임의 우측 정렬.. */
-  margin-left: 340px;
+  margin-left: auto;
+  box-sizing: border-box;
+  width: 30px;
   float: right;
 }
 
@@ -71,16 +80,17 @@ hr {
 
 .list__font__bold {
   font-family: 'GmarketSansMedium';
-  font-size: 20;
+  font-size: 16px;
   padding: 10px 0 0 15px;
 }
 .list__font {
   font-family: 'GmarketSansLight';
-  font-size: 20;
+  font-size: 16px;
   padding: 10px 0 0 15px;
 }
 
 .start__festival {
   padding: 20px 0 0 30px;
   font-family: 'GmarketSansMedium';
+  font-size: 20px;
 }
