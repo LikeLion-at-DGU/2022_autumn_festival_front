@@ -85,7 +85,7 @@ const style = {
   },
 };
 
-const CommentInput = ({ onInsert }) => {
+const CommentInput = (/*{ onInsert }*/) => {
   const [value, setValue] = useState({
     writer: '',
     password: '',
@@ -99,6 +99,7 @@ const CommentInput = ({ onInsert }) => {
         password: value.password,
         content: value.content,
       });
+      console.log(value);
     },
     [value],
   );
@@ -110,6 +111,7 @@ const CommentInput = ({ onInsert }) => {
         password: e.target.value,
         content: value.content,
       });
+      console.log(value);
     },
     [value],
   );
@@ -121,38 +123,35 @@ const CommentInput = ({ onInsert }) => {
         password: value.password,
         content: e.target.value,
       });
+      console.log(value);
     },
     [value],
   );
 
   let detailId = useParams().id;
   console.log('detailId:', detailId);
-  const onSubmit = useCallback(
-    (e) => {
-      onInsert(value.writer, value.password, value.content);
-      setValue({
-        writer: '',
-        password: '',
-        content: '',
-      });
 
-      e.preventDefault();
+  const onSubmit = (e) => {
+    // onInsert(value.writer, value.password, value.content);
+    setValue({
+      writer: value.writer,
+      password: value.password,
+      content: value.content,
+    });
+    console.log(value);
 
-      axios
-        .post(`/booths/${detailId}/comments`, {
-          writer: '',
-          password: '',
-          content: '',
-        })
-        .then(function (response) {
-          console.log('제발', response);
-        })
-        .catch(function (error) {
-          console.log('에러야', error);
-        });
-    },
-    [onInsert, value],
-  );
+    // e.preventDefault();
+
+    axios
+      .post(`/booths/${detailId}/comments`, {
+        writer: value.writer,
+        password: value.password,
+        content: value.content,
+      })
+      .then(function (response) {})
+      .catch(function (error) {});
+    window.location.reload();
+  };
 
   return (
     <CommentInsert className="CommentInsert" method="post">

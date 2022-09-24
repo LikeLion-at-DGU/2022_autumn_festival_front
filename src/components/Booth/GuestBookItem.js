@@ -25,7 +25,6 @@ export default function GuestBookItem({
   const onClickHandler = (e) => {
     window.location.href = `/booth/${detailId}/comment/${id}`;
   };
-
   return (
     <>
       <div className="comment_items_wrap">

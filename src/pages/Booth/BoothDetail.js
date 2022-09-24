@@ -222,24 +222,7 @@ export default function BoothDetail() {
   ]);
 
   // 아이디 시작점 설정해야함
-  const nextId = useRef(3);
-
-  const onInsert = useCallback(
-    (writer, content, createdDateTime) => {
-      const comment = {
-        id: nextId.current,
-        writer,
-        content,
-        createdDateTime,
-      };
-      // console.log(writer);
-      // console.log(content);
-      // console.log(password);
-      setComments((comments) => comments.concat(comment));
-      nextId.current += 1; //nextId 1씩 더하기
-    },
-    [comments],
-  );
+  const nextId = useRef();
 
   const params = useParams();
   const getComments = () => {
@@ -396,16 +379,15 @@ export default function BoothDetail() {
                 <span>방명록</span>
               </div>
               <IntroLine></IntroLine>
-              <CommentInput onInsert={onInsert} />
+              <CommentInput />
 
               {comments.map((comment) => {
-                // console.log(comment);
+                console.log(comment.id);
                 return (
                   <GuestBookItem
                     detailId={detailId}
                     id={comment.id}
                     writer={comment.writer}
-                    password={comment.password}
                     content={comment.content}
                     createdDateTime={comment.createdDateTime}
                   />
