@@ -292,6 +292,7 @@ export const MapLoacation = (key) => {
       );
       break;
     case '원흥관':
+      //오키
       return (
         <>
           <img
@@ -299,7 +300,7 @@ export const MapLoacation = (key) => {
             style={{
               position: 'absolute',
               width: '12%',
-              right: '91px',
+              right: '98px',
               bottom: '11rem',
             }}
           />
