@@ -10,6 +10,7 @@ import './Boothcard.css';
 import styled from 'styled-components';
 
 import noticeExImg from '../../assets/img/noticeExImg.png';
+import { Padding } from '@mui/icons-material';
 
 const Location_number = styled.p`
   font-size: 1px;
@@ -20,13 +21,15 @@ const Location_number = styled.p`
   margin-top: 5px;
   color: #fd9903;
   font-weight: 800;
+  padding-right: 6px;
 `;
 
 const BoothLike = styled.div`
   font-size: 1px;
   display: inline;
-  float: left;
-  margin-left: 4rem;
+  float: right;
+  margin-right: 10px;
+
   margin-top: 5px;
 `;
 
@@ -87,103 +90,98 @@ export default function Boothcard({
   type,
   locationName,
   likeCount,
-  nowBuilding,
-  nowDay,
-  boothDay,
 }) {
   //리스트에 요소 있는지 찾기
   // 만약 boothDay리스트에 nowDay와 동일한게 있다면 true반환 아니면 false
 
-  return boothDay.includes(nowDay) ? (
-    nowBuilding === locationName ? (
-      <Card
-        sx={{ width: '130', margin: '11.6px' }}
-        className="cardCss"
-        style={{
-          fontFamily: 'GmarketSansMedium',
-          borderRadius: '10px',
-          boxShadow: '2px 5px 12px 2px rgb(0, 0, 0)',
-          flexDirection: 'row',
-        }}
-      >
-        <CardActionArea href={`/booth/${boothId}`}>
-          {/* type에 따라 다른 색 뜨게하기  */}
+  return (
+    <Card
+      sx={{ width: '130', margin: '11.6px' }}
+      className="cardCss"
+      style={{
+        fontFamily: 'GmarketSansMedium',
+        borderRadius: '10px',
+        boxShadow: '2px 5px 12px 2px rgb(0, 0, 0)',
+        flexDirection: 'row',
+      }}
+    >
+      <CardActionArea href={`/booth/${boothId}`}>
+        {/* type에 따라 다른 색 뜨게하기  */}
 
-          {type === '주점' ? (
-            <JoojumBoothBorder
-              style={{
-                fontFamily: 'GmarketSansMedium',
-                boxShadow: '1px 1px 6px rgb(0, 0, 0)',
-              }}
-            >
-              {type}
-            </JoojumBoothBorder>
-          ) : type === '부스' ? (
-            <BoothBorder
-              style={{
-                fontFamily: 'GmarketSansMedium',
-                boxShadow: '1px 1px 6px rgb(0, 0, 0)',
-              }}
-            >
-              {type}
-            </BoothBorder>
-          ) : (
-            <FoodBorder
-              style={{
-                fontFamily: 'GmarketSansMedium',
-                boxShadow: '1px 1px 6px rgb(0, 0, 0)',
-              }}
-            >
-              {type}
-            </FoodBorder>
-          )}
-
-          <CardMedia
-            component="img"
-            height="105"
-            image={noticeExImg}
-            alt="부스 이미지"
-          />
-          <Location_number>
-            <LocationOnIcon
-              style={{ fontSize: '10px', position: 'absolute', left: '8px' }}
-            />
-            {locationName}
-          </Location_number>
-          <BoothLike>
-            <FavoriteBorderIcon
-              sx={{ fontSize: '10px', position: 'absolute', left: '100px' }}
-            />
-            {likeCount}
-          </BoothLike>
-          <CardContent
-            style={{ marginTop: '15px', fontFamily: 'GmarketSansMedium' }}
+        {type === '주점' ? (
+          <JoojumBoothBorder
+            style={{
+              fontFamily: 'GmarketSansMedium',
+              boxShadow: '1px 1px 6px rgb(0, 0, 0)',
+            }}
           >
-            <Typography
-              gutterBottom
-              variant="h4"
-              component="div"
-              style={{
-                fontSize: '15px',
-                fontFamily: 'GmarketSansBold',
-                fontWeight: '800',
-              }}
-            >
-              {/* booth title들고오기 */}
-              {title}
-            </Typography>
+            {type}
+          </JoojumBoothBorder>
+        ) : type === '부스' ? (
+          <BoothBorder
+            style={{
+              fontFamily: 'GmarketSansMedium',
+              boxShadow: '1px 1px 6px rgb(0, 0, 0)',
+            }}
+          >
+            {type}
+          </BoothBorder>
+        ) : (
+          <FoodBorder
+            style={{
+              fontFamily: 'GmarketSansMedium',
+              boxShadow: '1px 1px 6px rgb(0, 0, 0)',
+            }}
+          >
+            {type}
+          </FoodBorder>
+        )}
 
-            <Typography color="text.secondary" style={{ fontSize: '1px' }}>
-              {/* booth intro 들고오기 */}
-              {intro}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    ) : (
-      ''
-    )
-  ) : (
-    ''
+        <CardMedia
+          component="img"
+          height="105"
+          image={noticeExImg}
+          alt="부스 이미지"
+        />
+        <Location_number>
+          <LocationOnIcon
+            style={{ fontSize: '10px', position: 'absolute', left: '8px' }}
+          />
+          {locationName}
+        </Location_number>
+        <BoothLike>
+          <FavoriteBorderIcon
+            sx={{
+              fontSize: '10px',
+              position: 'absolute',
+              left: '100px',
+            }}
+          />
+          {likeCount}
+        </BoothLike>
+        <CardContent
+          style={{ marginTop: '15px', fontFamily: 'GmarketSansMedium' }}
+        >
+          <Typography
+            gutterBottom
+            variant="h4"
+            component="div"
+            style={{
+              fontSize: '15px',
+              fontFamily: 'GmarketSansBold',
+              fontWeight: '800',
+            }}
+          >
+            {/* booth title들고오기 */}
+            {title}
+          </Typography>
+
+          <Typography color="text.secondary" style={{ fontSize: '1px' }}>
+            {/* booth intro 들고오기 */}
+            {intro}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   );
 }

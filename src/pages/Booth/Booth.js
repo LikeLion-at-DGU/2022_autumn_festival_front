@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../api/axios';
 import './Booth.css';
-import '../../api/boothData.json';
 import Boothcard from '../../components/Booth/Boothcard';
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import boothMap from '../../assets/img/boothMap.png';
+import noticeExImg from '../../assets/img/noticeExImg.png';
 
 const DateContainer = styled.div`
   width: 100%;
@@ -64,12 +64,12 @@ const BoothContainer = styled.section`
   padding: 2rem 0rem 9rem 0;
 `;
 const BoothCardContainer = styled.div`
-  display: 'grid';
-  grid-template-rows: '2fr';
-  grid-template-columns: '1fr 1fr';
-  width: '328px';
-  margin: '0 auto';
-  margin-top: '40px';
+  display: grid;
+  grid-template-rows: 2fr;
+  grid-template-columns: 1fr 1fr;
+  width: 328px;
+  margin: 0 auto;
+  margin-top: 40px;
 `;
 
 const BuildingContainer = styled.div`
@@ -97,19 +97,6 @@ const BuildingDetail = styled(motion.button)`
   transition: 0.5s all;
 `;
 
-// const BuildingHere = styled(motion.div)`
-//   height: 2px;
-//   margin-top: 5px;
-//   border-radius: 5px;
-//   background-color: #fd9903;
-// `;
-
-// const BuildingNotHere = styled(motion.div)`
-//   height: 1px;
-//   border-radius: 5px;
-//   background-color: #ffffff;
-// `;
-// #ffffff
 const dayArray = [
   {
     id: 1,
@@ -180,85 +167,71 @@ const buildingArray = [
 
 export default function Booth({}) {
   const [booth, setBooth] = useState([
-    {
-      id: 1,
-      type: '주점',
-      title: '명진관호떡',
-      introduction: '맛있는 호떡과 다양한 음식',
-      like_count: 20,
-      location: '원흥관',
-      images: [
-        {
-          url: NoticeExImg,
-        },
-      ],
-    },
-
-    {
-      id: 2,
-      introduction: '으아가각아ㅏㄱ',
-      title: '신공공룡',
-      type: '푸드트럭',
-      location: '신공학관',
-      day: [1, 2, 3],
-      like_count: 100,
-    },
-    {
-      id: 3,
-      introduction: '혜화아아아ㅏㄱ',
-      title: '혜화관 햇님',
-      type: '부스',
-      location: '혜화관',
-      day: [1, 2],
-      notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
-      content: '혜화아아아ㅏㄱ',
-      like_count: 12,
-    },
-    {
-      id: 4,
-      introduction: '만해~10000Sun~',
-      title: "히찬's With부쓰",
-      type: '푸드트럭',
-      location: '만해광장',
-      day: [1, 3],
-      notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
-      content: '혜화아아아ㅏㄱ',
-      like_count: 12,
-    },
-    {
-      id: 5,
-      introduction: 'CB~집가고싶네..',
-      title: "Chan's Booth",
-      type: '주점',
-      location: '만해광장',
-      day: [1, 2, 3],
-      notice:
-        '[운영 시간] 18시 오픈\n[운영 위치] 혜화관 앞\n또 사진을 찍어 인스타그램 스토리에 올린뒤 경찰사법대학 공식 계정을 태그하면 추첨을 통해 상품을 증정하는 이벤트도 하고 있으니 많은 이용 바랍니다 ㅎㅎ\n*** 테이블비 5,000원 있습니다. \n*** 주류 아이스 박스에 보관 가능하오니 사들고 오셔서 저희에게 맡겨 주세요!! ',
-      content: '혜화관 앞',
-      like_count: 999,
-    },
-    {
-      id: 6,
-      introduction: '만해~10000Sun~',
-      title: '응답하라 100개',
-      type: '부스',
-      location: '만해광장',
-      day: [1, 3],
-      notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
-      content: '혜화아아아ㅏㄱ',
-      like_count: 12,
-    },
-    {
-      id: 7,
-      introduction: '만해~10000Sun~',
-      title: '히찬쓰윗부쓰',
-      type: '부스',
-      location: '만해광장',
-      day: [1, 3],
-      notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
-      content: '혜화아아아ㅏㄱ',
-      like_count: 12,
-    },
+    // {
+    //   id: 1,
+    //   type: '주점',
+    //   title: '명진관호떡',
+    //   introduction: '맛있는 호떡과 다양한 음식',
+    //   like_count: 20,
+    //   location: '원흥관',
+    //   images: [
+    //     {
+    //       url: noticeExImg,
+    //     },
+    //   ],
+    // },
+    // {
+    //   id: 2,
+    //   type: '푸드트럭',
+    //   title: '신공공룡',
+    //   introduction: '으아가각아ㅏㄱ',
+    //   like_count: 210,
+    //   location: '신공학관',
+    //   images: [
+    //     {
+    //       url: noticeExImg,
+    //     },
+    //   ],
+    // },
+    // {
+    //   id: 3,
+    //   type: '부스',
+    //   title: '혜화관 햇님',
+    //   introduction: '혜화아아아ㅏㄱ',
+    //   like_count: 12,
+    //   location: '혜화관',
+    //   images: [
+    //     {
+    //       url: noticeExImg,
+    //     },
+    //   ],
+    // },
+    // {
+    //   id: 4,
+    //   type: '푸드트럭',
+    //   title: '만해광장 히찬',
+    //   introduction: '만핵',
+    //   like_count: 191,
+    //   location: '만해광장',
+    //   images: [
+    //     {
+    //       url: noticeExImg,
+    //     },
+    //   ],
+    // },
+    // {
+    //   id: 5,
+    //   type: '부스',
+    //   title: '만해 히찬',
+    //   introduction: '만핵ㅇㅇ',
+    //   like_count: 19,
+    //   location: '만해광장',
+    //   images: [
+    //     {
+    //       url: noticeExImg,
+    //     },
+    //   ],
+    // },
   ]);
 
   // 날짜 할당
@@ -273,8 +246,8 @@ export default function Booth({}) {
 
   //todate,isbuilding 패치시키기
   useEffect(() => {
-    fetchBooth(todate, isBuilding);
-  }, [todate, isBuilding]);
+    fetchBooth(isToday, isBuilding);
+  }, [isToday, isBuilding]);
 
   //api가져오기
   const fetchBooth = async (todate, isBuilding) => {
@@ -340,9 +313,6 @@ export default function Booth({}) {
               type={boo.type}
               locationName={boo.location}
               likeCount={boo.like_count}
-              nowBuilding={isBuilding}
-              nowDay={isToday}
-              boothDay={boo.day}
             />
           );
         })}
