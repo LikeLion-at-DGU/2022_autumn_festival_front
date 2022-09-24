@@ -241,7 +241,7 @@ export default function Booth({}) {
 
   //
 
-  return !isExist ? (
+  return isExist ? (
     <BoothContainer>
       <DateContainer>
         {/* api호출 방법 :/api/booths?day={day}&location={location} */}
