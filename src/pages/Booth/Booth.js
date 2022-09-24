@@ -34,8 +34,8 @@ const DayBox = styled.div`
 const BuildingLocationImage = styled.img`
   position: absolute;
   width: 15%;
-  right: 52.7px;
-  bottom: 11.1rem;
+  right: 66px;
+  bottom: 6.7rem;
 `;
 
 const LocationImg = styled.img`

@@ -238,9 +238,9 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
-              width: '12%',
-              right: '91px',
-              bottom: '9.1rem',
+              width: '15%',
+              right: '86px',
+              bottom: '9rem',
             }}
           />
         </>
@@ -253,7 +253,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
-              width: '12%',
+              width: '15%',
               left: '11rem',
               bottom: '9rem',
             }}
@@ -269,9 +269,9 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
-              width: '12%',
-              left: '11rem',
-              bottom: '9rem',
+              width: '15%',
+              left: '10.7rem',
+              bottom: '9.3rem',
             }}
           />
         </>
@@ -285,8 +285,8 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
-              width: '12%',
-              right: '187px',
+              width: '15%',
+              right: '181px',
               bottom: '10.7rem',
             }}
           />
@@ -301,23 +301,24 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
-              width: '12%',
-              right: '98px',
-              bottom: '11rem',
+              width: '15%',
+              right: '92.2px',
+              bottom: '10.8rem',
             }}
           />
         </>
       );
       break;
     case '학생회관':
+      //오키
       return (
         <>
           <img
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
-              width: '12%',
-              right: '57.7px',
+              width: '15%',
+              right: '53.7px',
               bottom: '11.2rem',
             }}
           />
@@ -325,29 +326,31 @@ export const MapLoacation = (key) => {
       );
       break;
     case '학림관':
+      //okay
       return (
         <>
           <img
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
-              width: '12%',
-              left: '11rem',
-              bottom: '9rem',
+              width: '15%',
+              right: '66px',
+              bottom: '6.7rem',
             }}
           />
         </>
       );
       break;
     case '다향관':
+      //okay
       return (
         <>
           <img
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
-              width: '12%',
-              right: '141px',
+              width: '15%',
+              right: '136px',
               bottom: '8.5rem',
             }}
           />
@@ -361,7 +364,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
-              width: '12%',
+              width: '15%',
               right: '203px',
               bottom: '8.8rem',
             }}
@@ -376,7 +379,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
-              width: '12%',
+              width: '15%',
               left: '11rem',
               bottom: '9rem',
             }}
@@ -391,7 +394,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
-              width: '12%',
+              width: '15%',
               left: '11rem',
               bottom: '9rem',
             }}
@@ -406,7 +409,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
-              width: '12%',
+              width: '15%',
               left: '11rem',
               bottom: '9rem',
             }}
