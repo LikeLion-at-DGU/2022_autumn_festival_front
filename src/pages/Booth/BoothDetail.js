@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import GuestBook from '../../components/Booth/GuestBook';
 import CommentInput from '../../components/Booth/CommentInput';
+import BoothMenuAdd from '../../components/Booth/BoothMenuAdd';
 import axios from '../../api/axios';
 import {
   SwiperContainer,
@@ -20,7 +21,6 @@ import {
   MenuContainer,
   MenuItem,
   EditBtn,
-  EditForm,
 } from './style';
 import NoticeExImg from '../../assets/img/noticeExImg.png';
 import MapIconImg from '../../assets/img/mainMapIcon.png';
@@ -108,6 +108,7 @@ export default function BoothDetail() {
       <FavoriteIcon
         onClick={() => {
           setLove(false);
+          setLovecnt(lovecnt - 1);
         }}
         style={{
           fontSize: '28px',
@@ -120,6 +121,7 @@ export default function BoothDetail() {
       <FavoriteBorderIcon
         onClick={() => {
           setLove(true);
+          setLovecnt(lovecnt + 1);
         }}
         style={{ fontSize: '28px' }}
       />
@@ -336,15 +338,7 @@ export default function BoothDetail() {
             <span>메뉴</span>
           </div>
           <IntroLine></IntroLine>
-          {admin === 'true' ? (
-            <EditForm>
-              <input type="text" placeholder="메뉴 이름" />
-              <input type="text" placeholder="가격" />
-              <button type="submit">추가하기</button>
-            </EditForm>
-          ) : (
-            <></>
-          )}
+          <BoothMenuAdd admin={admin} menu={menu} setMenu={setMenu} />
           <MenuContainer>{MenuView}</MenuContainer>
         </IntroContainer>
 
