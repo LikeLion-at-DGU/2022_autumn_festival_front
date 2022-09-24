@@ -53,7 +53,7 @@ export default function BoothDetail() {
   const [booth, setBooth] = useState({
     title: '명진관 호떡',
     introduction: '맛있는 호떡과 다양한 음식',
-    type: '주점',
+    boothType: '주점',
     location: '명진관 9번',
     notice:
       '16일 우천시에도 운영합니다! <br/>*교공 하트키링 판매중(3000원, 한정수량)<br/><br/>[운영 시간] 10:00 - 16:00 (품절시 마감 공지)<br/>[운영 위치] 교육관 7번 부스<br/><br/>*교육관 생각보다 안멀어요!! (포관쪽에서 5분 소요) 드셔보세요ヾ(•ω•`)o*<br/><br/>**주인장의 꿀팁: 콘치즈랑 팝콘치킨을 모두 추가한 게 제일 맛있습니다(메인 메뉴임)**',
@@ -269,8 +269,8 @@ export default function BoothDetail() {
       {isExist ? (
         <div style={{ marginBottom: '76px' }}>
           <UpTitle
-            title={`${booth.type} 홈페이지`}
-            mapleLeft={booth.type === '푸드트럭' ? '30px' : '57px'}
+            title={`${booth.boothType} 홈페이지`}
+            mapleLeft={booth.boothType === '푸드트럭' ? '30px' : '57px'}
           />
 
           {isLoading ? (
@@ -306,7 +306,7 @@ export default function BoothDetail() {
 
               {/* 부스 내용 */}
               <ContentContainer>
-                <TypeBtn tp={booth.type}>{booth.type}</TypeBtn>
+                <TypeBtn tp={booth.boothType}>{booth.boothType}</TypeBtn>
                 <BoothTitle>{booth.title}</BoothTitle>
                 <BoothIntro>{booth.introduction}</BoothIntro>
                 {admin === 'true' ? (
@@ -319,7 +319,7 @@ export default function BoothDetail() {
                 <br />
 
                 <div style={{ display: 'flex', alignItem: 'center' }}>
-                  {HeartView(booth.type)}
+                  {HeartView(booth.boothType)}
                   &nbsp;
                   <LikeCount>{booth.likeCnt}</LikeCount>
                 </div>
