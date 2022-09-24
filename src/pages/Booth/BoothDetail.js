@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-
+import GuestBook from '../../components/Booth/GuestBook';
+import CommentInput from '../../components/Booth/CommentInput';
+import axios from '../../api/axios';
 import {
   SwiperContainer,
   ContentContainer,
@@ -172,6 +174,69 @@ export default function BoothDetail() {
     setAdmin(query.get('admin'));
   }, [query]);
 
+  //방명록
+  const [comments, setComments] = useState([
+    {
+      id: 1,
+      writer: '김멋사',
+      password: 'pw1',
+      content: '내용입니다',
+      createdDateTime: '2022-09-23',
+    },
+    {
+      id: 2,
+      writer: '최멋사',
+      password: 'pw2',
+      content: '내용2입니다',
+      createdDateTime: '2022-09-23',
+    },
+  ]);
+
+  // 아이디 시작점 설정해야함
+  const nextId = useRef(3);
+
+  const onInsert = useCallback(
+    (writer, password, content, createdDateTime) => {
+      const comment = {
+        id: nextId.current,
+        writer,
+        password,
+        content,
+        createdDateTime,
+      };
+      console.log(writer);
+      console.log(content);
+      console.log(password);
+      setComments((comments) => comments.concat(comment));
+      nextId.current += 1; //nextId 1씩 더하기
+    },
+    [comments],
+  );
+
+  const params = useParams();
+  const getComments = () => {
+    const id = params.id;
+    axios
+      .get(`booths/${id}/comments`)
+      .then((response) => {
+        console.log(response.data);
+        setComments(response.data);
+      })
+      .catch((error) => console.log('Network Error : ', error));
+  };
+  useEffect(getComments, []);
+  const [mismatchError, setMismatchError] = useState(false);
+  /*삭제 버튼 클릭 이벤트*/
+  const handleClick = useCallback(
+    (id) => {
+      let newComments = comments.filter(
+        (data) => data.id !== id,
+      ); /*버튼 클릭시 id가 다른 데이터만 남겨 놓음*/
+      setComments(newComments);
+    },
+    [comments],
+  );
+
   return (
     <div style={{ marginBottom: '76px' }}>
       <UpTitle
@@ -290,6 +355,21 @@ export default function BoothDetail() {
             <span>방명록</span>
           </div>
           <IntroLine></IntroLine>
+          <CommentInput onInsert={onInsert} />
+
+          {comments.map((comment) => {
+            console.log(comment);
+            return (
+              <GuestBook
+                key={comment.id}
+                id={comment.id}
+                writer={comment.writer}
+                content={comment.content}
+                createdDateTime={comment.createdDateTime}
+                handleClick={handleClick}
+              />
+            );
+          })}
         </IntroContainer>
       </ContentContainer>
     </div>

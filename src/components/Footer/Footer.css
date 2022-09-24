@@ -2,7 +2,7 @@
 hr {
   width: 100%;
   border-color: lightgrey;
-  margin: 0 0 0 0px;
+  margin: 0 0 0 0;
   border-width: 1px 0 0 0;
 }
 
@@ -21,6 +21,8 @@ hr {
   align-items: center;
   width: 90%;
   margin: 10px auto;
+  box-sizing: border-box;
+  width: 325px;
 }
 .footer__Insta {
   width: 30px;
@@ -34,8 +36,4 @@ hr {
 .footer__Github {
   width: 30px;
   padding: 10px;
-}
-
-.footer_div{
-  
 }

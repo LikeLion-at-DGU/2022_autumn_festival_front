@@ -37,24 +37,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 // });
 
 export default function Navbar() {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    //리스너 등록
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        setShow(true);
-      } else {
-        setShow(false);
-      }
-    });
-
-    return () => {
-      // 이 컴포넌트를 안쓸 경우 리스너 제거
-      window.removeEventListener('scroll', () => {});
-    };
-  }, []);
-
   // drawer
   const [state, setState] = React.useState({
     right: false,
@@ -70,20 +52,6 @@ export default function Navbar() {
     }
 
     setState({ ...state, [anchor]: open });
-  };
-
-  let location = useLocation().pathname.split('/')[1];
-
-  const listName = (path, name) => {
-    return (
-      <>
-        {location === path ? (
-          <ListFontBold>{name} </ListFontBold>
-        ) : (
-          <ListFont>{name} </ListFont>
-        )}
-      </>
-    );
   };
 
   const list = (anchor) => (
@@ -104,7 +72,11 @@ export default function Navbar() {
             style={{ color: 'inherit', textDecoration: 'inherit' }}
             to="/notice"
           >
-            <ListItemButton>{listName('notice', '공지사항')}</ListItemButton>
+            <ListItemButton>
+              <div className="list__font__bold" style={{ color: '#fd9903' }}>
+                공지사항{' '}
+              </div>
+            </ListItemButton>
           </ListItem>
 
           <ListItem
@@ -116,7 +88,7 @@ export default function Navbar() {
             to="/timetable"
           >
             <ListItemButton>
-              {listName('timetable', '타임테이블')}
+              <div className="list__font">타임테이블 </div>
             </ListItemButton>
           </ListItem>
 
@@ -128,7 +100,9 @@ export default function Navbar() {
             style={{ color: 'inherit', textDecoration: 'inherit' }}
             to="/booth"
           >
-            <ListItemButton>{listName('booth', '부스')}</ListItemButton>
+            <ListItemButton>
+              <div className="list__font">부스 </div>
+            </ListItemButton>
           </ListItem>
 
           <ListItem
@@ -139,7 +113,9 @@ export default function Navbar() {
             style={{ color: 'inherit', textDecoration: 'inherit' }}
             to="/about"
           >
-            <ListItemButton>{listName('about', 'About')}</ListItemButton>
+            <ListItemButton>
+              <div className="list__font">About </div>
+            </ListItemButton>
           </ListItem>
         </List>{' '}
       </div>
@@ -147,53 +123,55 @@ export default function Navbar() {
   );
 
   return (
-    <nav className={'nav ${show && "nav__navy"}'}>
-      <img
-        alt="navLogo"
-        src={navLogo}
-        className="nav__logo"
-        onClick={() => (window.location.href = '/')}
-      />
-
-      <div className="nav__menu">
-        {['right'].map((anchor) => (
-          <React.Fragment key={anchor}>
-            <FontAwesomeIcon
-              icon={faBars}
-              onClick={toggleDrawer(anchor, true)}
-            />
-            <SwipeableDrawer
-              anchor={anchor}
-              open={state[anchor]}
-              onClose={toggleDrawer(anchor, false)}
-              onOpen={toggleDrawer(anchor, true)}
-            >
-              {' '}
-              <DrawerHeader>
-                <FontAwesomeIcon
-                  icon={faXmark}
-                  onClick={toggleDrawer(anchor, false)}
-                />
-              </DrawerHeader>
-              <div className="start__festival">
-                <>
-                  {' '}
-                  <span style={{ color: '#fd9903' }}>축제</span>를
-                </>
-                <br></br>
-                <>시작해봐요</>
-              </div>
-              <img
-                className="navC"
-                alt="navC"
-                src={navC}
-                onClick={() => (window.location.href = '/')}
+    <nav className="nav">
+      <div className="nav__logo">
+        <img
+          alt="navLogo"
+          className="nav__logo__img"
+          src={navLogo}
+          onClick={() => (window.location.href = '/')}
+        />{' '}
+      </div>
+      <div className="container">
+        <div className="nav__menu">
+          <></>
+          {['right'].map((anchor) => (
+            <React.Fragment key={anchor}>
+              <FontAwesomeIcon
+                icon={faBars}
+                onClick={toggleDrawer(anchor, true)}
               />
-              <hr></hr>
-              <div>{list(anchor)}</div>
-            </SwipeableDrawer>
-          </React.Fragment>
-        ))}
+              <SwipeableDrawer
+                anchor={anchor}
+                open={state[anchor]}
+                onClose={toggleDrawer(anchor, false)}
+                onOpen={toggleDrawer(anchor, true)}
+              >
+                <DrawerHeader>
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    onClick={toggleDrawer(anchor, false)}
+                  />
+                </DrawerHeader>
+                <div className="start__festival">
+                  <>
+                    <span style={{ color: '#fd9903' }}>축제</span>를
+                  </>
+                  <br></br>
+                  <>시작해봐요</>
+                </div>
+                <img
+                  className="navC"
+                  alt="navC"
+                  src={navC}
+                  onClick={() => (window.location.href = '/')}
+                />
+                <hr></hr>
+                <div>{list(anchor)}</div>
+              </SwipeableDrawer>
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     </nav>
   );
