@@ -211,39 +211,22 @@ export default function BoothDetail() {
 
   //방명록
   const [comments, setComments] = useState([
-    {
-      id: 1,
-      writer: '김멋사',
-      content: '내용입니다',
-      createdDateTime: '2022-09-23',
-    },
-    {
-      id: 2,
-      writer: '최멋사',
-      content: '내용2입니다',
-      createdDateTime: '2022-09-23',
-    },
+    // {
+    //   id: 1,
+    //   writer: '김멋사',
+    //   content: '내용입니다',
+    //   createdDateTime: '2022-09-23',
+    // },
+    // {
+    //   id: 2,
+    //   writer: '최멋사',
+    //   content: '내용2입니다',
+    //   createdDateTime: '2022-09-23',
+    // },
   ]);
 
   // 아이디 시작점 설정해야함
-  const nextId = useRef(3);
-
-  const onInsert = useCallback(
-    (writer, content, createdDateTime) => {
-      const comment = {
-        id: nextId.current,
-        writer,
-        content,
-        createdDateTime,
-      };
-      // console.log(writer);
-      // console.log(content);
-      // console.log(password);
-      setComments((comments) => comments.concat(comment));
-      nextId.current += 1; //nextId 1씩 더하기
-    },
-    [comments],
-  );
+  const nextId = useRef();
 
   const params = useParams();
   const getComments = () => {
@@ -402,7 +385,7 @@ export default function BoothDetail() {
                     <span>방명록</span>
                   </div>
                   <IntroLine></IntroLine>
-                  <CommentInput onInsert={onInsert} />
+                  <CommentInput />
 
                   {comments.map((comment) => {
                     // console.log(comment);

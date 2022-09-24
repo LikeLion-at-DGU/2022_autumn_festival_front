@@ -31,9 +31,8 @@ export default function GuestDelete() {
       fontFamily: 'GmarketSansLight',
     },
     success: {
-      fontSize: '10px',
+      fontSize: '16px',
       color: 'lightgreen',
-      marginRight: '60px',
       fontFamily: 'GmarketSansLight',
     },
     not__success: {
@@ -51,17 +50,14 @@ export default function GuestDelete() {
       padding: '5px',
       width: '70px',
 
-      marginTop: '40px',
+      marginTop: '10px',
     },
   };
 
-  const [pwd, setPassword] = useState({ pwd: '' });
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  console.log(pwd);
   let commentId = useParams().commentId;
   let boothId = useParams().boothId;
-  console.log(boothId);
-  console.log(commentId);
 
   const navigate = useNavigate();
   const onClickremove = () => {
@@ -69,19 +65,27 @@ export default function GuestDelete() {
   };
 
   //input에 입력될 때마다 password state값 변경되게 하는 함수
-  const onPassword = (e) => {
-    setPassword({
-      pwd,
-      [e.target.name]: e.target.value,
-    });
+
+  const deleteComments = async (e) => {
+    setPassword(e.target.value);
+    console.log('된거임');
+
+    await axios
+      // `/booth/${detailId}/comment/${id}`
+      .delete(`/comments/${commentId}`, {
+        data: { password: password },
+      })
+      .then((response) => {
+        console.log(response.status);
+        setError(true);
+      })
+      .catch((e) => {
+        console.log('에러임', e);
+        setError(false);
+      });
   };
 
-  const ErrorHandle = (e) => {
-    if (e === true) {
-    }
-  };
-
-  return error == null ? (
+  return error === null ? (
     <div>
       <UpTitle title={`부스 홈페이지`} mapleLeft={'56px'} />
       <div style={style.boldfont}>댓글 삭제하기</div>
@@ -90,32 +94,18 @@ export default function GuestDelete() {
         <span style={style.font}>비밀번호 확인</span>
         <input
           style={style.inputbox}
-          onChange={onPassword}
           onKeyPress={(e) => {
-            axios
-              .delete(`/comments/${commentId}`, {
-                password: { pwd },
-              })
-              .then((response) => {
-                console.log('삭제 요청 성공');
-                setError(true);
-              })
-              .catch((e) => {
-                console.log('삭제 요청 실패');
-                setError(false);
-              });
+            deleteComments(e);
           }}
         />
       </div>
     </div>
-  ) : error == false ? ( //true로 바꿔야함
+  ) : error === true ? ( //true로 바꿔야함
     <div>
       <UpTitle title={`부스 홈페이지`} mapleLeft={'56px'} />
       <div style={style.boldfont}>댓글 삭제하기</div>
       <div style={style.padding}>
         <div style={style.success}>비밀번호가 확인되었습니다.</div>
-        <span style={style.font}>비밀번호 확인</span>
-        <input style={style.inputbox} onChange={onPassword} />
         <br></br>
         <button
           style={style.previous}
@@ -138,20 +128,8 @@ export default function GuestDelete() {
 
           <input
             style={style.inputbox}
-            onChange={onPassword}
             onKeyPress={(e) => {
-              axios
-                .delete(`/comments/${commentId}`, {
-                  password: { pwd },
-                })
-                .then((response) => {
-                  console.log('삭제 요청 성공');
-                  setError(true);
-                })
-                .catch((e) => {
-                  console.log('삭제 요청 실패');
-                  setError(false);
-                });
+              deleteComments(e);
             }}
           />
         </div>
