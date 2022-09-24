@@ -55,7 +55,7 @@ export const BoothIntro = styled.p`
   margin: 0;
 `;
 
-export const LikeCnt = styled.span`
+export const LikeCount = styled.span`
   font-size: 15px;
   line-height: 36px;
 `;

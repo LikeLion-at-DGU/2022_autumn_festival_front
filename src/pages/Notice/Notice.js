@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import usePagination from '../../hooks/usePagination';
+import { useLocation } from 'react-router-dom';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -120,6 +121,12 @@ export default function Notice() {
   useEffect(() => {
     pageInfo.jump(1);
   }, [option]);
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   // get 공지사항 리스트 api //
   useEffect(() => {
