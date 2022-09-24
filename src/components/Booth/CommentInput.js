@@ -3,6 +3,8 @@ import styled from 'styled-components';
 // import { MdAdd } from 'react-icons/md';
 // import './CommentInput.css';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import axios from '../../api/axios';
+import { useParams } from 'react-router-dom';
 
 const CommentInsert = styled.form`
   height: 90px;
@@ -72,7 +74,7 @@ const style = {
     width: '90%',
     height: '20px',
     paddingLeft: '10px',
-    color: '#FFF'
+    color: '#FFF',
   },
   button: {
     borderRadius: '50%',
@@ -123,6 +125,8 @@ const CommentInput = ({ onInsert }) => {
     [value],
   );
 
+  let detailId = useParams().id;
+  console.log('detailId:', detailId);
   const onSubmit = useCallback(
     (e) => {
       onInsert(value.writer, value.password, value.content);
@@ -133,6 +137,19 @@ const CommentInput = ({ onInsert }) => {
       });
 
       e.preventDefault();
+
+      axios
+        .post(`/booths/${detailId}/comments`, {
+          writer: '',
+          password: '',
+          content: '',
+        })
+        .then(function (response) {
+          console.log('제발', response);
+        })
+        .catch(function (error) {
+          console.log('에러야', error);
+        });
     },
     [onInsert, value],
   );

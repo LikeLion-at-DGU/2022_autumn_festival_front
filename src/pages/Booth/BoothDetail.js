@@ -209,18 +209,18 @@ export default function BoothDetail() {
 
   //방명록
   const [comments, setComments] = useState([
-    {
-      id: 1,
-      writer: '김멋사',
-      content: '내용입니다',
-      createdDateTime: '2022-09-23',
-    },
-    {
-      id: 2,
-      writer: '최멋사',
-      content: '내용2입니다',
-      createdDateTime: '2022-09-23',
-    },
+    // {
+    //   id: 1,
+    //   writer: '김멋사',
+    //   content: '내용입니다',
+    //   createdDateTime: '2022-09-23',
+    // },
+    // {
+    //   id: 2,
+    //   writer: '최멋사',
+    //   content: '내용2입니다',
+    //   createdDateTime: '2022-09-23',
+    // },
   ]);
 
   // 아이디 시작점 설정해야함

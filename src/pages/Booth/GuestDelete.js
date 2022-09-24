@@ -57,11 +57,8 @@ export default function GuestDelete() {
 
   const [pwd, setPassword] = useState({ pwd: '' });
   const [error, setError] = useState(null);
-  console.log(pwd);
   let commentId = useParams().commentId;
   let boothId = useParams().boothId;
-  console.log(boothId);
-  console.log(commentId);
 
   const navigate = useNavigate();
   const onClickremove = () => {
