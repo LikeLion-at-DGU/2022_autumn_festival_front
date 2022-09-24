@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../api/axios';
 import './Booth.css';
 import Boothcard from '../../components/Booth/Boothcard';
-
+import boothsearchC from '../../assets/img/boothsearchC.png';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import boothMap from '../../assets/img/boothMap.png';
 import noticeExImg from '../../assets/img/noticeExImg.png';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const DateContainer = styled.div`
   width: 100%;
@@ -239,6 +241,7 @@ export default function Booth({}) {
 
   const [isToday, setIsToday] = useState(todate);
   const [isBuilding, setIsBuilding] = useState('만해광장');
+  const [isExist, setIsExist] = useState(true);
 
   //todate,isbuilding 패치시키기
   useEffect(() => {
@@ -253,13 +256,14 @@ export default function Booth({}) {
       );
       setBooth(request.data);
     } catch (error) {
+      setIsExist(false);
       console.log('ERROR', error);
     }
   };
 
   //
 
-  return (
+  return isExist ? (
     <BoothContainer>
       <DateContainer>
         {/* api호출 방법 :/api/booths?day={day}&location={location} */}
@@ -314,6 +318,49 @@ export default function Booth({}) {
           );
         })}
       </BoothCardContainer>
+    </BoothContainer>
+  ) : (
+    <BoothContainer>
+      <DateContainer>
+        {/* api호출 방법 :/api/booths?day={day}&location={location} */}
+        {dayArray.map((i) => (
+          <DayBox key={i.id} onClick={() => setIsToday(i.id)}>
+            <BoxDate isActive={isToday === i.id}>{i.date}일</BoxDate>
+            <BoxDay isActive={isToday === i.id}>{i.day}</BoxDay>
+            {isToday === i.id ? <BoxHere layoutId="boxhe" /> : <BoxNotHere />}
+          </DayBox>
+        ))}
+      </DateContainer>
+
+      {/* 지도 이미지 */}
+      <LocationImg alt={isBuilding} src={boothMap} />
+
+      <BuildingContainer>
+        {buildingArray.map((bu) => {
+          return (
+            <BuildingDetail
+              key={bu.id}
+              onClick={() => {
+                setIsBuilding(bu.building);
+              }}
+              isActive={isBuilding === bu.building}
+            >
+              {bu.building}
+              {/* {isBuilding === bu.building ? (
+                <BuildingHere layoutId="buildinghe" />
+              ) : (
+                <BuildingNotHere />
+              )} */}
+            </BuildingDetail>
+          );
+        })}
+      </BuildingContainer>
+      <Stack sx={{ width: '328px', margin: '30px auto' }} spacing={2}>
+        <div className="no-results__text">
+          <img src={boothsearchC} className="noResultImg" />
+          <p>등록되어 있는 부스가 없습니다.</p>
+        </div>
+      </Stack>
     </BoothContainer>
   );
 }
