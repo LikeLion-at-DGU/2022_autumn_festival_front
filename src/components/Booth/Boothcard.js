@@ -90,10 +90,12 @@ export default function Boothcard({
   type,
   locationName,
   likeCount,
+  boothImage,
 }) {
   //리스트에 요소 있는지 찾기
   // 만약 boothDay리스트에 nowDay와 동일한게 있다면 true반환 아니면 false
-
+  console.log(boothImage);
+  console.log(noticeExImg);
   return (
     <Card
       sx={{ width: '130', margin: '11.6px' }}
@@ -140,7 +142,7 @@ export default function Boothcard({
         <CardMedia
           component="img"
           height="105"
-          image={noticeExImg}
+          image={boothImage ? boothImage : noticeExImg}
           alt="부스 이미지"
         />
         <Location_number>
