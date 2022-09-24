@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { baseColor } from '../../styles/GlobalStyle';
+import mainMapIcon from '../../assets/img/mainMapIcon.png';
 
 export const SwiperContainer = styled.div`
   width: 370px;
@@ -226,3 +227,192 @@ export const EditForm = styled.form`
     color: #000;
   }
 `;
+
+export const MapLoacation = (key) => {
+  switch (key) {
+    case '만해광장':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '12%',
+              right: '91px',
+              bottom: '9.1rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '대운동장':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '12%',
+              left: '11rem',
+              bottom: '9rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '팔정도':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '12%',
+              left: '11rem',
+              bottom: '9rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '명진관':
+      // 오키
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '12%',
+              right: '187px',
+              bottom: '10.7rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '원흥관':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '12%',
+              right: '91px',
+              bottom: '11rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '학생회관':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '12%',
+              right: '52.7px',
+              bottom: '11.1rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '학림관':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '12%',
+              left: '11rem',
+              bottom: '9rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '다향관':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '12%',
+              right: '141px',
+              bottom: '8.5rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '법학관':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '12%',
+              right: '203px',
+              bottom: '8.8rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '혜화관':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '12%',
+              left: '11rem',
+              bottom: '9rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '사회과학관':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '12%',
+              left: '11rem',
+              bottom: '9rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '잉카페앞':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '12%',
+              left: '11rem',
+              bottom: '9rem',
+            }}
+          />
+        </>
+      );
+      break;
+
+    default:
+      break;
+  }
+};

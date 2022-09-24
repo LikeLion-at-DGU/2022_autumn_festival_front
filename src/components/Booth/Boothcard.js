@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import './Boothcard.css';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import noticeExImg from '../../assets/img/noticeExImg.png';
 import { Padding } from '@mui/icons-material';
@@ -80,6 +81,35 @@ const FoodBorder = styled.div`
   color: white;
 `;
 
+const boxVariants = {
+  start: {
+    opactiy: 0,
+    scale: 1,
+  },
+  end: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: 'spring',
+      duration: 0.5,
+      bounce: 0.5,
+      delayChildren: 0.3,
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const childVariants = {
+  start: {
+    opacity: 0,
+    y: 10,
+  },
+  end: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
 // 부스 #0b9908
 // 주점 #FF6B6B
 // 받아서 다른 이름일때 디른 색깔
@@ -94,8 +124,6 @@ export default function Boothcard({
 }) {
   //리스트에 요소 있는지 찾기
   // 만약 boothDay리스트에 nowDay와 동일한게 있다면 true반환 아니면 false
-  console.log(boothImage);
-  console.log(noticeExImg);
   return (
     <Card
       sx={{ width: '130', margin: '11.6px' }}
