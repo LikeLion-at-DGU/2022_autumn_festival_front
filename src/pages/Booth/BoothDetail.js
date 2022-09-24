@@ -212,14 +212,12 @@ export default function BoothDetail() {
     {
       id: 1,
       writer: '김멋사',
-      password: 'pw1',
       content: '내용입니다',
       createdDateTime: '2022-09-23',
     },
     {
       id: 2,
       writer: '최멋사',
-      password: 'pw2',
       content: '내용2입니다',
       createdDateTime: '2022-09-23',
     },
@@ -229,17 +227,15 @@ export default function BoothDetail() {
   const nextId = useRef(3);
 
   const onInsert = useCallback(
-    (writer, password, content, createdDateTime) => {
+    (writer, content, createdDateTime) => {
       const comment = {
         id: nextId.current,
         writer,
-        password,
         content,
         createdDateTime,
       };
       console.log(writer);
       console.log(content);
-      console.log(password);
       setComments((comments) => comments.concat(comment));
       nextId.current += 1; //nextId 1씩 더하기
     },
