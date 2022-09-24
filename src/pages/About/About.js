@@ -177,7 +177,6 @@ const Space = styled.div`
   color: #1b2f4e;
 `;
 
-
 export default function About() {
   const { pathname } = useLocation();
 
@@ -186,7 +185,7 @@ export default function About() {
   }, [pathname]);
 
   return (
-    <div style={{ marginTop: '132rem'}}>
+    <div style={{ marginTop: '132rem' }}>
       <UpTitle title={'ABOUT'} />
 
       <Logo>
@@ -318,13 +317,13 @@ export default function About() {
         </CardRole>
         <CardLine />
         <CardText>
-          - 공지사항 페이지, 공지사항&부스 디테일 페이지, rest api 구현, 부스
-          수정하기 페이지, 메인페이지 수정
+          - 공지사항 페이지, 공지사항 및 부스 디테일 페이지, rest api, 부스
+          수정하기 페이지 구현
         </CardText>
       </Card>
       <Card href="https://github.com/lywon725">
         <FaceImg src={Leeyeowon2} />
-        <CardName >🦁이여원</CardName>
+        <CardName>🦁이여원</CardName>
         <CardMajor>멀티미디어공학과 20</CardMajor>
         <CardRole>
           {' '}
