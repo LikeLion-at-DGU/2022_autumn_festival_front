@@ -216,10 +216,13 @@ export const EditForm = styled.form`
     color: #fff;
   }
 
-  & > button {
+  & > a {
     width: 75px;
     background-color: #fff;
     border: none;
     border-radius: 10px;
+    text-decoration: none;
+    line-height: 26px;
+    color: #000;
   }
 `;
