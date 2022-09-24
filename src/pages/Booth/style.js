@@ -231,6 +231,7 @@ export const EditForm = styled.form`
 export const MapLoacation = (key) => {
   switch (key) {
     case '만해광장':
+      //오키
       return (
         <>
           <img
@@ -261,6 +262,7 @@ export const MapLoacation = (key) => {
       );
       break;
     case '팔정도':
+      //오키
       return (
         <>
           <img
@@ -315,8 +317,8 @@ export const MapLoacation = (key) => {
             style={{
               position: 'absolute',
               width: '12%',
-              right: '52.7px',
-              bottom: '11.1rem',
+              right: '57.7px',
+              bottom: '11.2rem',
             }}
           />
         </>
