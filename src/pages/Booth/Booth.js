@@ -124,7 +124,7 @@ const dayArray = [
 const buildingArray = [
   {
     id: 1,
-    building: '만해광장',
+    building: '팔정도',
   },
   {
     id: 2,
@@ -132,7 +132,7 @@ const buildingArray = [
   },
   {
     id: 3,
-    building: '팔정도',
+    building: '만해광장',
   },
   {
     id: 4,
@@ -223,7 +223,7 @@ export default function Booth({}) {
     day.getDate() - 27 === 2 ? 2 : day.getDate() - 27 === 3 ? 3 : 1;
 
   const [isToday, setIsToday] = useState(todate);
-  const [isBuilding, setIsBuilding] = useState('만해광장');
+  const [isBuilding, setIsBuilding] = useState('팔정도');
   const [isExist, setIsExist] = useState(true);
 
   //todate,isbuilding 패치시키기
@@ -298,7 +298,6 @@ export default function Booth({}) {
               type={boo.boothType}
               locationName={boo.location}
               likeCount={boo.likeCnt}
-
               // boothImage={boo.images[0]}
             />
           );

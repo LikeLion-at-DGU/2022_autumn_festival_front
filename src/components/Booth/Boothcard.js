@@ -1,17 +1,14 @@
 import * as React from 'react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Card from '@mui/material/Card';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import './Boothcard.css';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 
 import noticeExImg from '../../assets/img/noticeExImg.png';
-import { Padding } from '@mui/icons-material';
 
 const Location_number = styled.p`
   font-size: 1px;
@@ -133,6 +130,7 @@ export default function Boothcard({
         borderRadius: '10px',
         boxShadow: '2px 5px 12px 2px rgb(0, 0, 0)',
         flexDirection: 'row',
+        transition: '0.5s all',
       }}
     >
       <CardActionArea href={`/booth/${boothId}`}>
@@ -179,16 +177,7 @@ export default function Boothcard({
           />
           {locationName}
         </Location_number>
-        <BoothLike>
-          <FavoriteBorderIcon
-            sx={{
-              fontSize: '10px',
-              position: 'absolute',
-              left: '100px',
-            }}
-          />
-          {likeCount}
-        </BoothLike>
+        <BoothLike>♡ &nbsp;{likeCount}</BoothLike>
         <CardContent
           style={{ marginTop: '15px', fontFamily: 'GmarketSansMedium' }}
         >
