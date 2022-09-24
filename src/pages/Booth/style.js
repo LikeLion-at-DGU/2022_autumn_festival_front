@@ -366,8 +366,8 @@ export const MapLoacation = (key) => {
             style={{
               position: 'absolute',
               width: '15%',
-              right: '203px',
-              bottom: '8.8rem',
+              right: '190px',
+              bottom: '8.3rem',
             }}
           />
         </>
@@ -381,8 +381,8 @@ export const MapLoacation = (key) => {
             style={{
               position: 'absolute',
               width: '15%',
-              right: '231px',
-              bottom: '8rem',
+              right: '230px',
+              bottom: '7.4rem',
             }}
           />
         </>
