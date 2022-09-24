@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from '../../api/axios';
 import './Booth.css';
 import '../../api/boothData.json';
 import Boothcard from '../../components/Booth/Boothcard';
@@ -62,7 +63,14 @@ const BoothContainer = styled.section`
   text-align: center;
   padding: 2rem 0rem 9rem 0;
 `;
-const BoothCardContainer = styled.div``;
+const BoothCardContainer = styled.div`
+  display: 'grid';
+  grid-template-rows: '2fr';
+  grid-template-columns: '1fr 1fr';
+  width: '328px';
+  margin: '0 auto';
+  margin-top: '40px';
+`;
 
 const BuildingContainer = styled.div`
   margin-top: 10px;
@@ -179,19 +187,9 @@ export default function Booth({}) {
       introduction: '맛있는 호떡과 다양한 음식',
       like_count: 20,
       location: '원흥관',
-      day: [1, 2, 3],
-      notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
-
-      content:
-        '맛있는 호떡 먹고 가세요~  호호 ~ 불어먹먹는 떡이라~ 호떠 ~ 아니에요~~호호호홓ㅎ',
-      menu: [
+      images: [
         {
-          name: '붕어빵',
-          price: 1000,
-        },
-        {
-          name: '호떡',
-          price: 3000,
+          url: NoticeExImg,
         },
       ],
     },
@@ -203,19 +201,7 @@ export default function Booth({}) {
       type: '푸드트럭',
       location: '신공학관',
       day: [1, 2, 3],
-      notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
-      content: '으아악',
       like_count: 100,
-      menu: [
-        {
-          name: '붕어빵',
-          price: 1000,
-        },
-        {
-          name: '호떡',
-          price: 3000,
-        },
-      ],
     },
     {
       id: 3,
@@ -227,16 +213,6 @@ export default function Booth({}) {
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '혜화아아아ㅏㄱ',
       like_count: 12,
-      menu: [
-        {
-          name: '붕어빵',
-          price: 1000,
-        },
-        {
-          name: '호떡',
-          price: 3000,
-        },
-      ],
     },
     {
       id: 4,
@@ -248,16 +224,6 @@ export default function Booth({}) {
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '혜화아아아ㅏㄱ',
       like_count: 12,
-      menu: [
-        {
-          name: '붕어빵',
-          price: 1000,
-        },
-        {
-          name: '호떡',
-          price: 3000,
-        },
-      ],
     },
     {
       id: 5,
@@ -270,16 +236,6 @@ export default function Booth({}) {
         '[운영 시간] 18시 오픈\n[운영 위치] 혜화관 앞\n또 사진을 찍어 인스타그램 스토리에 올린뒤 경찰사법대학 공식 계정을 태그하면 추첨을 통해 상품을 증정하는 이벤트도 하고 있으니 많은 이용 바랍니다 ㅎㅎ\n*** 테이블비 5,000원 있습니다. \n*** 주류 아이스 박스에 보관 가능하오니 사들고 오셔서 저희에게 맡겨 주세요!! ',
       content: '혜화관 앞',
       like_count: 999,
-      menu: [
-        {
-          name: '경행',
-          price: 2000,
-        },
-        {
-          name: '호떡',
-          price: 4000,
-        },
-      ],
     },
     {
       id: 6,
@@ -291,16 +247,6 @@ export default function Booth({}) {
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '혜화아아아ㅏㄱ',
       like_count: 12,
-      menu: [
-        {
-          name: '붕어빵',
-          price: 1000,
-        },
-        {
-          name: '호떡',
-          price: 3000,
-        },
-      ],
     },
     {
       id: 7,
@@ -312,16 +258,6 @@ export default function Booth({}) {
       notice: '268일 우천시에도 운영합니다~ \n [운영시간] 10:00 ~ ',
       content: '혜화아아아ㅏㄱ',
       like_count: 12,
-      menu: [
-        {
-          name: '붕어빵',
-          price: 1000,
-        },
-        {
-          name: '호떡',
-          price: 3000,
-        },
-      ],
     },
   ]);
 
@@ -335,9 +271,29 @@ export default function Booth({}) {
   const [isToday, setIsToday] = useState(todate);
   const [isBuilding, setIsBuilding] = useState('만해광장');
 
+  //todate,isbuilding 패치시키기
+  useEffect(() => {
+    fetchBooth(todate, isBuilding);
+  }, [todate, isBuilding]);
+
+  //api가져오기
+  const fetchBooth = async (todate, isBuilding) => {
+    try {
+      const request = await axios.get(
+        `/booths?day=${todate}&location=${isBuilding}`, //메뉴..까지.. 뒤지는건가..!
+      );
+      setBooth(request.data);
+    } catch (error) {
+      console.log('ERROR', error);
+    }
+  };
+
+  //
+
   return (
     <BoothContainer>
       <DateContainer>
+        {/* api호출 방법 :/api/booths?day={day}&location={location} */}
         {dayArray.map((i) => (
           <DayBox key={i.id} onClick={() => setIsToday(i.id)}>
             <BoxDate isActive={isToday === i.id}>{i.date}일</BoxDate>
@@ -346,16 +302,18 @@ export default function Booth({}) {
           </DayBox>
         ))}
       </DateContainer>
+
       {/* 지도 이미지 */}
       <LocationImg alt={isBuilding} src={boothMap} />
-      {/* 날짜 category */}
 
       <BuildingContainer>
         {buildingArray.map((bu) => {
           return (
             <BuildingDetail
               key={bu.id}
-              onClick={() => setIsBuilding(bu.building)}
+              onClick={() => {
+                setIsBuilding(bu.building);
+              }}
               isActive={isBuilding === bu.building}
             >
               {bu.building}
@@ -371,17 +329,7 @@ export default function Booth({}) {
 
       {/* map으로 카드 뜨게 만들기 */}
 
-      {/* <BoothCardContainer> */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateRows: '2fr',
-          gridTemplateColumns: '1fr 1fr',
-          width: '328px',
-          margin: '0 auto',
-          marginTop: '40px',
-        }}
-      >
+      <BoothCardContainer>
         {booth.map((boo) => {
           return (
             <Boothcard
@@ -398,8 +346,7 @@ export default function Booth({}) {
             />
           );
         })}
-      </div>
-      {/* </BoothCardContainer> */}
+      </BoothCardContainer>
     </BoothContainer>
   );
 }
