@@ -3,6 +3,8 @@ import styled from 'styled-components';
 // import { MdAdd } from 'react-icons/md';
 // import './CommentInput.css';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import axios from '../../api/axios';
+import { useParams } from 'react-router-dom';
 
 const CommentInsert = styled.form`
   height: 90px;
@@ -83,7 +85,7 @@ const style = {
   },
 };
 
-const CommentInput = ({ onInsert }) => {
+const CommentInput = (/*{ onInsert }*/) => {
   const [value, setValue] = useState({
     writer: '',
     password: '',
@@ -97,6 +99,7 @@ const CommentInput = ({ onInsert }) => {
         password: value.password,
         content: value.content,
       });
+      console.log(value);
     },
     [value],
   );
@@ -108,6 +111,7 @@ const CommentInput = ({ onInsert }) => {
         password: e.target.value,
         content: value.content,
       });
+      console.log(value);
     },
     [value],
   );
@@ -119,10 +123,35 @@ const CommentInput = ({ onInsert }) => {
         password: value.password,
         content: e.target.value,
       });
+      console.log(value);
     },
     [value],
   );
 
+  let detailId = useParams().id;
+  console.log('detailId:', detailId);
+
+  const onSubmit = (e) => {
+    // onInsert(value.writer, value.password, value.content);
+    setValue({
+      writer: value.writer,
+      password: value.password,
+      content: value.content,
+    });
+    console.log(value);
+
+    // e.preventDefault();
+
+    axios
+      .post(`/booths/${detailId}/comments`, {
+        writer: value.writer,
+        password: value.password,
+        content: value.content,
+      })
+      .then(function (response) {})
+      .catch(function (error) {});
+    window.location.reload();
+  };
   const isValidCheck = () => {
     if (value.writer === '' || value.password === '' || value.content) {
       alert('방명록 정보를 모두 입력해주세요.');
@@ -131,22 +160,6 @@ const CommentInput = ({ onInsert }) => {
       return true;
     }
   };
-
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-
-      if (isValidCheck()) {
-        onInsert(value.writer, value.password, value.content);
-        setValue({
-          writer: '',
-          password: '',
-          content: '',
-        });
-      }
-    },
-    [onInsert, value],
-  );
 
   return (
     <CommentInsert className="CommentInsert" method="post">
