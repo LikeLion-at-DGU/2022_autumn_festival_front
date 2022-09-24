@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import TitleImg from '../../assets/img/mainTime.png';
 import { Link } from 'react-router-dom';
+import ShowTable28 from './ShowTable28';
 
 const Container = styled.section`
   border: 1px solid white;
@@ -15,8 +16,9 @@ const Container = styled.section`
 
 const Img = styled.img`
   width: auto;
-  height: 75px;
+  height: 65px;
   margin-right: 20px;
+  margin-bottom: -30px;
 `;
 
 const Btn = styled(Link)`
@@ -29,14 +31,42 @@ const Btn = styled(Link)`
   color: white;
   border-radius: 25px;
   padding: 10px 20px;
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 30px;
 `;
 
+const WhatDay = styled.h6`
+  font-size: 20px;
+  font-family: 'GmarketSansLight';
+`
+
+const TimeTable = styled.div`
+  margin-top: -30px;
+  background: linear-gradient(180deg, rgba(68, 114, 153, 0.5) 0%, rgba(110, 129, 158, 0.055) 100%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 80%;
+  height: 380px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+
+
+
 function TimeTableSection() {
+  const day = new Date();
+  // todate는 29일에 29, 30일에 30, 그 외(28일)에는 28
+  const todate = day.getDate() - 27 === 2 ? 29 : day.getDate() - 27 === 3 ? 30 : 28;
   return (
     <Container>
       <Img src={TitleImg} />
+      <WhatDay>{todate}일</WhatDay>
+      <TimeTable>
+          <ShowTable28 />
+      </TimeTable>
       <Btn to="/timetable">전체 일정보기</Btn>
     </Container>
   );

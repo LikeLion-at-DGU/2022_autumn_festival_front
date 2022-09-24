@@ -18,7 +18,7 @@ const Container = styled.section`
 
 const Img = styled.img`
     width: auto;
-    height: 75px;
+    height: 65px;
     margin-right: 20px;
     margin-bottom: 30px;
 `;
@@ -33,7 +33,7 @@ const Btn = styled(Link)`
   color: white;
   border-radius: 25px;
   padding: 10px 20px;
-  font-size: 22px;
+  font-size: 18px;
 `;
 
 const BoothSection = styled(motion.div)`
