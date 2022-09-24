@@ -97,13 +97,28 @@ export default function BoothDetail() {
   const [admin, setAdmin] = useState(false);
 
   // 슬라이드 뷰 //
-  const SlideView = booth.images.map((b, idx) => {
-    return (
-      <SwiperSlide key={idx}>
-        <img src={b.url} style={{ width: '325px', borderRadius: '2px' }} />
-      </SwiperSlide>
-    );
-  });
+  const SlideView =
+    booth.images.length > 0
+      ? booth.images.map((b, idx) => {
+          return (
+            <SwiperSlide key={idx}>
+              <img
+                src={b.url}
+                style={{ width: '325px', borderRadius: '2px' }}
+              />
+            </SwiperSlide>
+          );
+        })
+      : () => {
+          return (
+            <SwiperSlide>
+              <img
+                src={BoothdetailC}
+                style={{ width: '325px', borderRadius: '2px' }}
+              />
+            </SwiperSlide>
+          );
+        };
 
   // 좋아요 기능 //
   const HeartView = (tp) => {
@@ -131,14 +146,16 @@ export default function BoothDetail() {
     );
   };
 
-  const fetchBoothDetail = () => {
-    axios
+  const fetchBoothDetail = async () => {
+    await axios
       .get(`booths/${detailId}`)
       .then((res) => {
         setBooth(res.data);
+        console.log(res.data);
       })
       .catch((e) => {
         setIsExist(false);
+        console.log(e);
       });
   };
 
