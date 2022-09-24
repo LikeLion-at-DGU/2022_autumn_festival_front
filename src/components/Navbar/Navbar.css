@@ -46,11 +46,11 @@
   width: 100px;
 }
 
-hr {
+.hr {
   width: 80%;
   border-color: lightgrey;
   margin: 0 0 0 18px;
-  border-width: 1px 0 0 0;
+  border-width: 0.1px 0 0 0;
 }
 
 @font-face {

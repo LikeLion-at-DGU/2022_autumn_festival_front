@@ -40,6 +40,7 @@ import SwiperCore, { Pagination, Autoplay } from 'swiper';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
+import GuestBookItem from '../../components/Booth/GuestBookItem';
 
 SwiperCore.use([Pagination, Autoplay]);
 
@@ -170,7 +171,7 @@ export default function BoothDetail() {
 
   let query = useQuery();
   useEffect(() => {
-    console.log(query.get('admin'));
+    // console.log(query.get('admin'));
     setAdmin(query.get('admin'));
   }, [query]);
 
@@ -216,6 +217,7 @@ export default function BoothDetail() {
   const params = useParams();
   const getComments = () => {
     const id = params.id;
+    console.log(id);
     axios
       .get(`booths/${id}/comments`)
       .then((response) => {
@@ -225,18 +227,6 @@ export default function BoothDetail() {
       .catch((error) => console.log('Network Error : ', error));
   };
   useEffect(getComments, []);
-  const [mismatchError, setMismatchError] = useState(false);
-  /*삭제 버튼 클릭 이벤트*/
-  const handleClick = useCallback(
-    (id) => {
-      let newComments = comments.filter(
-        (data) => data.id !== id,
-      ); /*버튼 클릭시 id가 다른 데이터만 남겨 놓음*/
-      setComments(newComments);
-    },
-    [comments],
-  );
-
   return (
     <div style={{ marginBottom: '76px' }}>
       <UpTitle
@@ -360,13 +350,12 @@ export default function BoothDetail() {
           {comments.map((comment) => {
             console.log(comment);
             return (
-              <GuestBook
-                key={comment.id}
+              <GuestBookItem
+                detailId={detailId}
                 id={comment.id}
                 writer={comment.writer}
                 content={comment.content}
                 createdDateTime={comment.createdDateTime}
-                handleClick={handleClick}
               />
             );
           })}
