@@ -166,9 +166,7 @@ export default function Booth({}) {
   const [booth, setBooth] = useState([
     {
       id: 1,
-      boothType: {
-        korean: '주점',
-      },
+      type: '주점',
       title: '명진관호떡',
       location: '원흥관',
       introduction: '맛있는 호떡과 다양한 음식',
@@ -181,9 +179,7 @@ export default function Booth({}) {
     },
     {
       id: 2,
-      boothType: {
-        korean: '푸드트럭',
-      },
+      type: '푸드트럭',
       title: '신공공룡',
       introduction: '으아가각아ㅏㄱ',
       likeCnt: 20,
@@ -196,9 +192,7 @@ export default function Booth({}) {
     },
     {
       id: 3,
-      boothType: {
-        korean: '부스',
-      },
+      type: '부스',
       title: '혜화아아아ㅏㄱ',
       location: '혜화관',
       introduction: '혜화아아아ㅏㄱ',
@@ -289,7 +283,7 @@ export default function Booth({}) {
               boothId={boo.id}
               title={boo.title}
               intro={boo.introduction}
-              type={boo.boothType.korean}
+              type={boo.type}
               locationName={boo.location}
               likeCount={boo.likeCnt}
               // boothImage={boo.images[0]}
