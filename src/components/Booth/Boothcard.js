@@ -180,16 +180,7 @@ export default function Boothcard({
           />
           {locationName}
         </Location_number>
-        <BoothLike>
-          <FavoriteBorderIcon
-            sx={{
-              fontSize: '10px',
-              position: 'absolute',
-              left: '100px',
-            }}
-          />
-          {likeCount}
-        </BoothLike>
+        <BoothLike>♡ &nbsp;{likeCount}</BoothLike>
         <CardContent
           style={{ marginTop: '15px', fontFamily: 'GmarketSansMedium' }}
         >
