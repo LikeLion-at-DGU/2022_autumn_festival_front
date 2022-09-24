@@ -59,6 +59,7 @@ const style = {
     width: '85px',
     marginLeft: '5px',
     position: 'relative',
+    color: '#FFF',
   },
   contentbox: {
     fontFamily: 'GmarketSansLight',
@@ -71,6 +72,7 @@ const style = {
     width: '90%',
     height: '20px',
     paddingLeft: '10px',
+    color: '#FFF'
   },
   button: {
     borderRadius: '50%',

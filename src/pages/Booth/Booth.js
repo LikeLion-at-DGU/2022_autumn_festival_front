@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../api/axios';
 import './Booth.css';
 import Boothcard from '../../components/Booth/Boothcard';
-
+import boothsearchC from '../../assets/img/boothsearchC.png';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import boothMap from '../../assets/img/boothMap.png';
 import noticeExImg from '../../assets/img/noticeExImg.png';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const DateContainer = styled.div`
   width: 100%;
@@ -167,71 +169,51 @@ const buildingArray = [
 
 export default function Booth({}) {
   const [booth, setBooth] = useState([
-    // {
-    //   id: 1,
-    //   type: '주점',
-    //   title: '명진관호떡',
-    //   introduction: '맛있는 호떡과 다양한 음식',
-    //   like_count: 20,
-    //   location: '원흥관',
-    //   images: [
-    //     {
-    //       url: noticeExImg,
-    //     },
-    //   ],
-    // },
-    // {
-    //   id: 2,
-    //   type: '푸드트럭',
-    //   title: '신공공룡',
-    //   introduction: '으아가각아ㅏㄱ',
-    //   like_count: 210,
-    //   location: '신공학관',
-    //   images: [
-    //     {
-    //       url: noticeExImg,
-    //     },
-    //   ],
-    // },
-    // {
-    //   id: 3,
-    //   type: '부스',
-    //   title: '혜화관 햇님',
-    //   introduction: '혜화아아아ㅏㄱ',
-    //   like_count: 12,
-    //   location: '혜화관',
-    //   images: [
-    //     {
-    //       url: noticeExImg,
-    //     },
-    //   ],
-    // },
-    // {
-    //   id: 4,
-    //   type: '푸드트럭',
-    //   title: '만해광장 히찬',
-    //   introduction: '만핵',
-    //   like_count: 191,
-    //   location: '만해광장',
-    //   images: [
-    //     {
-    //       url: noticeExImg,
-    //     },
-    //   ],
-    // },
-    // {
-    //   id: 5,
-    //   type: '부스',
-    //   title: '만해 히찬',
-    //   introduction: '만핵ㅇㅇ',
-    //   like_count: 19,
-    //   location: '만해광장',
-    //   images: [
-    //     {
-    //       url: noticeExImg,
-    //     },
-    //   ],
-    // },
+    {
+      id: 1,
+      boothType: {
+        korean: '주점',
+      },
+      title: '명진관호떡',
+      location: '원흥관',
+      introduction: '맛있는 호떡과 다양한 음식',
+      likeCnt: 20,
+      // images: [
+      //   {
+      //     url: noticeExImg,
+      //   },
+      // ],
+    },
+    {
+      id: 2,
+      boothType: {
+        korean: '푸드트럭',
+      },
+      title: '신공공룡',
+      introduction: '으아가각아ㅏㄱ',
+      likeCnt: 20,
+      location: '신공학관',
+      // images: [
+      //   {
+      //     url: noticeExImg,
+      //   },
+      // ],
+    },
+    {
+      id: 3,
+      boothType: {
+        korean: '부스',
+      },
+      title: '혜화아아아ㅏㄱ',
+      location: '혜화관',
+      introduction: '혜화아아아ㅏㄱ',
+      likeCnt: 420,
+      images: [
+        {
+          url: noticeExImg,
+        },
+      ],
+    },
   ]);
 
   // 날짜 할당
@@ -243,6 +225,7 @@ export default function Booth({}) {
 
   const [isToday, setIsToday] = useState(todate);
   const [isBuilding, setIsBuilding] = useState('만해광장');
+  const [isExist, setIsExist] = useState(true);
 
   //todate,isbuilding 패치시키기
   useEffect(() => {
@@ -257,13 +240,14 @@ export default function Booth({}) {
       );
       setBooth(request.data);
     } catch (error) {
+      setIsExist(false);
       console.log('ERROR', error);
     }
   };
 
   //
 
-  return (
+  return isExist ? (
     <BoothContainer>
       <DateContainer>
         {/* api호출 방법 :/api/booths?day={day}&location={location} */}
@@ -310,13 +294,57 @@ export default function Booth({}) {
               boothId={boo.id}
               title={boo.title}
               intro={boo.introduction}
-              type={boo.type}
+              type={boo.boothType.korean}
               locationName={boo.location}
-              likeCount={boo.like_count}
+              likeCount={boo.likeCnt}
+              // boothImage={boo.images[0]}
             />
           );
         })}
       </BoothCardContainer>
+    </BoothContainer>
+  ) : (
+    <BoothContainer>
+      <DateContainer>
+        {/* api호출 방법 :/api/booths?day={day}&location={location} */}
+        {dayArray.map((i) => (
+          <DayBox key={i.id} onClick={() => setIsToday(i.id)}>
+            <BoxDate isActive={isToday === i.id}>{i.date}일</BoxDate>
+            <BoxDay isActive={isToday === i.id}>{i.day}</BoxDay>
+            {isToday === i.id ? <BoxHere layoutId="boxhe" /> : <BoxNotHere />}
+          </DayBox>
+        ))}
+      </DateContainer>
+
+      {/* 지도 이미지 */}
+      <LocationImg alt={isBuilding} src={boothMap} />
+
+      <BuildingContainer>
+        {buildingArray.map((bu) => {
+          return (
+            <BuildingDetail
+              key={bu.id}
+              onClick={() => {
+                setIsBuilding(bu.building);
+              }}
+              isActive={isBuilding === bu.building}
+            >
+              {bu.building}
+              {/* {isBuilding === bu.building ? (
+                <BuildingHere layoutId="buildinghe" />
+              ) : (
+                <BuildingNotHere />
+              )} */}
+            </BuildingDetail>
+          );
+        })}
+      </BuildingContainer>
+      <Stack sx={{ width: '328px', margin: '30px auto' }} spacing={2}>
+        <div className="no-results__text">
+          <img src={boothsearchC} className="noResultImg" />
+          <p>등록되어 있는 부스가 없습니다.</p>
+        </div>
+      </Stack>
     </BoothContainer>
   );
 }
