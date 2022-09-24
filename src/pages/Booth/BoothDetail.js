@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import GuestBook from '../../components/Booth/GuestBook';
 import CommentInput from '../../components/Booth/CommentInput';
-import axios from 'axios';
+import axios from '../../api/axios';
 import {
   SwiperContainer,
   ContentContainer,
@@ -217,7 +217,7 @@ export default function BoothDetail() {
   const getComments = () => {
     const id = params.id;
     axios
-      .get('/api/booths/${id}/comments')
+      .get(`booths/${id}/comments`)
       .then((response) => {
         console.log(response.data);
         setComments(response.data);
