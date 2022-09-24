@@ -128,37 +128,41 @@ const CommentInput = (/*{ onInsert }*/) => {
     [value],
   );
 
-  let detailId = useParams().id;
-  console.log('detailId:', detailId);
-
-  const onSubmit = (e) => {
-    // onInsert(value.writer, value.password, value.content);
-    setValue({
-      writer: value.writer,
-      password: value.password,
-      content: value.content,
-    });
-    console.log(value);
-
-    // e.preventDefault();
-
-    axios
-      .post(`/booths/${detailId}/comments`, {
-        writer: value.writer,
-        password: value.password,
-        content: value.content,
-      })
-      .then(function (response) {})
-      .catch(function (error) {});
-    window.location.reload();
-  };
   const isValidCheck = () => {
-    if (value.writer === '' || value.password === '' || value.content) {
+    console.log(value);
+    if (value.writer === '' || value.password === '' || value.content === '') {
       alert('방명록 정보를 모두 입력해주세요.');
       return false;
     } else {
       return true;
     }
+  };
+
+  let detailId = useParams().id;
+  console.log('detailId:', detailId);
+
+  const onSubmit = (e) => {
+    // onInsert(value.writer, value.password, value.content);
+    if (isValidCheck()) {
+      setValue({
+        writer: value.writer,
+        password: value.password,
+        content: value.content,
+      });
+
+      axios
+        .post(`/booths/${detailId}/comments`, {
+          writer: value.writer,
+          password: value.password,
+          content: value.content,
+        })
+        .then(function (response) {})
+        .catch(function (error) {});
+      window.location.reload();
+    }
+    console.log(value);
+
+    // e.preventDefault();
   };
 
   return (
