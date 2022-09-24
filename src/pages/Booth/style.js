@@ -247,6 +247,7 @@ export const MapLoacation = (key) => {
       );
       break;
     case '대운동장':
+      // okay
       return (
         <>
           <img
@@ -254,8 +255,8 @@ export const MapLoacation = (key) => {
             style={{
               position: 'absolute',
               width: '15%',
-              left: '11rem',
-              bottom: '9rem',
+              right: '240px',
+              bottom: '10rem',
             }}
           />
         </>
@@ -380,14 +381,15 @@ export const MapLoacation = (key) => {
             style={{
               position: 'absolute',
               width: '15%',
-              left: '11rem',
-              bottom: '9rem',
+              right: '231px',
+              bottom: '8rem',
             }}
           />
         </>
       );
       break;
     case '사회과학관':
+      //okay
       return (
         <>
           <img
@@ -395,14 +397,15 @@ export const MapLoacation = (key) => {
             style={{
               position: 'absolute',
               width: '15%',
-              left: '11rem',
-              bottom: '9rem',
+              right: '253px',
+              bottom: '6.5rem',
             }}
           />
         </>
       );
       break;
     case '잉카페앞':
+      // okday
       return (
         <>
           <img
@@ -410,8 +413,8 @@ export const MapLoacation = (key) => {
             style={{
               position: 'absolute',
               width: '15%',
-              left: '11rem',
-              bottom: '9rem',
+              right: '246px',
+              bottom: '8.4rem',
             }}
           />
         </>

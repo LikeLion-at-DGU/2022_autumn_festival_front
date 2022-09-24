@@ -34,8 +34,8 @@ const DayBox = styled.div`
 const BuildingLocationImage = styled.img`
   position: absolute;
   width: 15%;
-  right: 66px;
-  bottom: 6.7rem;
+  right: 253px;
+  bottom: 6.5rem;
 `;
 
 const LocationImg = styled.img`
@@ -265,8 +265,8 @@ export default function Booth({}) {
       {/* 지도 이미지 */}
       <div style={{ position: 'relative' }}>
         <LocationImg alt={isBuilding} src={boothMap} />
-        {MapLoacation(isBuilding)}
-        {/* <BuildingLocationImage src={mainMapIcon} /> */}
+        {/* {MapLoacation(isBuilding)} */}
+        <BuildingLocationImage src={mainMapIcon} />
       </div>
 
       <BuildingContainer>
