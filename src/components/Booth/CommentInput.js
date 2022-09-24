@@ -152,6 +152,14 @@ const CommentInput = (/*{ onInsert }*/) => {
       .catch(function (error) {});
     window.location.reload();
   };
+  const isValidCheck = () => {
+    if (value.writer === '' || value.password === '' || value.content) {
+      alert('방명록 정보를 모두 입력해주세요.');
+      return false;
+    } else {
+      return true;
+    }
+  };
 
   return (
     <CommentInsert className="CommentInsert" method="post">

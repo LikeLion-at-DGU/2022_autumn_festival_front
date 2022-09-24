@@ -50,9 +50,7 @@ export const NoticeCard = styled.div`
   }
 `;
 
-export const NoticeTitle = styled.span`
-  display: inline-block;
-  float: left;
+export const NoticeTitle = styled.div`
   text-align: left;
 `;
 
@@ -61,6 +59,7 @@ export const NoticeWriter = styled.span`
   text-align: left;
   color: #b4b4b4;
   font-size: 12px;
+  margin-right: 5px;
 `;
 
 export const NoticeDate = styled.span`

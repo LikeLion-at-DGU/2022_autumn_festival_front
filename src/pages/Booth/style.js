@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { baseColor } from '../../styles/GlobalStyle';
+import mainMapIcon from '../../assets/img/mainMapIcon.png';
 
 export const SwiperContainer = styled.div`
   width: 370px;
@@ -55,7 +56,7 @@ export const BoothIntro = styled.p`
   margin: 0;
 `;
 
-export const LikeCnt = styled.span`
+export const LikeCount = styled.span`
   font-size: 15px;
   line-height: 36px;
 `;
@@ -226,3 +227,201 @@ export const EditForm = styled.form`
     color: #000;
   }
 `;
+
+export const MapLoacation = (key) => {
+  switch (key) {
+    case '만해광장':
+      //오키
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '15%',
+              right: '86px',
+              bottom: '9rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '대운동장':
+      // okay
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '15%',
+              right: '240px',
+              bottom: '10rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '팔정도':
+      //오키
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '15%',
+              left: '10.7rem',
+              bottom: '9.3rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '명진관':
+      // 오키
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '15%',
+              right: '181px',
+              bottom: '10.7rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '원흥관':
+      //오키
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '15%',
+              right: '92.2px',
+              bottom: '10.8rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '학생회관':
+      //오키
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '15%',
+              right: '53.7px',
+              bottom: '11.2rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '학림관':
+      //okay
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '15%',
+              right: '66px',
+              bottom: '6.7rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '다향관':
+      //okay
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '15%',
+              right: '136px',
+              bottom: '8.5rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '법학관':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '15%',
+              right: '190px',
+              bottom: '8.3rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '혜화관':
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '15%',
+              right: '230px',
+              bottom: '7.4rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '사회과학관':
+      //okay
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '15%',
+              right: '253px',
+              bottom: '6.5rem',
+            }}
+          />
+        </>
+      );
+      break;
+    case '잉카페앞':
+      // okday
+      return (
+        <>
+          <img
+            src={`${mainMapIcon}`}
+            style={{
+              position: 'absolute',
+              width: '15%',
+              right: '246px',
+              bottom: '8.4rem',
+            }}
+          />
+        </>
+      );
+      break;
+
+    default:
+      break;
+  }
+};

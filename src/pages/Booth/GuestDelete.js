@@ -31,9 +31,8 @@ export default function GuestDelete() {
       fontFamily: 'GmarketSansLight',
     },
     success: {
-      fontSize: '10px',
+      fontSize: '16px',
       color: 'lightgreen',
-      marginRight: '60px',
       fontFamily: 'GmarketSansLight',
     },
     not__success: {
@@ -51,7 +50,7 @@ export default function GuestDelete() {
       padding: '5px',
       width: '70px',
 
-      marginTop: '40px',
+      marginTop: '10px',
     },
   };
 
@@ -107,8 +106,6 @@ export default function GuestDelete() {
       <div style={style.boldfont}>댓글 삭제하기</div>
       <div style={style.padding}>
         <div style={style.success}>비밀번호가 확인되었습니다.</div>
-        <span style={style.font}>비밀번호 확인</span>
-        <input style={style.inputbox} />
         <br></br>
         <button
           style={style.previous}

@@ -17,7 +17,7 @@ const Container = styled.section`
 
 const Img = styled.img`
   width: auto;
-  height: 90px;
+  height: 80px;
   margin-right: 10px;
 `;
 
@@ -31,7 +31,7 @@ const Btn = styled(Link)`
   color: white;
   border-radius: 25px;
   padding: 10px 20px;
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 30px;
 `;
 

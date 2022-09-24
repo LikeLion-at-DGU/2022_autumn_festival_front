@@ -31,7 +31,10 @@ export default function GuestBookItem({
         <div className="comment__name">{writer}</div>
         {/* 날짜 format 바꾼 후 출력해야함 */}
         <div className="comment__createdDateTime">
-          {/*{Fomatting()} */} {createdDateTime}
+          {/*{Fomatting()} */} {String(createdDateTime).slice(0, 4)}.
+          {String(createdDateTime).slice(5, 7)}.
+          {String(createdDateTime).slice(8, 10)} &nbsp;
+          {String(createdDateTime).slice(11, 16)}
         </div>
 
         <div className="faPencil" onClick={onClickHandler}>

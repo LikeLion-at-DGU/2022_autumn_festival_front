@@ -11,16 +11,16 @@
 
 .comment__name {
   color: #fd9903;
-  margin-left: 20px;
+  margin-left: 8px;
   text-align: left;
   float: left;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .comment__createdDateTime {
   color: #949494;
   margin-left: 10px;
-  margin-top: 6px;
+  margin-top: 1px;
   text-align: left;
   float: left;
   font-size: 10px;
@@ -28,12 +28,13 @@
 
 .comment__content {
   margin-top: 10px;
-  margin-left: 20px;
+  margin-left: 8px;
   text-align: left;
   font-size: 12px;
 }
 
 .faPencil {
+  font-size: 12px;
   float: right;
   margin-right: 10px;
   border-bottom: solid 1px white;
