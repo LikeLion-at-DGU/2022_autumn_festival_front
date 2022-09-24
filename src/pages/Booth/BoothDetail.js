@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState, useRef, useCallback } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import GuestBook from '../../components/Booth/GuestBook';
+import CommentInput from '../../components/Booth/CommentInput';
+import axios from '../../api/axios';
 import {
   SwiperContainer,
   ContentContainer,
@@ -16,6 +19,8 @@ import {
   IntroContent,
   MenuContainer,
   MenuItem,
+  EditBtn,
+  EditForm,
 } from './style';
 import NoticeExImg from '../../assets/img/noticeExImg.png';
 import MapIconImg from '../../assets/img/mainMapIcon.png';
@@ -28,6 +33,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import CancelIcon from '@mui/icons-material/Cancel';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper';
 import 'swiper/scss';
@@ -37,6 +44,7 @@ import 'swiper/scss/pagination';
 SwiperCore.use([Pagination, Autoplay]);
 
 export default function BoothDetail() {
+  const navigate = useNavigate();
   // 더미 데이터 (추후 수정)
   const [booth, setBooth] = useState({
     title: '명진관 호떡',
@@ -77,11 +85,13 @@ export default function BoothDetail() {
     },
   ]);
   const [lovecnt, setLovecnt] = useState(100);
+  let detailId = useParams().id;
 
   // toggle //
   const [intro, setIntro] = useState(false);
   const [noticeToggle, setNoticeToggle] = useState(false);
   const [love, setLove] = useState(false);
+  const [admin, setAdmin] = useState(false);
 
   // 슬라이드 뷰 //
   const SlideView = booth.images.map((b, idx) => {
@@ -94,7 +104,6 @@ export default function BoothDetail() {
 
   // 좋아요 기능 //
   const HeartView = (tp) => {
-    console.log(tp);
     return love ? (
       <FavoriteIcon
         onClick={() => {
@@ -145,10 +154,88 @@ export default function BoothDetail() {
     return (
       <MenuItem key={idx}>
         <div>{m.name}</div>
-        <div style={{ fontSize: '12px' }}>{m.price}원</div>
+        <div style={{ fontSize: '12px', marginLeft: 'auto' }}>{m.price}원</div>
+        {admin === 'true' ? (
+          <CancelIcon style={{ margin: '4px 1px' }} />
+        ) : (
+          <></>
+        )}
       </MenuItem>
     );
   });
+
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+
+  let query = useQuery();
+  useEffect(() => {
+    console.log(query.get('admin'));
+    setAdmin(query.get('admin'));
+  }, [query]);
+
+  //방명록
+  const [comments, setComments] = useState([
+    {
+      id: 1,
+      writer: '김멋사',
+      password: 'pw1',
+      content: '내용입니다',
+      createdDateTime: '2022-09-23',
+    },
+    {
+      id: 2,
+      writer: '최멋사',
+      password: 'pw2',
+      content: '내용2입니다',
+      createdDateTime: '2022-09-23',
+    },
+  ]);
+
+  // 아이디 시작점 설정해야함
+  const nextId = useRef(3);
+
+  const onInsert = useCallback(
+    (writer, password, content, createdDateTime) => {
+      const comment = {
+        id: nextId.current,
+        writer,
+        password,
+        content,
+        createdDateTime,
+      };
+      console.log(writer);
+      console.log(content);
+      console.log(password);
+      setComments((comments) => comments.concat(comment));
+      nextId.current += 1; //nextId 1씩 더하기
+    },
+    [comments],
+  );
+
+  const params = useParams();
+  const getComments = () => {
+    const id = params.id;
+    axios
+      .get(`booths/${id}/comments`)
+      .then((response) => {
+        console.log(response.data);
+        setComments(response.data);
+      })
+      .catch((error) => console.log('Network Error : ', error));
+  };
+  useEffect(getComments, []);
+  const [mismatchError, setMismatchError] = useState(false);
+  /*삭제 버튼 클릭 이벤트*/
+  const handleClick = useCallback(
+    (id) => {
+      let newComments = comments.filter(
+        (data) => data.id !== id,
+      ); /*버튼 클릭시 id가 다른 데이터만 남겨 놓음*/
+      setComments(newComments);
+    },
+    [comments],
+  );
 
   return (
     <div style={{ marginBottom: '76px' }}>
@@ -176,6 +263,13 @@ export default function BoothDetail() {
         <TypeBtn tp={booth.boothType.korean}>{booth.boothType.korean}</TypeBtn>
         <BoothTitle>{booth.title}</BoothTitle>
         <BoothIntro>{booth.introduction}</BoothIntro>
+        {admin === 'true' ? (
+          <EditBtn onClick={() => navigate(`/booth/${detailId}/edit`)}>
+            수정하기
+          </EditBtn>
+        ) : (
+          <></>
+        )}
         <br />
 
         <div style={{ display: 'flex', alignItem: 'center' }}>
@@ -242,6 +336,15 @@ export default function BoothDetail() {
             <span>메뉴</span>
           </div>
           <IntroLine></IntroLine>
+          {admin === 'true' ? (
+            <EditForm>
+              <input type="text" placeholder="메뉴 이름" />
+              <input type="text" placeholder="가격" />
+              <button type="submit">추가하기</button>
+            </EditForm>
+          ) : (
+            <></>
+          )}
           <MenuContainer>{MenuView}</MenuContainer>
         </IntroContainer>
 
@@ -252,6 +355,21 @@ export default function BoothDetail() {
             <span>방명록</span>
           </div>
           <IntroLine></IntroLine>
+          <CommentInput onInsert={onInsert} />
+
+          {comments.map((comment) => {
+            console.log(comment);
+            return (
+              <GuestBook
+                key={comment.id}
+                id={comment.id}
+                writer={comment.writer}
+                content={comment.content}
+                createdDateTime={comment.createdDateTime}
+                handleClick={handleClick}
+              />
+            );
+          })}
         </IntroContainer>
       </ContentContainer>
     </div>

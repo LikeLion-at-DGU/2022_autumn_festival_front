@@ -10,16 +10,6 @@ import './Boothcard.css';
 import styled from 'styled-components';
 
 import noticeExImg from '../../assets/img/noticeExImg.png';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
-// const boothCard = styled.section`
-//   width: 100%;
-//   display: flex;
-//   align-items: flex-end;
-//   justify-content: center;
-//   border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-//   box-shadow: 0px 4px 4px -4px rgba(0, 0, 0, 0.25);
-// `;
 
 const Location_number = styled.p`
   font-size: 1px;
@@ -34,8 +24,10 @@ const Location_number = styled.p`
 
 const BoothLike = styled.div`
   font-size: 1px;
-  float: right;
-  margin-right: 17px;
+  display: inline;
+  float: left;
+  margin-left: 4rem;
+  margin-top: 5px;
 `;
 
 const BoothLikeNum = styled.div`
@@ -43,8 +35,8 @@ const BoothLikeNum = styled.div`
   position: absolute;
   display: inline;
   float: right;
-  left: 128px;
-  bottom: 68px;
+  left: 8.2rem;
+  bottom: 4.72rem;
 `;
 
 const JoojumBoothBorder = styled.div`
@@ -79,7 +71,7 @@ const FoodBorder = styled.div`
   border-radius: 2px;
   padding: 2px 5px;
   // 부스일때
-  background-color: #89c3c7;
+  background-color: #2676ee;
   //
   margin: 5px;
   color: white;
@@ -89,12 +81,11 @@ const FoodBorder = styled.div`
 // 주점 #FF6B6B
 // 받아서 다른 이름일때 디른 색깔
 export default function Boothcard({
-  key,
+  boothId,
   title,
   intro,
   type,
   locationName,
-  locationNum,
   likeCount,
   nowBuilding,
   nowDay,
@@ -103,13 +94,10 @@ export default function Boothcard({
   //리스트에 요소 있는지 찾기
   // 만약 boothDay리스트에 nowDay와 동일한게 있다면 true반환 아니면 false
 
-  console.log('부스 날짜 : ' + boothDay[0] + '선택된 날짜' + nowDay);
-  console.log(boothDay.includes(nowDay));
-
   return boothDay.includes(nowDay) ? (
     nowBuilding === locationName ? (
       <Card
-        sx={{ maxWidth: 145 }}
+        sx={{ width: '130', margin: '11.6px' }}
         className="cardCss"
         style={{
           fontFamily: 'GmarketSansMedium',
@@ -118,7 +106,7 @@ export default function Boothcard({
           flexDirection: 'row',
         }}
       >
-        <CardActionArea>
+        <CardActionArea href={`/booth/${boothId}`}>
           {/* type에 따라 다른 색 뜨게하기  */}
 
           {type === '주점' ? (
@@ -160,23 +148,25 @@ export default function Boothcard({
             <LocationOnIcon
               style={{ fontSize: '10px', position: 'absolute', left: '8px' }}
             />
-            {locationName} {locationNum}번
+            {locationName}
           </Location_number>
           <BoothLike>
-            <FavoriteBorderIcon sx={{ width: '10px' }} />
-            <BoothLikeNum>{likeCount}</BoothLikeNum>
+            <FavoriteBorderIcon
+              sx={{ fontSize: '10px', position: 'absolute', left: '100px' }}
+            />
+            {likeCount}
           </BoothLike>
           <CardContent
-            style={{ marginTop: '10px', fontFamily: 'GmarketSansMedium' }}
+            style={{ marginTop: '15px', fontFamily: 'GmarketSansMedium' }}
           >
             <Typography
               gutterBottom
               variant="h4"
               component="div"
               style={{
-                fontSize: '17px',
-                fontFamily: 'GmarketSansMedium',
-                fontWeight: '700',
+                fontSize: '15px',
+                fontFamily: 'GmarketSansBold',
+                fontWeight: '800',
               }}
             >
               {/* booth title들고오기 */}
@@ -191,9 +181,9 @@ export default function Boothcard({
         </CardActionArea>
       </Card>
     ) : (
-      <span></span>
+      ''
     )
   ) : (
-    <span></span>
+    ''
   );
 }

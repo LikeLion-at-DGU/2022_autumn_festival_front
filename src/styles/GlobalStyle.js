@@ -42,6 +42,11 @@ export const GlobalStyle = createGlobalStyle`
     margin-bottom: 60px;
   }
 
+  canvas{
+    margin-top: -130px;
+    height: 400px;
+  }
+
   @media only screen and (min-width: 200px) { //375px 너무 작아서 수정했음
     .App {
       width: 375px;
@@ -73,13 +78,4 @@ export const GlobalStyle = createGlobalStyle`
   .swiper-pagination-bullet-active {
     background-color: ${baseColor};
   }
-
-  // 네브바 이슈 해결 중
-  // .nav {
-  //   z-index: 1;
-  //   translate3d(0, 0, 0);
-  // }
-  // .swiper-slide > img {
-  //   z-index: -3;
-  // }
 `;

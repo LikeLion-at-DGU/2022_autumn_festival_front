@@ -19,6 +19,8 @@ import {
 } from './style';
 import DefaultImage from '../../assets/img/noticeDefaultImg.png';
 
+import axios from '../../api/axios';
+
 export default function Notice() {
   const category = ['전체', '주요', '축제', '이벤트', '기타'];
   const [option, setOption] = useState('전체');
@@ -150,6 +152,19 @@ export default function Notice() {
   useEffect(() => {
     pageInfo.jump(1);
   }, [option]);
+
+  // get 공지사항 리스트 api //
+  useEffect(() => {
+    axios
+      .get(`notifications`)
+      .then((res) => {
+        console.log(res.data);
+        setNotices(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
   return (
     <>

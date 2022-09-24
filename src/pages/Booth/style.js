@@ -101,6 +101,7 @@ export const BoothNotificationOpen = styled.div`
   flex-direction: column;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
+  cursor: pointer;
 
   & > .bar {
     display: flex;
@@ -179,5 +180,46 @@ export const MenuItem = styled.div`
     font-size: 16px;
     font-weight: 500;
     margin-top: 8px;
+  }
+`;
+
+// 부스 디테일 수정하기 //
+export const EditBtn = styled.button`
+  width: 89px;
+  height: 29px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  background-color: ${baseColor};
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 15px;
+  line-height: 130%;
+  font-weight: 700;
+  border: none;
+  margin-top: 5px;
+`;
+
+export const EditForm = styled.form`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 7px;
+
+  & > input {
+    width: 108px;
+    font-size: 12px;
+    font-weight: 300;
+    height: 23px;
+    background: rgba(217, 217, 217, 0.2);
+    border-radius: 4px;
+    border: none;
+    padding-left: 10px;
+    color: #fff;
+  }
+
+  & > button {
+    width: 75px;
+    background-color: #fff;
+    border: none;
+    border-radius: 10px;
   }
 `;
