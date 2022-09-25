@@ -122,7 +122,7 @@ export default function BoothDetail() {
         setBooth({
           ...booth,
           isLike: false,
-          likeCnt: booth.likeCnt - 1,
+          likeCnt: booth.likeCnt + 1,
         });
       })
       .catch((e) => {
@@ -135,7 +135,7 @@ export default function BoothDetail() {
       setBooth({
         ...booth,
         isLike: true,
-        likeCnt: booth.likeCnt + 1,
+        likeCnt: booth.likeCnt - 1,
       });
     });
   };
