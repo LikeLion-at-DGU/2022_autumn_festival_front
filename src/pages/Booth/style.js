@@ -450,3 +450,11 @@ export const MapLoacation = (key) => {
       break;
   }
 };
+
+export const Paginations = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 0 90px;
+  margin-top: 18px;
+  margin-bottom: 68px;
+`;
