@@ -332,17 +332,15 @@ const BoxSubTitle = styled.h6`
 function TopBoothSection() {
     const [booth, setData] = useState([]);
     const navigate = useNavigate();
+    const day = new Date();
+    const todate = day.getDate() === 28 ? 1 : day.getDate() === 29 ? 1 : day.getDate() === 30 ? 1 : 0;
     const fetchBooth = async () => {
         try {
           const request = await axios.get(
             `/booths/top5`,
           );
-          if (request.data === null || [undefined, undefined, undefined, undefined, undefined]){
-            setData(null)
-          }else{
             const data = [request.data[3], request.data[1], request.data[0], request.data[2], request.data[4]]
             setData(data);
-          }
         } catch (error) {
           console.log('ERROR', error);
         }
@@ -366,7 +364,7 @@ function TopBoothSection() {
     return(
         <Container>
             <Img src={TitleImg} />
-            {booth === null ? 
+            {todate === 0 ? 
             <BoothSection>
                 <NoBox src={NoImg} />
             </BoothSection>
@@ -378,7 +376,10 @@ function TopBoothSection() {
                 {booth?.map((i, v) => {
                 return (
                     <Box onClick={()=>onClick(i.id, v+1)} key={i.id} layoutId={i.id + ""}>
-                        <BoxImg src={ExImg}/>
+                        <BoxImg src={
+                            i.images[0]
+                            ? 'http://192.168.0.194:8080' + i.images[0]['storedFilePath']
+                            : ExImg}/>
                         <BoxInfo>
                             <BoxInfoHeader>
                                 <BoxInfoFirstItem>
@@ -407,7 +408,10 @@ function TopBoothSection() {
                 {booth?.map((i, v) => {
                 return (
                     <Box onClick={()=>onClick(i.id, v+1)} key={i.id} layoutId={i.id + ""}>
-                        <BoxImg src={ExImg}/>
+                        <BoxImg src={
+                            i.images[0]
+                            ? 'http://192.168.0.194:8080' + i.images[0]['storedFilePath']
+                            : ExImg}/>
                         <BoxInfo>
                             <BoxInfoHeader>
                                 <BoxInfoFirstItem>
@@ -437,7 +441,10 @@ function TopBoothSection() {
                 {booth?.map((i, v) => {
                 return (
                     <Box onClick={()=>onClick(i.id, v+1)} key={i.id} layoutId={i.id + ""}>
-                        <BoxImg src={ExImg}/>
+                        <BoxImg src={
+                            i.images[0]
+                            ? 'http://192.168.0.194:8080' + i.images[0]['storedFilePath']
+                            : ExImg}/>
                         <BoxInfo>
                             <BoxInfoHeader>
                                 <BoxInfoFirstItem>
@@ -466,7 +473,10 @@ function TopBoothSection() {
                 {booth?.map((i, v) => {
                 return (
                     <Box onClick={()=>onClick(i.id, v+1)} key={i.id} layoutId={i.id + ""}>
-                        <BoxImg src={ExImg}/>
+                        <BoxImg src={
+                            i.images[0]
+                            ? 'http://192.168.0.194:8080' + i.images[0]['storedFilePath']
+                            : ExImg}/>
                         <BoxInfo>
                             <BoxInfoHeader>
                                 <BoxInfoFirstItem>
@@ -494,7 +504,10 @@ function TopBoothSection() {
                 {booth?.map((i, v) => {
                 return (
                     <Box onClick={()=>onClick(i.id, v+1)} key={i.id} layoutId={i.id + ""}>
-                        <BoxImg src={ExImg}/>
+                        <BoxImg src={
+                            i.images[0]
+                            ? 'http://192.168.0.194:8080' + i.images[0]['storedFilePath']
+                            : ExImg}/>
                         <BoxInfo>
                             <BoxInfoHeader>
                                 <BoxInfoFirstItem>

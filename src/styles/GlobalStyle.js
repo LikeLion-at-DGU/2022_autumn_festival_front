@@ -43,7 +43,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   canvas{
-    margin-top: -130px;
     height: 400px;
   }
 
