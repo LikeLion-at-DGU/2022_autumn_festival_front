@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import usePagination from '../../hooks/usePagination';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import CommentInput from '../../components/Booth/CommentInput';
+import styled from 'styled-components';
 import BoothMenuAdd from '../../components/Booth/BoothMenuAdd';
 import axios from '../../api/axios';
 import {
@@ -101,7 +102,6 @@ export default function BoothDetail() {
         return (
           <SwiperSlide key={idx}>
             <img
-              // 'http://192.168.0.194:8080' + boothImage['storedFilePath']
               src={`http://192.168.0.194:8080${b.storedFilePath}`}
               style={{ width: '325px', borderRadius: '2px' }}
             />
@@ -279,7 +279,6 @@ export default function BoothDetail() {
 
   useEffect(() => {
     getComments();
-    fetchBoothDetail();
     fetchMenu();
   }, []);
 
@@ -303,6 +302,9 @@ export default function BoothDetail() {
       </PageNum>
     );
   });
+  useEffect(() => {
+    fetchBoothDetail();
+  }, [booth.isLike, booth.likeCnt]);
 
   return (
     <>
@@ -310,7 +312,11 @@ export default function BoothDetail() {
         <div style={{ marginBottom: '76px' }}>
           <UpTitle
             title={`${booth.boothType} 홈페이지`}
-            mapleLeft={booth.boothType === '푸드트럭' ? '30px' : '57px'}
+            mapleLeft={
+              booth.boothType === '푸드트럭' || booth.boothType === '플리마켓'
+                ? '30px'
+                : '57px'
+            }
           />
 
           {isLoading ? (
