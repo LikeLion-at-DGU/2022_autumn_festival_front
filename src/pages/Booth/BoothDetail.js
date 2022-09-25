@@ -252,8 +252,8 @@ export default function BoothDetail() {
       {isExist ? (
         <div style={{ marginBottom: '76px' }}>
           <UpTitle
-            title={`${booth.type} 홈페이지`}
-            mapleLeft={booth.type === '푸드트럭' ? '30px' : '57px'}
+            title={`${booth.boothType} 홈페이지`}
+            mapleLeft={booth.boothType === '푸드트럭' ? '30px' : '57px'}
           />
 
           {isLoading ? (
@@ -289,7 +289,7 @@ export default function BoothDetail() {
 
               {/* 부스 내용 */}
               <ContentContainer>
-                <TypeBtn tp={booth.type}>{booth.type}</TypeBtn>
+                <TypeBtn tp={booth.boothType}>{booth.boothType}</TypeBtn>
                 <BoothTitle>{booth.title}</BoothTitle>
                 <BoothIntro>{booth.introduction}</BoothIntro>
                 {admin === 'true' ? (
@@ -302,7 +302,7 @@ export default function BoothDetail() {
                 <br />
 
                 <div style={{ display: 'flex', alignItem: 'center' }}>
-                  {HeartView(booth.type)}
+                  {HeartView(booth.boothType)}
                   &nbsp;
                   <LikeCount>{booth.likeCnt}</LikeCount>
                 </div>
