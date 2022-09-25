@@ -101,6 +101,7 @@ export default function BoothDetail() {
       });
   };
 
+
   const DownLike = () => {
     axios.delete(`booths/${detailId}/likes`, {
       withCredentials: true,
