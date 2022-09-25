@@ -63,30 +63,21 @@ export default function BoothDetail() {
   const [isLoading, setIsLoading] = useState(false);
 
   // 슬라이드 뷰 //
-  console.log('외부', booth.images);
-
-  const SlideView = booth.images
-    ? booth.images.map((b, idx) => {
-        console.log('이미지 : ' + b.storedFilePath);
-        return (
-          <SwiperSlide key={idx}>
-            <img
-              src={`http://192.168.0.194:8080${b.storedFilePath}`}
-              style={{ width: '325px', borderRadius: '2px' }}
-            />
-          </SwiperSlide>
-        );
-      })
-    : () => {
-        return (
-          <SwiperSlide>
-            <img
-              src={NoticeExImg}
-              style={{ width: '325px', borderRadius: '2px' }}
-            />
-          </SwiperSlide>
-        );
-      };
+  console.log(booth.images);
+  const SlideView =
+    Array.isArray(booth.images) && booth.images.length > 0
+      ? booth.images.map((b, idx) => {
+          console.log('이미지 : ' + b.storedFilePath);
+          return (
+            <SwiperSlide key={idx}>
+              <img
+                src={`http://192.168.0.194:8080${b.storedFilePath}`}
+                style={{ width: '325px', borderRadius: '2px' }}
+              />
+            </SwiperSlide>
+          );
+        })
+      : () => {};
 
   // 좋아요 up, down //
   const UpLike = async () => {
@@ -266,7 +257,16 @@ export default function BoothDetail() {
                   autoplay={{ delay: 4200 }}
                   style={{ height: 360 }}
                 >
-                  {SlideView}
+                  {Array.isArray(booth.images) && booth.images.length > 0 ? (
+                    SlideView
+                  ) : (
+                    <SwiperSlide>
+                      <img
+                        src={NoticeExImg}
+                        style={{ width: '325px', borderRadius: '2px' }}
+                      />
+                    </SwiperSlide>
+                  )}
                 </Swiper>
               </SwiperContainer>
 
