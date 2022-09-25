@@ -62,13 +62,10 @@ export default function BoothDetail() {
       '맛있는 호떡 먹고 가세요~맛있는 호떡 먹고 가세요 피자, 슈크림, 등 다양한 맛을 판매중 입니다.~<br/>코로나 19를 딛고 다시 힘차게 오픈하게 된 저희 불닭볶음밥 전문점, 원조 「교테전 불닭볶음밥 식당」을 찾아주신 고객님들 환영합니다 *^^*<br/><br/>기본적으로 치즈가 듬뿍 올라가게 되어 맵지가 않으니 매운 음식을 마다하시는 분들도 맛나게 드실 수 있습니다.<br/>특히, 요 근래 유행하는 콘치즈를 얹어 먹으면 아이들에게도 인기만점! 한끼 식사거리가 될 수 있답니다.<br/><br/>여러분들께서도 공강시간에 배고프실 때, 든든히 먹을 수 있는 밥을 한끼 찾고 계시다면 우리 원조 「교테전 불닭볶음밥 식당」을 찾아주시기 바랍니다.',
     images: [
       {
-        url: NoticeExImg,
-      },
-      {
-        url: NoticeExImg,
-      },
-      {
-        url: NoticeExImg,
+        id: 1,
+        originFileName: 'dd',
+        serverFileName: 'dd',
+        storedFilePath: 'dd',
       },
     ],
     isLike: false,
@@ -93,13 +90,27 @@ export default function BoothDetail() {
   // 슬라이드 뷰 //
   console.log('외부', booth.images);
 
-  // const SlideView = booth.images.map((b, idx) => {
-  //   return (
-  //     <SwiperSlide key={idx}>
-  //       <img src={b.url} style={{ width: '325px', borderRadius: '2px' }} />
-  //     </SwiperSlide>
-  //   );
-  // });
+  const SlideView = booth.images
+    ? booth.images.map((b, idx) => {
+        return (
+          <SwiperSlide key={idx}>
+            <img
+              src={`http://192.168.0.194:8080/${b.images.storedFilePath}`}
+              style={{ width: '325px', borderRadius: '2px' }}
+            />
+          </SwiperSlide>
+        );
+      })
+    : () => {
+        return (
+          <SwiperSlide>
+            <img
+              src={NoticeExImg}
+              style={{ width: '325px', borderRadius: '2px' }}
+            />
+          </SwiperSlide>
+        );
+      };
 
   // 좋아요 up, down //
   const UpLike = async () => {
@@ -158,9 +169,9 @@ export default function BoothDetail() {
         setBooth(res.data);
         console.log(res.data);
         setIsLoading(true);
-        if (res.data.images === null) {
-          setBooth({ ...booth, images: [] });
-        }
+        // if (res.data.images === null) {
+        //   setBooth({ ...booth, images: [] });
+        // }
       })
       .catch((e) => {
         setIsExist(false);
@@ -286,22 +297,7 @@ export default function BoothDetail() {
                   autoplay={{ delay: 4200 }}
                   style={{ height: 360 }}
                 >
-                  {booth.images ? (
-                    // SlideView
-                    <SwiperSlide>
-                      <img
-                        src={NoticeExImg}
-                        style={{ width: '325px', borderRadius: '2px' }}
-                      />
-                    </SwiperSlide>
-                  ) : (
-                    <SwiperSlide>
-                      <img
-                        src={NoticeExImg}
-                        style={{ width: '325px', borderRadius: '2px' }}
-                      />
-                    </SwiperSlide>
-                  )}
+                  {SlideView()}
                 </Swiper>
               </SwiperContainer>
 
