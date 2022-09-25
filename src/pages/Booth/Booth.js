@@ -249,6 +249,7 @@ export default function Booth({}) {
 
       <BoothCardContainer>
         {booth.map((boo) => {
+          console.log(boo);
           return (
             <Boothcard
               key={boo.id}
@@ -258,7 +259,7 @@ export default function Booth({}) {
               type={boo.boothType}
               locationName={boo.location}
               likeCount={boo.likeCnt}
-              boothImage={boo.images[0].storedFilePath}
+              boothImage={boo.images[0]}
             />
           );
         })}

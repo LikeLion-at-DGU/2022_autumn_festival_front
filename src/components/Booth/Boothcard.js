@@ -170,7 +170,9 @@ export default function Boothcard({
           component="img"
           height="105"
           image={
-            boothImage ? 'http://192.168.0.194:8080' + boothImage : noticeExImg
+            boothImage
+              ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+              : noticeExImg
           }
           alt="부스 이미지"
         />
