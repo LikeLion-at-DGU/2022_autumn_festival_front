@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { baseColor } from '../../styles/GlobalStyle';
 import mainMapIcon from '../../assets/img/mainMapIcon.png';
+import './Booth.css';
 
 export const SwiperContainer = styled.div`
   width: 370px;
@@ -236,6 +237,7 @@ export const MapLoacation = (key) => {
         <>
           <img
             src={`${mainMapIcon}`}
+            className="fadeIn"
             style={{
               position: 'absolute',
               transition: '0.5s all',
@@ -253,6 +255,7 @@ export const MapLoacation = (key) => {
         <>
           <img
             src={`${mainMapIcon}`}
+            className="fadeIn"
             style={{
               position: 'absolute',
               transition: '0.5s all',
@@ -270,6 +273,7 @@ export const MapLoacation = (key) => {
         <>
           <img
             src={`${mainMapIcon}`}
+            className="fadeIn"
             style={{
               position: 'absolute',
               transition: '0.5s all',
@@ -287,6 +291,7 @@ export const MapLoacation = (key) => {
         <>
           <img
             src={`${mainMapIcon}`}
+            className="fadeIn"
             style={{
               position: 'absolute',
               transition: '0.5s all',
@@ -304,6 +309,7 @@ export const MapLoacation = (key) => {
         <>
           <img
             src={`${mainMapIcon}`}
+            className="fadeIn"
             style={{
               position: 'absolute',
               transition: '0.5s all',
@@ -321,6 +327,7 @@ export const MapLoacation = (key) => {
         <>
           <img
             src={`${mainMapIcon}`}
+            className="fadeIn"
             style={{
               position: 'absolute',
               transition: '0.5s all',
@@ -338,6 +345,7 @@ export const MapLoacation = (key) => {
         <>
           <img
             src={`${mainMapIcon}`}
+            className="fadeIn"
             style={{
               position: 'absolute',
               transition: '0.5s all',
@@ -355,6 +363,7 @@ export const MapLoacation = (key) => {
         <>
           <img
             src={`${mainMapIcon}`}
+            className="fadeIn"
             style={{
               position: 'absolute',
               transition: '0.5s all',
@@ -371,6 +380,7 @@ export const MapLoacation = (key) => {
         <>
           <img
             src={`${mainMapIcon}`}
+            className="fadeIn"
             style={{
               position: 'absolute',
               transition: '0.5s all',
@@ -387,6 +397,7 @@ export const MapLoacation = (key) => {
         <>
           <img
             src={`${mainMapIcon}`}
+            className="fadeIn"
             style={{
               position: 'absolute',
               transition: '0.5s all',
@@ -404,6 +415,7 @@ export const MapLoacation = (key) => {
         <>
           <img
             src={`${mainMapIcon}`}
+            className="fadeIn"
             style={{
               position: 'absolute',
               transition: '0.5s all',
@@ -421,6 +433,7 @@ export const MapLoacation = (key) => {
         <>
           <img
             src={`${mainMapIcon}`}
+            className="fadeIn"
             style={{
               position: 'absolute',
               transition: '0.5s all',

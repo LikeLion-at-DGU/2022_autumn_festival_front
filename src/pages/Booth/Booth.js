@@ -227,7 +227,7 @@ export default function Booth({}) {
         <>
           {/* 지도 이미지 */}
           <div style={{ position: 'relative' }}>
-            <LocationImg alt={isBuilding} src={boothMap} />
+            <LocationImg alt={isBuilding} src={boothMap} className="fadeIn" />
             {MapLoacation(isBuilding)}
             {/* <BuildingLocationImage src={mainMapIcon} /> */}
           </div>
