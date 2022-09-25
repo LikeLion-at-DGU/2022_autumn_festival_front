@@ -92,10 +92,12 @@ export default function BoothDetail() {
 
   const SlideView = booth.images
     ? booth.images.map((b, idx) => {
+        console.log('이미지 : ' + b.storedFilePath);
         return (
           <SwiperSlide key={idx}>
             <img
-              src={`http://192.168.0.194:8080/${b.images.storedFilePath}`}
+              // 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+              src={`http://192.168.0.194:8080${b.storedFilePath}`}
               style={{ width: '325px', borderRadius: '2px' }}
             />
           </SwiperSlide>
@@ -297,7 +299,7 @@ export default function BoothDetail() {
                   autoplay={{ delay: 4200 }}
                   style={{ height: 360 }}
                 >
-                  {SlideView()}
+                  {SlideView}
                 </Swiper>
               </SwiperContainer>
 
