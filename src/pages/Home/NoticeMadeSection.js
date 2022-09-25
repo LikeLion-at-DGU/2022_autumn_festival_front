@@ -5,7 +5,6 @@ import MImg from '../../assets/img/mainFooterM.png';
 import { Link } from 'react-router-dom';
 
 const Container = styled.section`
-  border: 1px solid white;
   width: auto;
   height: 73vh;
   box-sizing: border-box;

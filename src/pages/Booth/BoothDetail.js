@@ -53,7 +53,7 @@ export default function BoothDetail() {
   const [booth, setBooth] = useState({
     title: '명진관 호떡',
     introduction: '맛있는 호떡과 다양한 음식',
-    type: '주점',
+    boothType: '주점',
     location: '명진관 9번',
     notice:
       '16일 우천시에도 운영합니다! <br/>*교공 하트키링 판매중(3000원, 한정수량)<br/><br/>[운영 시간] 10:00 - 16:00 (품절시 마감 공지)<br/>[운영 위치] 교육관 7번 부스<br/><br/>*교육관 생각보다 안멀어요!! (포관쪽에서 5분 소요) 드셔보세요ヾ(•ω•`)o*<br/><br/>**주인장의 꿀팁: 콘치즈랑 팝콘치킨을 모두 추가한 게 제일 맛있습니다(메인 메뉴임)**',
@@ -62,13 +62,10 @@ export default function BoothDetail() {
       '맛있는 호떡 먹고 가세요~맛있는 호떡 먹고 가세요 피자, 슈크림, 등 다양한 맛을 판매중 입니다.~<br/>코로나 19를 딛고 다시 힘차게 오픈하게 된 저희 불닭볶음밥 전문점, 원조 「교테전 불닭볶음밥 식당」을 찾아주신 고객님들 환영합니다 *^^*<br/><br/>기본적으로 치즈가 듬뿍 올라가게 되어 맵지가 않으니 매운 음식을 마다하시는 분들도 맛나게 드실 수 있습니다.<br/>특히, 요 근래 유행하는 콘치즈를 얹어 먹으면 아이들에게도 인기만점! 한끼 식사거리가 될 수 있답니다.<br/><br/>여러분들께서도 공강시간에 배고프실 때, 든든히 먹을 수 있는 밥을 한끼 찾고 계시다면 우리 원조 「교테전 불닭볶음밥 식당」을 찾아주시기 바랍니다.',
     images: [
       {
-        url: NoticeExImg,
-      },
-      {
-        url: NoticeExImg,
-      },
-      {
-        url: NoticeExImg,
+        id: 1,
+        originFileName: 'dd',
+        serverFileName: 'dd',
+        storedFilePath: 'dd',
       },
     ],
     isLike: false,
@@ -93,24 +90,62 @@ export default function BoothDetail() {
   // 슬라이드 뷰 //
   console.log('외부', booth.images);
 
-  // const SlideView = booth.images.map((b, idx) => {
-  //   return (
-  //     <SwiperSlide key={idx}>
-  //       <img src={b.url} style={{ width: '325px', borderRadius: '2px' }} />
-  //     </SwiperSlide>
-  //   );
-  // });
+  const SlideView = booth.images
+    ? booth.images.map((b, idx) => {
+        console.log('이미지 : ' + b.storedFilePath);
+        return (
+          <SwiperSlide key={idx}>
+            <img
+              // 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+              src={`http://192.168.0.194:8080${b.storedFilePath}`}
+              style={{ width: '325px', borderRadius: '2px' }}
+            />
+          </SwiperSlide>
+        );
+      })
+    : () => {
+        return (
+          <SwiperSlide>
+            <img
+              src={NoticeExImg}
+              style={{ width: '325px', borderRadius: '2px' }}
+            />
+          </SwiperSlide>
+        );
+      };
+
+  // 좋아요 up, down //
+  const UpLike = async () => {
+    await axios
+      .post(`booths/${detailId}/likes`)
+      .then((res) => {
+        setBooth({
+          ...booth,
+          isLike: false,
+          likeCnt: booth.likeCnt - 1,
+        });
+      })
+      .catch((e) => {
+        console.log('좋아요 실패');
+      });
+  };
+
+  const DownLike = async () => {
+    await axios.delete(`booths/${detailId}/likes`).then((res) => {
+      setBooth({
+        ...booth,
+        isLike: true,
+        likeCnt: booth.likeCnt + 1,
+      });
+    });
+  };
 
   // 좋아요 기능 //
   const HeartView = (tp) => {
     return booth.isLike ? (
       <FavoriteIcon
         onClick={() => {
-          setBooth({
-            ...booth,
-            isLike: false,
-            likeCnt: booth.likeCnt - 1,
-          });
+          DownLike();
         }}
         style={{
           fontSize: '28px',
@@ -122,11 +157,7 @@ export default function BoothDetail() {
     ) : (
       <FavoriteBorderIcon
         onClick={() => {
-          setBooth({
-            ...booth,
-            isLike: true,
-            likeCnt: booth.likeCnt + 1,
-          });
+          UpLike();
         }}
         style={{ fontSize: '28px' }}
       />
@@ -140,9 +171,9 @@ export default function BoothDetail() {
         setBooth(res.data);
         console.log(res.data);
         setIsLoading(true);
-        if (res.data.images === null) {
-          setBooth({ ...booth, images: [] });
-        }
+        // if (res.data.images === null) {
+        //   setBooth({ ...booth, images: [] });
+        // }
       })
       .catch((e) => {
         setIsExist(false);
@@ -252,8 +283,8 @@ export default function BoothDetail() {
       {isExist ? (
         <div style={{ marginBottom: '76px' }}>
           <UpTitle
-            title={`${booth.type} 홈페이지`}
-            mapleLeft={booth.type === '푸드트럭' ? '30px' : '57px'}
+            title={`${booth.boothType} 홈페이지`}
+            mapleLeft={booth.boothType === '푸드트럭' ? '30px' : '57px'}
           />
 
           {isLoading ? (
@@ -268,28 +299,13 @@ export default function BoothDetail() {
                   autoplay={{ delay: 4200 }}
                   style={{ height: 360 }}
                 >
-                  {booth.images ? (
-                    // SlideView
-                    <SwiperSlide>
-                      <img
-                        src={NoticeExImg}
-                        style={{ width: '325px', borderRadius: '2px' }}
-                      />
-                    </SwiperSlide>
-                  ) : (
-                    <SwiperSlide>
-                      <img
-                        src={NoticeExImg}
-                        style={{ width: '325px', borderRadius: '2px' }}
-                      />
-                    </SwiperSlide>
-                  )}
+                  {SlideView}
                 </Swiper>
               </SwiperContainer>
 
               {/* 부스 내용 */}
               <ContentContainer>
-                <TypeBtn tp={booth.type}>{booth.type}</TypeBtn>
+                <TypeBtn tp={booth.boothType}>{booth.boothType}</TypeBtn>
                 <BoothTitle>{booth.title}</BoothTitle>
                 <BoothIntro>{booth.introduction}</BoothIntro>
                 {admin === 'true' ? (
@@ -302,7 +318,7 @@ export default function BoothDetail() {
                 <br />
 
                 <div style={{ display: 'flex', alignItem: 'center' }}>
-                  {HeartView(booth.type)}
+                  {HeartView(booth.boothType)}
                   &nbsp;
                   <LikeCount>{booth.likeCnt}</LikeCount>
                 </div>

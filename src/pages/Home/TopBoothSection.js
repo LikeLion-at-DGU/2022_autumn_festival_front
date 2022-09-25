@@ -1,19 +1,23 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
-
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import axios from '../../api/axios';
 import TitleImg from '../../assets/img/mainTop.png';
+import NoImg from '../../assets/img/mainNoBooth.png';
+import ExImg from '../../assets/img/noticeExImg.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.section`
-  border: 1px solid white;
   width: auto;
-  height: 73vh;
+  height: 70vh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: -100px;
 `;
 
 const Img = styled.img`
@@ -43,20 +47,26 @@ const BoothSection = styled(motion.div)`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+    margin-bottom: 35px;
 `
 
 const Box = styled(motion.div)`
   width: 150px;
-  height: 200px;
+  height: 210px;
   background-color: rgba(255, 255, 255, 1);
-  border-radius: 40px;
+  border-radius: 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   color:black;
-  font-size: 28px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
 `;
+
+const NoBox = styled.img`
+    width: 150px;
+  height: 210px;
+  border-radius: 20px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
+`
 
 const BoxSection1 = styled(motion.div)`
     display: flex;
@@ -161,7 +171,6 @@ const BoxSection3 = styled(motion.div)`
         left:40px;
         top:-10px;
         scale: 0.8;
-
     }
     div:nth-child(3){
         z-index: 3;
@@ -266,122 +275,251 @@ const BoxSection5 = styled(motion.div)`
     }
 `
 
-const box = {
-    entry: (back) => ({
-        x: back ? -100 : 100,
-        opacity: 0,
-        scale: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
-    exit: (back) => ({ x: back ? 100 : -100, opacity: 0, scale: 0, transition: { duration: 0.5 } })
-};
+const BoxImg = styled.img`
+    height: 50%;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+`
+
+const BoxInfo = styled.section`
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const BoxInfoHeader = styled.section`
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-top: 8px;
+`
+const BoxInfoFirstItem = styled.section`
+    color : #FD9903;
+`
+
+const PinIcon = styled(FontAwesomeIcon)`
+    margin-right: 3px;
+`
+
+const BoxInfoSecondItem = styled.section`
+
+`
+
+const HeartIcon = styled(FontAwesomeIcon)`
+    color: #FD9903;
+    margin-right: 3px;
+`
+
+const BoxTitle = styled.h1`
+    font-size: 17px;
+    margin-top: 13px;
+    width: 90%;
+`
+
+const BoxSubTitle = styled.h6`
+    font-family: 'GmarketSansLight';
+    font-size: 11px;
+    margin-top: -15px;
+    width: 90%;
+`
+
 
 function TopBoothSection() {
+    const [booth, setData] = useState([]);
+    const navigate = useNavigate();
+    const fetchBooth = async () => {
+        try {
+          const request = await axios.get(
+            `/booths/top5`,
+          );
+          if (request.data === null || [undefined, undefined, undefined, undefined, undefined]){
+            setData(null)
+          }else{
+            const data = [request.data[3], request.data[1], request.data[0], request.data[2], request.data[4]]
+            setData(data);
+          }
+        } catch (error) {
+          console.log('ERROR', error);
+        }
+      };
 
-    const boxWrapper = useRef();
-    /* const [visible, setVisible] = useState(1);
-    const [back, setBack] = useState(false);
-    const nextPlease = () => {
-        setBack(false);
-        setVisible(prev => prev === 10 ? 10 : prev+1);
-    }
-    const prevPlease = () => {
-        setBack(true);
-        setVisible((prev) => (prev === 1 ? 1 : prev-1));
-    } */
-
-    const check = (e) => {
-        console.log(e);
-    }
-
-    window.addEventListener("click", check)
+    console.log(booth);
+    useEffect(()=>{
+        fetchBooth();
+    },[])
 
     const [visible, setVisible] = useState(3);
 
-    const nextPlease = () => {
-        setVisible(prev => prev === 5 ? 5 : prev+1);
+    const onClick = (i, v) => {
+        if(visible === v){
+            navigate(`/booth/${i}`)
+        }else{
+            setVisible(v);
+        }
     }
-    const prevPlease = () => {
-        setVisible((prev) => (prev === 1 ? 1 : prev-1));
-    }
 
-
-
-    console.log(visible)
     return(
         <Container>
             <Img src={TitleImg} />
-            <BoothSection id = "boxwrapper">
-                {visible === 1 ?
-                /* 1 */
-                <BoxSection1>
-                    <Box layoutId="a">1</Box>
-                    <Box layoutId="b">2</Box>
-                    <Box layoutId="c">3</Box>
-                    <Box layoutId="d">4</Box>
-                    <Box layoutId="e">5</Box>
-                </BoxSection1> : 
-                visible === 2 ? 
-                /* 2 */
-                <BoxSection2>
-                    <Box layoutId="a">1</Box>
-                    <Box layoutId="b">2</Box>
-                    <Box layoutId="c">3</Box>
-                    <Box layoutId="d">4</Box>
-                    <Box layoutId="e">5</Box>
-                </BoxSection2>
-                :
-                visible === 3 ? 
-                /* 3 */
-                <BoxSection3>
-                    <Box layoutId="a">1</Box>
-                    <Box layoutId="b">2</Box>
-                    <Box layoutId="c">3</Box>
-                    <Box layoutId="d">4</Box>
-                    <Box layoutId="e">5</Box>
-                </BoxSection3> :
-                visible === 4 ?
-                /* 4가 앞 */
-                <BoxSection4>
-                    <Box layoutId="a">1</Box>
-                    <Box layoutId="b">2</Box>
-                    <Box layoutId="c">3</Box>
-                    <Box layoutId="d">4</Box>
-                    <Box layoutId="e">5</Box>
-                </BoxSection4> :
-                /* 5가 앞 */
-                <BoxSection5>
-                    <Box layoutId="a">1</Box>
-                    <Box layoutId="b">2</Box>
-                    <Box layoutId="c">3</Box>
-                    <Box layoutId="d">4</Box>
-                    <Box layoutId="e">5</Box>
-                </BoxSection5>
-                }
-
-                <button onClick={nextPlease}>next</button>
-                <button onClick={prevPlease}>prev</button>
-
-                {/* <AnimatePresence exitBeforeEnter custom={back}>
-                    <Box 
-                    custom={back}
-                    variants={box}
-                    initial="entry"
-                    animate="center"
-                    exit="exit"
-                    key={visible}     // 버튼을 누르면 key값이 바뀌어서, 다른 컴포넌트라고 인식하고 리렌더링해줌
-                    >{visible}</Box>
-                </AnimatePresence>
-                <button onClick={nextPlease}>next</button>
-                <button onClick={prevPlease}>prev</button> */}
+            {booth === null ? 
+            <BoothSection>
+                <NoBox src={NoImg} />
             </BoothSection>
+            :
+            <BoothSection id = "box">
+            {visible === 1 ?
+            /* 1 */
+            <BoxSection1>
+                {booth?.map((i, v) => {
+                return (
+                    <Box onClick={()=>onClick(i.id, v+1)} key={i.id} layoutId={i.id + ""}>
+                        <BoxImg src={ExImg}/>
+                        <BoxInfo>
+                            <BoxInfoHeader>
+                                <BoxInfoFirstItem>
+                                    <PinIcon icon={faLocationDot} />
+                                    <span>{i.location}</span>
+                                </BoxInfoFirstItem>
+                                <BoxInfoSecondItem>
+                                    <HeartIcon icon={faHeart} />
+                                    <span>{i.likeCnt}</span>
+                                </BoxInfoSecondItem>
+                            </BoxInfoHeader>
+                            <BoxTitle>
+                            {i.title}
+                            </BoxTitle>
+                            <BoxSubTitle>
+                                {i.introduction.length > 19 ? `${i.introduction.substr(0, 20)}...`  : i.introduction}
+                            </BoxSubTitle>
+                        </BoxInfo>
+                    </Box>
+                );
+                })}
+            </BoxSection1> : 
+            visible === 2 ? 
+            /* 2 */
+            <BoxSection2>
+                {booth?.map((i, v) => {
+                return (
+                    <Box onClick={()=>onClick(i.id, v+1)} key={i.id} layoutId={i.id + ""}>
+                        <BoxImg src={ExImg}/>
+                        <BoxInfo>
+                            <BoxInfoHeader>
+                                <BoxInfoFirstItem>
+                                    <PinIcon icon={faLocationDot} />
+                                    <span>{i.location}</span>
+                                </BoxInfoFirstItem>
+                                <BoxInfoSecondItem>
+                                    <HeartIcon icon={faHeart} />
+                                    <span>{i.likeCnt}</span>
+                                </BoxInfoSecondItem>
+                            </BoxInfoHeader>
+                            <BoxTitle>
+                            {i.title}
+                            </BoxTitle>
+                            <BoxSubTitle>
+                                {i.introduction.length > 19 ? `${i.introduction.substr(0, 20)}...`  : i.introduction}
+                            </BoxSubTitle>
+                        </BoxInfo>
+                    </Box>
+                );
+                })}
+            </BoxSection2>
+            :
+            visible === 3 ? 
+            /* 3 */
+            <BoxSection3>
+                {booth?.map((i, v) => {
+                return (
+                    <Box onClick={()=>onClick(i.id, v+1)} key={i.id} layoutId={i.id + ""}>
+                        <BoxImg src={ExImg}/>
+                        <BoxInfo>
+                            <BoxInfoHeader>
+                                <BoxInfoFirstItem>
+                                    <PinIcon icon={faLocationDot} />
+                                    <span>{i.location}</span>
+                                </BoxInfoFirstItem>
+                                <BoxInfoSecondItem>
+                                    <HeartIcon icon={faHeart} />
+                                    <span>{i.likeCnt}</span>
+                                </BoxInfoSecondItem>
+                            </BoxInfoHeader>
+                            <BoxTitle>
+                            {i.title}
+                            </BoxTitle>
+                            <BoxSubTitle>
+                                {i.introduction.length > 19 ? `${i.introduction.substr(0, 20)}...`  : i.introduction}
+                            </BoxSubTitle>
+                        </BoxInfo>
+                    </Box>
+                );
+                })}
+            </BoxSection3> :
+            visible === 4 ?
+            /* 4가 앞 */
+            <BoxSection4>
+                {booth?.map((i, v) => {
+                return (
+                    <Box onClick={()=>onClick(i.id, v+1)} key={i.id} layoutId={i.id + ""}>
+                        <BoxImg src={ExImg}/>
+                        <BoxInfo>
+                            <BoxInfoHeader>
+                                <BoxInfoFirstItem>
+                                    <PinIcon icon={faLocationDot} />
+                                    <span>{i.location}</span>
+                                </BoxInfoFirstItem>
+                                <BoxInfoSecondItem>
+                                    <HeartIcon icon={faHeart} />
+                                    <span>{i.likeCnt}</span>
+                                </BoxInfoSecondItem>
+                            </BoxInfoHeader>
+                            <BoxTitle>
+                            {i.title}
+                            </BoxTitle>
+                            <BoxSubTitle>
+                                {i.introduction.length > 19 ? `${i.introduction.substr(0, 20)}...`  : i.introduction}
+                            </BoxSubTitle>
+                        </BoxInfo>
+                    </Box>
+                );
+                })}
+            </BoxSection4> :
+            /* 5가 앞 */
+            <BoxSection5>
+                {booth?.map((i, v) => {
+                return (
+                    <Box onClick={()=>onClick(i.id, v+1)} key={i.id} layoutId={i.id + ""}>
+                        <BoxImg src={ExImg}/>
+                        <BoxInfo>
+                            <BoxInfoHeader>
+                                <BoxInfoFirstItem>
+                                    <PinIcon icon={faLocationDot} />
+                                    <span>{i.location}</span>
+                                </BoxInfoFirstItem>
+                                <BoxInfoSecondItem>
+                                    <HeartIcon icon={faHeart} />
+                                    <span>{i.likeCnt}</span>
+                                </BoxInfoSecondItem>
+                            </BoxInfoHeader>
+                            <BoxTitle>
+                            {i.title}
+                            </BoxTitle>
+                            <BoxSubTitle>
+                                {i.introduction.length > 19 ? `${i.introduction.substr(0, 20)}...`  : i.introduction}
+                            </BoxSubTitle>
+                        </BoxInfo>
+                    </Box>
+                );
+                })}
+            </BoxSection5>
+            }
+        </BoothSection>
+            }
             <Btn to="/booth">
                 부스 전체보기
             </Btn>

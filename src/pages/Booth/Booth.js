@@ -7,8 +7,12 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import boothMap from '../../assets/img/boothMap.png';
 import noticeExImg from '../../assets/img/noticeExImg.png';
+
+// External Libraries //
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
+import Fade from '@mui/material/Fade';
 import mainMapIcon from '../../assets/img/mainMapIcon.png';
 
 import { MapLoacation } from './style';
@@ -124,7 +128,7 @@ const dayArray = [
 const buildingArray = [
   {
     id: 1,
-    building: '만해광장',
+    building: '팔정도',
   },
   {
     id: 2,
@@ -132,7 +136,7 @@ const buildingArray = [
   },
   {
     id: 3,
-    building: '팔정도',
+    building: '만해광장',
   },
   {
     id: 4,
@@ -173,47 +177,7 @@ const buildingArray = [
 ];
 
 export default function Booth({}) {
-  const [booth, setBooth] = useState([
-    {
-      id: 1,
-      type: '주점',
-      title: '명진관호떡',
-      location: '원흥관',
-      introduction: '맛있는 호떡과 다양한 음식',
-      likeCnt: 20,
-      // images: [
-      //   {
-      //     url: noticeExImg,
-      //   },
-      // ],
-    },
-    {
-      id: 2,
-      type: '푸드트럭',
-      title: '신공공룡',
-      introduction: '으아가각아ㅏㄱ',
-      likeCnt: 20,
-      location: '신공학관',
-      // images: [
-      //   {
-      //     url: noticeExImg,
-      //   },
-      // ],
-    },
-    {
-      id: 3,
-      type: '부스',
-      title: '혜화아아아ㅏㄱ',
-      location: '혜화관',
-      introduction: '혜화아아아ㅏㄱ',
-      likeCnt: 420,
-      images: [
-        {
-          url: noticeExImg,
-        },
-      ],
-    },
-  ]);
+  const [booth, setBooth] = useState([]);
 
   // 날짜 할당
   const day = new Date();
@@ -223,8 +187,9 @@ export default function Booth({}) {
     day.getDate() - 27 === 2 ? 2 : day.getDate() - 27 === 3 ? 3 : 1;
 
   const [isToday, setIsToday] = useState(todate);
-  const [isBuilding, setIsBuilding] = useState('만해광장');
+  const [isBuilding, setIsBuilding] = useState('팔정도');
   const [isExist, setIsExist] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   //todate,isbuilding 패치시키기
   useEffect(() => {
@@ -238,6 +203,7 @@ export default function Booth({}) {
         `/booths?day=${todate}&location=${isBuilding}`, //메뉴..까지.. 뒤지는건가..!
       );
       setBooth(request.data);
+      setIsLoading(true);
     } catch (error) {
       setIsExist(false);
       console.log('ERROR', error);
@@ -257,53 +223,61 @@ export default function Booth({}) {
         ))}
       </DateContainer>
 
-      {/* 지도 이미지 */}
-      <div style={{ position: 'relative' }}>
-        <LocationImg alt={isBuilding} src={boothMap} />
-        {MapLoacation(isBuilding)}
-        {/* <BuildingLocationImage src={mainMapIcon} /> */}
-      </div>
+      {isLoading ? (
+        <>
+          {/* 지도 이미지 */}
+          <div style={{ position: 'relative' }}>
+            <LocationImg alt={isBuilding} src={boothMap} />
+            {MapLoacation(isBuilding)}
+            {/* <BuildingLocationImage src={mainMapIcon} /> */}
+          </div>
 
-      <BuildingContainer>
-        {buildingArray.map((bu) => {
-          return (
-            <BuildingDetail
-              key={bu.id}
-              onClick={() => {
-                setIsBuilding(bu.building);
-              }}
-              isActive={isBuilding === bu.building}
-            >
-              {bu.building}
-              {/* {isBuilding === bu.building ? (
-                <BuildingHere layoutId="buildinghe" />
-              ) : (
-                <BuildingNotHere />
-              )} */}
-            </BuildingDetail>
-          );
-        })}
-      </BuildingContainer>
+          <BuildingContainer>
+            {buildingArray.map((bu) => {
+              return (
+                <BuildingDetail
+                  key={bu.id}
+                  onClick={() => {
+                    setIsBuilding(bu.building);
+                  }}
+                  isActive={isBuilding === bu.building}
+                >
+                  {bu.building}
+                  {/* {isBuilding === bu.building ? (
+                  <BuildingHere layoutId="buildinghe" />
+                ) : (
+                  <BuildingNotHere />
+                )} */}
+                </BuildingDetail>
+              );
+            })}
+          </BuildingContainer>
 
-      {/* map으로 카드 뜨게 만들기 */}
+          {/* map으로 카드 뜨게 만들기 */}
 
-      <BoothCardContainer>
-        {booth.map((boo) => {
-          return (
-            <Boothcard
-              key={boo.id}
-              boothId={boo.id}
-              title={boo.title}
-              intro={boo.introduction}
-              type={boo.boothType}
-              locationName={boo.location}
-              likeCount={boo.likeCnt}
-
-              // boothImage={boo.images[0]}
-            />
-          );
-        })}
-      </BoothCardContainer>
+          <BoothCardContainer>
+            {booth.map((boo) => {
+              console.log(boo);
+              return (
+                <Boothcard
+                  key={boo.id}
+                  boothId={boo.id}
+                  title={boo.title}
+                  intro={boo.introduction}
+                  type={boo.boothType}
+                  locationName={boo.location}
+                  likeCount={boo.likeCnt}
+                  boothImage={boo.images[0]}
+                />
+              );
+            })}
+          </BoothCardContainer>
+        </>
+      ) : (
+        <Fade in="true" unmountOnExit style={{ margin: '100px auto' }}>
+          <CircularProgress />
+        </Fade>
+      )}
     </BoothContainer>
   ) : (
     <BoothContainer>

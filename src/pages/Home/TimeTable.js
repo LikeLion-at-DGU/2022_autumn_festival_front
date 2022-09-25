@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import ShowTable28 from './ShowTable28';
 
 const Container = styled.section`
-  border: 1px solid white;
   width: auto;
   height: 73vh;
   box-sizing: border-box;
@@ -12,6 +11,9 @@ const Container = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-height : 780px){
+    height: 90vh;
+  }
 `;
 
 const Img = styled.img`
@@ -41,6 +43,9 @@ const WhatDay = styled.h6`
 `
 
 const TimeTable = styled.div`
+  @media (max-height : 780px){
+    height: 450px;
+  }
   margin-top: -30px;
   background: linear-gradient(180deg, rgba(68, 114, 153, 0.5) 0%, rgba(110, 129, 158, 0.055) 100%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

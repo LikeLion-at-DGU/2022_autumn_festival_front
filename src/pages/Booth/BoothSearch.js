@@ -17,73 +17,7 @@ const BoothCardContainer = styled.div`
 `;
 
 export default function BoothSearch({}) {
-  const [searchResult, setsearchResult] = useState([
-    // {
-    //   id: 1,
-    //   type: '주점',
-    //   title: '명진관호떡',
-    //   introduction: '맛있는 호떡과 다양한 음식',
-    //   like_count: 20,
-    //   location: '원흥관',
-    //   images: [
-    //     {
-    //       url: noticeExImg,
-    //     },
-    //   ],
-    // },
-    // {
-    //   id: 2,
-    //   type: '푸드트럭',
-    //   title: '신공공룡',
-    //   introduction: '으아가각아ㅏㄱ',
-    //   like_count: 210,
-    //   location: '신공학관',
-    //   images: [
-    //     {
-    //       url: noticeExImg,
-    //     },
-    //   ],
-    // },
-    // {
-    //   id: 3,
-    //   type: '부스',
-    //   title: '혜화관 햇님',
-    //   introduction: '혜화아아아ㅏㄱ',
-    //   like_count: 12,
-    //   location: '혜화관',
-    //   images: [
-    //     {
-    //       url: noticeExImg,
-    //     },
-    //   ],
-    // },
-    // {
-    //   id: 4,
-    //   type: '푸드트럭',
-    //   title: '만해광장 히찬',
-    //   introduction: '만핵',
-    //   like_count: 191,
-    //   location: '만해광장',
-    //   images: [
-    //     {
-    //       url: noticeExImg,
-    //     },
-    //   ],
-    // },
-    // {
-    //   id: 5,
-    //   type: '부스',
-    //   title: '만해 히찬',
-    //   introduction: '만핵ㅇㅇ',
-    //   like_count: 19,
-    //   location: '만해광장',
-    //   images: [
-    //     {
-    //       url: noticeExImg,
-    //     },
-    //   ],
-    // },
-  ]);
+  const [searchResult, setsearchResult] = useState([]);
 
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -130,9 +64,10 @@ export default function BoothSearch({}) {
                 boothId={boo.id}
                 title={boo.title}
                 intro={boo.introduction}
-                type={boo.type}
+                type={boo.boothType}
                 locationName={boo.location}
-                likeCount={boo.like_count}
+                likeCount={boo.likeCnt}
+                boothImage={boo.images[0].storedFilePath}
               />
             );
           })}
@@ -140,9 +75,14 @@ export default function BoothSearch({}) {
       </section>
     ) : (
       <section className="no-results">
+        <p style={{ fontSize: '0.8rem', color: '#FD9903' }}>
+          검색어를 입력하고 스페이스바를 쳐주세요!
+        </p>
         <p style={{ fontSize: '1.3rem' }}>검색 결과</p>
+
         <div className="no-results__text">
           <img src={boothsearchC} className="noResultImg" />
+
           <p>찾고자하는 "{searchTerm}"에 맞는 부스 또는 메뉴가 없습니다.</p>
         </div>
       </section>

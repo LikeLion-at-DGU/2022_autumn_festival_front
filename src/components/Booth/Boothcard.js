@@ -1,20 +1,21 @@
 import * as React from 'react';
+import axios from '../../api/axios';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Card from '@mui/material/Card';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import './Boothcard.css';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 
-import noticeExImg from '../../assets/img/noticeExImg.png';
-import { Padding } from '@mui/icons-material';
+import boothDefaultImg from '../../assets/img/부스_default.png';
+import JoojumDefaultImg from '../../assets/img/주점_default.png';
+import FoodDefaultImg from '../../assets/img/푸드트럭_default.png';
+import FleaDefaultImg from '../../assets/img/플리마켓_default.png';
 
 const Location_number = styled.p`
-  font-size: 1px;
+  font-size: 9px;
   left: 10rem;
   display: inline;
   float: left;
@@ -26,7 +27,7 @@ const Location_number = styled.p`
 `;
 
 const BoothLike = styled.div`
-  font-size: 1px;
+  font-size: 9px;
   display: inline;
   float: right;
   margin-right: 10px;
@@ -45,7 +46,7 @@ const BoothLikeNum = styled.div`
 
 const JoojumBoothBorder = styled.div`
   position: absolute;
-  font-size: 7px;
+  font-size: 8px;
   border: none;
   border-radius: 2px;
   padding: 2px 5px;
@@ -58,7 +59,7 @@ const JoojumBoothBorder = styled.div`
 
 const BoothBorder = styled.div`
   position: absolute;
-  font-size: 7px;
+  font-size: 8px;
   border: none;
   border-radius: 2px;
   padding: 2px 5px;
@@ -70,12 +71,25 @@ const BoothBorder = styled.div`
 `;
 const FoodBorder = styled.div`
   position: absolute;
-  font-size: 7px;
+  font-size: 8px;
   border: none;
   border-radius: 2px;
   padding: 2px 5px;
   // 부스일때
   background-color: #2676ee;
+  //
+  margin: 5px;
+  color: white;
+`;
+
+const FleaBorder = styled.div`
+  position: absolute;
+  font-size: 8px;
+  border: none;
+  border-radius: 2px;
+  padding: 2px 5px;
+  // 부스일때
+  background-color: #ae66e7;
   //
   margin: 5px;
   color: white;
@@ -133,6 +147,7 @@ export default function Boothcard({
         borderRadius: '10px',
         boxShadow: '2px 5px 12px 2px rgb(0, 0, 0)',
         flexDirection: 'row',
+        transition: '0.5s all',
       }}
     >
       <CardActionArea href={`/booth/${boothId}`}>
@@ -156,39 +171,91 @@ export default function Boothcard({
           >
             {type}
           </BoothBorder>
-        ) : (
+        ) : type === '푸드트럭' ? (
           <FoodBorder
             style={{
-              fontFamily: 'GmarketSansMedium',
+              fontFmily: 'GmarketSansMedium',
               boxShadow: '1px 1px 6px rgb(0, 0, 0)',
             }}
           >
             {type}
           </FoodBorder>
+        ) : (
+          //fela마켓
+          <FleaBorder
+            style={{
+              fontFmily: 'GmarketSansMedium',
+              boxShadow: '1px 1px 6px rgb(0, 0, 0)',
+            }}
+          >
+            {type}
+          </FleaBorder>
         )}
 
-        <CardMedia
+        {type === '주점' ? (
+          <CardMedia
+            component="img"
+            height="105"
+            image={
+              boothImage
+                ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+                : JoojumDefaultImg
+            }
+            alt="부스 이미지"
+          />
+        ) : type === '부스' ? (
+          <CardMedia
+            component="img"
+            height="105"
+            image={
+              boothImage
+                ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+                : boothDefaultImg
+            }
+            alt="부스 이미지"
+          />
+        ) : type === '푸드트럭' ? (
+          <CardMedia
+            component="img"
+            height="105"
+            image={
+              boothImage
+                ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+                : FoodDefaultImg
+            }
+            alt="부스 이미지"
+          />
+        ) : (
+          //fela마켓
+          <CardMedia
+            component="img"
+            height="105"
+            image={
+              boothImage
+                ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+                : FleaDefaultImg
+            }
+            alt="부스 이미지"
+          />
+        )}
+
+        {/* <CardMedia
           component="img"
           height="105"
-          image={boothImage ? boothImage : noticeExImg}
+          image={
+            boothImage
+              ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+              : noticeExImg
+          }
           alt="부스 이미지"
-        />
+        /> */}
         <Location_number>
           <LocationOnIcon
             style={{ fontSize: '10px', position: 'absolute', left: '8px' }}
           />
           {locationName}
         </Location_number>
-        <BoothLike>
-          <FavoriteBorderIcon
-            sx={{
-              fontSize: '10px',
-              position: 'absolute',
-              left: '100px',
-            }}
-          />
-          {likeCount}
-        </BoothLike>
+        <BoothLike>♡ &nbsp;{likeCount}</BoothLike>
         <CardContent
           style={{ marginTop: '15px', fontFamily: 'GmarketSansMedium' }}
         >
@@ -206,7 +273,7 @@ export default function Boothcard({
             {title}
           </Typography>
 
-          <Typography color="text.secondary" style={{ fontSize: '1px' }}>
+          <Typography color="text.secondary" style={{ fontSize: '11px' }}>
             {/* booth intro 들고오기 */}
             {intro}
           </Typography>
