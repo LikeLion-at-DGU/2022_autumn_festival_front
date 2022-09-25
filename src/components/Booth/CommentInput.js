@@ -44,12 +44,12 @@ const style = {
   },
 
   box__name: {
+    position: 'absolute',
     padding: '5px',
     float: 'left',
   },
   box__pw: {
     padding: '5px',
-
     float: 'right',
   },
 
