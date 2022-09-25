@@ -17,7 +17,6 @@ const WrapComment = styled.div`
   position: relative;
   top: 0;
   left: 0;
-
   & > input {
     position: absolute;
     left: 10px;
@@ -133,27 +132,30 @@ const CommentInput = (/*{ onInsert }*/) => {
 
   const onSubmit = (e) => {
     // onInsert(value.writer, value.password, value.content);
-    setValue({
-      writer: value.writer,
-      password: value.password,
-      content: value.content,
-    });
-    console.log(value);
-
-    // e.preventDefault();
-
-    axios
-      .post(`/booths/${detailId}/comments`, {
+    if (isValidCheck()) {
+      setValue({
         writer: value.writer,
         password: value.password,
         content: value.content,
-      })
-      .then(function (response) {})
-      .catch(function (error) {});
-    window.location.reload();
+      });
+      console.log(value);
+
+      // e.preventDefault();
+
+      axios
+        .post(`/booths/${detailId}/comments`, {
+          writer: value.writer,
+          password: value.password,
+          content: value.content,
+        })
+        .then(function (response) {})
+        .catch(function (error) {});
+      window.location.reload();
+    }
   };
+
   const isValidCheck = () => {
-    if (value.writer === '' || value.password === '' || value.content) {
+    if (value.writer === '' || value.password === '' || value.content === '') {
       alert('방명록 정보를 모두 입력해주세요.');
       return false;
     } else {
