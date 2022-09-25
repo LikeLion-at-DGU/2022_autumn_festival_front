@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
+import usePagination from '../../hooks/usePagination';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import CommentInput from '../../components/Booth/CommentInput';
 import styled from 'styled-components';
@@ -21,6 +22,7 @@ import {
   MenuContainer,
   MenuItem,
   EditBtn,
+  Paginations,
 } from './style';
 import NoticeExImg from '../../assets/img/noticeExImg.png';
 import MapIconImg from '../../assets/img/mainMapIcon.png';
@@ -38,6 +40,8 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import Fade from '@mui/material/Fade';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper';
@@ -45,6 +49,7 @@ import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import GuestBookItem from '../../components/Booth/GuestBookItem';
+import { PageNum } from '../Notice/style';
 
 SwiperCore.use([Pagination, Autoplay]);
 
@@ -122,7 +127,7 @@ export default function BoothDetail() {
         setBooth({
           ...booth,
           isLike: false,
-          likeCnt: booth.likeCnt + 1,
+          likeCnt: booth.likeCnt - 1,
         });
       })
       .catch((e) => {
@@ -135,7 +140,7 @@ export default function BoothDetail() {
       setBooth({
         ...booth,
         isLike: true,
-        likeCnt: booth.likeCnt - 1,
+        likeCnt: booth.likeCnt + 1,
       });
     });
   };
@@ -277,6 +282,26 @@ export default function BoothDetail() {
     fetchMenu();
   }, []);
 
+  const guestArray = comments.filter((no) => {
+    return no;
+  });
+
+  const pageInfo = usePagination(guestArray, 12);
+  const pageNum = Array.from({ length: pageInfo.maxPage }, (v, i) => i + 1);
+
+  const paginations = pageNum.map((n, idx) => {
+    return (
+      <PageNum
+        key={idx}
+        active={pageInfo.currentPage === n ? 'y' : ''}
+        onClick={() => {
+          pageInfo.jump(n);
+        }}
+      >
+        {n}
+      </PageNum>
+    );
+  });
   useEffect(() => {
     fetchBoothDetail();
   }, [booth.isLike, booth.likeCnt]);
@@ -409,21 +434,46 @@ export default function BoothDetail() {
                   </div>
                   <IntroLine></IntroLine>
                   <CommentInput />
-
-                  {comments.map((comment) => {
-                    // console.log(comment);
-                    return (
-                      <GuestBookItem
-                        key={comment.id}
-                        detailId={detailId}
-                        id={comment.id}
-                        writer={comment.writer}
-                        password={comment.password}
-                        content={comment.content}
-                        createdDateTime={comment.createdDateTime}
-                      />
-                    );
+                  {pageInfo.currentData(comments).map((comment) => {
+                    {
+                      // console.log(comment);
+                      return (
+                        <GuestBookItem
+                          detailId={detailId}
+                          id={comment.id}
+                          writer={comment.writer}
+                          password={comment.password}
+                          content={comment.content}
+                          createdDateTime={comment.createdDateTime}
+                        />
+                      );
+                    }
                   })}
+
+                  <Paginations>
+                    <ArrowBackIosIcon
+                      style={{
+                        cursor: 'pointer',
+                        fontSize: '15px',
+                        color: 'rgba(255, 255, 255, 0.35)',
+                        paddingLeft: '5px',
+                      }}
+                      onClick={() => {
+                        pageInfo.prev();
+                      }}
+                    />
+                    {paginations}
+                    <ArrowForwardIosIcon
+                      style={{
+                        cursor: 'pointer',
+                        fontSize: '15px',
+                        color: 'rgba(255, 255, 255, 0.35)',
+                      }}
+                      onClick={() => {
+                        pageInfo.next();
+                      }}
+                    />
+                  </Paginations>
                 </IntroContainer>
               </ContentContainer>
             </>
