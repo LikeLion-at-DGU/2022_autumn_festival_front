@@ -67,7 +67,7 @@ const IntroText = styled.p`
   font-family: 'Gmarket Sans TTF';
   font-style: normal;
   font-weight: 300;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 13px;
   text-align: center;
   letter-spacing: 0.1em;
