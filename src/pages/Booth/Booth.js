@@ -255,24 +255,29 @@ export default function Booth({}) {
 
           {/* map으로 카드 뜨게 만들기 */}
 
-      <BoothCardContainer>
-        {booth.map((boo) => {
-          console.log(boo);
-          return (
-            <Boothcard
-              key={boo.id}
-              boothId={boo.id}
-              title={boo.title}
-              intro={boo.introduction}
-              type={boo.boothType}
-              locationName={boo.location}
-              likeCount={boo.likeCnt}
-              boothImage={boo.images[0]}
-            />
-          );
-        })}
-      </BoothCardContainer>
-
+          <BoothCardContainer>
+            {booth.map((boo) => {
+              console.log(boo);
+              return (
+                <Boothcard
+                  key={boo.id}
+                  boothId={boo.id}
+                  title={boo.title}
+                  intro={boo.introduction}
+                  type={boo.boothType}
+                  locationName={boo.location}
+                  likeCount={boo.likeCnt}
+                  boothImage={boo.images[0]}
+                />
+              );
+            })}
+          </BoothCardContainer>
+        </>
+      ) : (
+        <Fade in="true" unmountOnExit style={{ margin: '100px auto' }}>
+          <CircularProgress />
+        </Fade>
+      )}
     </BoothContainer>
   ) : (
     <BoothContainer>
