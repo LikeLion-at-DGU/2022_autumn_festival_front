@@ -9,7 +9,10 @@ import { CardActionArea } from '@mui/material';
 import './Boothcard.css';
 import styled from 'styled-components';
 
-import noticeExImg from '../../assets/img/noticeExImg.png';
+import boothDefaultImg from '../../assets/img/부스_default.png';
+import JoojumDefaultImg from '../../assets/img/주점_default.png';
+import FoodDefaultImg from '../../assets/img/푸드트럭_default.png';
+import FleaDefaultImg from '../../assets/img/플리마켓_default.png';
 
 const Location_number = styled.p`
   font-size: 9px;
@@ -74,6 +77,19 @@ const FoodBorder = styled.div`
   padding: 2px 5px;
   // 부스일때
   background-color: #2676ee;
+  //
+  margin: 5px;
+  color: white;
+`;
+
+const FleaBorder = styled.div`
+  position: absolute;
+  font-size: 8px;
+  border: none;
+  border-radius: 2px;
+  padding: 2px 5px;
+  // 부스일때
+  background-color: #ae66e7;
   //
   margin: 5px;
   color: white;
@@ -155,7 +171,7 @@ export default function Boothcard({
           >
             {type}
           </BoothBorder>
-        ) : (
+        ) : type === '푸드트럭' ? (
           <FoodBorder
             style={{
               fontFmily: 'GmarketSansMedium',
@@ -164,16 +180,75 @@ export default function Boothcard({
           >
             {type}
           </FoodBorder>
+        ) : (
+          //fela마켓
+          <FleaBorder
+            style={{
+              fontFmily: 'GmarketSansMedium',
+              boxShadow: '1px 1px 6px rgb(0, 0, 0)',
+            }}
+          >
+            {type}
+          </FleaBorder>
         )}
 
-        <CardMedia
+        {type === '주점' ? (
+          <CardMedia
+            component="img"
+            height="105"
+            image={
+              boothImage
+                ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+                : JoojumDefaultImg
+            }
+            alt="부스 이미지"
+          />
+        ) : type === '부스' ? (
+          <CardMedia
+            component="img"
+            height="105"
+            image={
+              boothImage
+                ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+                : boothDefaultImg
+            }
+            alt="부스 이미지"
+          />
+        ) : type === '푸드트럭' ? (
+          <CardMedia
+            component="img"
+            height="105"
+            image={
+              boothImage
+                ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+                : FoodDefaultImg
+            }
+            alt="부스 이미지"
+          />
+        ) : (
+          //fela마켓
+          <CardMedia
+            component="img"
+            height="105"
+            image={
+              boothImage
+                ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+                : FleaDefaultImg
+            }
+            alt="부스 이미지"
+          />
+        )}
+
+        {/* <CardMedia
           component="img"
           height="105"
           image={
-            boothImage ? 'http://192.168.0.194:8080' + boothImage : noticeExImg
+            boothImage
+              ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+              : noticeExImg
           }
           alt="부스 이미지"
-        />
+        /> */}
         <Location_number>
           <LocationOnIcon
             style={{ fontSize: '10px', position: 'absolute', left: '8px' }}
