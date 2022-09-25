@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import CommentInput from '../../components/Booth/CommentInput';
+import styled from 'styled-components';
 import BoothMenuAdd from '../../components/Booth/BoothMenuAdd';
 import axios from '../../api/axios';
 import {
@@ -286,7 +287,11 @@ export default function BoothDetail() {
         <div style={{ marginBottom: '76px' }}>
           <UpTitle
             title={`${booth.boothType} 홈페이지`}
-            mapleLeft={booth.boothType === '푸드트럭' ? '30px' : '57px'}
+            mapleLeft={
+              booth.boothType === '푸드트럭' || booth.boothType === '플리마켓'
+                ? '30px'
+                : '57px'
+            }
           />
 
           {isLoading ? (
