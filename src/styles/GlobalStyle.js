@@ -43,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   canvas{
-    height: 400px;
+    height: 450px;
   }
 
   @media only screen and (min-width: 200px) { //375px 너무 작아서 수정했음
