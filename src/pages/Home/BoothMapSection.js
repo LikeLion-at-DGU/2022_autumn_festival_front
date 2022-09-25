@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Container = styled.section`
   width: auto;
-  height: 90vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

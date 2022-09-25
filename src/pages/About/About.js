@@ -47,10 +47,10 @@ const LogoImage = styled.img`
 `;
 const Logo = styled.h4`
   text-align: center;
-  font-family: 'Gmarket Sans TTF';
+  font-family: 'GmarketSansLight';
   font-style: normal;
-  font-weight: 500;
-  font-size: 8px;
+  font-weight: 550;
+  font-size: 9px;
   line-height: 13px;
   letter-spacing: 0.1em;
 
@@ -64,9 +64,9 @@ const Xtext = styled.h2`
   width: 10%;
 `;
 const IntroText = styled.p`
-  font-family: 'Gmarket Sans TTF';
+  /* font-family: 'Gmarket Sans TTF'; */
+  font-family: 'GmarketSansMedium';
   font-style: normal;
-  font-weight: 300;
   font-size: 10px;
   line-height: 13px;
   text-align: center;
@@ -81,7 +81,7 @@ const CImage = styled.img`
 `;
 
 const SubTitle = styled.h3`
-  font-family: 'Gmarket Sans TTF';
+  font-family: 'GmarketSansMedium';
   font-style: normal;
   font-weight: 500;
   font-size: 22px;
@@ -90,10 +90,10 @@ const SubTitle = styled.h3`
   margin-bottom: 40px;
 `;
 const SubText = styled.h4`
-  font-family: 'Gmarket Sans TTF';
+  font-family: 'GmarketSansMedium';
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 9px;
   margin-bottom: 50px;
 `;
@@ -107,7 +107,7 @@ const TeamText = styled.h4`
   font-family: 'Gmarket Sans TTF';
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 16px;
   text-align: center;
   margin-top: 80px;
@@ -134,24 +134,23 @@ const FaceImg = styled.img`
   width: 50%;
 `;
 const CardName = styled.h3`
-  font-family: 'Gmarket Sans TTF';
+  font-family: 'GmarketSansMedium';
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
   line-height: 2px;
 `;
 const CardMajor = styled.h3`
-  font-family: 'Gmarket Sans TTF';
+  font-family: 'GmarketSansMedium';
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 7px;
   text-align: center;
-
   color: #fd9903;
 `;
 const CardRole = styled.h3`
-  font-family: 'Gmarket Sans TTF';
+  font-family: 'GmarketSansMedium';
   font-style: normal;
   font-weight: 350;
   margin-bottom: 15px;
@@ -164,10 +163,10 @@ const CardLine = styled.hr`
   border: 0.5px solid #ffffff;
 `;
 const CardText = styled.h4`
-  font-family: 'Gmarket Sans TTF';
+  font-family: 'GmarketSansLight';
   font-style: normal;
   font-weight: 200;
-  font-size: 5px;
+  font-size: 10px;
   line-height: 13px;
   text-align: left;
 `;
@@ -185,7 +184,7 @@ export default function About() {
   }, [pathname]);
 
   return (
-    <div style={{ marginTop: '132rem' }}>
+    <div style={{ marginTop: '3rem' }}>
       <UpTitle title={'ABOUT'} />
 
       <Logo>
@@ -280,7 +279,10 @@ export default function About() {
         <CardMajor>컴퓨터공학과 19</CardMajor>
         <CardRole>프론트 개발팀장</CardRole>
         <CardLine />
-        <CardText>- 부스 페이지 검색창, 부스 카드, 부스 홈페이지 구현</CardText>
+        <CardText>
+          - 총괄
+          <br />- 부스 홈, 검색페이지 구현
+        </CardText>
       </Card>
       <Card href="https://github.com/shinyejin0212">
         <FaceImg src={ShinYejin} />
@@ -303,7 +305,7 @@ export default function About() {
         </CardRole>
         <CardLine />
         <CardText>
-          - 메인페이지 <br></br>- 타임테이블 구현 <br></br>
+          - 메인페이지 <br></br>- 타임테이블 구현 <br></br>- 모션 구현
           <br></br>
         </CardText>
       </Card>

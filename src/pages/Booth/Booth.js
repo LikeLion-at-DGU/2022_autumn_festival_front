@@ -128,7 +128,7 @@ const dayArray = [
 const buildingArray = [
   {
     id: 1,
-    building: '만해광장',
+    building: '팔정도',
   },
   {
     id: 2,
@@ -136,7 +136,7 @@ const buildingArray = [
   },
   {
     id: 3,
-    building: '팔정도',
+    building: '만해광장',
   },
   {
     id: 4,
@@ -177,21 +177,7 @@ const buildingArray = [
 ];
 
 export default function Booth({}) {
-  const [booth, setBooth] = useState([
-    {
-      id: 1,
-      type: '주점',
-      title: '명진관호떡',
-      location: '원흥관',
-      introduction: '맛있는 호떡과 다양한 음식',
-      likeCnt: 20,
-      // images: [
-      //   {
-      //     url: noticeExImg,
-      //   },
-      // ],
-    },
-  ]);
+  const [booth, setBooth] = useState([]);
 
   // 날짜 할당
   const day = new Date();
@@ -201,7 +187,7 @@ export default function Booth({}) {
     day.getDate() - 27 === 2 ? 2 : day.getDate() - 27 === 3 ? 3 : 1;
 
   const [isToday, setIsToday] = useState(todate);
-  const [isBuilding, setIsBuilding] = useState('만해광장');
+  const [isBuilding, setIsBuilding] = useState('팔정도');
   const [isExist, setIsExist] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 

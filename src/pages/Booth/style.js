@@ -238,6 +238,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
+              transition: '0.5s all',
               width: '15%',
               right: '86px',
               bottom: '9rem',
@@ -254,6 +255,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
+              transition: '0.5s all',
               width: '15%',
               right: '240px',
               bottom: '10rem',
@@ -270,6 +272,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
+              transition: '0.5s all',
               width: '15%',
               left: '10.7rem',
               bottom: '9.3rem',
@@ -286,6 +289,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
+              transition: '0.5s all',
               width: '15%',
               right: '181px',
               bottom: '10.7rem',
@@ -302,6 +306,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
+              transition: '0.5s all',
               width: '15%',
               right: '92.2px',
               bottom: '10.8rem',
@@ -318,6 +323,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
+              transition: '0.5s all',
               width: '15%',
               right: '53.7px',
               bottom: '11.2rem',
@@ -334,6 +340,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
+              transition: '0.5s all',
               width: '15%',
               right: '66px',
               bottom: '6.7rem',
@@ -350,6 +357,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
+              transition: '0.5s all',
               width: '15%',
               right: '136px',
               bottom: '8.5rem',
@@ -365,6 +373,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
+              transition: '0.5s all',
               width: '15%',
               right: '190px',
               bottom: '8.3rem',
@@ -380,6 +389,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
+              transition: '0.5s all',
               width: '15%',
               right: '230px',
               bottom: '7.4rem',
@@ -396,6 +406,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
+              transition: '0.5s all',
               width: '15%',
               right: '253px',
               bottom: '6.5rem',
@@ -412,6 +423,7 @@ export const MapLoacation = (key) => {
             src={`${mainMapIcon}`}
             style={{
               position: 'absolute',
+              transition: '0.5s all',
               width: '15%',
               right: '246px',
               bottom: '8.4rem',
