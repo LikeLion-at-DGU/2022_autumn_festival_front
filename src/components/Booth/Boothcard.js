@@ -141,7 +141,7 @@ export default function Boothcard({
   return (
     <Card
       sx={{ width: '130', margin: '11.6px' }}
-      className="cardCss"
+      className="cardCss fadeIn"
       style={{
         fontFamily: 'GmarketSansMedium',
         borderRadius: '10px',
