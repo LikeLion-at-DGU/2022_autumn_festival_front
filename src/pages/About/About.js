@@ -67,7 +67,7 @@ const IntroText = styled.p`
   font-family: 'Gmarket Sans TTF';
   font-style: normal;
   font-weight: 300;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 13px;
   text-align: center;
   letter-spacing: 0.1em;
@@ -167,7 +167,7 @@ const CardText = styled.h4`
   font-family: 'Gmarket Sans TTF';
   font-style: normal;
   font-weight: 200;
-  font-size: 5px;
+  font-size: 10px;
   line-height: 13px;
   text-align: left;
 `;
@@ -177,7 +177,6 @@ const Space = styled.div`
   color: #1b2f4e;
 `;
 
-
 export default function About() {
   const { pathname } = useLocation();
 
@@ -186,7 +185,7 @@ export default function About() {
   }, [pathname]);
 
   return (
-    <div style={{ marginTop: '132rem'}}>
+    <div style={{ marginTop: '3rem' }}>
       <UpTitle title={'ABOUT'} />
 
       <Logo>
@@ -324,7 +323,7 @@ export default function About() {
       </Card>
       <Card href="https://github.com/lywon725">
         <FaceImg src={Leeyeowon2} />
-        <CardName >🦁이여원</CardName>
+        <CardName>🦁이여원</CardName>
         <CardMajor>멀티미디어공학과 20</CardMajor>
         <CardRole>
           {' '}

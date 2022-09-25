@@ -133,6 +133,7 @@ export default function BoothSearch({}) {
                 type={boo.boothType}
                 locationName={boo.location}
                 likeCount={boo.likeCnt}
+                boothImage={boo.images[0].storedFilePath}
               />
             );
           })}

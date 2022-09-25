@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from '../../api/axios';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,7 +12,7 @@ import styled from 'styled-components';
 import noticeExImg from '../../assets/img/noticeExImg.png';
 
 const Location_number = styled.p`
-  font-size: 1px;
+  font-size: 9px;
   left: 10rem;
   display: inline;
   float: left;
@@ -42,7 +43,7 @@ const BoothLikeNum = styled.div`
 
 const JoojumBoothBorder = styled.div`
   position: absolute;
-  font-size: 7px;
+  font-size: 8px;
   border: none;
   border-radius: 2px;
   padding: 2px 5px;
@@ -55,7 +56,7 @@ const JoojumBoothBorder = styled.div`
 
 const BoothBorder = styled.div`
   position: absolute;
-  font-size: 7px;
+  font-size: 8px;
   border: none;
   border-radius: 2px;
   padding: 2px 5px;
@@ -67,7 +68,7 @@ const BoothBorder = styled.div`
 `;
 const FoodBorder = styled.div`
   position: absolute;
-  font-size: 7px;
+  font-size: 8px;
   border: none;
   border-radius: 2px;
   padding: 2px 5px;
@@ -157,7 +158,7 @@ export default function Boothcard({
         ) : (
           <FoodBorder
             style={{
-              fontFamily: 'GmarketSansMedium',
+              fontFmily: 'GmarketSansMedium',
               boxShadow: '1px 1px 6px rgb(0, 0, 0)',
             }}
           >
@@ -168,7 +169,9 @@ export default function Boothcard({
         <CardMedia
           component="img"
           height="105"
-          image={boothImage ? boothImage : noticeExImg}
+          image={
+            boothImage ? 'http://192.168.0.194:8080' + boothImage : noticeExImg
+          }
           alt="부스 이미지"
         />
         <Location_number>
@@ -195,7 +198,7 @@ export default function Boothcard({
             {title}
           </Typography>
 
-          <Typography color="text.secondary" style={{ fontSize: '1px' }}>
+          <Typography color="text.secondary" style={{ fontSize: '11px' }}>
             {/* booth intro 들고오기 */}
             {intro}
           </Typography>
