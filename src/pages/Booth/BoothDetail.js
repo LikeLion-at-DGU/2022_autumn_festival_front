@@ -121,7 +121,7 @@ export default function BoothDetail() {
       .then((res) => {
         setBooth({
           ...booth,
-          isLike: false,
+          isLike: true,
           likeCnt: booth.likeCnt + 1,
         });
       })
@@ -134,7 +134,7 @@ export default function BoothDetail() {
     await axios.delete(`booths/${detailId}/likes`).then((res) => {
       setBooth({
         ...booth,
-        isLike: true,
+        isLike: false,
         likeCnt: booth.likeCnt - 1,
       });
     });
