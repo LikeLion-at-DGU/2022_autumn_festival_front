@@ -407,6 +407,7 @@ export default function BoothDetail() {
                     // console.log(comment);
                     return (
                       <GuestBookItem
+                        key={comment.id}
                         detailId={detailId}
                         id={comment.id}
                         writer={comment.writer}
