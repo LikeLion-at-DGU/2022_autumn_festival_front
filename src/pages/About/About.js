@@ -319,8 +319,8 @@ export default function About() {
         </CardRole>
         <CardLine />
         <CardText>
-          - 공지사항 페이지, 공지사항 및 부스 디테일 페이지, rest api, 부스
-          수정하기 페이지 구현
+          - 공지사항 페이지, 공지사항&부스 디테일 페이지, rest api 구현, 부스
+          수정하기 페이지, 메인페이지 수정
         </CardText>
       </Card>
       <Card href="https://github.com/lywon725">

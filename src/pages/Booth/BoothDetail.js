@@ -101,16 +101,38 @@ export default function BoothDetail() {
   //   );
   // });
 
+  // 좋아요 up, down //
+  const UpLike = async () => {
+    await axios
+      .post(`booths/${detailId}/likes`)
+      .then((res) => {
+        setBooth({
+          ...booth,
+          isLike: false,
+          likeCnt: booth.likeCnt - 1,
+        });
+      })
+      .catch((e) => {
+        console.log('좋아요 실패');
+      });
+  };
+
+  const DownLike = async () => {
+    await axios.delete(`booths/${detailId}/likes`).then((res) => {
+      setBooth({
+        ...booth,
+        isLike: true,
+        likeCnt: booth.likeCnt + 1,
+      });
+    });
+  };
+
   // 좋아요 기능 //
   const HeartView = (tp) => {
     return booth.isLike ? (
       <FavoriteIcon
         onClick={() => {
-          setBooth({
-            ...booth,
-            isLike: false,
-            likeCnt: booth.likeCnt - 1,
-          });
+          DownLike();
         }}
         style={{
           fontSize: '28px',
@@ -122,11 +144,7 @@ export default function BoothDetail() {
     ) : (
       <FavoriteBorderIcon
         onClick={() => {
-          setBooth({
-            ...booth,
-            isLike: true,
-            likeCnt: booth.likeCnt + 1,
-          });
+          UpLike();
         }}
         style={{ fontSize: '28px' }}
       />

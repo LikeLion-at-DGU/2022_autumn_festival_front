@@ -17,7 +17,6 @@ const WrapComment = styled.div`
   position: relative;
   top: 0;
   left: 0;
-
   & > input {
     position: absolute;
     left: 10px;
@@ -128,16 +127,6 @@ const CommentInput = (/*{ onInsert }*/) => {
     [value],
   );
 
-  const isValidCheck = () => {
-    console.log(value);
-    if (value.writer === '' || value.password === '' || value.content === '') {
-      alert('방명록 정보를 모두 입력해주세요.');
-      return false;
-    } else {
-      return true;
-    }
-  };
-
   let detailId = useParams().id;
   console.log('detailId:', detailId);
 
@@ -149,6 +138,9 @@ const CommentInput = (/*{ onInsert }*/) => {
         password: value.password,
         content: value.content,
       });
+      console.log(value);
+
+      // e.preventDefault();
 
       axios
         .post(`/booths/${detailId}/comments`, {
@@ -160,9 +152,15 @@ const CommentInput = (/*{ onInsert }*/) => {
         .catch(function (error) {});
       window.location.reload();
     }
-    console.log(value);
+  };
 
-    // e.preventDefault();
+  const isValidCheck = () => {
+    if (value.writer === '' || value.password === '' || value.content === '') {
+      alert('방명록 정보를 모두 입력해주세요.');
+      return false;
+    } else {
+      return true;
+    }
   };
 
   return (
