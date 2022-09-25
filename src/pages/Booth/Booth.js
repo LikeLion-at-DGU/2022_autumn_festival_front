@@ -173,59 +173,7 @@ const buildingArray = [
 ];
 
 export default function Booth({}) {
-  const [booth, setBooth] = useState([
-    {
-      id: 1,
-      type: '주점',
-      title: '명진관호떡',
-      location: '원흥관',
-      introduction: '맛있는 호떡과 다양한 음식',
-      likeCnt: 20,
-      images: [
-        {
-          id: 1,
-          originFileName: '멋사.jpg',
-          serverFileName: '6fb151081add763ec08da678a9578eff',
-          storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
-        },
-        {
-          id: 2,
-          originFileName: '멋사.jpg',
-          serverFileName: '6fb151081add763ec08da678a9578eff',
-          storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
-        },
-      ],
-    },
-    {
-      id: 2,
-      type: '푸드트럭',
-      title: '신공공룡',
-      introduction: '으아가각아ㅏㄱ',
-      likeCnt: 20,
-      location: '신공학관',
-      images: [
-        {
-          id: 1,
-          originFileName: '멋사.jpg',
-          serverFileName: '6fb151081add763ec08da678a9578eff',
-          storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
-        },
-      ],
-    },
-    {
-      id: 3,
-      type: '부스',
-      title: '혜화아아아ㅏㄱ',
-      location: '혜화관',
-      introduction: '혜화아아아ㅏㄱ',
-      likeCnt: 420,
-      images: [
-        {
-          url: noticeExImg,
-        },
-      ],
-    },
-  ]);
+  const [booth, setBooth] = useState([]);
 
   // 날짜 할당
   const day = new Date();
