@@ -181,11 +181,20 @@ export default function Booth({}) {
       location: '원흥관',
       introduction: '맛있는 호떡과 다양한 음식',
       likeCnt: 20,
-      // images: [
-      //   {
-      //     url: noticeExImg,
-      //   },
-      // ],
+      images: [
+        {
+          id: 1,
+          originFileName: '멋사.jpg',
+          serverFileName: '6fb151081add763ec08da678a9578eff',
+          storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
+        },
+        {
+          id: 2,
+          originFileName: '멋사.jpg',
+          serverFileName: '6fb151081add763ec08da678a9578eff',
+          storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
+        },
+      ],
     },
     {
       id: 2,
@@ -194,11 +203,14 @@ export default function Booth({}) {
       introduction: '으아가각아ㅏㄱ',
       likeCnt: 20,
       location: '신공학관',
-      // images: [
-      //   {
-      //     url: noticeExImg,
-      //   },
-      // ],
+      images: [
+        {
+          id: 1,
+          originFileName: '멋사.jpg',
+          serverFileName: '6fb151081add763ec08da678a9578eff',
+          storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
+        },
+      ],
     },
     {
       id: 3,
@@ -298,7 +310,7 @@ export default function Booth({}) {
               type={boo.boothType}
               locationName={boo.location}
               likeCount={boo.likeCnt}
-              // boothImage={boo.images[0]}
+              boothImage={boo.images[0].storedFilePath}
             />
           );
         })}

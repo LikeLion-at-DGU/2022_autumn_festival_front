@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from '../../api/axios';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -168,7 +169,9 @@ export default function Boothcard({
         <CardMedia
           component="img"
           height="105"
-          image={boothImage ? boothImage : noticeExImg}
+          image={
+            boothImage ? 'http://192.168.0.194:8080' + boothImage : noticeExImg
+          }
           alt="부스 이미지"
         />
         <Location_number>
