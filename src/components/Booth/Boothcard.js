@@ -198,7 +198,7 @@ export default function Boothcard({
             {title}
           </Typography>
 
-          <Typography color="text.secondary" style={{ fontSize: '1px' }}>
+          <Typography color="text.secondary" style={{ fontSize: '11px' }}>
             {/* booth intro 들고오기 */}
             {intro}
           </Typography>
