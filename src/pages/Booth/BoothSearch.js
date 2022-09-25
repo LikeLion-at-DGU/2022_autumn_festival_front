@@ -141,9 +141,14 @@ export default function BoothSearch({}) {
       </section>
     ) : (
       <section className="no-results">
+        <p style={{ fontSize: '0.8rem', color: '#FD9903' }}>
+          검색어를 입력하고 스페이스바를 쳐주세요!
+        </p>
         <p style={{ fontSize: '1.3rem' }}>검색 결과</p>
+
         <div className="no-results__text">
           <img src={boothsearchC} className="noResultImg" />
+
           <p>찾고자하는 "{searchTerm}"에 맞는 부스 또는 메뉴가 없습니다.</p>
         </div>
       </section>

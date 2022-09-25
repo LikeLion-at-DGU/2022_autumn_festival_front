@@ -24,7 +24,7 @@ const Location_number = styled.p`
 `;
 
 const BoothLike = styled.div`
-  font-size: 1px;
+  font-size: 9px;
   display: inline;
   float: right;
   margin-right: 10px;
