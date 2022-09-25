@@ -21,8 +21,8 @@ import Seo from '../../assets/img/about_seo.png';
 import { UpTitle } from '../../styles/style';
 import { useLocation } from 'react-router-dom';
 
-const TitleContainer = styled.section`
-  position: relative;
+const TitleContainer = styled.span`
+  display: inline-block;
 `;
 
 const Img = styled.img`
@@ -184,9 +184,8 @@ export default function About() {
   }, [pathname]);
 
   return (
-    <div style={{ marginTop: '3rem' }}>
+    <TitleContainer>
       <UpTitle title={'ABOUT'} />
-
       <Logo>
         <br></br>
         <LogoImage src={dguLogo} />
@@ -212,14 +211,10 @@ export default function About() {
         즐겁고 행복한 축제가 되었으면 좋겠습니다!<br></br>
         학우 여러분의 청춘을 응원합니다! :&#41;
       </IntroText>
-
       <CImage src={aboutC} />
-
       <SubTitle></SubTitle>
-
       <LogoImage src={dguLogo} />
       <SubText>DGU likelion 10th</SubText>
-
       <Line />
       {/* 기획 */}
       <TeamText>Project Design</TeamText>
@@ -268,10 +263,8 @@ export default function About() {
         <CardLine />
         <CardText>- 축제기획단과 멋쟁이사자처럼 간 소통당담</CardText>
       </Card>
-
       {/* 프론트 */}
       <Space> .</Space>
-
       <TeamText>Front-end</TeamText>
       <Card href="https://github.com/seochan99">
         <FaceImg src={Seo} />
@@ -334,11 +327,9 @@ export default function About() {
         <CardLine />
         <CardText>- About 페이지 구현 </CardText>
       </Card>
-
       <Space> .</Space>
       <Space> .</Space>
       <Space> .</Space>
-
       {/* 백 */}
       <TeamText>Back-end</TeamText>
       <Card href="https://github.com/rawfishthelgh">
@@ -383,6 +374,6 @@ export default function About() {
         <CardText>- 방명록 로직 구현 </CardText>
       </Card>
       <Space> .</Space>
-    </div>
+    </TitleContainer>
   );
 }
