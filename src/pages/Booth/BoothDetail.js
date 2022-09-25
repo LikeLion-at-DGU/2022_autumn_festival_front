@@ -96,7 +96,6 @@ export default function BoothDetail() {
         return (
           <SwiperSlide key={idx}>
             <img
-              // 'http://192.168.0.194:8080' + boothImage['storedFilePath']
               src={`http://192.168.0.194:8080${b.storedFilePath}`}
               style={{ width: '325px', borderRadius: '2px' }}
             />
@@ -274,9 +273,12 @@ export default function BoothDetail() {
 
   useEffect(() => {
     getComments();
-    fetchBoothDetail();
     fetchMenu();
   }, []);
+
+  useEffect(() => {
+    fetchBoothDetail();
+  }, [booth.isLike, booth.likeCnt]);
 
   return (
     <>
