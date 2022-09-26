@@ -103,7 +103,7 @@ function TitleSection() {
     background: '#1B2F4E',
     marginTop: '-150px',
     window: 'auto',
-    height: '410px',
+    height: '420px',
   };
 
   return (

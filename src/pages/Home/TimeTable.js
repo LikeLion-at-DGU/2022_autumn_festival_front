@@ -40,15 +40,12 @@ const WhatDay = styled.h6`
 `
 
 const TimeTable = styled.div`
-  @media (max-height : 780px){
-    height: 460px;
-  }
   margin-top: -30px;
   background: linear-gradient(180deg, rgba(68, 114, 153, 0.5) 0%, rgba(110, 129, 158, 0.055) 100%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   width: 80%;
-  height: 380px;
+  height: 450px;
   margin-bottom: 30px;
   display: flex;
   justify-content: center;
