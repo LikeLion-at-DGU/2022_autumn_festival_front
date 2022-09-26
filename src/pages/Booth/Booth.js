@@ -6,14 +6,11 @@ import boothsearchC from '../../assets/img/boothsearchC.png';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import boothMap from '../../assets/img/boothMap.png';
-import noticeExImg from '../../assets/img/noticeExImg.png';
 
 // External Libraries //
-import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import Fade from '@mui/material/Fade';
-import mainMapIcon from '../../assets/img/mainMapIcon.png';
 
 import { MapLoacation } from './style';
 
@@ -280,7 +277,7 @@ export default function Booth({}) {
 
           <BoothCardContainer>
             {booth.map((boo) => {
-              console.log(boo.images[0].storedFilePath);
+              // console.log(boo.images[0].storedFilePath);
               return (
                 <Boothcard
                   key={boo.id}
@@ -338,11 +335,6 @@ export default function Booth({}) {
               isActive={isBuilding === bu.building}
             >
               {bu.building}
-              {/* {isBuilding === bu.building ? (
-                <BuildingHere layoutId="buildinghe" />
-              ) : (
-                <BuildingNotHere />
-              )} */}
             </BuildingDetail>
           );
         })}
