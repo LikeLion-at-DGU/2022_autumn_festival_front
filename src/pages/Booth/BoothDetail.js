@@ -486,7 +486,7 @@ export default function BoothDetail() {
 
   return (
     <>
-      {!isExist ? (
+      {isExist ? (
         <div style={{ marginBottom: '76px' }}>
           <UpTitle
             title={`${booth.boothType} 홈페이지`}
