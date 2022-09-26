@@ -60,7 +60,6 @@ const TimeBox = styled.div`
 `
 
 const IsNow = styled.div`
-    font-family: 'GmarketSansBold';
     font-weight: 800;
     font-size: 12px;
     border: none;
@@ -70,7 +69,6 @@ const IsNow = styled.div`
 `
 
 const IsNext = styled.div`
-    font-family: 'GmarketSansBold';
     font-weight: 800;
     font-size: 12px;
     border: none;
