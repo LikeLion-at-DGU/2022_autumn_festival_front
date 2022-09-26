@@ -160,7 +160,13 @@ export default function BoothDetail() {
         style={{
           fontSize: '28px',
           color: `${
-            tp === '주점' ? '#ff6b6b' : tp === '부스' ? '#0b9908' : '#2676ee'
+            tp === '주점'
+              ? '#ff6b6b'
+              : tp === '부스'
+              ? '#0b9908'
+              : tp === '플리마켓'
+              ? '#ae66e7'
+              : '#2676ee'
           }`,
         }}
       />
