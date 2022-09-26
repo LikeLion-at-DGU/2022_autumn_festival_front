@@ -103,7 +103,7 @@ function TitleSection() {
     background: '#1B2F4E',
     marginTop: '-150px',
     window: 'auto',
-    height: '420px',
+    height: '400px',
   };
 
   return (
@@ -120,7 +120,7 @@ function TitleSection() {
           </TitleArea>
 
           <TitleTime src={TitleS} />
-          <TitleFooter>동국대학교 가을 대동제</TitleFooter>
+          <TitleFooter>동국대학교 백상대동제</TitleFooter>
         </Box>
         <DGUImg src={School} />
       </Container>
