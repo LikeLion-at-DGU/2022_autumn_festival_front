@@ -36,6 +36,14 @@ export default function Notice() {
       writer: '축제 TF팀',
       createdDateTime: '2022-09-14T14:22:00Z',
       content: '동국대학교 대동제 책자 비치 및 안내',
+      images: [
+        {
+          id: 1,
+          originFileName: '',
+          serverFileName: '',
+          storedFilePath: '',
+        },
+      ],
     },
   ]);
 
@@ -85,7 +93,12 @@ export default function Notice() {
           }}
         >
           <img
-            src={DefaultImage}
+            src={
+              Array.isArray(notices.images) && notices.images.length > 0
+                ? process.env.REACT_APP_SERVER_PORT +
+                  notices.images[0].storedFilePath
+                : DefaultImage
+            }
             style={{ width: '55px', borderRadius: '4px' }}
           />
           <div style={{ marginLeft: '10px' }}>
