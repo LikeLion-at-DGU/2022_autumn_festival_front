@@ -286,7 +286,7 @@ export default function BoothDetail() {
     return no;
   });
 
-  const pageInfo = usePagination(guestArray, 12);
+  const pageInfo = usePagination(guestArray, 10);
   const pageNum = Array.from({ length: pageInfo.maxPage }, (v, i) => i + 1);
 
   const paginations = pageNum.map((n, idx) => {
