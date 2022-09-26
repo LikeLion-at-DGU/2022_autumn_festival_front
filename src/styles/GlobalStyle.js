@@ -43,22 +43,20 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   canvas{
-    height: 450px;
+    height: 400px;
     width: 100%;
   }
 
-  @media only screen and (min-width: 200px) { //375px 너무 작아서 수정했음
+  @media only screen and (max-width: 359px) and (min-width:200px) { //375px 너무 작아서 수정했음
     .App {
       width: 375px;
       height: 100vh;
+      margin-left: 60px;
       font-family: 'GmarketSansMedium';
       color: #FFF;
-      & > {
-        float: left;
-      }
     }
   }
-  @media only screen and (min-width: 375px) {
+  @media only screen and (min-width: 360px) {
     .App {
       width: 375px;
       height: 100vh;

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import usePagination from '../../hooks/usePagination';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import CommentInput from '../../components/Booth/CommentInput';
 import styled from 'styled-components';
 import BoothMenuAdd from '../../components/Booth/BoothMenuAdd';
 import axios from '../../api/axios';
@@ -51,7 +50,24 @@ import 'swiper/scss/pagination';
 import GuestBookItem from '../../components/Booth/GuestBookItem';
 import { PageNum } from '../Notice/style';
 
+// CommentInput
+import {useForm} from "react-hook-form";
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import { badwordexam } from '../../components/Booth/BadWord';
+
 SwiperCore.use([Pagination, Autoplay]);
+
+const style = {
+  badwordstyle: {
+    fontFamily: 'GmarketSansLight',
+    fontSize: '12px',
+    color: '#F54D28',
+    textAlign: 'left',
+    marginLeft: '20px',
+    marginTop: '5px',
+    marginBottom: '15px'
+  },
+};
 
 export default function BoothDetail() {
   const navigate = useNavigate();
@@ -241,7 +257,7 @@ export default function BoothDetail() {
     return no;
   });
 
-  const pageInfo = usePagination(guestArray, 12);
+  const pageInfo = usePagination(guestArray, 10);
   const pageNum = Array.from({ length: pageInfo.maxPage }, (v, i) => i + 1);
 
   const paginations = pageNum.map((n, idx) => {
@@ -257,6 +273,181 @@ export default function BoothDetail() {
       </PageNum>
     );
   });
+
+
+
+  // CommentInput
+
+  const CommentInsert = styled.form`
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-item: center;
+`;
+
+const WrapComment = styled.div`
+  position: relative;
+  top: 0;
+  left: 0;
+  & > input {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    padding: 8px;
+  }
+`;
+
+const Inputstyle = {
+  wrap: {
+    padding: '10px',
+    height: '20px',
+  },
+
+  wrap__content: {
+    padding: '10px',
+    height: '20px',
+    //임의
+    paddingBottom: '30px',
+  },
+
+  font: {
+    fontFamily: 'GmarketSansLight',
+    fontSize: '12px',
+  },
+
+  box__name: {
+    position: 'absolute',
+    padding: '5px',
+    float: 'left',
+  },
+  box__pw: {
+    padding: '5px',
+    float: 'right',
+  },
+
+  inputbox: {
+    borderRadius: '5px',
+    background: 'transparent',
+    border: '0.5px solid #dadada',
+    width: '85px',
+    marginLeft: '5px',
+    position: 'relative',
+    color: '#FFF',
+  },
+  contentbox: {
+    fontFamily: 'GmarketSansLight',
+    fontSize: '12px',
+
+    borderRadius: '20px',
+    background: 'transparent',
+    border: ' 1px solid #dadada',
+    boxShadow: '0 0 2px white',
+    width: '90%',
+    height: '20px',
+    paddingLeft: '10px',
+    color: '#FFF',
+  },
+  button: {
+    borderRadius: '50%',
+    width: '30px',
+    height: '30px',
+    fontSize: '20px',
+    // 임의
+  },
+};
+
+  const CommentInput = (/*{ onInsert }*/) => {
+    let detailId = useParams().id;
+    console.log('detailId:', detailId);
+  
+    const { register, handleSubmit, setValue } = useForm();
+  
+    const onValid = async(data) => {
+      const checkWord = (target, badwordexam) => {
+        for(let i = 0 ; i < badwordexam.length ; i++){
+          if(target.includes(badwordexam[i])){
+            return true
+          }
+        }
+        return false;
+      }
+  
+      if(checkWord(data.content, badwordexam)){
+        window.alert("욕설, 비속어, 성희롱, 비방 목적의 단어 등의 입력을 금지합니다.");
+        setValue("content", "");
+        return
+      }
+  
+      try{
+        await axios
+        .post(`/booths/${detailId}/comments`, {
+          writer: data.writer,
+          password: data.password,
+          content: data.content,
+        })
+      }catch(e){
+        console.log(e)
+      }
+
+      try{
+      await axios
+      .get(`booths/${detailId}/comments`)
+      .then((response) => {
+        setComments(response.data);
+      })
+      }catch(e){
+        console.log(e)
+      }
+  
+  
+      setValue("writer", "");
+      setValue("password", "");
+      setValue("content", "");
+    }
+  
+    return (
+      <CommentInsert onSubmit={handleSubmit(onValid)} className="CommentInsert" method="post">
+        <div style={Inputstyle.wrap}>
+          <div style={Inputstyle.box__name}>
+            <div style={Inputstyle.font}>
+              작성자명
+              <input
+                style={Inputstyle.inputbox}
+                {...register("writer", {required : true})}
+                placeholder="작성자명"
+              />
+            </div>
+          </div>
+          <div style={Inputstyle.box__pw}>
+            <div style={Inputstyle.font}>
+              비밀번호
+              <input
+                style={Inputstyle.inputbox}
+                {...register("password", {required : true})}
+                placeholder="비밀번호"
+              />
+            </div>
+          </div>
+        </div>
+        <WrapComment>
+          <input
+            {...register("content", {required : true})}
+            style={Inputstyle.contentbox}
+            placeholder="후기를 남겨보세요."
+          />
+          <ArrowCircleDownIcon
+            onClick={handleSubmit(onValid)}
+            style={{
+              position: 'absolute',
+              right: '12px',
+              top: '12px',
+              fontSize: '28px',
+            }}
+          ></ArrowCircleDownIcon>
+        </WrapComment>
+      </CommentInsert>
+    );
+  };
 
   return (
     <>
@@ -396,6 +587,10 @@ export default function BoothDetail() {
                   </div>
                   <IntroLine></IntroLine>
                   <CommentInput />
+                  <div style={style.badwordstyle}>
+                    욕설, 성희롱, 비방 발언을 작성할 경우 ip주소를 통해{' '}
+                    <div></div>법적 조치할 예정입니다.
+                  </div>
                   {pageInfo.currentData(comments).map((comment) => {
                     {
                       // console.log(comment);

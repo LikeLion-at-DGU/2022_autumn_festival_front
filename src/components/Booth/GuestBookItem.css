@@ -6,7 +6,8 @@
   margin-top: 5px;
   padding: 10px;
   box-sizing: border-box;
-  width: 325px;
+  width: 90%;
+  margin-left: 20px;
 }
 
 .comment__name {
