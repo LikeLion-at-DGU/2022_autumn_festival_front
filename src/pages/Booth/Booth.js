@@ -231,11 +231,6 @@ export default function Booth({}) {
             {MapLoacation(isBuilding)}
             {/* <BuildingLocationImage src={mainMapIcon} /> */}
           </div>
-          <div style={{ position: 'relative' }}>
-            <LocationImg alt={isBuilding} src={boothMap} className="fadeIn" />
-            {MapLoacation(isBuilding)}
-            {/* <BuildingLocationImage src={mainMapIcon} /> */}
-          </div>
 
           <BuildingContainer>
             {buildingArray.map((bu) => {
