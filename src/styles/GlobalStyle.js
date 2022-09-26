@@ -43,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   canvas{
-    height: 500px;
+    height: 400px;
     width: 100%;
   }
 
