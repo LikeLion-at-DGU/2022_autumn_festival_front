@@ -66,8 +66,9 @@ export default function BoothSearch({}) {
                 intro={boo.introduction}
                 type={boo.boothType}
                 locationName={boo.location}
+                isLike={boo.isLike}
                 likeCount={boo.likeCnt}
-                boothImage={boo.images[0].storedFilePath}
+                boothImage={boo.images[0]}
               />
             );
           })}

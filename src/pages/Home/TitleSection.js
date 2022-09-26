@@ -57,9 +57,9 @@ const TitleArea = styled.div`
   background-image: url(${MainBg});
   background-size: 320px;
   background-attachment: fixed;
-  background-clip: text;
   color: transparent;
   -webkit-background-clip: text;
+  background-clip: text;
   letter-spacing: 0.09em;
   line-height: 115px;
 `;
