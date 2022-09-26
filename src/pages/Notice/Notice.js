@@ -85,6 +85,7 @@ export default function Notice() {
   });
 
   const noticeCard = pageInfo.currentData().map((item, idx) => {
+    // console.log(item.images);
     return (
       <NoticeCard key={idx}>
         <div
@@ -94,9 +95,9 @@ export default function Notice() {
         >
           <img
             src={
-              Array.isArray(notices.images) && notices.images.length > 0
+              Array.isArray(item.images) && item.images.length > 0
                 ? process.env.REACT_APP_SERVER_PORT +
-                  notices.images[0].storedFilePath
+                  item.images[0].storedFilePath
                 : DefaultImage
             }
             style={{ width: '55px', borderRadius: '4px' }}
