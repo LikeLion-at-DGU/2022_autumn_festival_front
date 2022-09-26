@@ -68,7 +68,7 @@ export default function BoothDetail() {
   const [isLoading, setIsLoading] = useState(false);
 
   // 슬라이드 뷰 //
-  console.log(booth.images);
+  // console.log(booth.images);
   const SlideView =
     Array.isArray(booth.images) && booth.images.length > 0
       ? booth.images.map((b, idx) => {
@@ -89,7 +89,6 @@ export default function BoothDetail() {
     await axios
       .post(`booths/${detailId}/likes`)
       .then((res) => {
-        console.log(res);
         setBooth({
           ...booth,
           isLike: true,
@@ -100,7 +99,6 @@ export default function BoothDetail() {
         console.log('좋아요 실패');
       });
   };
-
 
   const DownLike = () => {
     axios.delete(`booths/${detailId}/likes`, {
@@ -226,7 +224,7 @@ export default function BoothDetail() {
     axios
       .get(`booths/${id}/comments`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setComments(response.data);
       })
       .catch((error) => console.log('Network Error : ', error));
@@ -235,6 +233,8 @@ export default function BoothDetail() {
   useEffect(() => {
     getComments();
     fetchMenu();
+    fetchBoothDetail();
+    // setLike();
   }, []);
 
   const guestArray = comments.filter((no) => {
@@ -257,9 +257,6 @@ export default function BoothDetail() {
       </PageNum>
     );
   });
-  useEffect(() => {
-    fetchBoothDetail();
-  }, []);
 
   return (
     <>
