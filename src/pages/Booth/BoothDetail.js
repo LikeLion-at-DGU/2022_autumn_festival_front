@@ -76,7 +76,7 @@ export default function BoothDetail() {
           return (
             <SwiperSlide key={idx}>
               <img
-                src={`http://192.168.0.194:8080${b.storedFilePath}`}
+                src={process.env.REACT_APP_SERVER_PORT + `${b.storedFilePath}`}
                 style={{ width: '325px', borderRadius: '2px' }}
               />
             </SwiperSlide>

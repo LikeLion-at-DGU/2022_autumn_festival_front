@@ -257,7 +257,7 @@ export default function Booth({}) {
 
           <BoothCardContainer>
             {booth.map((boo) => {
-              console.log(boo);
+              console.log(boo.images.storedFilePath);
               return (
                 <Boothcard
                   key={boo.id}

@@ -14,6 +14,7 @@ import {
   NoticeDate,
   NoticeDetailContent,
 } from './style';
+import DefaultImage from '../../assets/img/noticeDefaultImg.png';
 
 import axios from '../../api/axios';
 
@@ -28,12 +29,28 @@ export default function NoticeDetail() {
       .get(`notifications/${noticeId}`)
       .then((res) => {
         setNotice(res.data);
+        console.log(res.data);
         setIsLoading(true);
       })
       .catch((e) => {
         console.log(e);
       });
   }, []);
+
+  const ImageView =
+    Array.isArray(notice.images) && notice.images.length > 0 ? (
+      notice.images.map((item, idx) => {
+        return (
+          <img
+            key={idx}
+            src={process.env.REACT_APP_SERVER_PORT + item.storedFilePath}
+            style={{ width: '330px' }}
+          />
+        );
+      })
+    ) : (
+      <></>
+    );
 
   return (
     <div style={{ marginBottom: '76px' }}>
@@ -43,9 +60,7 @@ export default function NoticeDetail() {
         <>
           {/* 카테고리 */}
           <CateContainer>
-            <CateBtnActive disabled="true">
-              {notice.notificationType}
-            </CateBtnActive>
+            <CateBtnActive>{notice.notificationType}</CateBtnActive>
           </CateContainer>
 
           {/* 공지 제목 */}
@@ -71,6 +86,15 @@ export default function NoticeDetail() {
           <NoticeDetailContent
             dangerouslySetInnerHTML={{ __html: notice.content }}
           ></NoticeDetailContent>
+          <br />
+          <br />
+          <NoticeDetailContainer>
+            {Array.isArray(notice.images) && notice.images.length > 0 ? (
+              ImageView()
+            ) : (
+              <img src={DefaultImage} style={{ width: '330px' }} />
+            )}
+          </NoticeDetailContainer>
         </>
       ) : (
         <Fade in="true" unmountOnExit style={{ margin: '100px auto' }}>

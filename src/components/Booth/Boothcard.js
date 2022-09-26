@@ -218,7 +218,8 @@ export default function Boothcard({
             height="105"
             image={
               boothImage
-                ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+                ? process.env.REACT_APP_SERVER_PORT +
+                  boothImage['storedFilePath']
                 : JoojumDefaultImg
             }
             alt="부스 이미지"
@@ -229,7 +230,8 @@ export default function Boothcard({
             height="105"
             image={
               boothImage
-                ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+                ? process.env.REACT_APP_SERVER_PORT +
+                  boothImage['storedFilePath']
                 : boothDefaultImg
             }
             alt="부스 이미지"
@@ -240,7 +242,8 @@ export default function Boothcard({
             height="105"
             image={
               boothImage
-                ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+                ? process.env.REACT_APP_SERVER_PORT +
+                  boothImage['storedFilePath']
                 : FoodDefaultImg
             }
             alt="부스 이미지"
@@ -252,7 +255,8 @@ export default function Boothcard({
             height="105"
             image={
               boothImage
-                ? 'http://192.168.0.194:8080' + boothImage['storedFilePath']
+                ? process.env.REACT_APP_SERVER_PORT +
+                  boothImage['storedFilePath']
                 : FleaDefaultImg
             }
             alt="부스 이미지"
