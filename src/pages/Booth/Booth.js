@@ -175,28 +175,28 @@ const buildingArray = [
 
 export default function Booth({}) {
   const [booth, setBooth] = useState([
-    {
-      id: 1,
-      boothType: '주점',
-      title: '명진관호떡',
-      location: '원흥관',
-      introduction: '맛있는 호떡과 다양한 음식',
-      likeCnt: 20,
-      images: [
-        {
-          id: 1,
-          originFileName: '멋사.jpg',
-          serverFileName: '6fb151081add763ec08da678a9578eff',
-          storedFilePath: 'https://han.gl/pYMEv',
-        },
-        {
-          id: 2,
-          originFileName: '멋사.jpg',
-          serverFileName: '6fb151081add763ec08da678a9578eff',
-          storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
-        },
-      ],
-    },
+    // {
+    //   id: 1,
+    //   boothType: '주점',
+    //   title: '명진관호떡',
+    //   location: '원흥관',
+    //   introduction: '맛있는 호떡과 다양한 음식',
+    //   likeCnt: 20,
+    //   images: [
+    //     {
+    //       id: 1,
+    //       originFileName: '멋사.jpg',
+    //       serverFileName: '6fb151081add763ec08da678a9578eff',
+    //       storedFilePath: 'https://han.gl/pYMEv',
+    //     },
+    //     {
+    //       id: 2,
+    //       originFileName: '멋사.jpg',
+    //       serverFileName: '6fb151081add763ec08da678a9578eff',
+    //       storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
+    //     },
+    //   ],
+    // },
   ]);
 
   // 날짜 할당
@@ -230,7 +230,7 @@ export default function Booth({}) {
     }
   };
 
-  return !isExist ? (
+  return isExist ? (
     <BoothContainer>
       <DateContainer>
         {/* api호출 방법 :/api/booths?day={day}&location={location} */}
@@ -243,7 +243,7 @@ export default function Booth({}) {
         ))}
       </DateContainer>
 
-      {!isLoading ? (
+      {isLoading ? (
         <>
           {/* 지도 이미지 */}
           <div style={{ position: 'relative' }}>

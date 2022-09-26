@@ -72,7 +72,30 @@ const style = {
 export default function BoothDetail() {
   const navigate = useNavigate();
   // 더미 데이터 (추후 수정)
-  const [booth, setBooth] = useState({});
+  const [booth, setBooth] = useState([
+    {
+      id: 1,
+      boothType: '주점',
+      title: '명진관호떡',
+      location: '원흥관',
+      introduction: '맛있는 호떡과 다양한 음식',
+      likeCnt: 20,
+      images: [
+        {
+          id: 1,
+          originFileName: '멋사.jpg',
+          serverFileName: '6fb151081add763ec08da678a9578eff',
+          storedFilePath: 'https://han.gl/pYMEv',
+        },
+        {
+          id: 2,
+          originFileName: '멋사.jpg',
+          serverFileName: '6fb151081add763ec08da678a9578eff',
+          storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
+        },
+      ],
+    },
+  ]);
   const [menu, setMenu] = useState([]);
   const [isExist, setIsExist] = useState(true);
   let detailId = useParams().id;
@@ -224,7 +247,7 @@ export default function BoothDetail() {
   let query = useQuery();
   useEffect(() => {
     // console.log(query.get('admin'));
-    setAdmin(query.get('admin'));
+    setAdmin(query.get('likelionf10'));
   }, [query]);
 
   //방명록
