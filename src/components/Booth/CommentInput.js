@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import axios from '../../api/axios';
 import { useParams } from 'react-router-dom';
+import {useForm} from "react-hook-form";
 
 const CommentInsert = styled.form`
   height: 90px;
@@ -85,96 +86,12 @@ const style = {
 };
 
 const CommentInput = (/*{ onInsert }*/) => {
-  const [value, setValue] = useState({
-    writer: '',
-    password: '',
-    content: '',
-  });
-
-  const onChangeName = useCallback(
-    (e) => {
-      setValue({
-        writer: e.target.value,
-        password: value.password,
-        content: value.content,
-      });
-      console.log(value);
-    },
-    [value],
-  );
-
-  const onChangePassword = useCallback(
-    (e) => {
-      setValue({
-        writer: value.writer,
-        password: e.target.value,
-        content: value.content,
-      });
-      console.log(value);
-    },
-    [value],
-  );
-
-  const onChangeContent = useCallback(
-    (e) => {
-      setValue({
-        writer: value.writer,
-        password: value.password,
-        content: e.target.value,
-      });
-      console.log(value);
-    },
-    [value],
-  );
-
   let detailId = useParams().id;
   console.log('detailId:', detailId);
 
-  // 방명록 글쓰기 API요청
-  const onSubmit = (e) => {
-    // onInsert(value.writer, value.password, value.content);
-    if (isValidCheck()) {
-      setValue({
-        writer: value.writer,
-        password: value.password,
-        content: value.content,
-      });
-      console.log(value);
 
-      //e.preventDefault();
-      if (isBadWords()) {
-        axios
-          .post(`/booths/${detailId}/comments`, {
-            writer: value.writer,
-            password: value.password,
-            content: value.content,
-          })
-          .then(function (response) {})
-          .catch(function (error) {});
-        window.location.reload();
-      }
-    }
-  };
 
-  const isValidCheck = () => {
-    if (value.writer === '' || value.password === '' || value.content === '') {
-      alert('방명록 정보를 모두 입력해주세요.');
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const badwordset = (worldList) => {
-    const word = '';
-    for (let i = 0; i < worldList.length; i++) {
-      word = word + worldList[i];
-    }
-    return word;
-  };
-
-  const isBadWords = () => {
-    const badwordexam = [
+  const badwordexam = [
       'D쥐고',
       'D지고',
       'jonna',
@@ -745,27 +662,51 @@ const CommentInput = (/*{ onInsert }*/) => {
       '쳐-',
       '씹-',
     ];
-    const string = value.content;
-    if (string.includes('개새끼', '시발')) {
-      // console.log(value.content.includes(badwordset(badwordexam)));
-      alert('경고');
+
+  const { register, handleSubmit, setValue } = useForm();
+
+  const onValid = async(data) => {
+    const checkWord = (target, badwordexam) => {
+      for(let i = 0 ; i < badwordexam.length ; i++){
+        if(target.includes(badwordexam[i])){
+          return true
+        }
+      }
       return false;
-    } else {
-      return true;
     }
-  };
+
+    if(checkWord(data.content, badwordexam)){
+      window.alert("욕설, 비속어, 성희롱, 비방 목적의 단어 등의 입력을 금지합니다.");
+      return
+    }
+
+    try{
+      await axios
+      .post(`/booths/${detailId}/comments`, {
+        writer: data.writer,
+        password: data.password,
+        content: data.content,
+      })
+    }catch(e){
+      console.log(e)
+    }
+
+
+    setValue("writer", "");
+    setValue("password", "");
+    setValue("content", "");
+  }
 
   return (
-    <CommentInsert className="CommentInsert" method="post">
+    <CommentInsert onSubmit={handleSubmit(onValid)} className="CommentInsert" method="post">
       <div style={style.wrap}>
         <div style={style.box__name}>
           <div style={style.font}>
             작성자명
             <input
-              name="writer"
               style={style.inputbox}
-              value={value.writer}
-              onChange={onChangeName}
+              {...register("writer", {required : true})}
+              placeholder="작성자명"
             />
           </div>
         </div>
@@ -773,24 +714,21 @@ const CommentInput = (/*{ onInsert }*/) => {
           <div style={style.font}>
             비밀번호
             <input
-              name="password"
               style={style.inputbox}
-              value={value.password}
-              onChange={onChangePassword}
+              {...register("password", {required : true})}
+              placeholder="비밀번호"
             />
           </div>
         </div>
       </div>
       <WrapComment>
         <input
-          name="content"
+          {...register("content", {required : true})}
           style={style.contentbox}
           placeholder="후기를 남겨보세요."
-          value={value.content}
-          onChange={onChangeContent}
         />
         <ArrowCircleDownIcon
-          onClick={onSubmit}
+          onClick={handleSubmit(onValid)}
           style={{
             position: 'absolute',
             right: '12px',
