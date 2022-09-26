@@ -40,6 +40,10 @@ export const TypeBtn = styled.button`
       return css`
         background-color: #2676ee;
       `;
+    } else if (props.tp === '플리마켓') {
+      return css`
+        background-color: #ae66e7;
+      `;
     }
   }}
 `;
