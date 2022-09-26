@@ -96,8 +96,7 @@ export default function Notice() {
           <img
             src={
               Array.isArray(item.images) && item.images.length > 0
-                ? process.env.REACT_APP_SERVER_PORT +
-                  item.images[0].storedFilePath
+                ? item.images[0].storedFilePath
                 : DefaultImage
             }
             style={{ width: '55px', borderRadius: '4px' }}
