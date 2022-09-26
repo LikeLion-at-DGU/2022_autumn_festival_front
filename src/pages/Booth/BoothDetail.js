@@ -51,7 +51,7 @@ import GuestBookItem from '../../components/Booth/GuestBookItem';
 import { PageNum } from '../Notice/style';
 
 // CommentInput
-import {useForm} from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import { badwordexam } from '../../components/Booth/BadWord';
 
@@ -65,7 +65,7 @@ const style = {
     textAlign: 'left',
     marginLeft: '20px',
     marginTop: '5px',
-    marginBottom: '15px'
+    marginBottom: '15px',
   },
 };
 
@@ -88,11 +88,11 @@ export default function BoothDetail() {
   const SlideView =
     Array.isArray(booth.images) && booth.images.length > 0
       ? booth.images.map((b, idx) => {
-          console.log('이미지 : ' + b.storedFilePath);
+          // console.log('이미지 : ' + b.storedFilePath);
           return (
             <SwiperSlide key={idx}>
               <img
-                src={process.env.REACT_APP_SERVER_PORT + `${b.storedFilePath}`}
+                src={`${b.storedFilePath}`}
                 style={{ width: '325px', borderRadius: '2px' }}
               />
             </SwiperSlide>
@@ -274,146 +274,146 @@ export default function BoothDetail() {
     );
   });
 
-
-
   // CommentInput
 
   const CommentInsert = styled.form`
-  height: 90px;
-  display: flex;
-  flex-direction: column;
-  align-item: center;
-`;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-item: center;
+  `;
 
-const WrapComment = styled.div`
-  position: relative;
-  top: 0;
-  left: 0;
-  & > input {
-    position: absolute;
-    left: 10px;
-    top: 8px;
-    padding: 8px;
-  }
-`;
+  const WrapComment = styled.div`
+    position: relative;
+    top: 0;
+    left: 0;
+    & > input {
+      position: absolute;
+      left: 10px;
+      top: 8px;
+      padding: 8px;
+    }
+  `;
 
-const Inputstyle = {
-  wrap: {
-    padding: '10px',
-    height: '20px',
-  },
+  const Inputstyle = {
+    wrap: {
+      padding: '10px',
+      height: '20px',
+    },
 
-  wrap__content: {
-    padding: '10px',
-    height: '20px',
-    //임의
-    paddingBottom: '30px',
-  },
+    wrap__content: {
+      padding: '10px',
+      height: '20px',
+      //임의
+      paddingBottom: '30px',
+    },
 
-  font: {
-    fontFamily: 'GmarketSansLight',
-    fontSize: '12px',
-  },
+    font: {
+      fontFamily: 'GmarketSansLight',
+      fontSize: '12px',
+    },
 
-  box__name: {
-    position: 'absolute',
-    padding: '5px',
-    float: 'left',
-  },
-  box__pw: {
-    padding: '5px',
-    float: 'right',
-  },
+    box__name: {
+      position: 'absolute',
+      padding: '5px',
+      float: 'left',
+    },
+    box__pw: {
+      padding: '5px',
+      float: 'right',
+    },
 
-  inputbox: {
-    borderRadius: '5px',
-    background: 'transparent',
-    border: '0.5px solid #dadada',
-    width: '85px',
-    marginLeft: '5px',
-    position: 'relative',
-    color: '#FFF',
-  },
-  contentbox: {
-    fontFamily: 'GmarketSansLight',
-    fontSize: '12px',
+    inputbox: {
+      borderRadius: '5px',
+      background: 'transparent',
+      border: '0.5px solid #dadada',
+      width: '85px',
+      marginLeft: '5px',
+      position: 'relative',
+      color: '#FFF',
+    },
+    contentbox: {
+      fontFamily: 'GmarketSansLight',
+      fontSize: '12px',
 
-    borderRadius: '20px',
-    background: 'transparent',
-    border: ' 1px solid #dadada',
-    boxShadow: '0 0 2px white',
-    width: '90%',
-    height: '20px',
-    paddingLeft: '10px',
-    color: '#FFF',
-  },
-  button: {
-    borderRadius: '50%',
-    width: '30px',
-    height: '30px',
-    fontSize: '20px',
-    // 임의
-  },
-};
+      borderRadius: '20px',
+      background: 'transparent',
+      border: ' 1px solid #dadada',
+      boxShadow: '0 0 2px white',
+      width: '90%',
+      height: '20px',
+      paddingLeft: '10px',
+      color: '#FFF',
+    },
+    button: {
+      borderRadius: '50%',
+      width: '30px',
+      height: '30px',
+      fontSize: '20px',
+      // 임의
+    },
+  };
 
   const CommentInput = (/*{ onInsert }*/) => {
     let detailId = useParams().id;
     console.log('detailId:', detailId);
-  
+
     const { register, handleSubmit, setValue } = useForm();
-  
-    const onValid = async(data) => {
+
+    const onValid = async (data) => {
       const checkWord = (target, badwordexam) => {
-        for(let i = 0 ; i < badwordexam.length ; i++){
-          if(target.includes(badwordexam[i])){
-            return true
+        for (let i = 0; i < badwordexam.length; i++) {
+          if (target.includes(badwordexam[i])) {
+            return true;
           }
         }
         return false;
+      };
+
+      if (checkWord(data.content, badwordexam)) {
+        window.alert(
+          '욕설, 비속어, 성희롱, 비방 목적의 단어 등의 입력을 금지합니다.',
+        );
+        setValue('content', '');
+        return;
       }
-  
-      if(checkWord(data.content, badwordexam)){
-        window.alert("욕설, 비속어, 성희롱, 비방 목적의 단어 등의 입력을 금지합니다.");
-        setValue("content", "");
-        return
-      }
-  
-      try{
-        await axios
-        .post(`/booths/${detailId}/comments`, {
+
+      try {
+        await axios.post(`/booths/${detailId}/comments`, {
           writer: data.writer,
           password: data.password,
           content: data.content,
-        })
-      }catch(e){
-        console.log(e)
+        });
+      } catch (e) {
+        console.log(e);
       }
 
-      try{
-      await axios
-      .get(`booths/${detailId}/comments`)
-      .then((response) => {
-        setComments(response.data);
-      })
-      }catch(e){
-        console.log(e)
+      try {
+        await axios.get(`booths/${detailId}/comments`).then((response) => {
+          setComments(response.data);
+        });
+      } catch (e) {
+        console.log(e);
       }
-  
-  
-      setValue("writer", "");
-      setValue("password", "");
-      setValue("content", "");
-    }
-  
+
+      setValue('writer', '');
+      setValue('password', '');
+      setValue('content', '');
+    };
+
     return (
-      <CommentInsert onSubmit={handleSubmit(onValid)} className="CommentInsert" method="post">
+      <CommentInsert
+        onSubmit={handleSubmit(onValid)}
+        className="CommentInsert"
+        method="post"
+      >
         <div style={Inputstyle.wrap}>
           <div style={Inputstyle.box__name}>
             <div style={Inputstyle.font}>
               작성자명
               <input
                 style={Inputstyle.inputbox}
-                {...register("writer", {required : true})}
+                {...register('writer', { required: true })}
                 placeholder="작성자명"
               />
             </div>
@@ -423,7 +423,7 @@ const Inputstyle = {
               비밀번호
               <input
                 style={Inputstyle.inputbox}
-                {...register("password", {required : true})}
+                {...register('password', { required: true })}
                 placeholder="비밀번호"
               />
             </div>
@@ -431,7 +431,7 @@ const Inputstyle = {
         </div>
         <WrapComment>
           <input
-            {...register("content", {required : true})}
+            {...register('content', { required: true })}
             style={Inputstyle.contentbox}
             placeholder="후기를 남겨보세요."
           />
