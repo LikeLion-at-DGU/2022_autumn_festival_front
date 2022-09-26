@@ -53,6 +53,16 @@ import { PageNum } from '../Notice/style';
 
 SwiperCore.use([Pagination, Autoplay]);
 
+const style = {
+  badwordstyle: {
+    fontFamily: 'GmarketSansLight',
+    fontSize: '12px',
+    color: '#F54D28',
+    textAlign: 'left',
+    marginLeft: '20px',
+  },
+};
+
 export default function BoothDetail() {
   const navigate = useNavigate();
   // 더미 데이터 (추후 수정)
@@ -434,6 +444,10 @@ export default function BoothDetail() {
                   </div>
                   <IntroLine></IntroLine>
                   <CommentInput />
+                  <div style={style.badwordstyle}>
+                    욕설, 성희롱, 비방 발언을 작성할 경우 ip주소를 통해{' '}
+                    <div></div>법적 조치할 예정입니다.
+                  </div>
                   {pageInfo.currentData(comments).map((comment) => {
                     {
                       // console.log(comment);
