@@ -57,9 +57,9 @@ const TitleArea = styled.div`
   background-image: url(${MainBg});
   background-size: 320px;
   background-attachment: fixed;
-  background-clip: text;
   color: transparent;
   -webkit-background-clip: text;
+  background-clip: text;
   letter-spacing: 0.09em;
   line-height: 115px;
 `;
@@ -101,9 +101,9 @@ function TitleSection() {
 
   const style = {
     background: '#1B2F4E',
-    marginTop: '-150px',
+    marginTop: '-140px',
     window: 'auto',
-    height: '400px',
+    height: '250px',
   };
 
   return (
@@ -120,7 +120,7 @@ function TitleSection() {
           </TitleArea>
 
           <TitleTime src={TitleS} />
-          <TitleFooter>동국대학교 가을 대동제</TitleFooter>
+          <TitleFooter>동국대학교 백상대동제</TitleFooter>
         </Box>
         <DGUImg src={School} />
       </Container>

@@ -266,6 +266,7 @@ export default function Booth({}) {
                   intro={boo.introduction}
                   type={boo.boothType}
                   locationName={boo.location}
+                  isLike={boo.isLike}
                   likeCount={boo.likeCnt}
                   boothImage={boo.images[0]}
                 />
@@ -293,10 +294,15 @@ export default function Booth({}) {
       </DateContainer>
 
       {/* 지도 이미지 */}
-      <LocationImg />
+      <div style={{ position: 'relative' }}>
+        <LocationImg alt={isBuilding} src={boothMap} className="fadeIn" />
+        {MapLoacation(isBuilding)}
+        {/* <BuildingLocationImage src={mainMapIcon} /> */}
+      </div>
+      {/* <LocationImg /> */}
 
       {/* {isBuilding === '만해광장' ?  } */}
-      <LocationImg alt={isBuilding} src={boothMap} />
+      {/* <LocationImg alt={isBuilding} src={boothMap} /> */}
 
       <BuildingContainer>
         {buildingArray.map((bu) => {
