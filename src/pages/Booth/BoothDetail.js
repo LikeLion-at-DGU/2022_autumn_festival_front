@@ -3,6 +3,12 @@ import usePagination from '../../hooks/usePagination';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import BoothMenuAdd from '../../components/Booth/BoothMenuAdd';
+
+import boothDefaultImg from '../../assets/img/부스_default.png';
+import JoojumDefaultImg from '../../assets/img/주점_default.png';
+import FoodDefaultImg from '../../assets/img/푸드트럭_default.png';
+import FleaDefaultImg from '../../assets/img/플리마켓_default.png';
+
 import axios from '../../api/axios';
 import {
   SwiperContainer,
@@ -75,7 +81,7 @@ export default function BoothDetail() {
   const [booth, setBooth] = useState([
     {
       id: 1,
-      boothType: '주점',
+      boothType: 'ㅇ',
       title: '명진관호떡',
       location: '원흥관',
       introduction: '맛있는 호떡과 다양한 음식',
@@ -309,7 +315,7 @@ export default function BoothDetail() {
     height: 90px;
     display: flex;
     flex-direction: column;
-    align-item: center;
+    align-items: center;
   `;
 
   const WrapComment = styled.div`
@@ -480,7 +486,7 @@ export default function BoothDetail() {
 
   return (
     <>
-      {isExist ? (
+      {!isExist ? (
         <div style={{ marginBottom: '76px' }}>
           <UpTitle
             title={`${booth.boothType} 홈페이지`}
@@ -508,7 +514,15 @@ export default function BoothDetail() {
                   ) : (
                     <SwiperSlide>
                       <img
-                        src={NoticeExImg}
+                        src={
+                          booth.boothType === '푸드트럭'
+                            ? FoodDefaultImg
+                            : booth.boothType === '주점'
+                            ? JoojumDefaultImg
+                            : booth.boothType === '부스'
+                            ? boothDefaultImg
+                            : FleaDefaultImg
+                        }
                         style={{ width: '325px', borderRadius: '2px' }}
                       />
                     </SwiperSlide>
