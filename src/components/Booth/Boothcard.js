@@ -216,36 +216,21 @@ export default function Boothcard({
           <CardMedia
             component="img"
             height="105"
-            image={
-              boothImage
-                ? process.env.REACT_APP_SERVER_PORT +
-                  boothImage['storedFilePath']
-                : JoojumDefaultImg
-            }
+            image={boothImage ? boothImage['storedFilePath'] : JoojumDefaultImg}
             alt="부스 이미지"
           />
         ) : type === '부스' ? (
           <CardMedia
             component="img"
             height="105"
-            image={
-              boothImage
-                ? process.env.REACT_APP_SERVER_PORT +
-                  boothImage['storedFilePath']
-                : boothDefaultImg
-            }
+            image={boothImage ? boothImage['storedFilePath'] : boothDefaultImg}
             alt="부스 이미지"
           />
         ) : type === '푸드트럭' ? (
           <CardMedia
             component="img"
             height="105"
-            image={
-              boothImage
-                ? process.env.REACT_APP_SERVER_PORT +
-                  boothImage['storedFilePath']
-                : FoodDefaultImg
-            }
+            image={boothImage ? boothImage['storedFilePath'] : FoodDefaultImg}
             alt="부스 이미지"
           />
         ) : (
@@ -253,12 +238,7 @@ export default function Boothcard({
           <CardMedia
             component="img"
             height="105"
-            image={
-              boothImage
-                ? process.env.REACT_APP_SERVER_PORT +
-                  boothImage['storedFilePath']
-                : FleaDefaultImg
-            }
+            image={boothImage ? boothImage['storedFilePath'] : FleaDefaultImg}
             alt="부스 이미지"
           />
         )}

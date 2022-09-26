@@ -3,6 +3,12 @@ import usePagination from '../../hooks/usePagination';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import BoothMenuAdd from '../../components/Booth/BoothMenuAdd';
+
+import boothDefaultImg from '../../assets/img/부스_default.png';
+import JoojumDefaultImg from '../../assets/img/주점_default.png';
+import FoodDefaultImg from '../../assets/img/푸드트럭_default.png';
+import FleaDefaultImg from '../../assets/img/플리마켓_default.png';
+
 import axios from '../../api/axios';
 import {
   SwiperContainer,
@@ -51,7 +57,7 @@ import GuestBookItem from '../../components/Booth/GuestBookItem';
 import { PageNum } from '../Notice/style';
 
 // CommentInput
-import {useForm} from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import { badwordexam } from '../../components/Booth/BadWord';
 
@@ -65,14 +71,37 @@ const style = {
     textAlign: 'left',
     marginLeft: '20px',
     marginTop: '5px',
-    marginBottom: '15px'
+    marginBottom: '15px',
   },
 };
 
 export default function BoothDetail() {
   const navigate = useNavigate();
   // 더미 데이터 (추후 수정)
-  const [booth, setBooth] = useState({});
+  const [booth, setBooth] = useState([
+    {
+      id: 1,
+      boothType: 'ㅇ',
+      title: '명진관호떡',
+      location: '원흥관',
+      introduction: '맛있는 호떡과 다양한 음식',
+      likeCnt: 20,
+      images: [
+        {
+          id: 1,
+          originFileName: '멋사.jpg',
+          serverFileName: '6fb151081add763ec08da678a9578eff',
+          storedFilePath: 'https://han.gl/pYMEv',
+        },
+        {
+          id: 2,
+          originFileName: '멋사.jpg',
+          serverFileName: '6fb151081add763ec08da678a9578eff',
+          storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
+        },
+      ],
+    },
+  ]);
   const [menu, setMenu] = useState([]);
   const [isExist, setIsExist] = useState(true);
   let detailId = useParams().id;
@@ -88,11 +117,11 @@ export default function BoothDetail() {
   const SlideView =
     Array.isArray(booth.images) && booth.images.length > 0
       ? booth.images.map((b, idx) => {
-          console.log('이미지 : ' + b.storedFilePath);
+          // console.log('이미지 : ' + b.storedFilePath);
           return (
             <SwiperSlide key={idx}>
               <img
-                src={process.env.REACT_APP_SERVER_PORT + `${b.storedFilePath}`}
+                src={`${b.storedFilePath}`}
                 style={{ width: '325px', borderRadius: '2px' }}
               />
             </SwiperSlide>
@@ -137,7 +166,13 @@ export default function BoothDetail() {
         style={{
           fontSize: '28px',
           color: `${
-            tp === '주점' ? '#ff6b6b' : tp === '부스' ? '#0b9908' : '#2676ee'
+            tp === '주점'
+              ? '#ff6b6b'
+              : tp === '부스'
+              ? '#0b9908'
+              : tp === '플리마켓'
+              ? '#ae66e7'
+              : '#2676ee'
           }`,
         }}
       />
@@ -224,7 +259,7 @@ export default function BoothDetail() {
   let query = useQuery();
   useEffect(() => {
     // console.log(query.get('admin'));
-    setAdmin(query.get('admin'));
+    setAdmin(query.get('likelionf10'));
   }, [query]);
 
   //방명록
@@ -274,146 +309,146 @@ export default function BoothDetail() {
     );
   });
 
-
-
   // CommentInput
 
   const CommentInsert = styled.form`
-  height: 90px;
-  display: flex;
-  flex-direction: column;
-  align-item: center;
-`;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `;
 
-const WrapComment = styled.div`
-  position: relative;
-  top: 0;
-  left: 0;
-  & > input {
-    position: absolute;
-    left: 10px;
-    top: 8px;
-    padding: 8px;
-  }
-`;
+  const WrapComment = styled.div`
+    position: relative;
+    top: 0;
+    left: 0;
+    & > input {
+      position: absolute;
+      left: 10px;
+      top: 8px;
+      padding: 8px;
+    }
+  `;
 
-const Inputstyle = {
-  wrap: {
-    padding: '10px',
-    height: '20px',
-  },
+  const Inputstyle = {
+    wrap: {
+      padding: '10px',
+      height: '20px',
+    },
 
-  wrap__content: {
-    padding: '10px',
-    height: '20px',
-    //임의
-    paddingBottom: '30px',
-  },
+    wrap__content: {
+      padding: '10px',
+      height: '20px',
+      //임의
+      paddingBottom: '30px',
+    },
 
-  font: {
-    fontFamily: 'GmarketSansLight',
-    fontSize: '12px',
-  },
+    font: {
+      fontFamily: 'GmarketSansLight',
+      fontSize: '12px',
+    },
 
-  box__name: {
-    position: 'absolute',
-    padding: '5px',
-    float: 'left',
-  },
-  box__pw: {
-    padding: '5px',
-    float: 'right',
-  },
+    box__name: {
+      position: 'absolute',
+      padding: '5px',
+      float: 'left',
+    },
+    box__pw: {
+      padding: '5px',
+      float: 'right',
+    },
 
-  inputbox: {
-    borderRadius: '5px',
-    background: 'transparent',
-    border: '0.5px solid #dadada',
-    width: '85px',
-    marginLeft: '5px',
-    position: 'relative',
-    color: '#FFF',
-  },
-  contentbox: {
-    fontFamily: 'GmarketSansLight',
-    fontSize: '12px',
+    inputbox: {
+      borderRadius: '5px',
+      background: 'transparent',
+      border: '0.5px solid #dadada',
+      width: '85px',
+      marginLeft: '5px',
+      position: 'relative',
+      color: '#FFF',
+    },
+    contentbox: {
+      fontFamily: 'GmarketSansLight',
+      fontSize: '12px',
 
-    borderRadius: '20px',
-    background: 'transparent',
-    border: ' 1px solid #dadada',
-    boxShadow: '0 0 2px white',
-    width: '90%',
-    height: '20px',
-    paddingLeft: '10px',
-    color: '#FFF',
-  },
-  button: {
-    borderRadius: '50%',
-    width: '30px',
-    height: '30px',
-    fontSize: '20px',
-    // 임의
-  },
-};
+      borderRadius: '20px',
+      background: 'transparent',
+      border: ' 1px solid #dadada',
+      boxShadow: '0 0 2px white',
+      width: '90%',
+      height: '20px',
+      paddingLeft: '10px',
+      color: '#FFF',
+    },
+    button: {
+      borderRadius: '50%',
+      width: '30px',
+      height: '30px',
+      fontSize: '20px',
+      // 임의
+    },
+  };
 
   const CommentInput = (/*{ onInsert }*/) => {
     let detailId = useParams().id;
     console.log('detailId:', detailId);
-  
+
     const { register, handleSubmit, setValue } = useForm();
-  
-    const onValid = async(data) => {
+
+    const onValid = async (data) => {
       const checkWord = (target, badwordexam) => {
-        for(let i = 0 ; i < badwordexam.length ; i++){
-          if(target.includes(badwordexam[i])){
-            return true
+        for (let i = 0; i < badwordexam.length; i++) {
+          if (target.includes(badwordexam[i])) {
+            return true;
           }
         }
         return false;
+      };
+
+      if (checkWord(data.content, badwordexam)) {
+        window.alert(
+          '욕설, 비속어, 성희롱, 비방 목적의 단어 등의 입력을 금지합니다.',
+        );
+        setValue('content', '');
+        return;
       }
-  
-      if(checkWord(data.content, badwordexam)){
-        window.alert("욕설, 비속어, 성희롱, 비방 목적의 단어 등의 입력을 금지합니다.");
-        setValue("content", "");
-        return
-      }
-  
-      try{
-        await axios
-        .post(`/booths/${detailId}/comments`, {
+
+      try {
+        await axios.post(`/booths/${detailId}/comments`, {
           writer: data.writer,
           password: data.password,
           content: data.content,
-        })
-      }catch(e){
-        console.log(e)
+        });
+      } catch (e) {
+        console.log(e);
       }
 
-      try{
-      await axios
-      .get(`booths/${detailId}/comments`)
-      .then((response) => {
-        setComments(response.data);
-      })
-      }catch(e){
-        console.log(e)
+      try {
+        await axios.get(`booths/${detailId}/comments`).then((response) => {
+          setComments(response.data);
+        });
+      } catch (e) {
+        console.log(e);
       }
-  
-  
-      setValue("writer", "");
-      setValue("password", "");
-      setValue("content", "");
-    }
-  
+
+      setValue('writer', '');
+      setValue('password', '');
+      setValue('content', '');
+    };
+
     return (
-      <CommentInsert onSubmit={handleSubmit(onValid)} className="CommentInsert" method="post">
+      <CommentInsert
+        onSubmit={handleSubmit(onValid)}
+        className="CommentInsert"
+        method="post"
+      >
         <div style={Inputstyle.wrap}>
           <div style={Inputstyle.box__name}>
             <div style={Inputstyle.font}>
               작성자명
               <input
                 style={Inputstyle.inputbox}
-                {...register("writer", {required : true})}
+                {...register('writer', { required: true })}
                 placeholder="작성자명"
               />
             </div>
@@ -423,7 +458,7 @@ const Inputstyle = {
               비밀번호
               <input
                 style={Inputstyle.inputbox}
-                {...register("password", {required : true})}
+                {...register('password', { required: true })}
                 placeholder="비밀번호"
               />
             </div>
@@ -431,7 +466,7 @@ const Inputstyle = {
         </div>
         <WrapComment>
           <input
-            {...register("content", {required : true})}
+            {...register('content', { required: true })}
             style={Inputstyle.contentbox}
             placeholder="후기를 남겨보세요."
           />
@@ -479,7 +514,15 @@ const Inputstyle = {
                   ) : (
                     <SwiperSlide>
                       <img
-                        src={NoticeExImg}
+                        src={
+                          booth.boothType === '푸드트럭'
+                            ? FoodDefaultImg
+                            : booth.boothType === '주점'
+                            ? JoojumDefaultImg
+                            : booth.boothType === '부스'
+                            ? boothDefaultImg
+                            : FleaDefaultImg
+                        }
                         style={{ width: '325px', borderRadius: '2px' }}
                       />
                     </SwiperSlide>

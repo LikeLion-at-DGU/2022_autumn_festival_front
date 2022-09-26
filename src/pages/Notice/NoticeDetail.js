@@ -59,7 +59,7 @@ export default function NoticeDetail() {
           return (
             <img
               key={idx}
-              src={process.env.REACT_APP_SERVER_PORT + item.storedFilePath}
+              src={item.storedFilePath}
               style={{ width: '330px' }}
             />
           );

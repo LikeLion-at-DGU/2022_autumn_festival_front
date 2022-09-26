@@ -6,14 +6,11 @@ import boothsearchC from '../../assets/img/boothsearchC.png';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import boothMap from '../../assets/img/boothMap.png';
-import noticeExImg from '../../assets/img/noticeExImg.png';
 
 // External Libraries //
-import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import Fade from '@mui/material/Fade';
-import mainMapIcon from '../../assets/img/mainMapIcon.png';
 
 import { MapLoacation } from './style';
 
@@ -177,7 +174,30 @@ const buildingArray = [
 ];
 
 export default function Booth({}) {
-  const [booth, setBooth] = useState([]);
+  const [booth, setBooth] = useState([
+    // {
+    //   id: 1,
+    //   boothType: '주점',
+    //   title: '명진관호떡',
+    //   location: '원흥관',
+    //   introduction: '맛있는 호떡과 다양한 음식',
+    //   likeCnt: 20,
+    //   images: [
+    //     {
+    //       id: 1,
+    //       originFileName: '멋사.jpg',
+    //       serverFileName: '6fb151081add763ec08da678a9578eff',
+    //       storedFilePath: 'https://han.gl/pYMEv',
+    //     },
+    //     {
+    //       id: 2,
+    //       originFileName: '멋사.jpg',
+    //       serverFileName: '6fb151081add763ec08da678a9578eff',
+    //       storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
+    //     },
+    //   ],
+    // },
+  ]);
 
   // 날짜 할당
   const day = new Date();
@@ -257,7 +277,7 @@ export default function Booth({}) {
 
           <BoothCardContainer>
             {booth.map((boo) => {
-              console.log(boo.images.storedFilePath);
+              // console.log(boo.images[0].storedFilePath);
               return (
                 <Boothcard
                   key={boo.id}
@@ -315,11 +335,6 @@ export default function Booth({}) {
               isActive={isBuilding === bu.building}
             >
               {bu.building}
-              {/* {isBuilding === bu.building ? (
-                <BuildingHere layoutId="buildinghe" />
-              ) : (
-                <BuildingNotHere />
-              )} */}
             </BuildingDetail>
           );
         })}
