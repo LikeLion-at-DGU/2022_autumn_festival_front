@@ -23,7 +23,7 @@ const Container = styled.section`
 const Img = styled.img`
     width: auto;
     height: 65px;
-    margin-right: 20px;
+    margin-right: 21px;
     margin-bottom: 30px;
 `;
 
@@ -42,7 +42,6 @@ const Btn = styled(Link)`
 
 const BoothSection = styled(motion.div)`
     width: 350px;
-    position: relative;
     display: flex;
   justify-content: center;
   align-items: center;
@@ -69,7 +68,6 @@ const NoBox = styled.img`
 `
 
 const BoxSection1 = styled(motion.div)`
-    display: flex;
     position: relative;
     display: flex;
     justify-content: center;
@@ -109,7 +107,6 @@ const BoxSection1 = styled(motion.div)`
 `
 
 const BoxSection2 = styled(motion.div)`
-    display: flex;
     position: relative;
     display: flex;
     justify-content: center;
@@ -149,7 +146,6 @@ const BoxSection2 = styled(motion.div)`
 `
 
 const BoxSection3 = styled(motion.div)`
-    display: flex;
     position: relative;
     display: flex;
     justify-content: center;
@@ -192,7 +188,6 @@ const BoxSection3 = styled(motion.div)`
 `
 
 const BoxSection4 = styled(motion.div)`
-    display: flex;
     position: relative;
     display: flex;
     justify-content: center;
@@ -235,7 +230,6 @@ const BoxSection4 = styled(motion.div)`
 `
 
 const BoxSection5 = styled(motion.div)`
-    display: flex;
     position: relative;
     display: flex;
     justify-content: center;

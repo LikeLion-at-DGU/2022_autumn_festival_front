@@ -5,7 +5,7 @@ import MainBg from '../../assets/img/mainBg.jpeg';
 import { Fireworks, useFireworks } from 'fireworks-js/dist/react';
 
 const Container = styled.section`
-  margin-top: -350px;
+  margin-top: -340px;
   width: auto;
   height: 90vh;
   display: flex;
