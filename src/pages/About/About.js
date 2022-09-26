@@ -261,7 +261,7 @@ export default function About() {
           <br></br>
         </CardRole>
         <CardLine />
-        <CardText>- 축제기획단과 멋쟁이사자처럼 간 소통당담</CardText>
+        <CardText>- 축제 부스, 주점, 푸드트럭, 이벤트 데이터 수집</CardText>
       </Card>
       {/* 프론트 */}
       <Space> .</Space>
