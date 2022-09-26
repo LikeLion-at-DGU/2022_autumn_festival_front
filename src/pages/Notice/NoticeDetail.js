@@ -19,7 +19,22 @@ import DefaultImage from '../../assets/img/noticeDefaultImg.png';
 import axios from '../../api/axios';
 
 export default function NoticeDetail() {
-  const [notice, setNotice] = useState({});
+  const [notice, setNotice] = useState({
+    id: '1',
+    notificationType: '주요',
+    title: '동국대학교 대동제 책자 비치 및 안내',
+    writer: '축제 TF팀',
+    createdDateTime: '2022-09-14T14:22:00Z',
+    content: '동국대학교 대동제 책자 비치 및 안내',
+    images: [
+      {
+        id: 1,
+        originFileName: '',
+        serverFileName: '',
+        storedFilePath: '',
+      },
+    ],
+  });
   const [isLoading, setIsLoading] = useState(false);
   let noticeId = useParams().id;
 
@@ -38,19 +53,18 @@ export default function NoticeDetail() {
   }, []);
 
   const ImageView =
-    Array.isArray(notice.images) && notice.images.length > 0 ? (
-      notice.images.map((item, idx) => {
-        return (
-          <img
-            key={idx}
-            src={process.env.REACT_APP_SERVER_PORT + item.storedFilePath}
-            style={{ width: '330px' }}
-          />
-        );
-      })
-    ) : (
-      <></>
-    );
+    Array.isArray(notice.images) && notice.images.length > 0
+      ? notice.images.map((item, idx) => {
+          // console.log(item);
+          return (
+            <img
+              key={idx}
+              src={process.env.REACT_APP_SERVER_PORT + item.storedFilePath}
+              style={{ width: '330px' }}
+            />
+          );
+        })
+      : () => {};
 
   return (
     <div style={{ marginBottom: '76px' }}>
@@ -90,7 +104,7 @@ export default function NoticeDetail() {
           <br />
           <NoticeDetailContainer>
             {Array.isArray(notice.images) && notice.images.length > 0 ? (
-              ImageView()
+              ImageView
             ) : (
               <img src={DefaultImage} style={{ width: '330px' }} />
             )}

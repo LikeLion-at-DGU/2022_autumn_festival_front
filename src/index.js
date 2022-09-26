@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
 
 import App from './App';
-console.log(process.env);
+// console.log(process.env);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
