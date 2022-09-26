@@ -101,9 +101,9 @@ function TitleSection() {
 
   const style = {
     background: '#1B2F4E',
-    marginTop: '-150px',
+    marginTop: '-140px',
     window: 'auto',
-    height: '400px',
+    height: '250px',
   };
 
   return (
