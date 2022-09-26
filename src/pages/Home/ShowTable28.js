@@ -55,7 +55,7 @@ const TimeBox = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 66%;
+    width: 73%;
     margin-bottom: 10px;
 `
 
@@ -83,13 +83,13 @@ const IsNext = styled.div`
 
 
 const TimeTime = styled.span`
-    margin-left: 6px;
+    margin-left: 8px;
     margin-top: 2px;
 `
 
 const BoothInfoBox = styled.div`
   border-right: 1px solid #00baf4;
-  width: 66%;
+  width: 75%;
   background: linear-gradient(
     270deg,
     rgba(87, 154, 255, 0.3) 0%,
@@ -133,7 +133,7 @@ const BoothInfoItemSub = styled.div`
 
 const PerInfoBox = styled.div`
   border-left: 1px solid #ff6b6b;
-  width: 66%;
+  width: 73%;
   background: linear-gradient(270deg, rgba(255, 107, 107, 0.006) 0%, rgba(255, 107, 107, 0.3) 106.2%);
   display: flex;
   flex-direction: column;

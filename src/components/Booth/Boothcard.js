@@ -14,6 +14,9 @@ import JoojumDefaultImg from '../../assets/img/주점_default.png';
 import FoodDefaultImg from '../../assets/img/푸드트럭_default.png';
 import FleaDefaultImg from '../../assets/img/플리마켓_default.png';
 
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 const Location_number = styled.p`
   font-size: 9px;
   left: 10rem;
@@ -133,9 +136,26 @@ export default function Boothcard({
   intro,
   type,
   locationName,
+  isLike,
   likeCount,
   boothImage,
 }) {
+  const HeartView = () => {
+    return isLike ? (
+      <FavoriteIcon
+        style={{
+          fontSize: '10px',
+          color: 'red',
+          float: 'right',
+          margin: '5px',
+        }}
+      />
+    ) : (
+      <FavoriteBorderIcon
+        style={{ fontSize: '10px', float: 'right', margin: '5px' }}
+      />
+    );
+  };
   //리스트에 요소 있는지 찾기
   // 만약 boothDay리스트에 nowDay와 동일한게 있다면 true반환 아니면 false
   return (
@@ -255,7 +275,8 @@ export default function Boothcard({
           />
           {locationName}
         </Location_number>
-        <BoothLike>♡ &nbsp;{likeCount}</BoothLike>
+        <BoothLike>{likeCount}</BoothLike>
+        {HeartView()}
         <CardContent
           style={{ marginTop: '15px', fontFamily: 'GmarketSansMedium' }}
         >
