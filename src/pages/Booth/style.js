@@ -187,6 +187,11 @@ export const MenuItem = styled.div`
     font-weight: 500;
     margin-top: 8px;
   }
+
+  & > a {
+    text-decoration: none;
+    color: #fff;
+  }
 `;
 
 // 부스 디테일 수정하기 //

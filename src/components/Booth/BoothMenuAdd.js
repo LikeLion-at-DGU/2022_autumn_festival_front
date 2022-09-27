@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { EditForm } from '../../pages/Booth/style';
+import { useParams } from 'react-router-dom';
 import axios from '../../api/axios';
 
 export default function BoothMenuAdd({ admin, menu, setMenu }) {
   const [error, setError] = useState(false);
   const [newMenu, setNewMenu] = useState({
     name: '',
-    price: '',
+    price: 0,
   });
+  const boothId = useParams().id;
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -15,7 +17,6 @@ export default function BoothMenuAdd({ admin, menu, setMenu }) {
       ...newMenu,
       [name]: value,
     });
-    console.log(value, name);
   };
 
   function isValidCheck() {
@@ -28,9 +29,12 @@ export default function BoothMenuAdd({ admin, menu, setMenu }) {
     }
   }
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
+    const body = { name: newMenu.name, price: newMenu.price };
+    // console.log(body, 'type:', typeof newMenu.price);
     if (isValidCheck()) {
-      setMenu([...menu, newMenu]);
+      await axios.post(`booths/${boothId}/menus`, body).then((res) => {});
+      window.location.reload();
     }
   };
 
@@ -43,14 +47,12 @@ export default function BoothMenuAdd({ admin, menu, setMenu }) {
               type="text"
               name="name"
               placeholder="메뉴 이름"
-              value={newMenu.name}
               onChange={onChange}
             />
             <input
               type="text"
               name="price"
               placeholder="가격"
-              value={newMenu.price}
               onChange={onChange}
             />
             <a href="#" onClick={onSubmit}>
