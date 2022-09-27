@@ -12,7 +12,8 @@ export const CateContainer = styled.div`
 
 export const CateBtnActive = styled.button`
   display: inline-block;
-  min-width: 54px;
+  min-width: 50px;
+  padding: 10px;
   height: 22px;
   font-size: 15px;
   background-color: ${baseColor};
@@ -27,8 +28,9 @@ export const CateBtnActive = styled.button`
 
 export const CateBtn = styled.button`
   display: inline-block;
-  min-width: 54px;
+  min-width: 50px;
   height: 22px;
+  padding: 5px;
   font-size: 15px;
   background-color: transparent;
   color: ${baseColor};
