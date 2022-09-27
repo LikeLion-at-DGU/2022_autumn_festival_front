@@ -65,7 +65,7 @@ export default function SearchHeader() {
         value={searchValue}
         onChange={handleChange}
         type="text"
-        placeholder="부스이름 또는 메뉴 검색"
+        placeholder="부스,메뉴 또는 건물 검색"
       />
     </TitleContainer>
   );
