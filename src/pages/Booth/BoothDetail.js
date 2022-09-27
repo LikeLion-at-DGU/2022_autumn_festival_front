@@ -137,30 +137,30 @@ export default function BoothDetail() {
 
   // 좋아요 up, down //
   const UpLike = async () => {
-    alert('좋아요 기능은 28일 오전 11시부터 활성화됩니다!');
-    // await axios
-    //   .post(`booths/${detailId}/likes`)
-    //   .then((res) => {
-    //     setBooth({
-    //       ...booth,
-    //       isLike: true,
-    //       likeCnt: booth.likeCnt + 1,
-    //     });
-    //   })
-    //   .catch((e) => {
-    //     console.log('좋아요 실패');
-    //   });
+    // alert('좋아요 기능은 28일 오전 11시부터 활성화됩니다!');
+    await axios
+      .post(`booths/${detailId}/likes`)
+      .then((res) => {
+        setBooth({
+          ...booth,
+          isLike: true,
+          likeCnt: booth.likeCnt + 1,
+        });
+      })
+      .catch((e) => {
+        console.log('좋아요 실패');
+      });
   };
 
   const DownLike = () => {
-    // axios.delete(`booths/${detailId}/likes`, {
-    //   withCredentials: true,
-    // });
-    // setBooth({
-    //   ...booth,
-    //   isLike: false,
-    //   likeCnt: booth.likeCnt - 1,
-    // });
+    axios.delete(`booths/${detailId}/likes`, {
+      withCredentials: true,
+    });
+    setBooth({
+      ...booth,
+      isLike: false,
+      likeCnt: booth.likeCnt - 1,
+    });
   };
 
   // 좋아요 기능 //
