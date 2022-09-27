@@ -301,16 +301,16 @@ const HeartIcon = styled(FontAwesomeIcon)`
   margin-right: 3px;
 `;
 
-const BoxTitle = styled.h1`
-  font-size: 17px;
+const BoxTitle = styled.h3`
+  font-size: 0.8rem;
   margin-top: 13px;
   width: 90%;
 `;
 
-const BoxSubTitle = styled.h6`
+const BoxSubTitle = styled.p`
   font-family: 'GmarketSansLight';
-  font-size: 11px;
-  margin-top: -15px;
+  font-size: 0.3rem;
+  margin-top: -11px;
   width: 90%;
 `;
 
