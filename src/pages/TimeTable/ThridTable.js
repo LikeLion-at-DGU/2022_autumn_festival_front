@@ -73,7 +73,7 @@ const BoothInfoTime = styled.span`
 
 const BoothInfoBox = styled.div`
   border-right: 1px solid #00baf4;
-  width: 140px;
+  width: 150px;
   padding-bottom: 7px;
   background: linear-gradient(
     270deg,
@@ -89,6 +89,7 @@ const BoothInfoItem = styled.div`
 const BoothInfoItemTitle = styled.h1`
   padding-top: 7px;
   display: flex;
+  word-spacing: -2px;
   justify-content: flex-end;
 `;
 
@@ -163,7 +164,7 @@ const PerInfoTime = styled.span`
 
 const PerInfoBox = styled.div`
   border-left: 1px solid #ff6b6b;
-  width: 140px;
+  width: 150px;
   padding-bottom: 7px;
   background: linear-gradient(
     270deg,
@@ -178,6 +179,7 @@ const PerInfoItem = styled.div`
 
 const PerInfoItemTitle = styled.h1`
   padding-top: 7px;
+  word-spacing: -2px;
   display: flex;
   justify-content: flex-start;
 `;
