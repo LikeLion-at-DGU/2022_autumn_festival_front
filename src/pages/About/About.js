@@ -176,6 +176,18 @@ const Space = styled.div`
   color: #1b2f4e;
 `;
 
+const hr = {
+  visibility: 'hidden',
+};
+
+const Reference = styled.p`
+  /* font-family: 'Gmarket Sans TTF'; */
+  font-family: 'GmarketSansLight';
+  font-style: normal;
+  font-size: 10px;
+  color: #e6e6e6;
+`;
+
 export default function About() {
   const { pathname } = useLocation();
 
@@ -200,7 +212,6 @@ export default function About() {
         <br></br>
         <br></br>
       </Logo>
-
       <IntroText>
         3년만에 돌아온 동국대학교 백상대동제를 위해<br></br>
         동국대학교 축제기획단이 힘껏 열정을 쏟아 축제를 기획하고 학우 여러분들의
@@ -216,53 +227,7 @@ export default function About() {
       <LogoImage src={dguLogo} />
       <SubText>DGU likelion 10th</SubText>
       <Line />
-      {/* 기획 */}
-      <TeamText>Project Design</TeamText>
-      <Card>
-        <FaceImg src={Leeyeowon} />
-        <CardName>🦁이여원</CardName>
-        <CardMajor>멀티미디어공학과 20</CardMajor>
-        <CardRole>기획팀장</CardRole>
-        <CardLine />
-        <CardText>
-          - 메인페이지, 타임테이블 디자인 <br></br>- 2차 디자인 전반 수정
-        </CardText>
-      </Card>
-      <Card>
-        <FaceImg src={KimSooyoung} />
-        <CardName>🦁김수영</CardName>
-        <CardMajor>산업시스템공학과 20</CardMajor>
-        <CardRole>
-          {' '}
-          <br></br>
-        </CardRole>
-        <CardLine />
-        <CardText>
-          - 내부 바, 공지사항, 공지사항 게시글 디자인<br></br>
-        </CardText>
-      </Card>
-      <Card>
-        <FaceImg src={SeoYeonmi} />
-        <CardName>🦁서연미</CardName>
-        <CardMajor>경영정보학과 19</CardMajor>
-        <CardRole>
-          {' '}
-          <br></br>
-        </CardRole>
-        <CardLine />
-        <CardText>- 부스, 부스 검색창, 부스 홈페이지 디자인</CardText>
-      </Card>
-      <Card>
-        <FaceImg src={AhnSoeun} />
-        <CardName>🦁안소은</CardName>
-        <CardMajor>화공생물공학과 20</CardMajor>
-        <CardRole>
-          {' '}
-          <br></br>
-        </CardRole>
-        <CardLine />
-        <CardText>- 축제 부스, 주점, 푸드트럭, 이벤트 데이터 수집</CardText>
-      </Card>
+
       {/* 프론트 */}
       <Space> .</Space>
       <TeamText>Front-end</TeamText>
@@ -286,7 +251,9 @@ export default function About() {
           <br></br>
         </CardRole>
         <CardLine />
-        <CardText>- Navbar, 사이드메뉴바, Footer, 부스 방명록 구현</CardText>
+        <CardText>
+          - Navbar, 사이드메뉴바, Footer <br></br>- 부스 방명록 구현 및 배포
+        </CardText>
       </Card>
       <Card href="https://github.com/leeideal">
         <FaceImg src={LeeSangdon} />
@@ -373,6 +340,62 @@ export default function About() {
         <CardLine />
         <CardText>- 방명록 로직 구현 </CardText>
       </Card>
+      <Space> .</Space>
+
+      {/* 기획 */}
+      <TeamText>Project Design</TeamText>
+      <Card>
+        <FaceImg src={Leeyeowon} />
+        <CardName>🦁이여원</CardName>
+        <CardMajor>멀티미디어공학과 20</CardMajor>
+        <CardRole>기획팀장</CardRole>
+        <CardLine />
+        <CardText>
+          - 메인페이지, 타임테이블 디자인 <br></br>- 2차 디자인 전반 수정
+        </CardText>
+      </Card>
+      <Card>
+        <FaceImg src={KimSooyoung} />
+        <CardName>🦁김수영</CardName>
+        <CardMajor>산업시스템공학과 20</CardMajor>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
+        <CardLine />
+        <CardText>
+          - 내부 바, 공지사항, 공지사항 게시글 디자인<br></br>
+        </CardText>
+      </Card>
+      <Card>
+        <FaceImg src={SeoYeonmi} />
+        <CardName>🦁서연미</CardName>
+        <CardMajor>경영정보학과 19</CardMajor>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
+        <CardLine />
+        <CardText>- 부스, 부스 검색창, 부스 홈페이지 디자인</CardText>
+      </Card>
+      <Card>
+        <FaceImg src={AhnSoeun} />
+        <CardName>🦁안소은</CardName>
+        <CardMajor>화공생물공학과 20</CardMajor>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
+        <CardLine />
+        <CardText>- 축제 부스, 주점, 푸드트럭, 이벤트 데이터 수집</CardText>
+      </Card>
+
+      <hr style={hr}></hr>
+      {/* <br style={reference}></br> */}
+      <Reference>
+        부스 페이지의 디자인은 @likelion_ewha 에서 제작한 <br></br>
+        이화여자대학교 2022 대동제 사이트를 참고하였습니다.
+      </Reference>
       <Space> .</Space>
     </TitleContainer>
   );
