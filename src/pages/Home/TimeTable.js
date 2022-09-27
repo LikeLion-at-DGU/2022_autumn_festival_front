@@ -5,7 +5,7 @@ import ShowTable28 from './ShowTable28';
 
 const Container = styled.section`
   width: auto;
-  height: 87vh;
+  height: 700px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
