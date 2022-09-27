@@ -265,7 +265,6 @@ export default function Booth({}) {
             })}
           </BuildingContainer>
           {/* map으로 카드 뜨게 만들기 */}
-          booth
           <BoothCardContainer>
             {booth.length != 0 ? (
               // 등록된 부스가 있을때

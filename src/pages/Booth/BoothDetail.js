@@ -214,14 +214,18 @@ export default function BoothDetail() {
         <IntroContent
           dangerouslySetInnerHTML={{ __html: booth.content.slice(0, 50) }}
         ></IntroContent>
-        <span
-          style={{ fontSize: '12px', cursor: 'pointer' }}
-          onClick={() => {
-            setIntro(true);
-          }}
-        >
-          ... 더보기
-        </span>
+        {booth.content.length >= 50 ? (
+          <span
+            style={{ fontSize: '12px', cursor: 'pointer' }}
+            onClick={() => {
+              setIntro(true);
+            }}
+          >
+            ... 더보기
+          </span>
+        ) : (
+          <></>
+        )}
       </>
     );
   };
@@ -615,7 +619,7 @@ export default function BoothDetail() {
                 <IntroContainer>
                   <div className="introtitle">
                     <img src={BoothdetailC} width="36px" />
-                    <span>주점 소개</span>
+                    <span>소개</span>
                   </div>
                   <IntroLine></IntroLine>
                   {IntroView()}
