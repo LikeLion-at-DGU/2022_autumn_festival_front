@@ -643,6 +643,10 @@ export default function BoothDetail() {
                   </div>
                   <IntroLine></IntroLine>
                   <BoothMenuAdd admin={admin} menu={menu} setMenu={setMenu} />
+                  <div style={style.badwordstyle}>
+                    욕설, 성희롱, 비방 발언을 작성할 경우 ip주소를 통해{' '}
+                    <div></div>법적 조치할 예정입니다.
+                  </div>
                   <MenuContainer>{MenuView}</MenuContainer>
                 </IntroContainer>
 
