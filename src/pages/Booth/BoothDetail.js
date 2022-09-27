@@ -322,7 +322,6 @@ export default function BoothDetail() {
     height: 90px;
     display: flex;
     flex-direction: column;
-    align-items: center;
   `;
 
   const WrapComment = styled.div`
