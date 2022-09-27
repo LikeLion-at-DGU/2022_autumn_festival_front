@@ -175,28 +175,28 @@ const buildingArray = [
 
 export default function Booth({}) {
   const [booth, setBooth] = useState([
-    // {
-    //   id: 1,
-    //   boothType: '주점',
-    //   title: '명진관호떡',
-    //   location: '원흥관',
-    //   introduction: '맛있는 호떡과 다양한 음식',
-    //   likeCnt: 20,
-    //   images: [
-    //     {
-    //       id: 1,
-    //       originFileName: '멋사.jpg',
-    //       serverFileName: '6fb151081add763ec08da678a9578eff',
-    //       storedFilePath: 'https://han.gl/pYMEv',
-    //     },
-    //     {
-    //       id: 2,
-    //       originFileName: '멋사.jpg',
-    //       serverFileName: '6fb151081add763ec08da678a9578eff',
-    //       storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
-    //     },
-    //   ],
-    // },
+    {
+      id: 1,
+      boothType: '주점',
+      title: '명진관호떡',
+      location: '원흥관',
+      introduction: '맛있는 호떡과 다양한 음식',
+      likeCnt: 20,
+      images: [
+        {
+          id: 1,
+          originFileName: '멋사.jpg',
+          serverFileName: '6fb151081add763ec08da678a9578eff',
+          storedFilePath: 'https://han.gl/pYMEv',
+        },
+        {
+          id: 2,
+          originFileName: '멋사.jpg',
+          serverFileName: '6fb151081add763ec08da678a9578eff',
+          storedFilePath: 'static//6fb151081add763ec08da678a9578eff.jpg',
+        },
+      ],
+    },
   ]);
 
   // 날짜 할당
@@ -211,12 +211,10 @@ export default function Booth({}) {
   const [isExist, setIsExist] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  //todate,isbuilding 패치시키기
   useEffect(() => {
     fetchBooth(isToday, isBuilding);
   }, [isToday, isBuilding]);
 
-  //api가져오기
   const fetchBooth = async (todate, isBuilding) => {
     try {
       const request = await axios.get(
@@ -251,7 +249,6 @@ export default function Booth({}) {
             {MapLoacation(isBuilding)}
             {/* <BuildingLocationImage src={mainMapIcon} /> */}
           </div>
-
           <BuildingContainer>
             {buildingArray.map((bu) => {
               return (
@@ -263,35 +260,40 @@ export default function Booth({}) {
                   isActive={isBuilding === bu.building}
                 >
                   {bu.building}
-                  {/* {isBuilding === bu.building ? (
-                  <BuildingHere layoutId="buildinghe" />
-                ) : (
-                  <BuildingNotHere />
-                )} */}
                 </BuildingDetail>
               );
             })}
           </BuildingContainer>
-
           {/* map으로 카드 뜨게 만들기 */}
-
+          booth
           <BoothCardContainer>
-            {booth.map((boo) => {
-              // console.log(boo.images[0].storedFilePath);
-              return (
-                <Boothcard
-                  key={boo.id}
-                  boothId={boo.id}
-                  title={boo.title}
-                  intro={boo.introduction}
-                  type={boo.boothType}
-                  locationName={boo.location}
-                  isLike={boo.isLike}
-                  likeCount={boo.likeCnt}
-                  boothImage={boo.images[0]}
-                />
-              );
-            })}
+            {booth.length != 0 ? (
+              // 등록된 부스가 있을때
+              booth.map((boo) => {
+                // console.log(boo.images[0].storedFilePath);
+                return (
+                  <Boothcard
+                    key={boo.id}
+                    boothId={boo.id}
+                    title={boo.title}
+                    intro={boo.introduction}
+                    type={boo.boothType}
+                    locationName={boo.location}
+                    isLike={boo.isLike}
+                    likeCount={boo.likeCnt}
+                    boothImage={boo.images[0]}
+                  />
+                );
+              })
+            ) : (
+              // 등록된 부스가 없을때
+              <Stack sx={{ width: '328px', margin: '30px auto' }} spacing={2}>
+                <div className="no-results__text">
+                  <img src={boothsearchC} className="noResultImg" />
+                  <p>등록되어 있는 부스가 없습니다.</p>
+                </div>
+              </Stack>
+            )}
           </BoothCardContainer>
         </>
       ) : (
