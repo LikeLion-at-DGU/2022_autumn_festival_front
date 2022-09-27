@@ -102,7 +102,13 @@ export default function BoothDetail() {
       ],
     },
   ]);
-  const [menu, setMenu] = useState([]);
+  const [menu, setMenu] = useState([
+    {
+      id: 0,
+      name: '',
+      price: 0,
+    },
+  ]);
   const [isExist, setIsExist] = useState(true);
   let detailId = useParams().id;
 
@@ -252,7 +258,8 @@ export default function BoothDetail() {
           <a
             href="#"
             onClick={() => {
-              axios.delete(`menus/${detailId}`);
+              axios.delete(`menus/${m.id}`);
+              window.location.reload();
             }}
           >
             <CancelIcon style={{ margin: '4px 1px' }} />
@@ -295,8 +302,8 @@ export default function BoothDetail() {
 
   useEffect(() => {
     getComments();
-    fetchMenu();
     fetchBoothDetail();
+    fetchMenu();
   }, []);
 
   const guestArray = comments.filter((no) => {

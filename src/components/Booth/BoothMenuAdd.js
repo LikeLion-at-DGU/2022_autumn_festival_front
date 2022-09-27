@@ -20,7 +20,7 @@ export default function BoothMenuAdd({ admin, menu, setMenu }) {
   };
 
   function isValidCheck() {
-    if (newMenu.name === '' || newMenu.price === '') {
+    if (newMenu.name == '' || newMenu.price == '') {
       setError(true);
       return false;
     } else {
