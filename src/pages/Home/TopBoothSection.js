@@ -11,13 +11,13 @@ import { faHeart, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.section`
   width: auto;
-  height: 70vh;
+  height: 700px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: -100px;
+  margin-top: -160px;
 `;
 
 const Img = styled.img`
