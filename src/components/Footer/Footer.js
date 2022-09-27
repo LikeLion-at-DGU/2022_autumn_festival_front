@@ -6,17 +6,21 @@ import footerInsta from '../../assets/img/footerInsta.png';
 import './Footer.css';
 
 export default function Footer({ title }) {
-  const ewhaMatch = useMatch("/booth/*");
+  const ewhaMatch = useMatch('/booth/*');
   return (
     <>
-      <div className='footerdiv'>
+      <div className="footerdiv">
         <hr></hr>
         <div className="footer">
           <div>
             <div className="text">
               <div>동국대학교 멋쟁이사자처럼</div>
               <div>dgu likelion</div>
-              {ewhaMatch && <div style={{marginTop:"2px", fontSize:"9px"}}>Design reference by ewha likelion</div>}
+              {ewhaMatch && (
+                <div style={{ marginTop: '2px', fontSize: '9px' }}>
+                  Design reference by likelion_ewha
+                </div>
+              )}
             </div>
             <img
               className="footer__Insta"
