@@ -44,6 +44,12 @@
   animation-duration: 0.8s;
 }
 
+.fadeInNotice{
+  animation: fadeIn;
+  animation-duration: 1s;
+}
+
+
 .fadeOut{
   animation: fadeOut;
   animation-duration: 0.8s;

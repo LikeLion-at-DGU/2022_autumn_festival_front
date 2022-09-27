@@ -20,6 +20,7 @@ import RawFish from '../../assets/img/about_rawfish.png';
 import Seo from '../../assets/img/about_seo.png';
 import { UpTitle } from '../../styles/style';
 import { useLocation } from 'react-router-dom';
+import '../Booth/Booth.css';
 
 const TitleContainer = styled.span`
   display: inline-block;
@@ -198,21 +199,21 @@ export default function About() {
   return (
     <TitleContainer>
       <UpTitle title={'ABOUT'} />
-      <Logo>
+      <Logo className="fadeIn">
         <br></br>
         <LogoImage src={dguLogo} />
         <br></br>
         <br></br>동국대학교 <br></br>멋쟁이사자처럼
       </Logo>
-      <Xtext>X</Xtext>
-      <Logo>
+      <Xtext className="fadeIn">X</Xtext>
+      <Logo className="fadeIn">
         <LogoImage src={aboutFlogo} />
         <br></br>동국대학교 <br></br> 축제기획단
         <br></br>
         <br></br>
         <br></br>
       </Logo>
-      <IntroText>
+      <IntroText className="fadeIn">
         3년만에 돌아온 동국대학교 백상대동제를 위해<br></br>
         동국대학교 축제기획단이 힘껏 열정을 쏟아 축제를 기획하고 학우 여러분들의
         편의를 위해 동국대 멋쟁이사자처럼이 축제 웹사이트를 개발하였습니다.
@@ -222,10 +223,10 @@ export default function About() {
         즐겁고 행복한 축제가 되었으면 좋겠습니다!<br></br>
         학우 여러분의 청춘을 응원합니다! :&#41;
       </IntroText>
-      <CImage src={aboutC} />
-      <SubTitle></SubTitle>
-      <LogoImage src={dguLogo} />
-      <SubText>DGU likelion 10th</SubText>
+      <CImage src={aboutC} className="fadeIn" />
+      <SubTitle className="fadeIn"></SubTitle>
+      <LogoImage src={dguLogo} className="fadeIn" />
+      <SubText className="fadeIn">DGU likelion 10th</SubText>
       <Line />
 
       {/* 프론트 */}

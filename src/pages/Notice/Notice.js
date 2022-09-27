@@ -6,6 +6,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CircularProgress from '@mui/material/CircularProgress';
 import Fade from '@mui/material/Fade';
+import '../Booth/Booth.css';
 
 import { UpTitle } from '../../styles/style';
 import {
@@ -87,7 +88,7 @@ export default function Notice() {
   const noticeCard = pageInfo.currentData().map((item, idx) => {
     // console.log(item.images);
     return (
-      <NoticeCard key={idx}>
+      <NoticeCard key={idx} className="fadeInNotice">
         <div
           onClick={() => {
             window.location.href = `/notice/${item.id}`;
