@@ -60,7 +60,11 @@ export default function NoticeDetail() {
             <img
               key={idx}
               src={item.storedFilePath}
-              style={{ width: '330px' }}
+              style={{
+                width: '330px',
+                display: 'block',
+                margin: '8px 0 0 28.8px',
+              }}
             />
           );
         })
@@ -102,13 +106,13 @@ export default function NoticeDetail() {
           ></NoticeDetailContent>
           <br />
           <br />
-          <NoticeDetailContainer>
+          <div>
             {Array.isArray(notice.images) && notice.images.length > 0 ? (
               ImageView
             ) : (
               <img src={DefaultImage} style={{ width: '330px' }} />
             )}
-          </NoticeDetailContainer>
+          </div>
         </>
       ) : (
         <Fade in="true" unmountOnExit style={{ margin: '100px auto' }}>

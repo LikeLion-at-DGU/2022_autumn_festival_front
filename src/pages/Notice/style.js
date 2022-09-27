@@ -4,13 +4,15 @@ import { baseColor } from '../../styles/GlobalStyle';
 export const CateContainer = styled.div`
   margin-top: 38px;
   width: 328px;
-  padding-left: 25px;
+  padding: 0 auto;
   text-align: left;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const CateBtnActive = styled.button`
   display: inline-block;
-  width: 59px;
+  min-width: 58px;
   height: 22px;
   font-size: 15px;
   background-color: ${baseColor};
@@ -25,7 +27,7 @@ export const CateBtnActive = styled.button`
 
 export const CateBtn = styled.button`
   display: inline-block;
-  width: 59px;
+  min-width: 58px;
   height: 22px;
   font-size: 15px;
   background-color: transparent;
