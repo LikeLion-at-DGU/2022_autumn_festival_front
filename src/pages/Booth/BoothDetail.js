@@ -232,6 +232,7 @@ export default function BoothDetail() {
       .get(`booths/${detailId}/menus`)
       .then((res) => {
         setMenu(res.data);
+        console.log(res.data);
       })
       .catch((e) => {
         console.log(e);
@@ -244,7 +245,14 @@ export default function BoothDetail() {
         <div>{m.name}</div>
         <div style={{ fontSize: '12px', marginLeft: 'auto' }}>{m.price}원</div>
         {admin === 'true' ? (
-          <CancelIcon style={{ margin: '4px 1px' }} />
+          <a
+            href="#"
+            onClick={() => {
+              axios.delete(`menus/${detailId}`);
+            }}
+          >
+            <CancelIcon style={{ margin: '4px 1px' }} />
+          </a>
         ) : (
           <></>
         )}
@@ -285,7 +293,6 @@ export default function BoothDetail() {
     getComments();
     fetchMenu();
     fetchBoothDetail();
-    // setLike();
   }, []);
 
   const guestArray = comments.filter((no) => {
