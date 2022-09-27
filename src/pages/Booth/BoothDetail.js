@@ -494,17 +494,17 @@ export default function BoothDetail() {
     <>
       {isExist ? (
         <div style={{ marginBottom: '76px' }}>
-          <UpTitle
-            title={`${booth.boothType} 홈페이지`}
-            mapleLeft={
-              booth.boothType === '푸드트럭' || booth.boothType === '플리마켓'
-                ? '30px'
-                : '57px'
-            }
-          />
-
           {isLoading ? (
             <>
+              <UpTitle
+                title={`${booth.boothType} 홈페이지`}
+                mapleLeft={
+                  booth.boothType === '푸드트럭' ||
+                  booth.boothType === '플리마켓'
+                    ? '30px'
+                    : '57px'
+                }
+              />
               {/* 스와이퍼 */}
               <SwiperContainer>
                 <Swiper
@@ -542,7 +542,11 @@ export default function BoothDetail() {
                 <BoothTitle>{booth.title}</BoothTitle>
                 <BoothIntro>{booth.introduction}</BoothIntro>
                 {admin === 'true' ? (
-                  <EditBtn onClick={() => navigate(`/booth/${detailId}/edit`)}>
+                  <EditBtn
+                    onClick={() =>
+                      navigate(`/booth/${detailId}/edit?likelionf10=true`)
+                    }
+                  >
                     수정하기
                   </EditBtn>
                 ) : (
