@@ -227,60 +227,6 @@ export default function About() {
       <LogoImage src={dguLogo} />
       <SubText>DGU likelion 10th</SubText>
       <Line />
-      {/* 기획 */}
-      <TeamText>Project Design</TeamText>
-      <Card>
-        <FaceImg src={Leeyeowon} />
-        <CardName>🦁이여원</CardName>
-        <CardMajor>멀티미디어공학과 20</CardMajor>
-        <CardRole>기획팀장</CardRole>
-        <CardLine />
-        <CardText>
-          - 메인페이지, 타임테이블 디자인 <br></br>- 2차 디자인 전반 수정
-        </CardText>
-      </Card>
-      <Card>
-        <FaceImg src={KimSooyoung} />
-        <CardName>🦁김수영</CardName>
-        <CardMajor>산업시스템공학과 20</CardMajor>
-        <CardRole>
-          {' '}
-          <br></br>
-        </CardRole>
-        <CardLine />
-        <CardText>
-          - 내부 바, 공지사항, 공지사항 게시글 디자인<br></br>
-        </CardText>
-      </Card>
-      <Card>
-        <FaceImg src={SeoYeonmi} />
-        <CardName>🦁서연미</CardName>
-        <CardMajor>경영정보학과 19</CardMajor>
-        <CardRole>
-          {' '}
-          <br></br>
-        </CardRole>
-        <CardLine />
-        <CardText>- 부스, 부스 검색창, 부스 홈페이지 디자인</CardText>
-      </Card>
-      <Card>
-        <FaceImg src={AhnSoeun} />
-        <CardName>🦁안소은</CardName>
-        <CardMajor>화공생물공학과 20</CardMajor>
-        <CardRole>
-          {' '}
-          <br></br>
-        </CardRole>
-        <CardLine />
-        <CardText>- 축제 부스, 주점, 푸드트럭, 이벤트 데이터 수집</CardText>
-      </Card>
-
-      <hr style={hr}></hr>
-      {/* <br style={reference}></br> */}
-      <Reference>
-        부스 페이지의 디자인은 @likelion_ewha 에서 제작한 <br></br>
-        이화여자대학교 2022 대동제 사이트를 참고하였습니다.
-      </Reference>
 
       {/* 프론트 */}
       <Space> .</Space>
@@ -394,6 +340,62 @@ export default function About() {
         <CardLine />
         <CardText>- 방명록 로직 구현 </CardText>
       </Card>
+      <Space> .</Space>
+
+      {/* 기획 */}
+      <TeamText>Project Design</TeamText>
+      <Card>
+        <FaceImg src={Leeyeowon} />
+        <CardName>🦁이여원</CardName>
+        <CardMajor>멀티미디어공학과 20</CardMajor>
+        <CardRole>기획팀장</CardRole>
+        <CardLine />
+        <CardText>
+          - 메인페이지, 타임테이블 디자인 <br></br>- 2차 디자인 전반 수정
+        </CardText>
+      </Card>
+      <Card>
+        <FaceImg src={KimSooyoung} />
+        <CardName>🦁김수영</CardName>
+        <CardMajor>산업시스템공학과 20</CardMajor>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
+        <CardLine />
+        <CardText>
+          - 내부 바, 공지사항, 공지사항 게시글 디자인<br></br>
+        </CardText>
+      </Card>
+      <Card>
+        <FaceImg src={SeoYeonmi} />
+        <CardName>🦁서연미</CardName>
+        <CardMajor>경영정보학과 19</CardMajor>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
+        <CardLine />
+        <CardText>- 부스, 부스 검색창, 부스 홈페이지 디자인</CardText>
+      </Card>
+      <Card>
+        <FaceImg src={AhnSoeun} />
+        <CardName>🦁안소은</CardName>
+        <CardMajor>화공생물공학과 20</CardMajor>
+        <CardRole>
+          {' '}
+          <br></br>
+        </CardRole>
+        <CardLine />
+        <CardText>- 축제 부스, 주점, 푸드트럭, 이벤트 데이터 수집</CardText>
+      </Card>
+
+      <hr style={hr}></hr>
+      {/* <br style={reference}></br> */}
+      <Reference>
+        부스 페이지의 디자인은 @likelion_ewha 에서 제작한 <br></br>
+        이화여자대학교 2022 대동제 사이트를 참고하였습니다.
+      </Reference>
       <Space> .</Space>
     </TitleContainer>
   );
