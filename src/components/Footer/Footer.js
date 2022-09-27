@@ -1,10 +1,12 @@
 import React from 'react';
+import { useMatch } from 'react-router-dom';
 import footerEmail from '../../assets/img/footerEmail.png';
 import footerGithub from '../../assets/img/footerGithub.png';
 import footerInsta from '../../assets/img/footerInsta.png';
 import './Footer.css';
 
 export default function Footer({ title }) {
+  const ewhaMatch = useMatch("/booth/*");
   return (
     <>
       <div className='footerdiv'>
@@ -13,7 +15,8 @@ export default function Footer({ title }) {
           <div>
             <div className="text">
               <div>동국대학교 멋쟁이사자처럼</div>
-              <div>dgu likelion</div>{' '}
+              <div>dgu likelion</div>
+              {ewhaMatch && <div style={{marginTop:"2px", fontSize:"9px"}}>Design reference by ewha likelion</div>}
             </div>
             <img
               className="footer__Insta"
