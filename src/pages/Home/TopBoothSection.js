@@ -196,21 +196,18 @@ const BoxSection4 = styled(motion.div)`
   }
   div:nth-child(1) {
     scale: 0.4;
-
     z-index: 1;
     left: -40px;
     top: -30px;
   }
   div:nth-child(2) {
     scale: 0.6;
-
     z-index: 2;
     left: 0px;
     top: -20px;
   }
   div:nth-child(3) {
     scale: 0.8;
-
     left: 40px;
     top: -10px;
     z-index: 3;

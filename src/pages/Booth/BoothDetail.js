@@ -254,7 +254,9 @@ export default function BoothDetail() {
     return (
       <MenuItem key={idx}>
         <div>{m.name}</div>
-        <div style={{ fontSize: '12px', marginLeft: 'auto' }}>{m.price}원</div>
+        <div style={{ fontSize: '12px', marginLeft: 'auto' }}>
+          {m.price == 0 ? '가격없음' : String(m.price) + '원'}
+        </div>
         {admin === 'true' ? (
           <a
             href="#"
