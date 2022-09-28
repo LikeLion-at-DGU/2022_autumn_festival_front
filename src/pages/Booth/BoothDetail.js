@@ -300,7 +300,7 @@ export default function BoothDetail() {
         // console.log(response.data);
         setComments(response.data);
       })
-      .catch((error) => // console.log('Network Error : ', error));
+      .catch((error) => console.log('Network Error : ', error));
   };
 
   useEffect(() => {

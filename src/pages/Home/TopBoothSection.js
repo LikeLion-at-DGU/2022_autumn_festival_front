@@ -341,8 +341,6 @@ function TopBoothSection() {
       // console.log('ERROR', error);
     }
   };
-
-  // console.log(booth);
   useEffect(() => {
     fetchBooth();
   }, []);

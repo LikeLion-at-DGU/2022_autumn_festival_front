@@ -172,132 +172,153 @@ const PerInfoItemSub = styled.div`
 
 const booth = [
     {
+        id : 1,
         date : 28,
         starttime : 11,
         endtime : 18,
         time : "11:00 - 18:00",
         info : [
-            ["만해광장", "플리마켓 & 오락기"],
-            ["팔정도", "푸드트럭 & 교내부스"]
+            ["만해광장", "플리마켓 & 오락기", 1],
+            ["팔정도", "푸드트럭 & 교내부스", 2]
         ]
     },
     {
+        id : 2,
         date : 28,
         starttime : 18,
         endtime : 24,
         time : "18:00 - 22:00 ~",
         info : [
-            ["만해광장", "야시장"],
-            ["학교 전체", "주점 & 외부부스"]
+            ["만해광장", "야시장", 1],
+            ["학교 전체", "주점 & 외부부스", 2]
         ]
     },
     {
+        id : 3,
         date : 29,
         starttime : 11,
         endtime : 18,
         time : "11:00 - 18:00",
         info : [
-            ["만해광장", "오락기 & 외부부스"],
-            ["팔정도", "푸드트럭 & 교내부스"]
+            ["만해광장", "오락기 & 외부부스", 1],
+            ["팔정도", "푸드트럭 & 교내부스", 2]
         ]
     },
     {
+        id : 4,
         date : 29,
         starttime : 18,
         endtime : 24,
         time : "18:00 - 22:00 ~",
         info : [
-            ["만해광장", "야시장"],
-            ["학교 전체", "주점 & 교내부스"]
+            ["만해광장", "야시장", 1],
+            ["학교 전체", "주점 & 교내부스", 2]
         ]
     },
     {
+        id : 5,
         date : 30,
         starttime : 11,
         endtime : 18,
         time : "11:00 - 18:00",
         info : [
-            ["만해광장", "오락기 & 외부부스"],
-            ["팔정도", "푸드트럭 & 교내부스"]
+            ["만해광장", "오락기 & 외부부스", 1],
+            ["팔정도", "푸드트럭 & 교내부스", 2]
         ]
     },
     {
+        id : 6,
         date : 30,
         starttime : 18,
         endtime : 24,
         time : "18:00 - 22:00 ~",
         info : [
-            ["만해광장", "야시장"],
-            ["학교 전체", "주점 & 교내부스"]
+            ["만해광장", "야시장", 1],
+            ["학교 전체", "주점 & 교내부스", 2]
         ]
     },
 ]
 
 const perfor = [
     {
+        id : 1,
         date : 28,
         starttime : 18,
         endtime : 24,
         time : "18:00 - 22:00 ~ ",
         info : [
-            ["만해광장", "디제잉"]
+            ["만해광장", "디제잉", 1]
         ]
     },
     {
+        id : 2,
         date : 29,
         starttime : 14,
         endtime : 19,
         time : "14:00 - 19:00",
         info : [
-            ["대운동장", "동연제"]
+            ["대운동장", "동연제", 1]
         ]
     },
     {
+        id : 3,
         date : 29,
         starttime : 19,
         endtime : 20,
         time : "19:00 - 20:00",
         info : [
-            ["대운동장", "디제잉"]
+            ["대운동장", "디제잉", 1]
         ]
     },
     {
+        id : 4,
         date : 29,
         starttime : 20,
         time : "20:15 - 22:00 ~ ",
         endtime : 24,
         info : [
-            ["대운동장", "연애인 공연"]
+            ["대운동장", "연애인 공연", 1]
         ]
     },
     {
+        id : 5,
         date : 30,
         starttime : 14,
         endtime : 18,
         time : "14:00 - 18:00",
         info : [
-            ["대운동장", "가요제"]
+            ["대운동장", "가요제", 1]
         ]
     },
     {
+        id : 6,
         date : 30,
         starttime : 18,
         endtime : 20,
         time : "18:00 - 20:30",
         info : [
-            ["대운동장", "백상공연"]
+            ["대운동장", "백상공연", 1]
         ]
     },
     {
+        id : 7,
         date : 30,
         starttime : 20,
         endtime : 24,
         time : "20:30 - 22:00 ~ ",
         info : [
-            ["대운동장", "연애인 공연"]
+            ["대운동장", "연애인 공연" , 1]
         ]
     },
 ]
+
+const Wrapper = styled.div`
+    width: inherit;
+    height: fit-content;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+`
 
 
 
@@ -340,14 +361,14 @@ function ShowTable28 () {
                     :
                     /* 축제기간 */
                     booth.filter(i => i.date === todate).filter(i => i.endtime > hours).slice(0,1).map(i => 
-                        <>
+                        <div key={i.id}>
                             <TimeBox>
                                 {i.starttime > hours ? <IsNext>NEXT</IsNext> : <IsNow>NOW</IsNow>}
                                 <TimeTime style={{color : "#579AFF"}}>{i.time}</TimeTime>
                             </TimeBox>
                             <BoothInfoBox>
                                 {i.info.map(j => 
-                                    <BoothInfoItem>
+                                    <BoothInfoItem key={j[2]}>
                                         <BoothInfoItemTitle>{j[1]}</BoothInfoItemTitle>
                                         <BoothInfoItemSub>
                                             <span>{j[0]}</span>
@@ -356,7 +377,7 @@ function ShowTable28 () {
                                     </BoothInfoItem>
                                     )}
                             </BoothInfoBox>
-                        </>)
+                        </div>)
                     }
                 </BoothBox>
             </BoothSection>
@@ -389,14 +410,14 @@ function ShowTable28 () {
                         :
                         /* 축제기간 */
                         perfor.filter(i => i.date === todate).filter(i => i.endtime > hours).slice(0,1).map(i => 
-                            <>
+                            <Wrapper key={i.id}>
                                 <TimeBox style={{justifyContent: "flex-start"}}>
                                     {i.starttime > hours ? <IsNext>NEXT</IsNext> : <IsNow>NOW</IsNow>}
                                     <TimeTime style={{color : "#FF6B6B"}}>{i.time}</TimeTime>
                                 </TimeBox>
                                 <PerInfoBox>
                                     {i.info.map(j => 
-                                        <PerInfoItem>
+                                        <PerInfoItem key={j[2]}>
                                             <PerInfoItemTitle>{j[1]}</PerInfoItemTitle>
                                             <PerInfoItemSub>
                                                 <img src={PinImg} />
@@ -405,7 +426,7 @@ function ShowTable28 () {
                                         </PerInfoItem>
                                         )}
                                 </PerInfoBox>
-                            </>)
+                            </Wrapper>)
                     }
 
                 </PerBox>
