@@ -34,7 +34,7 @@ export default function BoothDetailEdit() {
     return new URLSearchParams(useLocation().search);
   };
   let query = useQuery();
-  console.log(booth);
+  // console.log(booth);
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -50,10 +50,10 @@ export default function BoothDetailEdit() {
       .get(`booths/${boothId}`)
       .then((res) => {
         setBooth(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((e) => {
-        console.log(e);
+        // console.log(e);
       });
   };
 

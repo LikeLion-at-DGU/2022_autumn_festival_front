@@ -68,7 +68,7 @@ export default function GuestDelete() {
 
   const deleteComments = async (e) => {
     setPassword(e.target.value);
-    console.log('된거임');
+    // console.log('된거임');
 
     await axios
       // `/booth/${detailId}/comment/${id}`
@@ -76,11 +76,11 @@ export default function GuestDelete() {
         data: { password: password },
       })
       .then((response) => {
-        console.log(response.status);
+        // console.log(response.status);
         setError(true);
       })
       .catch((e) => {
-        console.log('에러임', e);
+        // console.log('에러임', e);
         setError(false);
       });
   };
