@@ -281,7 +281,7 @@ export default function BoothDetail() {
   let query = useQuery();
   useEffect(() => {
     // console.log(query.get('admin'));
-    setAdmin(query.get('likelionf10'));
+    setAdmin(query.get(`${process.env.REACT_APP_ADMIN_KEY}`));
   }, [query]);
 
   //방명록
@@ -558,7 +558,9 @@ export default function BoothDetail() {
                 {admin === 'true' ? (
                   <EditBtn
                     onClick={() =>
-                      navigate(`/booth/${detailId}/edit?likelionf10=true`)
+                      navigate(
+                        `/booth/${detailId}/edit?${process.env.REACT_APP_ADMIN_KEY}=true`,
+                      )
                     }
                   >
                     수정하기
@@ -569,7 +571,6 @@ export default function BoothDetail() {
                 <br />
 
                 <div style={{ display: 'flex', alignItem: 'center' }}>
-              
                   {HeartView(booth.boothType)}
                   &nbsp;
                   <LikeCount>{booth.likeCnt}</LikeCount>
@@ -662,11 +663,12 @@ export default function BoothDetail() {
                     욕설, 성희롱, 비방 발언을 작성할 경우 ip주소를 통해{' '}
                     <div></div>법적 조치할 예정입니다.
                   </div>
-                  {pageInfo.currentData(comments).map((comment) => {
+                  {pageInfo.currentData(comments).map((comment, idx) => {
                     {
                       // console.log(comment);
                       return (
                         <GuestBookItem
+                          key={idx}
                           detailId={detailId}
                           id={comment.id}
                           writer={comment.writer}
