@@ -202,22 +202,22 @@ const PerInfoItemSub = styled.div`
 `;
 
 const PerChart1 = styled.div`
-    opacity: 0.8;
-    background-color: white;
-    width: 100px;
-    height: 130px;
-    margin-top: 10px;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+  opacity: 0.8;
+  background-color: white;
+  width: 100px;
+  height: 130px;
+  margin-top: 10px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const ListImg = styled.img`
   width: 90%;
   height: 80%;
-`
+`;
 
 const PerChart2 = styled.div`
   opacity: 0.8;
@@ -366,7 +366,7 @@ function SecondTable() {
                   <span>대운동장</span>
                 </PerInfoItemSub>
                 <PerChart1>
-                    <ListImg src={List} />                   
+                  <ListImg src={List} />
                 </PerChart1>
               </PerInfoItem>
             </PerInfoBox>
@@ -410,7 +410,7 @@ function SecondTable() {
 
                   <PerChart2Item style={{ marginTop: '-10px' }}>
                     <StarImg src={Hynn} />
-                    <StarName>Yoonha</StarName>
+                    <StarName>Younha</StarName>
                   </PerChart2Item>
                   <PerChart2Item style={{ marginTop: '-10px' }}>
                     <StarImg src={Itzy} />

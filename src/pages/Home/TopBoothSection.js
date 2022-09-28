@@ -338,11 +338,11 @@ function TopBoothSection() {
       ];
       setData(data);
     } catch (error) {
-      console.log('ERROR', error);
+      // console.log('ERROR', error);
     }
   };
 
-  console.log(booth);
+  // console.log(booth);
   useEffect(() => {
     fetchBooth();
   }, []);

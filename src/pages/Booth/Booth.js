@@ -224,7 +224,7 @@ export default function Booth({}) {
       setIsLoading(true);
     } catch (error) {
       setIsExist(false);
-      console.log('ERROR', error);
+      // console.log('ERROR', error);
     }
   };
 

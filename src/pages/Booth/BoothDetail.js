@@ -148,7 +148,7 @@ export default function BoothDetail() {
         });
       })
       .catch((e) => {
-        console.log('좋아요 실패');
+        // console.log('좋아요 실패');
       });
   };
 
@@ -198,7 +198,7 @@ export default function BoothDetail() {
       .get(`booths/${detailId}`)
       .then((res) => {
         setBooth(res.data);
-        console.log(res.data);
+        //console.log(res.data);
         setIsLoading(true);
         // if (res.data.images === null) {
         //   setBooth({ ...booth, images: [] });
@@ -206,7 +206,7 @@ export default function BoothDetail() {
       })
       .catch((e) => {
         setIsExist(false);
-        console.log(e);
+        // console.log(e);
       });
   };
 
@@ -243,10 +243,10 @@ export default function BoothDetail() {
       .get(`booths/${detailId}/menus`)
       .then((res) => {
         setMenu(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((e) => {
-        console.log(e);
+        // console.log(e);
       });
   };
 
@@ -293,14 +293,14 @@ export default function BoothDetail() {
   const params = useParams();
   const getComments = () => {
     const id = params.id;
-    console.log(id);
+    // console.log(id);
     axios
       .get(`booths/${id}/comments`)
       .then((response) => {
         // console.log(response.data);
         setComments(response.data);
       })
-      .catch((error) => console.log('Network Error : ', error));
+      .catch((error) => // console.log('Network Error : ', error));
   };
 
   useEffect(() => {
@@ -411,7 +411,7 @@ export default function BoothDetail() {
 
   const CommentInput = (/*{ onInsert }*/) => {
     let detailId = useParams().id;
-    console.log('detailId:', detailId);
+    // console.log('detailId:', detailId);
 
     const { register, handleSubmit, setValue } = useForm();
 
@@ -440,7 +440,7 @@ export default function BoothDetail() {
           content: data.content,
         });
       } catch (e) {
-        console.log(e);
+        // console.log(e);
       }
 
       try {
@@ -448,7 +448,7 @@ export default function BoothDetail() {
           setComments(response.data);
         });
       } catch (e) {
-        console.log(e);
+        // console.log(e);
       }
 
       setValue('writer', '');
@@ -569,7 +569,7 @@ export default function BoothDetail() {
                 <br />
 
                 <div style={{ display: 'flex', alignItem: 'center' }}>
-                  {console.log(booth.isLike, booth.likeCnt, booth)}
+              
                   {HeartView(booth.boothType)}
                   &nbsp;
                   <LikeCount>{booth.likeCnt}</LikeCount>

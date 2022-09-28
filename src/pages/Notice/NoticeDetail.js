@@ -44,11 +44,11 @@ export default function NoticeDetail() {
       .get(`notifications/${noticeId}`)
       .then((res) => {
         setNotice(res.data);
-        console.log(res.data);
+        // console.log(res.data);
         setIsLoading(true);
       })
       .catch((e) => {
-        console.log(e);
+        // console.log(e);
       });
   }, []);
 

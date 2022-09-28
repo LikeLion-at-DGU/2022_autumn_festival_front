@@ -385,7 +385,7 @@ function SecondTable() {
                 <PerChart2>
                   <PerChart2Item>
                     <StarImg src={Yoon} />
-                    <StarName>ALIEE</StarName>
+                    <StarName>AILEE</StarName>
                   </PerChart2Item>
 
                   <PerChart2Item style={{ marginTop: '-10px' }}>

@@ -123,12 +123,12 @@ export default function Notice() {
     await axios
       .get(`notifications`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setNotices(res.data);
         setIsLoading(true);
       })
       .catch((e) => {
-        console.log(e);
+        //console.log(e);
       });
   };
 
