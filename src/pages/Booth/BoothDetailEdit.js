@@ -60,7 +60,7 @@ export default function BoothDetailEdit() {
   const location = useLocation();
   const putBooth = () => {
     axios.put(`booths/${boothId}`, booth).then((res) => {});
-    navigate(`/booth/${boothId}?likelionf10=true`);
+    navigate(`/booth/${boothId}?${process.env.REACT_APP_ADMIN_KEY}=true`);
     location.reload();
   };
 
@@ -70,7 +70,7 @@ export default function BoothDetailEdit() {
 
   return (
     <div>
-      {query.get('likelionf10') == 'true' ? (
+      {query.get(`${process.env.REACT_APP_ADMIN_KEY}`) == 'true' ? (
         <>
           <h1>부스 수정하기</h1>
           <form>
